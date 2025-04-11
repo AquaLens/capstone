@@ -1,0 +1,313 @@
+/* ------------ Global Styles ------------ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f8f8f8;
+    line-height: 1.6;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* ------------ Header ------------ */
+  header {
+    background-color: #ffffff;
+    padding: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+  }
+  
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .logo img{
+    height: 3.5rem;
+    margin-bottom: -0.5rem;
+  }
+  
+  nav {
+    flex-grow: 1;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: right;
+    list-style: none;
+  }
+  
+  .nav-links li {
+    font-size: 1rem;
+  }
+  
+  .nav-links a {
+    color: #333;
+    transition: color 0.2s ease;
+  }
+  
+  .nav-links a:hover {
+    color: #3B609C;
+  }
+  
+  /* ------------ Dashboard Button Above Sidebar ------------ */
+  .dashboard-button-top {
+    margin-top: 3rem;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .btn-dashboard {
+    display: inline-block;
+    background-color: #3B609C;
+    color: #ffffff;
+    padding: 0.9rem 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+    width: 250px; /* Match the width of the sidebar */
+    text-align: center;
+  }
+  
+  .btn-dashboard:hover {
+    background-color: #CCCCCC;
+    color: #000000;
+  }
+  
+  /* ------------ Main Layout ------------ */
+  main {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  /* ------------ Sidebar (Filters) ------------ */
+  aside {
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    min-height: 400px;
+    flex: 1 1 220px;
+    max-width: 250px;
+  }
+  
+  .filters h2 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .filter-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .filter-group label {
+    display: block;
+    margin-bottom: 0.25rem;
+    cursor: pointer;
+  }
+  
+  .froggy-help {
+    background-color: #f0f8ff;
+    border: 2px dashed #005EB8;
+    padding: 1rem;
+    border-radius: 4px;
+    text-align: center;
+  }
+  
+  .froggy-help img {
+    width: 50px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .froggy-help button {
+    background-color: #32cd32;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+  }
+  
+  /* ------------ Projects Section ------------ */
+  .projects-section {
+    flex: 1 1 650px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .projects-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  
+  .project-card {
+    background-color: #ffffff;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .project-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    background-color: #eee;
+  }
+  
+  .project-card h3 {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    padding: 0 0.5rem;
+    flex-grow: 1;
+    text-align: left;
+  }
+  
+  /* ------------ Submit Project Section ------------ */
+  .submit-idea-box {
+    margin-top: 2rem;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 1rem;
+  }
+  
+  .submit-idea-box h3 {
+    margin-bottom: 0.5rem;
+    text-align: left;
+  }
+  
+  .submit-idea-btn {
+    background-color: #3B609C;
+    color: #ffffff;
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .submit-idea-btn:hover {
+    background-color: #CCCCCC;
+    color: #000000;
+  }
+  
+  /* ------------ Footer ------------ */
+  footer {
+    background-color: #ffffff;
+    padding: 2rem 0;
+    margin-top: auto;
+    box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .footer-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6rem;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-column {
+    flex: 1 1 200px;
+    text-align: justify;
+  }
+  
+  .footer-column h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .footer-column p,
+  .footer-column ul {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .footer-column ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .footer-column ul li {
+    margin-bottom: 0.3rem;
+    position: relative;
+    padding-left: 1rem;
+  }
+
+  .footer-column ul li::before {
+    content: "-";
+    position: absolute;
+    left: 0;
+    color: #000; /* Optional: dash color */
+  }
+  
+  .footer-logos {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .footer-logos img {
+    height: 40px;
+  }
+  
+  /* ------------ Responsive ------------ */
+  @media (max-width: 768px) {
+    header {
+      text-align: center;
+    }
+  
+    .header-content {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  
+    main {
+      flex-direction: column;
+    }
+  
+    aside {
+      max-width: 100%;
+    }
+  
+    .projects-section {
+      max-width: 100%;
+    }
+  
+    .nav-links {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .btn-dashboard {
+      width: 100%;
+    }
+  }
