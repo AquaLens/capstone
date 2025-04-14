@@ -126,8 +126,8 @@
   }
   
   .froggy-help {
-    background-color: #f0f8ff;
-    border: 2px dashed #005EB8;
+    background-color: #ffffff; /* white background */
+    border: 1px solid #d3d3d3; /* light grey solid border */
     padding: 1rem;
     border-radius: 4px;
     text-align: left;
@@ -135,6 +135,7 @@
   
   .froggy-text .title {
     font-weight: bold;
+    font-size: 1.25rem;
     margin-bottom: 0.25rem;
   }
   
@@ -161,7 +162,14 @@
     padding: 0.5rem 1rem;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.2s ease;
   }
+
+  .froggy-help button:hover {
+    background-color: #CCCCCC;
+    color: #000000;
+  }
+  
   
   
   /* ------------ Projects Section ------------ */
