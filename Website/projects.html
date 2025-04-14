@@ -6,6 +6,136 @@
   <title>AquaLens - Global Projects, One Community</title>
   <link rel="stylesheet" href="projects.css" />
 </head>
+
+<script>
+  let allProjects = []; // Store all projects globally
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    const projectsGrid = document.getElementById('projects-grid');
+
+    const apiUrl = 'https://594hcrq0.api.sanity.io/v2025-04-14/data/query/production?query=' +
+      encodeURIComponent(`*[_type == "projects"]{
+        projectName,
+        description,
+        "imageURL": image.asset->url,
+        "imageAlt": projectName,
+        location,
+        keywordLabel,
+        source,
+        companyOrganization,
+        context
+      }`);
+
+    try {
+      const response = await fetch(apiUrl);
+      if (!response.ok) throw new Error(`API request failed with status ${response.status}`);
+      const { result: projects } = await response.json();
+      allProjects = projects; // store for filtering
+
+      renderProjects(projects);
+      setupKeywordFilter();
+    } catch (error) {
+      console.error('Error fetching project data:', error);
+      projectsGrid.innerHTML = '<p>Sorry, we are unable to load the projects at this time.</p>';
+    }
+  });
+
+  function renderProjects(projects) {
+    const projectsGrid = document.getElementById('projects-grid');
+    projectsGrid.innerHTML = '';
+
+    if (!projects.length) {
+      projectsGrid.innerHTML = '<p>No projects match your filters.</p>';
+      return;
+    }
+
+    projects.forEach(project => {
+      const card = document.createElement('div');
+      card.classList.add('project-card');
+
+      const img = document.createElement('img');
+      img.src = project.imageURL || 'https://via.placeholder.com/400x300?text=No+Image';
+      img.alt = project.imageAlt || 'Project image';
+      card.appendChild(img);
+
+      if (project.keywordLabel) {
+        const label = document.createElement('p');
+        label.textContent = project.keywordLabel;
+        label.classList.add('project-keyword');
+        card.appendChild(label);
+      }
+
+      const title = document.createElement('h3');
+      title.textContent = project.projectName || 'Untitled Project';
+      card.appendChild(title);
+
+      card.addEventListener('click', () => {
+        showModal(project);
+      });
+
+      projectsGrid.appendChild(card);
+    });
+  }
+
+  function setupKeywordFilter() {
+  const checkboxes = document.querySelectorAll('input[name="keywords"], input[name="context"]');
+  checkboxes.forEach(cb => {
+    cb.addEventListener('change', applyFilters);
+  });
+}
+
+
+  function applyFilters() {
+  const selectedKeywords = Array.from(
+    document.querySelectorAll('input[name="keywords"]:checked')
+  ).map(cb => cb.value);
+
+  const selectedContexts = Array.from(
+    document.querySelectorAll('input[name="context"]:checked')
+  ).map(cb => cb.value);
+
+  const selectedCountry = document.querySelector('input[name="country"]:checked')?.value;
+
+  const filtered = allProjects.filter(project => {
+    const matchesKeyword = selectedKeywords.length === 0 || selectedKeywords.includes(project.keywordLabel);
+    const matchesContext = selectedContexts.length === 0 || selectedContexts.some(context => project.context?.includes(context));
+    const matchesCountry = !selectedCountry || project.location === selectedCountry;
+
+    return matchesKeyword && matchesContext && matchesCountry;
+  });
+
+  renderProjects(filtered);
+}
+
+  function showModal(project) {
+    document.getElementById('modal-title').textContent = project.projectName || 'Untitled Project';
+    document.getElementById('modal-description').textContent = project.description || 'No description available';
+    document.getElementById('modal-organization').textContent = project.companyOrganization || 'Unknown organization';
+    document.getElementById('modal-keyword').textContent = project.keywordLabel || 'No label specified';
+    document.getElementById('modal-location').textContent = project.location || 'No location';
+    document.getElementById('modal-context').textContent = project.context || 'No context';
+
+    const modalSource = document.getElementById('modal-source');
+    if (project.source) {
+      modalSource.href = project.source;
+      modalSource.style.display = 'inline';
+    } else {
+      modalSource.style.display = 'none';
+    }
+
+    document.getElementById('project-modal').style.display = 'block';
+  }
+
+  function closeModal() {
+    document.getElementById('project-modal').style.display = 'none';
+  }
+</script>
+
+
+
+
+
+  
 <body>
 
   <!-- Header with Navigation -->
@@ -43,18 +173,19 @@
           <h2>Filter Projects</h2>
           <div class="filter-group">
             <strong>Keywords</strong>
-            <label>
-              <input type="checkbox" name="keywords" value="Marine Development" />
-              Marine Development
-            </label>
-            <label>
-              <input type="checkbox" name="keywords" value="Nature-based Solutions" />
-              Nature-based Solutions
-            </label>
-            <label>
-              <input type="checkbox" name="keywords" value="Recreation" />
-              Recreation
-            </label>
+            <label><input type="checkbox" name="keywords" value="Citizen Science" /> Citizen Science </label>
+            <label><input type="checkbox" name="keywords" value="Flood Management" /> Flood Management </label>
+            <label><input type="checkbox" name="keywords" value="Nature Development" /> Nature Development </label>
+            <label><input type="checkbox" name="keywords" value="Object-based Solutions" /> Object-based Solutions </label>
+            <label><input type="checkbox" name="keywords" value="Purification" /> Purification </label>
+            <label><input type="checkbox" name="keywords" value="Recreation" /> Recreation </label>
+          </div>
+
+          <div class="filter-group">
+            <strong>Context</strong>
+            <label><input type="checkbox" name="context" value="City" /> City</label>
+            <label><input type="checkbox" name="context" value="Landscape" /> Landscape</label>
+            <label><input type="checkbox" name="context" value="Peripheral" /> Peripheral</label>
           </div>
 
           <div class="filter-group">
@@ -75,47 +206,29 @@
         </div>
 
         <div class="froggy-help">
-          <img src="https://via.placeholder.com/50x50?text=Froggy" alt="Froggy Icon" />
-          <p>Need a hand? Froggy can help!</p>
-          <button>Ask Froggy</button>
+          <div class="froggy-text">
+            <div class="title">Need a hand?</div>
+            <div class="subtitle">Froggy can help!</div>
+          </div>
+          <div class="froggy-action">
+            <img src="images/Froggy 3.png" alt="Froggy">
+            <button>Ask Froggy</button>
+          </div>
         </div>
+        
       </aside>
 
       <!-- Projects Section -->
       <section class="projects-section">
         <h2>Global Projects, One Community</h2>
-        <div class="projects-grid">
-          <!-- Project Card 1 -->
-          <div class="project-card">
-            <img src="images/41598_2017_Article_BFsrep44526_Fig1_HTML.jpg.webp" alt="Helmut G. Kratochvil and Michael Pollirer" />
-            <h3>Object-Based Solutions</h3>
-            <h5>Acoustic effects during photosynthesis of aquatic plants enable new research opportunities</h5>
-          </div>
-
-          <!-- Project Card 2 -->
-          <div class="project-card">
-            <img src="https://via.placeholder.com/400x300?text=Project+Image" alt="Project 2" />
-            <h3>Recreational Marine Park</h3>
-          </div>
-
-          <!-- Project Card 3 -->
-          <div class="project-card">
-            <img src="https://via.placeholder.com/400x300?text=Project+Image" alt="Project 3" />
-            <h3>Nature-Based Solutions - Changi</h3>
-          </div>
-
-          <!-- Project Card 4 -->
-          <div class="project-card">
-            <img src="https://via.placeholder.com/400x300?text=Project+Image" alt="Project 4" />
-            <h3>Zone Waffle Gardens</h3>
-          </div>
-          <!-- Add more project cards as needed -->
+        <div class="projects-grid" id="projects-grid">
+          <!-- Dynamic project cards will be appended here -->
         </div>
-
-        <!-- Submit Project Box -->
         <div class="submit-idea-box">
           <h3>Have an idea or a project that's missing here?</h3>
+          <div class="button-wrapper">
           <button class="submit-idea-btn">Submit Project</button>
+          </div>
         </div>
       </section>
     </main>
@@ -140,11 +253,25 @@
         </ul>
       </div>
       <div class="footer-column footer-logos">
+        <img src="images/CSSci.png" alt="CSSci Logo" />
         <img src="images/UvA.jpg" alt="University Logo" />
         <img src="images/City.png" alt="City Logo" />
       </div>
     </div>
   </footer>
+
+  <div id="project-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal()">&times;</span>
+      <h2 id="modal-title">Project Title</h2>
+      <p><strong>Organization:</strong> <span id="modal-organization"></span></p>
+      <p><strong>Keyword/Label:</strong> <span id="modal-keyword"></span></p>
+      <p><strong>Location:</strong> <span id="modal-location"></span></p>
+      <p><strong>Context:</strong> <span id="modal-context"></span></p>
+      <p id="modal-description">Project description here.</p>
+      <a id="modal-source" href="#" target="_blank">View Source</a>
+    </div>
+  </div>  
 
 </body>
 </html>

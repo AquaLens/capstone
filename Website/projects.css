@@ -130,23 +130,39 @@
     border: 2px dashed #005EB8;
     padding: 1rem;
     border-radius: 4px;
-    text-align: center;
+    text-align: left;
+  }
+  
+  .froggy-text .title {
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+  }
+  
+  .froggy-text .subtitle {
+    font-weight: normal;
+    margin-bottom: 1rem;
+  }
+  
+  .froggy-action {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
   
   .froggy-help img {
     width: 50px;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
   }
   
   .froggy-help button {
-    background-color: #32cd32;
+    background-color: #3B609C;
     color: #ffffff;
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 4px;
     cursor: pointer;
-    margin-top: 0.5rem;
   }
+  
   
   /* ------------ Projects Section ------------ */
   .projects-section {
@@ -167,30 +183,43 @@
   }
   
   .project-card {
-    background-color: #ffffff;
-    border-radius: 4px;
+    padding: 12px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    background-color: #fff;
     overflow: hidden;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  .project-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
   
   .project-card img {
     width: 100%;
-    height: 150px;
-    object-fit: cover;
-    background-color: #eee;
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+  
+  .project-keyword {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 4px;
+    text-align: left;
+    padding: 0 4px;
   }
   
   .project-card h3 {
+    font-weight: bold;
     font-size: 1rem;
-    margin: 0.5rem 0;
-    padding: 0 0.5rem;
-    flex-grow: 1;
+    margin-top: 0;
+    margin-bottom: 8px;
     text-align: left;
+    padding: 0 4px;
   }
-  
   /* ------------ Submit Project Section ------------ */
   .submit-idea-box {
     margin-top: 2rem;
@@ -218,6 +247,11 @@
   .submit-idea-btn:hover {
     background-color: #CCCCCC;
     color: #000000;
+  }
+
+  .button-wrapper {
+    display: flex;
+    justify-content: flex-end;
   }
   
   /* ------------ Footer ------------ */
@@ -278,6 +312,56 @@
   .footer-logos img {
     height: 40px;
   }
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    padding-top: 80px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+  }
+  
+  .modal-content {
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+    position: relative;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .close-button {
+    color: #aaa;
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .close-button:hover {
+    color: #000;
+  }
+  
+  #modal-source {
+    display: inline-block;
+    margin-top: 10px;
+    color: #0077cc;
+  }
+  
+  .modal-content p {
+    margin: 8px 0;
+  }
+  
+  .modal-content strong {
+    color: #333;
+  }
+  
   
   /* ------------ Responsive ------------ */
   @media (max-width: 768px) {
