@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AquaLens - Projects</title>
+  <link rel="stylesheet" href="projects.css" />
+</head>
+<body>
+  <!-- Header with Navigation -->
+  <header>
+    <div class="container header-content">
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/Logo.png" alt="AquaLens" />
+        </a>
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="data.html">Data</a></li>
+          <li><a href="froggy.html"><img src="images/Froggy 3.png" alt="AI agent" class="nav-icon"></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- Main Content Container -->
+  <div class="container">
+    <!-- Dashboard Button Above Filters -->
+    <div class="dashboard-button-top">
+      <a href="#" class="btn-dashboard">View Dashboard</a>
+    </div>
+    
+    <main>
+      <!-- Filters (Sidebar) -->
+      <aside>
+        <div class="filters">
+          <h2>Filter Projects</h2>
+          <div class="filter-group">
+            <strong>Keywords</strong>
+            <label><input type="checkbox" name="keywords" value="Citizen Science" /> Citizen Science </label>
+            <label><input type="checkbox" name="keywords" value="Flood Management" /> Flood Management </label>
+            <label><input type="checkbox" name="keywords" value="Nature Development" /> Nature Development </label>
+            <label><input type="checkbox" name="keywords" value="Object-based Solutions" /> Object-based Solutions </label>
+            <label><input type="checkbox" name="keywords" value="Purification" /> Purification </label>
+            <label><input type="checkbox" name="keywords" value="Recreation" /> Recreation </label>
+          </div>
+
+          <div class="filter-group">
+            <strong>Context</strong>
+            <label><input type="checkbox" name="context" value="City" /> City</label>
+            <label><input type="checkbox" name="context" value="Landscape" /> Landscape</label>
+            <label><input type="checkbox" name="context" value="Peripheral" /> Peripheral</label>
+          </div>
+
+          <div class="filter-group">
+            <strong>Country</strong>
+            <label>
+              <input type="radio" name="country" value="Singapore" />
+              Singapore
+            </label>
+            <label>
+              <input type="radio" name="country" value="Netherlands" />
+              Netherlands
+            </label>
+            <label>
+              <input type="radio" name="country" value="United States" />
+              United States
+            </label>
+          </div>
+        </div>
+
+          <!-- Froggy Help Button -->
+          <div class="froggy-help">
+            <div class="froggy-text">
+              <div class="title">Need help?</div>
+              <div class="subtitle">Ask Froggy a question!</div>
+            </div>
+            <div class="froggy-action">
+              <img src="images/Froggy 3.png" alt="Froggy">
+              <button id="froggy-button">Ask Froggy</button>
+            </div>
+          </div>
+          
+          <!-- Froggy Chat Popup -->
+<div class="froggy-chat-popup" id="froggy-popup">
+  <div class="froggy-chat-header">
+    <span>Froggy</span>
+    <button id="froggy-close" class="froggy-close">&times;</button>
+  </div>
+  <div class="froggy-chat-messages" id="froggy-messages"></div>
+  <div class="froggy-chat-input">
+    <textarea id="froggy-question" placeholder="Type a message..."></textarea>
+    <button id="froggy-send">➤</button>
+  </div>
+</div>
+        
+      </aside>
+
+      <!-- Projects Section -->
+      <section class="projects-section">
+        <h2>Global Projects, One Community</h2>
+        <!-- Projects will be rendered here dynamically -->
+        <div class="projects-grid" id="projects-grid"></div>
+        
+        <!-- Pagination Controls -->
+        <div class="pagination-controls" style="text-align: center; margin: 20px 0;">
+          <button id="prev-page" onclick="changePage(-1)">Previous</button>
+          <span id="current-page">Page 1</span>
+          <button id="next-page" onclick="changePage(1)">Next</button>
+          <br/><br/>
+          <label for="projectsPerPage">Projects per page: </label>
+          <select id="projectsPerPage" onchange="changeProjectsPerPage(this.value)">
+            <option value="9" selected>9</option>
+            <option value="12">12</option>
+          </select>
+        </div>
+
+        <div class="submit-idea-box">
+          <h3>Have an idea or a project that's missing here?</h3>
+          <div class="button-wrapper">
+            <button class="submit-idea-btn">Submit Project</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-columns">
+      <div class="footer-column">
+        <h4>About AquaLens</h4>
+        <p>
+            AquaLens is a digital platform dedicated to showcasing global initiatives that improve urban water quality. Developed by students from the University of Amsterdam, the project aims to inspire action and raise awareness about the vital importance of underwater ecosystems in our cities.
+        </p>
+      </div>
+      <div class="footer-column">
+        <h4>Useful Links</h4>
+        <ul>
+          <li><a href="projects.html">Explore Projects</a></li>
+          <li><a href="data.html">Explore Data</a></li>
+          <li><a href="froggy.html">Ask Froggy</a></li>
+          <li><a href="https://www.linkedin.com/groups/13190462/" target="_blank" rel="noopener noreferrer">Join LinkedIn Community</a></li>
+        </ul>
+      </div>
+      <div class="footer-column footer-logos">
+        <img src="images/CSSci.png" alt="CSSci Logo" />
+        <img src="images/UvA.jpg" alt="University Logo" />
+        <img src="images/City.png" alt="City Logo" />
+      </div>
+    </div>
+  </footer>
+
+  <div id="project-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal()">&times;</span>
+      <h2 id="modal-title">Project Title</h2>
+      <p><strong>Organization:</strong> <span id="modal-organization"></span></p>
+      <p><strong>Keyword/Label:</strong> <span id="modal-keyword"></span></p>
+      <p><strong>Location:</strong> <span id="modal-location"></span></p>
+      <p><strong>Context:</strong> <span id="modal-context"></span></p>
+      <p id="modal-description">Project description here.</p>
+      <a id="modal-source" href="#" target="_blank">View Source</a>
+    </div>
+  </div> 
+
+  <script>
+    let allProjects = []; // Store all projects globally
+    let currentPage = 1;
+    let projectsPerPage = 9;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const projectsGrid = document.getElementById('projects-grid');
+      const apiUrl = 'https://594hcrq0.api.sanity.io/v2025-04-14/data/query/production?query=' +
+        encodeURIComponent(`*[_type == "projects"]{
+          projectName,
+          description,
+          "imageURL": image.asset->url,
+          "imageAlt": projectName,
+          location,
+          keywordLabel,
+          source,
+          companyOrganization,
+          context
+        }`);
+
+      try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) throw new Error(`API request failed with status ${response.status}`);
+        const { result: projects } = await response.json();
+        allProjects = projects; // store for filtering
+
+        renderProjects();
+        setupKeywordFilter();
+      } catch (error) {
+        console.error('Error fetching project data:', error);
+        projectsGrid.innerHTML = '<p>Sorry, we are unable to load the projects at this time.</p>';
+      }
+    });
+
+    // Render only the projects corresponding to the current page
+    function renderProjects(filteredProjects = allProjects) {
+      const projectsGrid = document.getElementById('projects-grid');
+      projectsGrid.innerHTML = '';
+
+      if (!filteredProjects.length) {
+        projectsGrid.innerHTML = '<p>No projects match your filters.</p>';
+        return;
+      }
+
+      // Calculate start and end indices for slicing based on page number and projectsPerPage
+      const startIndex = (currentPage - 1) * projectsPerPage;
+      const endIndex = startIndex + Number(projectsPerPage);
+      const projectsToShow = filteredProjects.slice(startIndex, endIndex);
+
+      projectsToShow.forEach(project => {
+        const card = document.createElement('div');
+        card.classList.add('project-card');
+
+        const img = document.createElement('img');
+        img.src = project.imageURL || 'https://via.placeholder.com/400x300?text=No+Image';
+        img.alt = project.imageAlt || 'Project image';
+        card.appendChild(img);
+
+        if (project.keywordLabel) {
+          const label = document.createElement('p');
+          label.textContent = project.keywordLabel;
+          label.classList.add('project-keyword');
+          card.appendChild(label);
+        }
+
+        const title = document.createElement('h3');
+        title.textContent = project.projectName || 'Untitled Project';
+        card.appendChild(title);
+
+        card.addEventListener('click', () => {
+          showModal(project);
+        });
+
+        projectsGrid.appendChild(card);
+      });
+
+      // Update the current page display
+      document.getElementById('current-page').textContent = `Page ${currentPage}`;
+    }
+
+    function setupKeywordFilter() {
+      const checkboxes = document.querySelectorAll('input[name="keywords"], input[name="context"], input[name="country"]');
+      checkboxes.forEach(cb => {
+        cb.addEventListener('change', applyFilters);
+      });
+    }
+
+    function applyFilters() {
+      currentPage = 1; // reset page when filters change
+
+      const selectedKeywords = Array.from(
+        document.querySelectorAll('input[name="keywords"]:checked')
+      ).map(cb => cb.value);
+
+      const selectedContexts = Array.from(
+        document.querySelectorAll('input[name="context"]:checked')
+      ).map(cb => cb.value);
+
+      const selectedCountry = document.querySelector('input[name="country"]:checked')?.value;
+
+      const filtered = allProjects.filter(project => {
+        const matchesKeyword = selectedKeywords.length === 0 || selectedKeywords.includes(project.keywordLabel);
+        const matchesContext = selectedContexts.length === 0 || selectedContexts.some(context => project.context?.includes(context));
+        const matchesCountry = !selectedCountry || project.location === selectedCountry;
+        return matchesKeyword && matchesContext && matchesCountry;
+      });
+
+      renderProjects(filtered);
+    }
+
+    function showModal(project) {
+      document.getElementById('modal-title').textContent = project.projectName || 'Untitled Project';
+      document.getElementById('modal-description').textContent = project.description || 'No description available';
+      document.getElementById('modal-organization').textContent = project.companyOrganization || 'Unknown organization';
+      document.getElementById('modal-keyword').textContent = project.keywordLabel || 'No label specified';
+      document.getElementById('modal-location').textContent = project.location || 'No location';
+      document.getElementById('modal-context').textContent = project.context || 'No context';
+
+      const modalSource = document.getElementById('modal-source');
+      if (project.source) {
+        modalSource.href = project.source;
+        modalSource.style.display = 'inline';
+      } else {
+        modalSource.style.display = 'none';
+      }
+
+      document.getElementById('project-modal').style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('project-modal').style.display = 'none';
+    }
+
+    // Change page by increment (-1 for previous, 1 for next)
+    function changePage(increment) {
+      // Determine the total number of projects based on the current filter setting
+      // (If filters are active, use the filtered projects; otherwise use allProjects)
+      let currentProjects = allProjects;
+      const selectedKeywords = Array.from(document.querySelectorAll('input[name="keywords"]:checked')).map(cb => cb.value);
+      const selectedContexts = Array.from(document.querySelectorAll('input[name="context"]:checked')).map(cb => cb.value);
+      const selectedCountry = document.querySelector('input[name="country"]:checked')?.value;
+      if (selectedKeywords.length || selectedContexts.length || selectedCountry) {
+        currentProjects = allProjects.filter(project => {
+          const matchesKeyword = selectedKeywords.length === 0 || selectedKeywords.includes(project.keywordLabel);
+          const matchesContext = selectedContexts.length === 0 || selectedContexts.some(context => project.context?.includes(context));
+          const matchesCountry = !selectedCountry || project.location === selectedCountry;
+          return matchesKeyword && matchesContext && matchesCountry;
+        });
+      }
+      
+      const totalPages = Math.ceil(currentProjects.length / projectsPerPage);
+      const newPage = currentPage + increment;
+      if (newPage < 1 || newPage > totalPages) return;  // Do nothing if out of range
+      currentPage = newPage;
+      renderProjects(currentProjects);
+    }
+
+    // Change number of projects shown per page and re-render
+    function changeProjectsPerPage(value) {
+      projectsPerPage = Number(value);
+      currentPage = 1; // Optionally reset to the first page on change
+      // Check if there are active filters and re-render accordingly
+      const selectedKeywords = Array.from(document.querySelectorAll('input[name="keywords"]:checked')).map(cb => cb.value);
+      const selectedContexts = Array.from(document.querySelectorAll('input[name="context"]:checked')).map(cb => cb.value);
+      const selectedCountry = document.querySelector('input[name="country"]:checked')?.value;
+      const currentProjects = (selectedKeywords.length || selectedContexts.length || selectedCountry) ?
+        allProjects.filter(project => {
+          const matchesKeyword = selectedKeywords.length === 0 || selectedKeywords.includes(project.keywordLabel);
+          const matchesContext = selectedContexts.length === 0 || selectedContexts.some(context => project.context?.includes(context));
+          const matchesCountry = !selectedCountry || project.location === selectedCountry;
+          return matchesKeyword && matchesContext && matchesCountry;
+        }) : allProjects;
+      
+      renderProjects(currentProjects);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+  const froggyBtn = document.getElementById('froggy-button');
+  const froggyPopup = document.getElementById('froggy-popup');
+  const froggyClose = document.getElementById('froggy-close');
+  const sendBtn = document.getElementById('froggy-send');
+  const textarea = document.getElementById('froggy-question');
+  const messages = document.getElementById('froggy-messages');
+
+  froggyBtn.addEventListener('click', () => {
+    froggyPopup.style.display = 'flex';
+  });
+
+  froggyClose.addEventListener('click', () => {
+    froggyPopup.style.display = 'none';
+  });
+
+  sendBtn.addEventListener('click', sendMessage);
+  textarea.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+
+  async function sendMessage() {
+    const text = textarea.value.trim();
+    if (!text) return;
+
+    addMessage(text, 'user');
+    textarea.value = '';
+    messages.scrollTop = messages.scrollHeight;
+
+    try {
+      // Send the user's question to the Flask API
+      const response = await fetch('http://127.0.0.1:5000/api/ask', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ question: text }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to get a response from the API');
+      }
+
+      const data = await response.json();
+      const froggyResponse = data.answer || 'Sorry, I couldn\'t find an answer to that question.';
+
+      // Add the response from Froggy
+      addMessage(froggyResponse, 'froggy');
+      messages.scrollTop = messages.scrollHeight;
+    } catch (error) {
+      console.error('Error:', error);
+      addMessage('Sorry, there was an error with the request. Please try again later.', 'froggy');
+      messages.scrollTop = messages.scrollHeight;
+    }
+  }
+
+  function addMessage(content, sender) {
+    const msg = document.createElement('div');
+    msg.className = `froggy-message froggy-${sender}`;
+    msg.textContent = content;
+    messages.appendChild(msg);
+  }
+});
+
+  </script>
+</body>
+</html>

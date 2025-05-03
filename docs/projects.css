@@ -1,0 +1,540 @@
+/* ------------ Global Styles ------------ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f8f8f8;
+    line-height: 1.6;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* ------------ Header ------------ */
+  header {
+    background-color: #ffffff;
+    padding: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+  }
+  
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .logo img{
+    height: 3.5rem;
+    margin-bottom: -0.5rem;
+  }
+  
+  nav {
+    flex-grow: 1;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: right;
+    list-style: none;
+  }
+  
+  .nav-links li {
+    font-size: 1rem;
+  }
+  
+  .nav-links a {
+    color: #333;
+    transition: color 0.2s ease;
+  }
+  
+  .nav-links a:hover {
+    color: #3B609C;
+  }
+
+  .nav-icon {
+    height: 1.5rem; /* adjust height to match text */
+    vertical-align: middle;
+    display: inline-block;
+    margin-top: -2px; /* tweak if it's still slightly off */
+  }  
+  
+  /* ------------ Dashboard Button Above Sidebar ------------ */
+  .dashboard-button-top {
+    margin-top: 3rem;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .btn-dashboard {
+    display: inline-block;
+    background-color: #3B609C;
+    color: #ffffff;
+    padding: 0.9rem 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+    width: 250px; /* Match the width of the sidebar */
+    text-align: center;
+  }
+  
+  .btn-dashboard:hover {
+    background-color: #CCCCCC;
+    color: #000000;
+  }
+  
+  /* ------------ Main Layout ------------ */
+  main {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  /* ------------ Sidebar (Filters) ------------ */
+  aside {
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  min-height: 400px;
+  flex: 1 1 220px;
+  max-width: 250px;
+  align-self: flex-start; /* This prevents stretching */
+}
+  
+  .filters h2 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .filter-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .filter-group label {
+    display: block;
+    margin-bottom: 0.25rem;
+    cursor: pointer;
+  }
+  
+  .froggy-help {
+    background-color: #ffffff; /* white background */
+    border: 1px solid #d3d3d3; /* light grey solid border */
+    padding: 1rem;
+    border-radius: 4px;
+    text-align: left;
+  }
+  
+  .froggy-text .title {
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .froggy-text .subtitle {
+    font-weight: normal;
+    margin-bottom: 1rem;
+  }
+  
+  .froggy-action {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .froggy-help img {
+    width: 50px;
+    margin-bottom: 0;
+  }
+  
+  .froggy-help button {
+    background-color: #3B609C;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .froggy-help button:hover {
+    background-color: #CCCCCC;
+    color: #000000;
+  }
+
+/* Chat popup */
+.froggy-chat-popup {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 320px;
+  max-height: 500px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 9998;
+  font-family: Arial, sans-serif;
+}
+
+/* Header */
+.froggy-chat-header {
+  background-color: #43a047;
+  color: white;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+/* Close button */
+.froggy-close {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Messages area */
+.froggy-chat-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #f9f9f9;
+}
+
+/* Message bubbles */
+.froggy-message {
+  max-width: 80%;
+  padding: 8px 12px;
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+.froggy-user {
+  align-self: flex-end;
+  background-color: #dcf8c6;
+}
+
+.froggy-froggy {
+  align-self: flex-start;
+  background-color: #e1f5fe;
+}
+
+/* Input area */
+.froggy-chat-input {
+  display: flex;
+  border-top: 1px solid #ccc;
+  padding: 8px;
+  background: white;
+}
+
+.froggy-chat-input textarea {
+  flex: 1;
+  resize: none;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  padding: 8px;
+  font-size: 14px;
+  height: 36px;
+  outline: none;
+}
+
+.froggy-chat-input button {
+  background-color: #43a047;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  margin-left: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+  
+  
+  
+  /* ------------ Projects Section ------------ */
+  .projects-section {
+    flex: 1 1 650px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .projects-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  
+  .project-card {
+    padding: 12px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    background-color: #fff;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  .project-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .project-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+  
+  .project-keyword {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 4px;
+    text-align: left;
+    padding: 0 4px;
+  }
+  
+  .project-card h3 {
+    font-weight: bold;
+    font-size: 1rem;
+    margin-top: 0;
+    margin-bottom: 8px;
+    text-align: left;
+    padding: 0 4px;
+  }
+
+  .pagination-controls button {
+    background-color: #3B609C;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin: 0 5px;
+  }
+  .pagination-controls button:hover {
+    background-color: #CCCCCC;
+    color: #000000;
+  }
+  
+  /* Optional additional styling for the page number display and dropdown */
+  .pagination-controls span {
+    font-weight: bold;
+    margin: 0 10px;
+  }
+
+  .pagination-controls select {
+    padding: 0.3rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  /* ------------ Submit Project Section ------------ */
+  .submit-idea-box {
+    margin-top: 2rem;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 1rem;
+  }
+  
+  .submit-idea-box h3 {
+    margin-bottom: 0.5rem;
+    text-align: left;
+  }
+  
+  .submit-idea-btn {
+    background-color: #3B609C;
+    color: #ffffff;
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .submit-idea-btn:hover {
+    background-color: #CCCCCC;
+    color: #000000;
+  }
+
+  .button-wrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  /* ------------ Footer ------------ */
+  footer {
+    background-color: #ffffff;
+    padding: 2rem 0;
+    margin-top: auto;
+    box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .footer-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6rem;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-column {
+    flex: 1 1 200px;
+    text-align: justify;
+  }
+  
+  .footer-column h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .footer-column p,
+  .footer-column ul {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .footer-column ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .footer-column ul li {
+    margin-bottom: 0.3rem;
+    position: relative;
+    padding-left: 1rem;
+  }
+
+  .footer-column ul li::before {
+    content: "-";
+    position: absolute;
+    left: 0;
+    color: #000; /* Optional: dash color */
+  }
+  
+  .footer-logos {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .footer-logos img {
+    height: 40px;
+  }
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    padding-top: 80px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+  }
+  
+  .modal-content {
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+    position: relative;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .close-button {
+    color: #aaa;
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .close-button:hover {
+    color: #000;
+  }
+  
+  #modal-source {
+    display: inline-block;
+    margin-top: 10px;
+    color: #0077cc;
+  }
+  
+  .modal-content p {
+    margin: 8px 0;
+  }
+  
+  .modal-content strong {
+    color: #333;
+  }
+  
+  
+  /* ------------ Responsive ------------ */
+  @media (max-width: 768px) {
+    header {
+      text-align: center;
+    }
+  
+    .header-content {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  
+    main {
+      flex-direction: column;
+    }
+  
+    aside {
+      max-width: 100%;
+    }
+  
+    .projects-section {
+      max-width: 100%;
+    }
+  
+    .nav-links {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .btn-dashboard {
+      width: 100%;
+    }
+  }
