@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AquaLens</title>
   <link rel="stylesheet" href="dashboard.css" />
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>  <!-- Pltotly -->
+
 </head>
 
 <body>
@@ -27,6 +29,117 @@
         </nav>
       </div>
     </header>
+    <div id="map" style="width: 100%; height: 600px;"></div>
+
+<script>
+  async function fetchProjectData() {
+    const apiUrl = 'https://594hcrq0.api.sanity.io/v2025-04-14/data/query/production?query=' +
+      encodeURIComponent(`*[_type == "projects"]{
+        projectName,
+        description,
+        "imageURL": image.asset->url,
+        "imageAlt": projectName,
+        location,
+        keywordLabel,
+        source,
+        companyOrganization,
+        context
+      }`);
+
+    try {
+      const response = await fetch(apiUrl);
+      if (!response.ok) throw new Error(`API request failed with status ${response.status}`);
+      const { result: projects } = await response.json();
+
+      // Process the project locations and render the map
+      renderMap(projects);
+    } catch (error) {
+      console.error('Error fetching project data:', error);
+      document.getElementById('map').innerHTML = '<p>Sorry, we are unable to load the projects at this time.</p>';
+    }
+  }
+
+  function renderMap(projects) {
+    const latitudes = [];
+    const longitudes = [];
+    const texts = [];
+    const projectNames = [];
+    const locations = [];
+    
+    // Extract project location and information
+    projects.forEach(project => {
+      if (project.location) {
+        // Assuming location has a "latitude" and "longitude" field or coordinates
+        const locationArray = project.location.split(','); // Split location to get lat and lon (if possible)
+
+        // If your location data is more complex (e.g., address), you may need to geocode it
+        const lat = parseFloat(locationArray[0]);
+        const lon = parseFloat(locationArray[1]);
+
+        if (!isNaN(lat) && !isNaN(lon)) {
+          latitudes.push(lat);
+          longitudes.push(lon);
+          texts.push(`${project.projectName}<br>${project.description}`);
+          projectNames.push(project.projectName);
+          locations.push(project.location);
+        }
+      }
+    });
+
+    // Plotly map setup
+    Plotly.newPlot('map', [{
+      type: 'scattergeo',
+      mode: 'markers',
+      lat: latitudes,
+      lon: longitudes,
+      text: texts,
+      hoverinfo: 'text',
+      marker: { size: 10, color: 'blue' },
+      customdata: projects // You can use customdata to store project details
+    }], {
+      geo: {
+        scope: 'world',
+        showland: true,
+        landcolor: 'rgb(255, 255, 255)',
+        countrycolor: 'rgb(255, 255, 255)',
+        projection: { type: 'natural earth' }
+      }
+    }).then(function(data) {
+      // Add event listener for clicks on markers
+      const plotlyMarkers = data[0].data;
+      plotlyMarkers.forEach((marker, index) => {
+        marker.on('plotly_click', () => {
+          openProjectModal(projects[index]);
+        });
+      });
+    });
+  }
+
+  // Function to display project details in a modal when a marker is clicked
+  function openProjectModal(project) {
+    document.getElementById('modal-title').textContent = project.projectName || 'Untitled Project';
+    document.getElementById('modal-description').textContent = project.description || 'No description available';
+    document.getElementById('modal-location').textContent = project.location || 'No location available';
+    document.getElementById('modal-context').textContent = project.context || 'No context available';
+
+    const modalSource = document.getElementById('modal-source');
+    if (project.source) {
+      modalSource.href = project.source;
+      modalSource.style.display = 'inline';
+    } else {
+      modalSource.style.display = 'none';
+    }
+
+    document.getElementById('project-modal').style.display = 'block';
+  }
+
+  function closeModal() {
+    document.getElementById('project-modal').style.display = 'none';
+  }
+
+  // Initialize the map and fetch data when the page loads
+  document.addEventListener('DOMContentLoaded', fetchProjectData);
+</script>
 
     <!-- Footer -->
   <footer>
