@@ -5,11 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AquaLens</title>
   <link rel="stylesheet" href="dashboard.css" />
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>  <!-- Pltotly -->
+  <!-- Leaflet CSS & JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
 
 </head>
 
+
 <body>
+
 
     <!-- Header with Navigation -->
     <header>
@@ -29,119 +34,92 @@
         </nav>
       </div>
     </header>
-    <div id="map" style="width: 100%; height: 600px;"></div>
+    <div class="container">
+     
+    <main>
+      <!-- Filters (Sidebar) -->
+      <aside>
+        <div class="filters">
+          <h2>Filter Projects</h2>
+            <div class="filter-group">
+              <strong>Keywords</strong>
+              <label><input type="checkbox" name="keywords" value="Citizen Science" /> Citizen Science </label>
+              <label><input type="checkbox" name="keywords" value="Flood Management" /> Flood Management </label>
+              <label><input type="checkbox" name="keywords" value="Nature Development" /> Nature Development </label>
+              <label><input type="checkbox" name="keywords" value="Object-based Solutions" /> Object-based Solutions </label>
+              <label><input type="checkbox" name="keywords" value="Purification" /> Purification </label>
+              <label><input type="checkbox" name="keywords" value="Recreation" /> Recreation </label>
+            </div>
+ 
+            <div class="filter-group">
+              <strong>Context</strong>
+              <label><input type="checkbox" name="context" value="City" /> City</label>
+              <label><input type="checkbox" name="context" value="Landscape" /> Landscape</label>
+              <label><input type="checkbox" name="context" value="Peripheral" /> Peripheral</label>
+            </div>
+ 
+            <div class="filter-group">
+              <strong>Country</strong>
+              <label>
+                <input type="radio" name="country" value="Singapore" />
+                Singapore
+              </label>
+              <label>
+                <input type="radio" name="country" value="Netherlands" />
+                Netherlands
+              </label>
+              <label>
+                <input type="radio" name="country" value="United States" />
+                United States
+              </label>
+            </div>
+          </div>
+ 
+            <!-- Froggy Help Button -->
+            <div class="froggy-help">
+              <div class="froggy-text">
+                <div class="title">Need help?</div>
+                <div class="subtitle">Ask Froggy a question!</div>
+              </div>
+              <div class="froggy-action">
+                <img src="../images/Froggy 3.png" alt="Froggy">
+                <button id="froggy-button">Ask Froggy</button>
+              </div>
+            </div>
+           
+            <!-- Froggy Chat Popup -->
+ 
+            <div class="froggy-chat-popup" id="froggy-popup">
+              <div class="froggy-chat-header">
+                <span>Froggy</span>
+                <button id="froggy-close" class="froggy-close">&times;</button>
+              </div>
+              <div class="froggy-chat-messages" id="froggy-messages"></div>
+              <div class="froggy-chat-input">
+                <textarea id="froggy-question" placeholder="Type a message..."></textarea>
+                <button id="froggy-send">➤</button>
+              </div>
+            </div>    
+          </aside>
 
-<script>
-  async function fetchProjectData() {
-    const apiUrl = 'https://594hcrq0.api.sanity.io/v2025-04-14/data/query/production?query=' +
-      encodeURIComponent(`*[_type == "projects"]{
-        projectName,
-        description,
-        "imageURL": image.asset->url,
-        "imageAlt": projectName,
-        location,
-        keywordLabel,
-        source,
-        companyOrganization,
-        context
-      }`);
 
-    try {
-      const response = await fetch(apiUrl);
-      if (!response.ok) throw new Error(`API request failed with status ${response.status}`);
-      const { result: projects } = await response.json();
+      <!-- Projects Section -->
+      <section class="projects-section">
+        <h2>Global Water Projects </h2>
+        <div id="map" style="height: 80vh; margin-bottom: 2rem;"></div>
+       
+        <div class="submit-idea-box">
+          <h3>Have an idea or a project that's missing here?</h3>
+          <div class="button-wrapper">
+            <button class="submit-idea-btn">Submit Project</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
 
-      // Process the project locations and render the map
-      renderMap(projects);
-    } catch (error) {
-      console.error('Error fetching project data:', error);
-      document.getElementById('map').innerHTML = '<p>Sorry, we are unable to load the projects at this time.</p>';
-    }
-  }
 
-  function renderMap(projects) {
-    const latitudes = [];
-    const longitudes = [];
-    const texts = [];
-    const projectNames = [];
-    const locations = [];
-    
-    // Extract project location and information
-    projects.forEach(project => {
-      if (project.location) {
-        // Assuming location has a "latitude" and "longitude" field or coordinates
-        const locationArray = project.location.split(','); // Split location to get lat and lon (if possible)
-
-        // If your location data is more complex (e.g., address), you may need to geocode it
-        const lat = parseFloat(locationArray[0]);
-        const lon = parseFloat(locationArray[1]);
-
-        if (!isNaN(lat) && !isNaN(lon)) {
-          latitudes.push(lat);
-          longitudes.push(lon);
-          texts.push(`${project.projectName}<br>${project.description}`);
-          projectNames.push(project.projectName);
-          locations.push(project.location);
-        }
-      }
-    });
-
-    // Plotly map setup
-    Plotly.newPlot('map', [{
-      type: 'scattergeo',
-      mode: 'markers',
-      lat: latitudes,
-      lon: longitudes,
-      text: texts,
-      hoverinfo: 'text',
-      marker: { size: 10, color: 'blue' },
-      customdata: projects // You can use customdata to store project details
-    }], {
-      geo: {
-        scope: 'world',
-        showland: true,
-        landcolor: 'rgb(255, 255, 255)',
-        countrycolor: 'rgb(255, 255, 255)',
-        projection: { type: 'natural earth' }
-      }
-    }).then(function(data) {
-      // Add event listener for clicks on markers
-      const plotlyMarkers = data[0].data;
-      plotlyMarkers.forEach((marker, index) => {
-        marker.on('plotly_click', () => {
-          openProjectModal(projects[index]);
-        });
-      });
-    });
-  }
-
-  // Function to display project details in a modal when a marker is clicked
-  function openProjectModal(project) {
-    document.getElementById('modal-title').textContent = project.projectName || 'Untitled Project';
-    document.getElementById('modal-description').textContent = project.description || 'No description available';
-    document.getElementById('modal-location').textContent = project.location || 'No location available';
-    document.getElementById('modal-context').textContent = project.context || 'No context available';
-
-    const modalSource = document.getElementById('modal-source');
-    if (project.source) {
-      modalSource.href = project.source;
-      modalSource.style.display = 'inline';
-    } else {
-      modalSource.style.display = 'none';
-    }
-
-    document.getElementById('project-modal').style.display = 'block';
-  }
-
-  function closeModal() {
-    document.getElementById('project-modal').style.display = 'none';
-  }
-
-  // Initialize the map and fetch data when the page loads
-  document.addEventListener('DOMContentLoaded', fetchProjectData);
-</script>
-
-    <!-- Footer -->
+  <!-- Footer -->
   <footer>
     <div class="container footer-columns">
       <div class="footer-column">
@@ -166,6 +144,232 @@
       </div>
     </div>
   </footer>
+ 
+  <div id="project-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal()">&times;</span>
+      <h2 id="modal-title">Project Title</h2>
+      <p><strong>Organization:</strong> <span id="modal-organization"></span></p>
+      <p><strong>Keyword/Label:</strong> <span id="modal-keyword"></span></p>
+      <p><strong>Location:</strong> <span id="modal-location"></span></p>
+      <p><strong>City:</strong> <span id="modal-city"></span></p>
+      <p><strong>Context:</strong> <span id="modal-context"></span></p>
+      <p id="modal-description">Project description here.</p>
+      <a id="modal-source" href="#" target="_blank">View Source</a>
+    </div>
+  </div>
+
+
+<!--calling API-->
+
+
+
+
+<!--calling API-->
+    <script>
+      let allProjects = [];
+      let map, markersLayer;
+      const GEOCODING_API_KEY = '595604d27a984913acdce947d8a70f54'
+      const gecodeCache = new Map () ;
+
+
+      document.addEventListener('DOMContentLoaded', async () => {
+        initMap();
+        await loadProjects();
+        addProjectsToMap(allProjects);
+        setupFilters();
+        //applyFilters();
+      });
+
+
+      async function loadProjects() {
+        try {
+          const apiUrl = 'https://594hcrq0.api.sanity.io/v2025-04-14/data/query/production?query=' +
+            encodeURIComponent(`*[_type == "projects"]{
+              projectName,
+              description,
+              "imageURL": image.asset->url,
+              "imageAlt": projectName,
+              location,
+              specificLocations,
+              keywordLabel,
+              source,
+              companyOrganization,
+              context
+            }`);
+          addProjectsToMap(allProjects);
+
+
+          const response = await fetch(apiUrl);
+          //if (!response.ok) throw new Error(`API failed with status ${response.status}`);
+          const { result: projects } = await response.json();
+          console.long("fetches projects from APi:", projects);
+          allProjects = projects; // store for filtering
+        } catch (err) {
+          console.error('Failed to fetch projects:', err);
+          //document.getElementById('projects-grid').innerHTML = '<p class="no-results">Error loading projects. Please try again later.</p>';
+        }  
+      }
+       
+      function initMap() {
+        map = L.map('map').setView([20,0], 2);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '© OpenStreetMap contributors',}).addTo(map); markersLayer = L.layerGroup().addTo(map);
+      }
+
+
+
+
+      async function addProjectsToMap(projects) {
+  markersLayer.clearLayers();
+
+  for (const project of projects) {
+    const locations = project.specificLocations || [];
+    console.log(`🟦 Project: ${project.projectName}, Locations:`, locations); // ✅ Log project & locations
+
+    for (const location of locations) {
+      try {
+        const coords = await geocodeCity(location);
+        console.log(`📍 Geocoded "${location}":`, coords); // ✅ Log geocoding result
+
+        if (coords) {
+          const marker = L.marker(coords).addTo(markersLayer);
+          marker.bindPopup(`
+            <b>${project.projectName}</b><br>
+            ${location}<br>
+            ${project.description?.substring(0, 100)}...
+          `);
+        }
+      } catch (error) {
+        console.error('❌ Error adding marker for location:', location, error);
+      }
+    }
+  }
+}
+          
+
+
+          async function geocodeCity(cityName) {
+            if (!cityName) return null;
+            if (geocodeCache.has(cityName)) return geocodeCache.get(cityName);
+
+
+            try {
+              const response = await fetch(
+                `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(cityName)}&key=${GEOCODING_API_KEY}`);
+              const data = await response.json();
+
+
+              if (data.results?.length > 0) {
+                const {lat, lng} = data.results[0].geometry;
+                geocodeCache.set(cityName, [lat, lng]);
+                return [lat, lng];
+              }
+            } catch (error) {
+              console.error('Geocoding error:', error);
+            }
+            return null;
+          }
+
+
+          function setupFilters() {
+            document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
+              input.addEventListener('change', applyFilters);
+            });
+          }
+
+
+          function applyFilters() {
+            const selectedKeywords = Array.from(
+              document.querySelectorAll('input[name="keywords"]:checked')
+            ).map(cb => cb.value);
+
+
+            const selectedContexts = Array.from(
+              document.querySelectorAll('input[name="context"]:checked')
+            ).map(cb => cb.value);
+
+
+            const selectedCountry = document.querySelector('input[name="country"]:checked')?.value;
+            const filtered = allProjects.filter(project => {
+              const keywordMatch = selectedKeywords.length === 0 ||
+                (project.keywordLabel && selectedKeywords.includes(project.keywordLabel));
+              const contextMatch = selectedContexts.length === 0 ||
+                (project.content && selectedContexts.some(ctx => project.context.includes(ctx)));
+              const countryMatch = !selectedCountry ||
+                (project.location && project.location === selectedCountry);
+              return keywordMatch && contextMatch && countryMatch;
+            });
+
+
+          //renderProjects(filtered);
+          console.log('Filtered projects:', filtered);
+          addProjectsToMap(filtered);
+        }
+
+
+ 
+    function showModal(project) {
+      document.getElementById('modal-title').textContent = project.projectName || 'Untitled Project';
+      document.getElementById('modal-description').textContent = project.description || 'No description available';
+      document.getElementById('modal-organization').textContent = project.companyOrganization || 'Unknown organization';
+      document.getElementById('modal-keyword').textContent = project.keywordLabel || 'No label specified';
+      document.getElementById('modal-location').textContent = project.location || 'No location';
+      document.getElementById('modal-city').textContent = project.city || 'No city found';
+      document.getElementById('modal-context').textContent = project.context || 'No context';
+
+
+      const modalSource = document.getElementById('modal-source');
+      if (project.source) {
+        modalSource.href = project.source;
+        modalSource.style.display = 'inline';
+      } else {
+        modalSource.style.display = 'none';
+      }
+
+
+      document.getElementById('project-modal').style.display = 'block';
+    }
+
+
+    function closeModal() {
+      document.getElementById('project-modal').style.display = 'none';
+    }
+      function initMap() {
+        map = L.map('map').setView([20, 0], 2);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '© OpenStreetMap contributors',
+        }).addTo(map);
+        markersLayer = L.layerGroup().addTo(map);
+      }
+
+
+      async function addProjectsToMap(projects) {
+        markersLayer.clearLayers();
+
+
+        for (const project of projects) {
+          const locations = Array.isArray(project.specificLocations) ? project.specificLocations : [];
+
+
+          for (const city of locations) {
+            const coords = await geocodeCity(city);
+            if (coords) {
+              const marker = L.marker(coords).addTo(markersLayer);
+              const popupHtml = `
+                <strong>${project.projectName}</strong><br>
+                <em>${city}</em><br>
+                ${project.description?.substring(0, 100)}...<br>
+                <a href="../projects#${project._id}" target="_blank">View Project</a>
+              `;
+              marker.bindPopup(popupHtml);
+            }
+          }
+        }
+      }
+
+
+    </script>
+
 
 </body>
 </html>

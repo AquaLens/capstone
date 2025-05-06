@@ -427,3 +427,105 @@
       width: 100%;
     }
   }
+
+  /* ------------ Map Container ------------ */
+  #map {
+    height: 80vh; /* 80% of viewport height */
+    min-height: 600px; /* Minimum height */
+    width: 100%;
+    border-radius: 8px;
+    z-index: 1; /* Ensure map stays below modal */
+  }
+  
+  /* For mobile devices */
+  @media (max-width: 768px) {
+    #map {
+      height: 60vh;
+      min-height: 400px;
+    }
+  }
+  
+  /* Ensure proper layout in main */
+  main {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+  
+  .projects-section {
+    flex: 2; /* Give more space to map/content area */
+  }
+
+/* ------------ Projects Grid ------------ */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.project-card {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 3px solid #3B609C;
+}
+
+.project-card h3 {
+  padding: 1rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.project-keyword {
+  position: absolute;
+  background: #3B609C;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  margin: 0.5rem;
+}
+
+/* Leaflet Marker Customization */
+.leaflet-marker-icon {
+  background: #3B609C;
+  border-radius: 50%;
+  width: 24px !important;
+  height: 24px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Loading State */
+.loading-message {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+
+/* No Results State */
+.no-results {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  grid-column: 1 / -1;
+}
