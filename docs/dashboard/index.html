@@ -203,7 +203,7 @@
           const response = await fetch(apiUrl);
           //if (!response.ok) throw new Error(`API failed with status ${response.status}`);
           const { result: projects } = await response.json();
-          console.long("fetches projects from APi:", projects);
+          console.log("fetches projects from APi:", projects);
           allProjects = projects; // store for filtering
         } catch (err) {
           console.error('Failed to fetch projects:', err);
