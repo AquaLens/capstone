@@ -144,7 +144,7 @@
     let allProjects = [];
     let map, markersLayer;
     const GEOCODING_API_KEY = '595604d27a984913acdce947d8a70f54';
-    const geocodeCache = new Map();
+    const geoCache = new Map();
 
     document.addEventListener('DOMContentLoaded', async () => {
       initMap();
@@ -206,14 +206,14 @@
 
     async function geocodeCity(cityName) {
       if (!cityName) return null;
-      if (geocodeCache.has(cityName)) return geocodeCache.get(cityName);
+      if (geoCache.has(cityName)) return geoCache.get(cityName);
       try {
         const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(cityName)}&key=${GEOCODING_API_KEY}`);
         const data = await response.json();
         if (data.results?.length > 0) {
           const { lat, lng } = data.results[0].geometry;
           const coords = [lat, lng];
-          geocodeCache.set(cityName, coords);
+          geoCache.set(cityName, coords);
           return coords;
         }
       } catch (error) {
