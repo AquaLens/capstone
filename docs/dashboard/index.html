@@ -170,7 +170,6 @@
       let allProjects = [];
       let map, markersLayer;
       const GEOCODING_API_KEY = '595604d27a984913acdce947d8a70f54'
-      const geocodeCache = {};
 
 
       document.addEventListener('DOMContentLoaded', async () => {
@@ -246,7 +245,7 @@
   }
 }
           
-
+          const geocodeCache = {};
 
           async function geocodeCity(cityName) {
             if (!cityName) return null;
