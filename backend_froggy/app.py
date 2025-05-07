@@ -5,10 +5,11 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 from together import Together
 from flask_cors import CORS
+import os
 
 # === Settings ===
 SANITY_API_BASE = "https://594hcrq0.api.sanity.io/v2025-04-14/data/query/production?query="
-TOGETHER_API_KEY = "ad48643b4e8a097dc24b2ff7a0d6cc312e4f74d5231a6cebe66e71173dced2da"
+TOGETHER_API_KEY = os.environ.get("TOGETHER_API_KEY", "")
 MODEL_NAME = "meta-llama/Llama-3.3-70B-Instruct-Turbo-Free"
 
 # === Initialize clients ===
@@ -17,8 +18,12 @@ client = Together(api_key=TOGETHER_API_KEY)
 
 app = Flask(__name__)
 
-# Configure CORS properly - setting it at the application level
-CORS(app, origins="*", methods=["GET", "POST", "OPTIONS"], allow_headers=["Content-Type", "Authorization"])
+# Configure CORS for production
+CORS(app, resources={
+    r"/api/*": {
+        "origins": ["https://aqualens.info"]
+    }
+})
 
 # === Backend logic ===
 def query_sanity_data(query_type="projects"):
@@ -106,6 +111,7 @@ Answer:"""
     return response.json()["choices"][0]["message"]["content"].strip()
 
 
+
 def answer_question(user_question):
     # First, classify the query (e.g., is it about projects, tags, locations, etc.?)
     if "project" in user_question.lower():
@@ -117,68 +123,39 @@ def answer_question(user_question):
     elif "organization" in user_question.lower():
         query_type = "organizations"
     else:
-        query_type = "projects"  # Default to projects if unsure
+        query_type = None  # No query type if unsure
 
-    try:
+    if query_type:
         documents = query_sanity_data(query_type)
         top_docs = get_top_k(user_question, documents, query_type)
         return generate_answer(user_question, top_docs, query_type)
-    except Exception as e:
-        print(f"Error retrieving documents: {str(e)}")
+    else:
         return generate_answer(user_question, [], "")  # No documents and no query type
 
 
-# === API Endpoint with proper CORS handling ===
-@app.route("/api/ask", methods=["POST", "OPTIONS"])
-def ask():
-    # Handle OPTIONS requests explicitly for CORS preflight
-    if request.method == "OPTIONS":
-        # Flask-CORS should handle this, but we'll add explicit headers for certainty
-        response = jsonify({"status": "ok"})
-        response.headers.add('Access-Control-Allow-Origin', '*')
-        response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-        response.headers.add('Access-Control-Allow-Methods', 'POST,OPTIONS')
-        return response, 200
-        
-    try:
-        data = request.json
-        question = data.get("question", "")
-        if not question:
-            return jsonify({"error": "No question provided"}), 400
 
+# === API Endpoint ===
+@app.route("/api/ask", methods=["POST"])
+def ask():
+    data = request.json
+    question = data.get("question", "")
+    if not question:
+        return jsonify({"error": "No question provided"}), 400
+
+    try:
         answer = answer_question(question)
         return jsonify({"answer": answer})
     except Exception as e:
-        print(f"Error processing request: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
-# === Health check endpoint ===
+
+# Simple health check endpoint
 @app.route("/health", methods=["GET"])
 def health_check():
     return jsonify({"status": "ok"}), 200
 
-# === Root endpoint to confirm service is running ===
-@app.route("/", methods=["GET"])
-def root():
-    return jsonify({
-        "status": "ok",
-        "message": "Froggy API is running. Use /api/ask endpoint for questions."
-    }), 200
 
-# === Run server with proper error handling ===
+# === Run server ===
 if __name__ == "__main__":
-    try:
-        # Make sure all dependencies are working before starting
-        print("Initializing dependencies...")
-        # Check if embedder is loaded correctly
-        embedder.encode(["Test connection"])
-        print("Embedder initialized successfully")
-        
-        # Check if Together API key is valid
-        print("Testing Together API connection...")
-        # You could add a simple API test here
-        
-        print("Starting server on port 10000...")
-        app.run(host="0.0.0.0", port=10000, debug=False)
-    except Exception as e:
-        print(f"Failed to start server: {str(e)}")
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
