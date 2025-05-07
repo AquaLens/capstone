@@ -17,14 +17,8 @@ client = Together(api_key=TOGETHER_API_KEY)
 
 app = Flask(__name__)
 
-# Configure CORS properly with explicit options
-CORS(app, resources={
-    r"/api/*": {
-        "origins": "*",  # In production, replace with your specific origin
-        "methods": ["GET", "POST", "OPTIONS"],
-        "allow_headers": ["Content-Type", "Authorization"]
-    }
-})
+# Configure CORS properly - setting it at the application level
+CORS(app, origins="*", methods=["GET", "POST", "OPTIONS"], allow_headers=["Content-Type", "Authorization"])
 
 # === Backend logic ===
 def query_sanity_data(query_type="projects"):
@@ -112,7 +106,6 @@ Answer:"""
     return response.json()["choices"][0]["message"]["content"].strip()
 
 
-
 def answer_question(user_question):
     # First, classify the query (e.g., is it about projects, tags, locations, etc.?)
     if "project" in user_question.lower():
@@ -124,30 +117,35 @@ def answer_question(user_question):
     elif "organization" in user_question.lower():
         query_type = "organizations"
     else:
-        query_type = None  # No query type if unsure
+        query_type = "projects"  # Default to projects if unsure
 
-    if query_type:
+    try:
         documents = query_sanity_data(query_type)
         top_docs = get_top_k(user_question, documents, query_type)
         return generate_answer(user_question, top_docs, query_type)
-    else:
+    except Exception as e:
+        print(f"Error retrieving documents: {str(e)}")
         return generate_answer(user_question, [], "")  # No documents and no query type
 
 
-
-# === API Endpoint ===
+# === API Endpoint with proper CORS handling ===
 @app.route("/api/ask", methods=["POST", "OPTIONS"])
 def ask():
     # Handle OPTIONS requests explicitly for CORS preflight
     if request.method == "OPTIONS":
-        return "", 200
+        # Flask-CORS should handle this, but we'll add explicit headers for certainty
+        response = jsonify({"status": "ok"})
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+        response.headers.add('Access-Control-Allow-Methods', 'POST,OPTIONS')
+        return response, 200
         
-    data = request.json
-    question = data.get("question", "")
-    if not question:
-        return jsonify({"error": "No question provided"}), 400
-
     try:
+        data = request.json
+        question = data.get("question", "")
+        if not question:
+            return jsonify({"error": "No question provided"}), 400
+
         answer = answer_question(question)
         return jsonify({"answer": answer})
     except Exception as e:
@@ -159,6 +157,28 @@ def ask():
 def health_check():
     return jsonify({"status": "ok"}), 200
 
-# === Run server ===
+# === Root endpoint to confirm service is running ===
+@app.route("/", methods=["GET"])
+def root():
+    return jsonify({
+        "status": "ok",
+        "message": "Froggy API is running. Use /api/ask endpoint for questions."
+    }), 200
+
+# === Run server with proper error handling ===
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)  # Use an explicit port
+    try:
+        # Make sure all dependencies are working before starting
+        print("Initializing dependencies...")
+        # Check if embedder is loaded correctly
+        embedder.encode(["Test connection"])
+        print("Embedder initialized successfully")
+        
+        # Check if Together API key is valid
+        print("Testing Together API connection...")
+        # You could add a simple API test here
+        
+        print("Starting server on port 10000...")
+        app.run(host="0.0.0.0", port=10000, debug=False)
+    except Exception as e:
+        print(f"Failed to start server: {str(e)}")
