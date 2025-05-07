@@ -540,40 +540,41 @@
       renderProjects(currentProjects);
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', () => {
   const froggyBtn = document.getElementById('froggy-button');
   const froggyPopup = document.getElementById('froggy-popup');
   const froggyClose = document.getElementById('froggy-close');
   const sendBtn = document.getElementById('froggy-send');
   const textarea = document.getElementById('froggy-question');
   const messages = document.getElementById('froggy-messages');
-
-  // Show loading state initially in the message area
+  
+  // Show initial welcome message
   const initialMessage = document.createElement('div');
   initialMessage.className = 'froggy-message froggy-froggy';
   initialMessage.textContent = 'Hi! I\'m Froggy, your water research assistant. Ask me anything about water quality research!';
   messages.appendChild(initialMessage);
-
+  
   froggyBtn.addEventListener('click', () => {
     froggyPopup.style.display = 'flex';
   });
-
+  
   froggyClose.addEventListener('click', () => {
     froggyPopup.style.display = 'none';
   });
-
+  
   sendBtn.addEventListener('click', sendMessage);
+  
   textarea.addEventListener('keypress', (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       sendMessage();
     }
   });
-
+  
   async function sendMessage() {
     const text = textarea.value.trim();
     if (!text) return;
-
+    
     addMessage(text, 'user');
     textarea.value = '';
     
@@ -581,35 +582,39 @@
     const typingMsgId = 'typing-msg-' + Date.now();
     addTypingIndicator(typingMsgId);
     messages.scrollTop = messages.scrollHeight;
-
+    
     try {
-      // Send the user's question to the Render-hosted Flask API
-      const response = await fetch('https://froggy-api.onrender.com/api/ask', {
+      // Send the user's question to the Render-hosted Flask API with improved error handling
+      const response = await fetch('https://capstone-tutj.onrender.com/api/ask', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
+        mode: 'cors', // Explicitly set CORS mode
+        credentials: 'omit', // Don't send cookies to avoid additional CORS complications
         body: JSON.stringify({ question: text }),
       });
-
+      
       // Remove the typing indicator
       const typingMsg = document.getElementById(typingMsgId);
       if (typingMsg) {
         messages.removeChild(typingMsg);
       }
-
+      
       if (!response.ok) {
+        console.error('API error:', response.status, response.statusText);
         throw new Error(`API request failed with status ${response.status}`);
       }
-
+      
       const data = await response.json();
       const froggyResponse = data.answer || 'Sorry, I couldn\'t find an answer to that question.';
-
+      
       // Add the response from Froggy
       addMessage(froggyResponse, 'froggy');
       messages.scrollTop = messages.scrollHeight;
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error details:', error);
       
       // Remove the typing indicator if it still exists
       const typingMsg = document.getElementById(typingMsgId);
@@ -617,11 +622,11 @@
         messages.removeChild(typingMsg);
       }
       
-      addMessage('Sorry, there was an error connecting to my brain. Please try again later.', 'froggy');
+      addMessage('Sorry, there was an error connecting to my brain. Please try again later or check the console for details.', 'froggy');
       messages.scrollTop = messages.scrollHeight;
     }
   }
-
+  
   function addMessage(content, sender) {
     const msg = document.createElement('div');
     msg.className = `froggy-message froggy-${sender}`;
