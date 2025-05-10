@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AquaLens</title>
+  <link rel="stylesheet" href="dashboard.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container header-content">
+      <div class="logo">
+        <a href=".."><img src="../images/Logo.png" alt="AquaLens" /></a>
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="..">Home</a></li>
+          <li><a href="../projects">Projects</a></li>
+          <li><a href="../data">Data</a></li>
+          <li><a href="../froggy"><img src="../images/Froggy 3.png" alt="AI agent" class="nav-icon"></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <main>
+      <!-- Sidebar Filters -->
+      <aside>
+        <div class="filters">
+          <h2>Filter Projects</h2>
+
+          <div class="filter-group">
+            <strong>Keywords</strong>
+            <label><input type="checkbox" name="keywords" value="Citizen Science" /> Citizen Science </label>
+            <label><input type="checkbox" name="keywords" value="Flood Management" /> Flood Management </label>
+            <label><input type="checkbox" name="keywords" value="Nature Development" /> Nature Development </label>
+            <label><input type="checkbox" name="keywords" value="Object-based Solutions" /> Object-based Solutions </label>
+            <label><input type="checkbox" name="keywords" value="Purification" /> Purification </label>
+            <label><input type="checkbox" name="keywords" value="Recreation" /> Recreation </label>
+          </div>
+
+          <div class="filter-group">
+            <strong>Context</strong>
+            <label><input type="checkbox" name="context" value="City" /> City</label>
+            <label><input type="checkbox" name="context" value="Landscape" /> Landscape</label>
+            <label><input type="checkbox" name="context" value="Peripheral" /> Peripheral</label>
+          </div>
+
+          <div class="filter-group">
+            <strong>Country</strong>
+            <label><input type="radio" name="country" value="Singapore" /> Singapore</label>
+            <label><input type="radio" name="country" value="Netherlands" /> Netherlands</label>
+            <label><input type="radio" name="country" value="United States" /> United States</label>
+          </div>
+        </div>
+
+        <!-- Froggy Chat -->
+        <div class="froggy-help">
+          <div class="froggy-text">
+            <div class="title">Need help?</div>
+            <div class="subtitle">Ask Froggy a question!</div>
+          </div>
+          <div class="froggy-action">
+            <img src="../images/Froggy 3.png" alt="Froggy">
+            <button id="froggy-button">Ask Froggy</button>
+          </div>
+        </div>
+
+        <div class="froggy-chat-popup" id="froggy-popup">
+          <div class="froggy-chat-header">
+            <span>Froggy</span>
+            <button id="froggy-close" class="froggy-close">&times;</button>
+          </div>
+          <div class="froggy-chat-messages" id="froggy-messages"></div>
+          <div class="froggy-chat-input">
+            <textarea id="froggy-question" placeholder="Type a message..."></textarea>
+            <button id="froggy-send">➤</button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Section -->
+      <section class="projects-section">
+        <h2>Global Water Projects</h2>
+        <div id="map" style="height: 80vh; margin-bottom: 2rem;"></div>
+        <div class="submit-idea-box">
+          <h3>Have an idea or a project that's missing here?</h3>
+          <div class="button-wrapper">
+            <button class="submit-idea-btn">Submit Project</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-columns">
+      <div class="footer-column">
+        <h4>About AquaLens</h4>
+        <p>
+          AquaLens is a digital platform dedicated to showcasing global initiatives that improve urban water quality. Developed by students from the University of Amsterdam.
+        </p>
+      </div>
+      <div class="footer-column">
+        <h4>Useful Links</h4>
+        <ul>
+          <li><a href="../../projects">Explore Projects</a></li>
+          <li><a href="">Explore Data</a></li>
+          <li><a href="../../froggy">Ask Froggy</a></li>
+          <li><a href="https://www.linkedin.com/groups/13190462/" target="_blank">Join LinkedIn Community</a></li>
+        </ul>
+      </div>
+      <div class="footer-column footer-logos">
+        <img src="../../images/CSSci.png" alt="CSSci Logo" />
+        <img src="../../images/UvA.jpg" alt="University Logo" />
+        <img src="../../images/City.png" alt="City Logo" />
+      </div>
+    </div>
+  </footer>
+
+  <!-- Project Modal -->
+  <div id="project-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal()">&times;</span>
+      <h2 id="modal-title">Project Title</h2>
+      <p><strong>Organization:</strong> <span id="modal-organization"></span></p>
+      <p><strong>Keyword/Label:</strong> <span id="modal-keyword"></span></p>
+      <p><strong>Location:</strong> <span id="modal-location"></span></p>
+      <p><strong>City:</strong> <span id="modal-city"></span></p>
+      <p><strong>Context:</strong> <span id="modal-context"></span></p>
+      <p id="modal-description">Project description here.</p>
+      <a id="modal-source" href="#" target="_blank">View Source</a>
+    </div>
+  </div>
+
+  <!-- Script Section -->
+  <script>
+    let allProjects = [];
+    let map, markersLayer;
+    const GEOCODING_API_KEY = '595604d27a984913acdce947d8a70f54';
+    const geoCache = new Map();
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      initMap();
+      await loadProjects();
+      addProjectsToMap(allProjects);
+      setupFilters();
+    });
+
+    function initMap() {
+      map = L.map('map').setView([20, 0], 2);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors',
+      }).addTo(map);
+      markersLayer = L.layerGroup().addTo(map);
+    }
+
+    async function loadProjects() {
+      try {
+        const apiUrl = 'https://594hcrq0.api.sanity.io/v2025-04-14/data/query/production?query=' +
+          encodeURIComponent(`*[_type == "projects"]{
+            projectName,
+            description,
+            "imageURL": image.asset->url,
+            "imageAlt": projectName,
+            location,
+            specificLocations,
+            keywordLabel,
+            source,
+            companyOrganization,
+            context
+          }`);
+        const response = await fetch(apiUrl);
+        const { result: projects } = await response.json();
+        allProjects = projects;
+      } catch (err) {
+        console.error('Failed to fetch projects:', err);
+      }
+    }
+
+    async function addProjectsToMap(projects) {
+      markersLayer.clearLayers();
+      for (const project of projects) {
+        const locations = Array.isArray(project.specificLocations) ? project.specificLocations : [];
+        for (const city of locations) {
+          const coords = await geocodeCity(city);
+          if (coords) {
+            const marker = L.marker(coords).addTo(markersLayer);
+            const popupHtml = `
+              <strong>${project.projectName}</strong><br>
+              <em>${city}</em><br>
+              ${project.description?.substring(0, 100)}...<br>
+              <a href="../projects#${project._id}" target="_blank">View Project</a>
+            `;
+            marker.bindPopup(popupHtml);
+          }
+        }
+      }
+    }
+
+    async function geocodeCity(cityName) {
+      if (!cityName) return null;
+      if (geoCache.has(cityName)) return geoCache.get(cityName);
+      try {
+        const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(cityName)}&key=${GEOCODING_API_KEY}`);
+        const data = await response.json();
+        if (data.results?.length > 0) {
+          const { lat, lng } = data.results[0].geometry;
+          const coords = [lat, lng];
+          geoCache.set(cityName, coords);
+          return coords;
+        }
+      } catch (error) {
+        console.error('Geocoding error:', error);
+      }
+      return null;
+    }
+
+    function setupFilters() {
+      document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
+        input.addEventListener('change', applyFilters);
+      });
+    }
+
+    function applyFilters() {
+      const selectedKeywords = Array.from(
+        document.querySelectorAll('input[name="keywords"]:checked')
+      ).map(cb => cb.value);
+
+      const selectedContexts = Array.from(
+        document.querySelectorAll('input[name="context"]:checked')
+      ).map(cb => cb.value);
+
+      const selectedCountry = document.querySelector('input[name="country"]:checked')?.value;
+
+      const filtered = allProjects.filter(project => {
+        const keywordMatch = selectedKeywords.length === 0 || selectedKeywords.includes(project.keywordLabel);
+        const contextMatch = selectedContexts.length === 0 || (project.context && selectedContexts.includes(project.context));
+        const countryMatch = !selectedCountry || (project.location === selectedCountry);
+        return keywordMatch && contextMatch && countryMatch;
+      });
+
+      console.log('Filtered projects:', filtered);
+      addProjectsToMap(filtered);
+    }
+
+    function closeModal() {
+      document.getElementById('project-modal').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>

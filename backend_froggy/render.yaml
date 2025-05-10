@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: froggy-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: TOGETHER_API_KEY
+        sync: false
+    cors:
+      allowedOrigins:
+        - https://aqualens.info

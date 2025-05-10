@@ -74,30 +74,6 @@
     margin-top: -2px; /* tweak if it's still slightly off */
   }  
   
-  /* ------------ Dashboard Button Above Sidebar ------------ */
-  .dashboard-button-top {
-    margin-top: 3rem;
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-  
-  .btn-dashboard {
-    display: inline-block;
-    background-color: #3B609C;
-    color: #ffffff;
-    padding: 0.9rem 1rem;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    transition: background-color 0.2s ease;
-    width: 250px; /* Match the width of the sidebar */
-    text-align: center;
-  }
-  
-  .btn-dashboard:hover {
-    background-color: #CCCCCC;
-    color: #000000;
-  }
-  
   /* ------------ Main Layout ------------ */
   main {
     display: flex;
@@ -276,122 +252,6 @@
   font-size: 16px;
 }
 
-.froggy-typing {
-  display: flex;
-  align-items: center;
-}
-
-.froggy-typing .dot {
-  animation: typingAnimation 1.4s infinite;
-  display: inline-block;
-  opacity: 0;
-}
-
-.froggy-typing .dot:nth-child(2) {
-  animation-delay: 0.4s;
-}
-
-.froggy-typing .dot:nth-child(3) {
-  animation-delay: 0.8s;
-}
-
-.froggy-typing .dot:nth-child(4) {
-  animation-delay: 1.2s;
-}
-
-@keyframes typingAnimation {
-  0% { opacity: 0; }
-  50% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-  
-  
-  
-  /* ------------ Projects Section ------------ */
-  .projects-section {
-    flex: 1 1 650px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .projects-section h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1rem;
-  }
-  
-  .project-card {
-    padding: 12px;
-    box-sizing: border-box;
-    border-radius: 8px;
-    background-color: #fff;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-  }
-
-  .project-card:hover {
-    transform: scale(1.02);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-  
-  .project-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 6px;
-    margin-bottom: 10px;
-  }
-  
-  .project-keyword {
-    font-size: 0.9rem;
-    color: #666;
-    margin-bottom: 4px;
-    text-align: left;
-    padding: 0 4px;
-  }
-  
-  .project-card h3 {
-    font-weight: bold;
-    font-size: 1rem;
-    margin-top: 0;
-    margin-bottom: 8px;
-    text-align: left;
-    padding: 0 4px;
-  }
-
-  .pagination-controls button {
-    background-color: #3B609C;
-    color: #ffffff;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    margin: 0 5px;
-  }
-  .pagination-controls button:hover {
-    background-color: #CCCCCC;
-    color: #000000;
-  }
-  
-  /* Optional additional styling for the page number display and dropdown */
-  .pagination-controls span {
-    font-weight: bold;
-    margin: 0 10px;
-  }
-
-  .pagination-controls select {
-    padding: 0.3rem;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-  }
   /* ------------ Submit Project Section ------------ */
   .submit-idea-box {
     margin-top: 2rem;
@@ -567,3 +427,105 @@
       width: 100%;
     }
   }
+
+  /* ------------ Map Container ------------ */
+  #map {
+    height: 80vh; /* 80% of viewport height */
+    min-height: 600px; /* Minimum height */
+    width: 100%;
+    border-radius: 8px;
+    z-index: 1; /* Ensure map stays below modal */
+  }
+  
+  /* For mobile devices */
+  @media (max-width: 768px) {
+    #map {
+      height: 60vh;
+      min-height: 400px;
+    }
+  }
+  
+  /* Ensure proper layout in main */
+  main {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+  
+  .projects-section {
+    flex: 2; /* Give more space to map/content area */
+  }
+
+/* ------------ Projects Grid ------------ */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.project-card {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 3px solid #3B609C;
+}
+
+.project-card h3 {
+  padding: 1rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.project-keyword {
+  position: absolute;
+  background: #3B609C;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  margin: 0.5rem;
+}
+
+/* Leaflet Marker Customization */
+.leaflet-marker-icon {
+  background: #3B609C;
+  border-radius: 50%;
+  width: 24px !important;
+  height: 24px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Loading State */
+.loading-message {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+
+/* No Results State */
+.no-results {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  grid-column: 1 / -1;
+}
