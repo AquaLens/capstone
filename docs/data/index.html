@@ -31,23 +31,26 @@
     <main class="container">
       <section id="data-visualizations">
         <h2>Global Water Quality Insights</h2>
-        <p>Explore key visualizations derived from international water quality data, including chemical indicators, regional patterns, and national rankings.</p>
-    
-    <!-- Plotly Interactive Charts -->
-  <div class="chart">
-    <h3>Oxidized Nitrogen vs Oxygen Demand (Top Polluted Countries)</h3>
-    <iframe src="visual_charts_graphs/nitrogen_vs_oxygen.html" width="100%" height="500" frameborder="0"></iframe>
-  </div>
+        <p class="gallery-intro">
+          The following interactive data visualizations are curated from a variety of global sources, including GEMStat, WHO, and UNICEF. 
+          They explore key dimensions of water quality such as nutrient and organic pollution, pH variation, transparency in data reporting, and public health impacts. 
+          Together, they offer insight into the state of freshwater systems around the world and their connection to environmental and human well-being.
+        </p>
+        
 
   <!-- Gallery-grid -->
   <section class="gallery-grid">
 
+<!-- === CHEMICAL INDICATORS === -->
+<div class="gallery-section">
+  <h3 class="gallery-section-title">Chemical Indicators</h3>
+  <section class="gallery-grid">
     <div class="gallery-item" onclick="openModal('visual_charts_graphs/ph_map.html')">
       <img src="visual_charts_graphs/images/avg_PH.png" alt="pH Map" />
       <h4>Average pH Levels</h4>
       <p>Visualizing global pH values by country.</p>
     </div>
-  
+
     <div class="gallery-item" onclick="openModal('visual_charts_graphs/oxygen_map.html')">
       <img src="visual_charts_graphs/images/oxygen_d.png" alt="Oxygen Demand" />
       <h4>Oxygen Demand Map</h4>
@@ -60,20 +63,42 @@
       <p>Average nitrate levels across countries, indicating nutrient pollution intensity.</p>
     </div>
 
+    <div class="gallery-item" onclick="openModal('visual_charts_graphs/nitrogen_vs_oxygen.html')">
+      <img src="visual_charts_graphs/images/n_vs_o.png" alt="Nitrogen vs Oxygen Scatter" />
+      <h4>Nitrogen vs Oxygen Scatter</h4>
+      <p>Shows the relationship between oxidized nitrogen and oxygen demand across countries.</p>
+    </div>
+  </section>
+</div>
+
+<!-- === HEALTH IMPACTS === -->
+<div class="gallery-section">
+  <h3 class="gallery-section-title">Health Impacts</h3>
+  <section class="gallery-grid">
+    <!-- Add health-related charts here -->
+  </section>
+</div>
+
+<!-- === TRANSPARENCY === -->
+<div class="gallery-section">
+  <h3 class="gallery-section-title">Data Reporting & Transparency</h3>
+  <section class="gallery-grid">
     <div class="gallery-item" onclick="openModal('visual_charts_graphs/transparency_map.html')">
       <img src="visual_charts_graphs/images/transparency.png" alt="Water Reporting Transparency Map" />
       <h4>Water Reporting Transparency</h4>
       <p>Shows how consistently countries publish water safety data based on WHO/GLAAS.</p>
     </div>
-  
   </section>
+</div>
+
+
+</section>
+
 
   <!-- Modal -->
 <div id="modal" class="modal" onclick="closeModal()">
   <iframe id="modal-content" src="" frameborder="0"></iframe>
 </div>
-
-  
 
     
     <!-- Scripts -->
