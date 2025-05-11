@@ -349,6 +349,7 @@
     document.addEventListener('DOMContentLoaded', async () => {
       initMap();
       await loadProjects();
+      setupFilterListeners(); // Setup event listeners for all filters
       addProjectsToMap(allProjects);
       setupFilters();
     });
@@ -382,6 +383,36 @@
       } catch (err) {
         console.error('Failed to fetch projects:', err);
       }
+    }
+
+    function setupFilterListeners() {
+      const keywordCheckboxes = document.querySelectorAll('input[name="keywords"]');
+      const contextCheckboxes = document.querySelectorAll('input[name="context"]');
+      const countrySelect = document.getElementById('countryDropdown');
+
+      keywordCheckboxes.forEach(cb => cb.addEventListener('change', applyFilters));
+      contextCheckboxes.forEach(cb => cb.addEventListener('change', applyFilters));
+      countrySelect.addEventListener('change', applyFilters);
+    }
+
+    function applyFilters() {
+      const selectedKeywords = Array.from(document.querySelectorAll('input[name="keywords"]:checked')).map(cb => cb.value);
+      const selectedContexts = Array.from(document.querySelectorAll('input[name="context"]:checked')).map(cb => cb.value);
+      const selectedCountry = document.getElementById('countryDropdown').value;
+
+      const filteredProjects = allProjects.filter(project => {
+        const matchesKeyword = selectedKeywords.length === 0 || selectedKeywords.includes(project.keyword);
+        const matchesContext = selectedContexts.length === 0 || selectedContexts.includes(project.context);
+        const matchesCountry = selectedCountry === '' || (project.location && project.location.includes(selectedCountry));
+        return matchesKeyword && matchesContext && matchesCountry;
+      });
+
+      updateMapWithProjects(filteredProjects);
+    }
+
+    function updateMapWithProjects(projects) {
+      markersLayer.clearLayers();
+      addProjectsToMap(projects); // Assuming addProjectsToMap already adds projects to `markersLayer`
     }
 
     async function addProjectsToMap(projects) {
