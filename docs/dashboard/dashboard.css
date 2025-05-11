@@ -73,7 +73,31 @@
     display: inline-block;
     margin-top: -2px; /* tweak if it's still slightly off */
   }  
+    /* ------------ button ------------ */
+
+  .button {
+    margin-top: 3rem;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
   
+  .btn {
+    display: inline-block;
+    background-color: #3B609C;
+    color: #ffffff;
+    padding: 0.9rem 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+    width: 250px; /* Match the width of the sidebar */
+    text-align: center;
+  }
+  
+  .btn:hover {
+    background-color: #CCCCCC;
+    color: #000000;
+  }  
+
   /* ------------ Main Layout ------------ */
   main {
     display: flex;
