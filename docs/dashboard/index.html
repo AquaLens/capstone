@@ -426,12 +426,13 @@
       document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
         input.addEventListener('change', applyFilters);
       });
-    }
+    
 
     // set up country dropdown filter
     const countryDropdown = document.getElementById('countryDropdown');
-    countryDropdown.addEventListener('change', applyFilters);
+    if (countryDropdown) { country.Dropdown.addEventListener('change', applyFilters); }
 
+    }
     function applyFilters() {
       const selectedKeywords = Array.from(
         document.querySelectorAll('input[name="keywords"]:checked')
