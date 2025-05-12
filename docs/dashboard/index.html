@@ -430,7 +430,7 @@
 
     // set up country dropdown filter
     const countryDropdown = document.getElementById('countryDropdown');
-    countryDropdown.addEventListenet('change', applyFilters);
+    countryDropdown.addEventListener('change', applyFilters);
 
     function applyFilters() {
       const selectedKeywords = Array.from(
