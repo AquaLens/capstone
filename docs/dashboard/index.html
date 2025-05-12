@@ -288,6 +288,7 @@
       <section class="projects-section">
         <h2>Global Water Projects</h2>
         <div id="map" style="height: 80vh; margin-bottom: 2rem;"></div>
+          <div id = "map-loading" class = "loading-indicator"> Loading Projects ...</div>
         <div class="submit-idea-box">
           <h3>Have an idea or a project that's missing here?</h3>
           <div class="button-wrapper">
@@ -362,77 +363,126 @@
     }
 
     async function loadProjects() {
-      const response = await fetch('projects.json');
-      const data = await response.json();
-      allProjects = data;
+      try {
+        const apiUrl = 'https://594hcrq0.api.sanity.io/v2025-04-14/data/query/production?query=' +
+          encodeURIComponent(`*[_type == "projects"]{
+            projectName,
+            description,
+            "imageURL": image.asset->url,
+            "imageAlt": projectName,
+            location,
+            specificLocations,
+            keywordLabel,
+            source,
+            companyOrganization,
+            context
+          }`);
+        const response = await fetch(apiUrl);
+        const { result: projects } = await response.json();
+        allProjects = projects;
+      } catch (err) {
+        console.error('Failed to fetch projects:', err);
+      }
     }
 
-    async function getCoordinates(city, country) {
-      const location = `${city}, ${country}`;
-      if (geoCache.has(location)) return geoCache.get(location);
+    async function addProjectsToMap(projects) {
+      // Show loading indicator
+      const loadingIndicator = document.getElementById('map-loading');
+      if (loadingIndicator) loadingIndicator.style.display = 'block';
 
-      const response = await fetch(`https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(location)}&apiKey=${GEOCODING_API_KEY}`);
-      const data = await response.json();
+      try {
+        markersLayer.clearLayers();
+        const markerPromises = [];
 
-      if (data.features.length > 0) {
-        const coords = data.features[0].geometry.coordinates.reverse();
-        geoCache.set(location, coords);
-        return coords;
+        // Process projects
+        for (const project of projects) {
+          const locations = Array.isArray(project.specificLocations) 
+            ? project.specificLocations 
+            : [];
+          
+          for (const city of locations) {
+            markerPromises.push(
+              geocodeCity(city).then(coords => {
+                if (coords) {
+                  const marker = L.marker(coords).addTo(markersLayer);
+                  const popupHtml = `
+                    <strong>${project.projectName}</strong><br>
+                    <em>${city}</em><br>
+                    ${project.description?.substring(0, 100)}...<br>
+                    <a href="../projects#${project._id}" target="_blank">View Project</a>
+                  `;
+                  marker.bindPopup(popupHtml);
+                }
+              })
+            );
+          }
+        }
+
+        await Promise.all(markerPromises);
+        map.invalidateSize();
+      } finally {
+        // Hide loading indicator whether successful or not
+        if (loadingIndicator) loadingIndicator.style.display = 'none';
+      }
+    }
+
+    async function geocodeCity(cityName) {
+      if (!cityName) return null;
+      if (geoCache.has(cacheKey)) return geoCache.get(cacheKey);
+      try {
+        const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(cityName)}&key=${GEOCODING_API_KEY}`);
+        const data = await response.json();
+        if (data.results?.length > 0) {
+          const { lat, lng } = data.results[0].geometry;
+          const coords = [lat, lng];
+          geoCache.set(cacheKey, coords);
+          return coords;
+        }
+      } catch (error) {
+        console.error('Geocoding error:', error);
       }
       return null;
     }
 
-    async function addProjectsToMap(projects) {
-      markersLayer.clearLayers();
-
-      for (const project of projects) {
-        const coords = await getCoordinates(project.City, project.Country);
-        if (!coords) continue;
-
-        const marker = L.marker(coords).addTo(markersLayer);
-        marker.on('click', () => openModal(project));
-      }
-    }
-
     function setupFilters() {
-      const checkboxes = document.querySelectorAll('input[type="checkbox"], select');
-      checkboxes.forEach(input => input.addEventListener('change', filterProjects));
-    }
+      // setup checkbox filters
+      document.querySelectorAll('input[type="checkbox"]').forEach(input => {
+        input.addEventListener('change', applyFilters);
+      });
+    
 
-    function filterProjects() {
-      const selectedKeywords = getCheckedValues('keywords');
-      const selectedContexts = getCheckedValues('context');
+    // set up country dropdown filter
+    const countryDropdown = document.getElementById('countryDropdown');
+    if (countryDropdown) { countryDropdown.addEventListener('change', applyFilters); }
+
+    }
+    function applyFilters() {
+      const selectedKeywords = Array.from(
+        document.querySelectorAll('input[name="keywords"]:checked')
+      ).map(cb => cb.value);
+
+      const selectedContexts = Array.from(
+        document.querySelectorAll('input[name="context"]:checked')
+      ).map(cb => cb.value);
+
       const selectedCountry = document.getElementById('countryDropdown').value;
 
-      const filtered = allProjects.filter(p => {
-        const keywordMatch = selectedKeywords.length === 0 || selectedKeywords.includes(p.Label);
-        const contextMatch = selectedContexts.length === 0 || selectedContexts.includes(p.Context);
-        const countryMatch = !selectedCountry || p.Country === selectedCountry;
+      // filter the projects
+      const filteredProjects = allProjects.filter(project => {
+        const keywordMatch = selectedKeywords.length === 0 || selectedKeywords.some(keyword => project.keywordLabel?.includes(keyword));
+        const contextMatch = selectedContexts.length === 0 || selectedContexts.includes(project.context);
+        const countryMatch = !selectedCountry || project.location?.toLowerCase() === selectedCountry.toLowerCase();
         return keywordMatch && contextMatch && countryMatch;
       });
 
-      addProjectsToMap(filtered);
-    }
-
-    function getCheckedValues(name) {
-      return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(cb => cb.value);
-    }
-
-    function openModal(project) {
-      document.getElementById('modal-title').innerText = project.Title;
-      document.getElementById('modal-organization').innerText = project.Organization;
-      document.getElementById('modal-keyword').innerText = project.Label;
-      document.getElementById('modal-location').innerText = project.Country;
-      document.getElementById('modal-city').innerText = project.City;
-      document.getElementById('modal-context').innerText = project.Context;
-      document.getElementById('modal-description').innerText = project.Description;
-      document.getElementById('modal-source').href = project.Source;
-      document.getElementById('project-modal').style.display = 'block';
+      console.log('Filtered projects:', filtered);
+      addProjectsToMap(filteredProjects);
     }
 
     function closeModal() {
       document.getElementById('project-modal').style.display = 'none';
     }
   </script>
+
 </body>
 </html>
