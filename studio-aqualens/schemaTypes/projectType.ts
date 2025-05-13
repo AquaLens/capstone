@@ -442,6 +442,15 @@ export const projectType = defineType({
     }),
 
     defineField({
+      name: 'contact',
+      title: 'Contact',
+      type: 'string',
+      description: 'Enter the name of the Contact Person',
+      validation: (rule) => rule.required(),
+    }),
+
+
+    defineField({
       name: 'image',
       title: 'Image',
       type: 'image',
