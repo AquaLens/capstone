@@ -432,13 +432,15 @@ export const projectType = defineType({
         layout: 'checkbox'
       }
     }),
+
     defineField({
       name: 'budget',
       title: 'Budget',
-      type: 'budget'
-      
+      type: 'budget',
+      description: 'Enter the financial budget of the project',
+      validation: (rule) => rule.required(),
     }),
-    
+
     defineField({
       name: 'image',
       title: 'Image',
