@@ -9,6 +9,12 @@ main {
   z-index: 1;
 }
 
+.main-content {
+  flex: 1; /* Take up remaining space */
+  position: relative;
+  z-index: 1;
+}
+
 /* ------------ Video Background (example) ------------ */
 #bg-video {
   position: fixed;
