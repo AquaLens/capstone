@@ -42,6 +42,8 @@
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
     }
 
     .header-video {
@@ -52,7 +54,7 @@
         height: 100%;
         object-fit: cover;
         z-index: 0;
-        pointer-events: none; /* Let clicks pass through */
+        pointer-events: none;
     }
     
     .logo img{
