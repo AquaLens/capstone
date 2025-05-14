@@ -100,22 +100,19 @@
         document.getElementById('modal').style.display = 'none';
         document.getElementById('modal-content').src = '';
       }
+
+    fetch('/assets/header.html')
+    .then(res => res.text())
+    .then(html => document.getElementById('header').innerHTML = html);
+
+    fetch('/assets/footer.html')
+    .then(res => res.text())
+    .then(html => document.getElementById('footer').innerHTML = html);
     </script>
 
     <!-- Footer -->
     <div id="footer"></div>
 
 </body>
-
-<script>
-  // Fetch header and footer HTML
-  fetch('/assets/header.html')
-    .then(res => res.text())
-    .then(html => document.getElementById('header').innerHTML = html);
-
-  fetch('/assets/footer.html')
-    .then(res => res.text())
-    .then(html => document.getElementById('footer').innerHTML = html);
-</script>
 
 </html>
