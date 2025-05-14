@@ -31,21 +31,23 @@
     
     /* ------------ Header ------------ */
     header {
-      background-color: white;
-      padding: 1rem 0;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      margin-bottom: 1rem;
+        position: relative;
+        height: 400px; /* Set a fixed height for the header */
+        padding: 1rem 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin-bottom: 1rem;
+        overflow: hidden; /* Prevent video from overflowing */
     }
     
     .header-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      position: relative;
-      z-index: 1;
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
     }
-
+      
     .header-video {
         position: absolute;
         top: 0;
@@ -54,7 +56,7 @@
         height: 100%;
         object-fit: cover;
         z-index: 0;
-        pointer-events: none;
+        pointer-events: none; /* Let clicks pass through */
     }
     
     .logo img{
