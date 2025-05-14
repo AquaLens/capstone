@@ -32,7 +32,7 @@
     /* ------------ Header ------------ */
     header {
         position: relative;
-        height: 400px; /* Set a fixed height for the header */
+        height: 80px; /* Set a fixed height for the header */
         padding: 1rem 0;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         margin-bottom: 1rem;
