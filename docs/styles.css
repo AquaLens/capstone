@@ -1,6 +1,6 @@
 /* ------------ Main Layout ------------ */
 main {
-  flex: 1; /* Pushes footer down */
+  flex: 15; /* Pushes footer down */
   display: flex;
   gap: 2rem;
   margin-bottom: 2rem;

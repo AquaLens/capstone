@@ -78,7 +78,9 @@
       vertical-align: middle;
       display: inline-block;
       margin-top: -2px; /* tweak if it's still slightly off */
-    }    /* ------------ Footer ------------ */
+    }
+    
+    /* ------------ Footer ------------ */
     footer {
       background-color: #ffffff;
       padding: 2rem 0;
