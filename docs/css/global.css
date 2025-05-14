@@ -32,78 +32,83 @@
     /* ------------ Header ------------ */
     header {
         position: relative;
-        height: 80px; /* Set a fixed height for the header */
         padding: 1rem 0;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         margin-bottom: 1rem;
         overflow: hidden; /* Prevent video from overflowing */
     }
-    
-    .header-content {
-        position: relative;
-        z-index: 1;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-    }
-      
-    .header-video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        z-index: 0;
-        pointer-events: none; /* Let clicks pass through */
-    }
-    
-    .logo img{
-      height: 3.5rem;
-      margin-bottom: -0.5rem;
-    }
-    
-    nav {
-      flex-grow: 1;
-    }
-    
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-      justify-content: right;
-      list-style: none;
-    }
-    
-    .nav-links li {
-      font-size: 1rem;
-    }
-    
-    .nav-links a {
-      color: #333;
-      transition: color 0.2s ease;
-    }
-    
-    .nav-links a:hover {
-      color: #3B609C;
-    }
   
-    .nav-icon {
-      height: 1.5rem; /* adjust height to match text */
-      vertical-align: middle;
-      display: inline-block;
-      margin-top: -2px; /* tweak if it's still slightly off */
-    }
-
-    /* Transparent header only on homepage */
-    body.home header {
-        background-color: transparent;
-        box-shadow: none;
-        position: absolute;
-        top: 0;
-        width: 100%;
-        z-index: 1000;
-    }
+  .header-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    min-height: 3.5rem; /* Based on logo height instead of fixed header height */
+  }
+  
+  .header-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none; /* Let clicks pass through */
+  }
+  
+  .logo img {
+    height: 3.5rem;
+    margin-bottom: -0.5rem;
+  }
+  
+  nav {
+    flex-grow: 1;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: right;
+    list-style: none;
+  }
+  
+  .nav-links li {
+    font-size: 1rem;
+  }
+  
+  .nav-links a {
+    color: #333;
+    transition: color 0.2s ease;
+  }
+  
+  .nav-links a:hover {
+    color: #3B609C;
+  }
+  
+  .nav-icon {
+    height: 1.5rem; /* adjust height to match text */
+    vertical-align: middle;
+    display: inline-block;
+    margin-top: -2px; /* tweak if it's still slightly off */
+  }
+  
+  /* Transparent header only on homepage */
+  body.home header {
+    background-color: transparent;
+    box-shadow: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  
+  /* Hide video background on homepage */
+  body.home .header-video {
+    display: none; /* Completely hide video on homepage */
+  }
   
     
     /* ------------ Footer ------------ */
