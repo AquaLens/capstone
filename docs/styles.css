@@ -2,8 +2,8 @@
 main {
   flex: 1; /* Pushes footer down */
   display: flex;
-  gap: 20rem;
-  margin-bottom: 2rem;
+  gap: 2rem;
+  margin-bottom: 20rem;
   flex-wrap: wrap;
   position: relative;
   z-index: 1;
