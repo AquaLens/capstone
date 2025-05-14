@@ -1,8 +1,8 @@
 /* ------------ Main Layout ------------ */
 main {
-  flex: 15; /* Pushes footer down */
+  flex: 1; /* Pushes footer down */
   display: flex;
-  gap: 2rem;
+  gap: 20rem;
   margin-bottom: 2rem;
   flex-wrap: wrap;
   position: relative;
