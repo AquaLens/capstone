@@ -79,6 +79,17 @@
       display: inline-block;
       margin-top: -2px; /* tweak if it's still slightly off */
     }
+
+    /* Transparent header only on homepage */
+    body.home header {
+        background-color: transparent;
+        box-shadow: none;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+  
     
     /* ------------ Footer ------------ */
     footer {

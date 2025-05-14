@@ -25,6 +25,8 @@
 </body>
 
 <script>
+  // Special class to the body so the header knows it's the homepage
+  document.body.classList.add('home');
   // Fetch header and footer HTML
   fetch('/assets/header.html')
     .then(res => res.text())
