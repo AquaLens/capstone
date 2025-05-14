@@ -1,4 +1,10 @@
 /* ------------ Global Styles ------------ */
+@font-face {
+  font-family: 'Futura';
+  src: url('../fonts/Futura\ Light.ttf') format('woff2'),
+       url('../fonts/Futura\ Light.ttf') format('woff');
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +12,7 @@
   }
   
   body {
-    font-family: Arial, sans-serif;
+    font-family: 'Futura', Arial, sans-serif;
     color: #333;
     background-color: #f8f8f8;
     line-height: 1.6;
@@ -25,7 +31,7 @@
   
   /* ------------ Header ------------ */
   header {
-    background-color: #ffffff;
+    background-color: ;
     padding: 1rem 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-bottom: 1rem;
