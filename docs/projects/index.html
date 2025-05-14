@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AquaLens - Projects</title>
   <link rel="stylesheet" href="projects.css" />
+  <link rel="stylesheet" href="/css/global.css" />
 </head>
 <body>
   <!-- Header with Navigation -->
@@ -319,11 +320,11 @@
 
   <script>
   // Fetch header and footer HTML
-  fetch('../assets/header.html')
+  fetch('/assets/header.html')
     .then(res => res.text())
     .then(html => document.getElementById('header').innerHTML = html);
 
-  fetch('../assets/footer.html')
+  fetch('/assets/footer.html')
     .then(res => res.text())
     .then(html => document.getElementById('footer').innerHTML = html);
 
