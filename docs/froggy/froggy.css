@@ -71,22 +71,21 @@
     color: #000000;
   }
 
-/* Chat popup */
+/* Chat (non) pop-up */
 .froggy-chat-popup {
-  position: fixed;
-  bottom: 90px;
-  right: 20px;
-  width: 320px;
-  max-height: 500px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 80vh;
+  margin: 2rem auto;
   display: flex;
   flex-direction: column;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  z-index: 9998;
   font-family: Arial, sans-serif;
 }
+
 
 /* Header */
 .froggy-chat-header {
@@ -101,6 +100,7 @@
 
 /* Close button */
 .froggy-close {
+  display: none;
   background: transparent;
   border: none;
   color: white;
