@@ -365,8 +365,7 @@
           Country:
           <select name="country" required>
             <option value="">— Select Country —</option>
-            <!-- you can populate more country <option>s here -->
-            <option value="">Select a Country</option>
+            
               <option value="Afghanistan">Afghanistan</option>
               <option value="Albania">Albania</option>
               <option value="Algeria">Algeria</option>
@@ -569,6 +568,21 @@
         <br>
 
         <label>
+          Continent:
+          <select name="continent" required>
+            <option value="">— Select Continent —</option>
+              <option value="North America">North America</option>
+              <option value="South America">South America</option>
+              <option value="Europe">Europe</option>
+              <option value="Africa">Africa</option>
+              <option value="Asia">Asia</option>
+              <option value="Oceania">Oceania</option>
+              <option value="Antarctica">Antarctica</option>
+          </select>
+        </label>
+        <br>
+
+        <label>
           City:
           <input type="text" name="city" required />
         </label>
@@ -600,11 +614,130 @@
         <br>
 
         <label>
-          Project Description
-          <textarea name="description" rows="4" required></textarea>
+          Target:
+          <select name="target" required>
+
+            <option value="">- Select Target -</option>
+            <option>Drainage</option>
+            <option>Healthy surface water</option>
+            <option>Kwel tegenhouden'</option> 
+            <option>Local infiltration</option>
+            <option>Local storage</option>
+            <option>Management</option>
+            <option>Seasonal water retention</option>
+          </select>
         </label>
         <br>
 
+        <fieldset>
+          <legend>Measurements (select all that apply):</legend>
+          <label><input type="checkbox" name="measurements" value="Blackwater Management" /> Blackwater Management</label><br>
+          <label><input type="checkbox" name="measurements" value="Cultivation" /> Cultivation</label><br>
+          <label><input type="checkbox" name="measurements" value="Drainage" /> Drainage</label><br>
+          <label><input type="checkbox" name="measurements" value="Drought Prevention" /> Drought Prevention</label><br>
+          <label><input type="checkbox" name="measurements" value="Energy Production" /> Energy Production</label><br>
+          <label><input type="checkbox" name="measurements" value="Flood Management" /> Flood Management</label><br>
+          <label><input type="checkbox" name="measurements" value="Flood Prevention" /> Flood Prevention</label><br>
+          <label><input type="checkbox" name="measurements" value="Nature Development" /> Nature Development</label><br>
+          <label><input type="checkbox" name="measurements" value="Purify Water" /> Purify Water</label><br>
+          <label><input type="checkbox" name="measurements" value="Recreation" /> Recreation</label><br>
+          <label><input type="checkbox" name="measurements" value="Water Purification" /> Water Purification</label><br>
+        </fieldset>
+        <br>
+
+        <fieldset>
+          <legend>Project Tags (select all that apply):</legend>
+          <label><input type="checkbox" name="tags" value="Agriculture" /> Agriculture</label><br>
+          <label><input type="checkbox" name="tags" value="Artificial Reefs" /> Artificial Reefs</label><br>
+          <label><input type="checkbox" name="tags" value="Awareness" /> Awareness</label><br>
+          <label><input type="checkbox" name="tags" value="Aquatic Ecosystems" /> Aquatic Ecosystems</label><br>
+          <label><input type="checkbox" name="tags" value="Biodiversity Enhancement" /> Biodiversity Enhancement</label><br>
+          <label><input type="checkbox" name="tags" value="Bioremediation" /> Bioremediation</label><br>
+          <label><input type="checkbox" name="tags" value="Blue Infrastructure" /> Blue Infrastructure</label><br>
+          <label><input type="checkbox" name="tags" value="Citizen Participation" /> Citizen Participation</label><br>
+          <label><input type="checkbox" name="tags" value="Clean Drinking Water" /> Clean Drinking Water</label><br>
+          <label><input type="checkbox" name="tags" value="Climate Adaptation" /> Climate Adaptation</label><br>
+          <label><input type="checkbox" name="tags" value="Coastal Protection" /> Coastal Protection</label><br>
+          <label><input type="checkbox" name="tags" value="Coastal Resilience" /> Coastal Resilience</label><br>
+          <label><input type="checkbox" name="tags" value="Ecological Corridors" /> Ecological Corridors</label><br>
+          <label><input type="checkbox" name="tags" value="Ecology" /> Ecology</label><br>
+          <label><input type="checkbox" name="tags" value="Ecology Restoration" /> Ecology Restoration</label><br>
+          <label><input type="checkbox" name="tags" value="Energy Consumption Reduction" /> Energy Consumption Reduction</label><br>
+          <label><input type="checkbox" name="tags" value="Fauna" /> Fauna</label><br>
+          <label><input type="checkbox" name="tags" value="Filtering Gardens" /> Filtering Gardens</label><br>
+          <label><input type="checkbox" name="tags" value="Fishing Dams" /> Fishing Dams</label><br>
+          <label><input type="checkbox" name="tags" value="Floating Garden" /> Floating Garden</label><br>
+          <label><input type="checkbox" name="tags" value="Flood Management" /> Flood Management</label><br>
+          <label><input type="checkbox" name="tags" value="Green Infrastructure" /> Green Infrastructure</label><br>
+          <label><input type="checkbox" name="tags" value="Habitat Creation" /> Habitat Creation</label><br>
+          <label><input type="checkbox" name="tags" value="Habitat Restoration" /> Habitat Restoration</label><br>
+          <label><input type="checkbox" name="tags" value="Heat-Island Mitigation" /> Heat-Island Mitigation</label><br>
+          <label><input type="checkbox" name="tags" value="Irrigation" /> Irrigation</label><br>
+          <label><input type="checkbox" name="tags" value="Indigenous" /> Indigenous</label><br>
+          <label><input type="checkbox" name="tags" value="Infrastructure" /> Infrastructure</label><br>
+          <label><input type="checkbox" name="tags" value="Nature-Based Solutions" /> Nature-Based Solutions</label><br>
+          <label><input type="checkbox" name="tags" value="Photosynthesis" /> Photosynthesis</label><br>
+          <label><input type="checkbox" name="tags" value="Pollution" /> Pollution</label><br>
+          <label><input type="checkbox" name="tags" value="Purification" /> Purification</label><br>
+          <label><input type="checkbox" name="tags" value="Public Space Development" /> Public Space Development</label><br>
+          <label><input type="checkbox" name="tags" value="Rainwater Collection" /> Rainwater Collection</label><br>
+          <label><input type="checkbox" name="tags" value="Recreation" /> Recreation</label><br>
+          <label><input type="checkbox" name="tags" value="Renovation" /> Renovation</label><br>
+          <label><input type="checkbox" name="tags" value="Research" /> Research</label><br>
+          <label><input type="checkbox" name="tags" value="River" /> River</label><br>
+          <label><input type="checkbox" name="tags" value="River Restoration" /> River Restoration</label><br>
+          <label><input type="checkbox" name="tags" value="Sewer System" /> Sewer System</label><br>
+          <label><input type="checkbox" name="tags" value="Soil Treatment" /> Soil Treatment</label><br>
+          <label><input type="checkbox" name="tags" value="Species Preservation" /> Species Preservation</label><br>
+          <label><input type="checkbox" name="tags" value="Stormwater Management" /> Stormwater Management</label><br>
+          <label><input type="checkbox" name="tags" value="Sustainable Development" /> Sustainable Development</label><br>
+          <label><input type="checkbox" name="tags" value="Urban Renewal" /> Urban Renewal</label><br>
+          <label><input type="checkbox" name="tags" value="Urban River Systems" /> Urban River Systems</label><br>
+          <label><input type="checkbox" name="tags" value="Water Consumption Reduction" /> Water Consumption Reduction</label><br>
+          <label><input type="checkbox" name="tags" value="Water Park" /> Water Park</label><br>
+          <label><input type="checkbox" name="tags" value="Water Purification" /> Water Purification</label><br>
+          <label><input type="checkbox" name="tags" value="Water Reclamation" /> Water Reclamation</label><br>
+          <label><input type="checkbox" name="tags" value="Water Treatment" /> Water Treatment</label><br>
+          <label><input type="checkbox" name="tags" value="Wetland Restoration" /> Wetland Restoration</label>
+        </fieldset>
+        <br>
+
+        <label>
+          Project Description (summary)
+          <textarea name="description" rows="2" required></textarea>
+        </label>
+        <br>
+
+        <label>
+          Full Project Description
+          <textarea name="full-description" rows = "5" required></textarea>
+        </label>
+        <br>
+
+        <label>
+          Budget (if applicable):
+          <div>
+            <input
+              type="number"
+              name="budgetAmount"
+              step="1.0"
+              min="0"
+              placeholder="0.00"
+              style="width: 100px;"
+            />
+            <select name="budgetCurrency">
+              <option value="EUR">€ EUR</option>
+              <option value="USD">$ USD</option>
+              <option value="GBP">£ GBP</option>
+              <option value="NOK">kr NOK</option>
+              <option value="SEK">kr SEK</option>
+              <option value="CHF">CHF</option>
+              <option value="JPY">¥ JPY</option>
+              <option value="INR">₹ INR</option>
+            </select>
+          </div>
+        </label>
+        
         <label>
           Source (URL)
           <input type="url" name="source" placeholder="https://…" />
@@ -612,17 +745,12 @@
         <br>
 
         <label>
-          Other
+          Other Information or Comments
           <input type="text" name="other" />
         </label>
         <br>
 
-        <label>
-            Budget (if applicable)
-          <input type="text" name="budget" />
-        </label>
-        <br>
-
+  
         <fieldset>
           <legend>Contact</legend>
           <label>
@@ -639,7 +767,6 @@
           </label>
         </fieldset>
         <br>
-
         
         <button type="submit" class="btn">Submit Initiative</button>
       </form>
@@ -854,10 +981,22 @@
 
       // Handle submit -- send it to Sanity as a draft project
       submitForm.addEventListener('submit', async e => {
+        console.log('submit handler hit');
         e.preventDefault();
 
         const values = Object.fromEntries(new FormData(submitForm).entries());
-        
+        const measurements = Array.from(
+          submitForm.querySelectorAll('input[name="measurements"]:checked')
+        ).map(el => el.value);
+
+        const tags = Array.from(
+          submitForm.querySelectorAll('input[name="tags"]:checked')
+        ).map(el => el.value);
+
+        let budget;
+        if (values.budgetAmount) {
+          budget = '${parseFloat(values.budgetAmount).toFixed(2)} ${values.budgetCurrency}';
+        }
         const doc = {
           _id: `drafts.${Date.now()}`,   // draft ID must start with "drafts."
           _type: 'projects',
@@ -868,11 +1007,14 @@
           specificLocations: [ values.city ],
           context: values.context,
           keywordLabel: values.keyword,
+          target: values.target,
+          measurements,
+          tags,
           description: values.description,
-          fullText: values.text,
+          fullText: values['full-description'],
           source: values.source,
           other: values.other,
-          budget: values.budget,
+          ...(budget && { budget }), // only if provided
           contact: {
             name: values.contactName,
             email: values.contactEmail,
