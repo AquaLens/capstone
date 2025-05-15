@@ -73,18 +73,20 @@
 
 /* Chat (non) pop-up */
 .froggy-chat-popup {
-  position: relative;
-  width: 100%;
-  max-width: 600px;
-  height: 80vh;
-  margin: 2rem auto;
-  display: flex;
+  position: relative;      /* No longer fixed to viewport */
+  width: 100%;             /* Full width of container or page */
+  max-width: 600px;        /* Optional max width */
+  height: 80vh;            /* Tall enough to feel like a chat window */
+  margin: 2rem auto;       /* Center horizontally with margin */
+  display: flex;           /* Flex layout for header/messages/input */
   flex-direction: column;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   font-family: Arial, sans-serif;
+  background: white;
 }
+
 
 
 /* Header */
