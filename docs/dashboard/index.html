@@ -5,29 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AquaLens</title>
   <link rel="stylesheet" href="dashboard.css" />
+  <link rel="stylesheet" href="/css/global.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
 
   <!-- Header -->
-  <header>
-    <div class="container header-content">
-      <div class="logo">
-        <a href=".."><img src="../images/Logo.png" alt="AquaLens" /></a>
-      </div>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="..">Home</a></li>
-          <li><a href="../projects">Projects</a></li>
-          <li><a href="../data">Data</a></li>
-          <li><a href="../about/">About</a></li>
-          <li><a href="https://www.linkedin.com/groups/13190462/">Community</a></li>
-          <li><a href="../froggy"><img src="../images/Froggy 3.png" alt="AI agent" class="nav-icon"></a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  <div id="header"></div>
 
   <div class="container">
     <div class="button">
@@ -304,30 +289,7 @@
   </div>
 
   <!-- Footer -->
-  <footer>
-    <div class="container footer-columns">
-      <div class="footer-column">
-        <h4>About AquaLens</h4>
-        <p>
-          AquaLens is a digital platform dedicated to showcasing global initiatives that improve urban water quality. Developed by students from the University of Amsterdam.
-        </p>
-      </div>
-      <div class="footer-column">
-        <h4>Useful Links</h4>
-        <ul>
-          <li><a href="../projects">Explore Projects</a></li>
-          <li><a href="">Explore Data</a></li>
-          <li><a href="../froggy">Ask Froggy</a></li>
-          <li><a href="https://www.linkedin.com/groups/13190462/" target="_blank">Join LinkedIn Community</a></li>
-        </ul>
-      </div>
-      <div class="footer-column footer-logos">
-        <img src="../images/CSSci.png" alt="CSSci Logo" />
-        <img src="../images/UvA.jpg" alt="University Logo" />
-        <img src="../images/City.png" alt="City Logo" />
-      </div>
-    </div>
-  </footer>
+  <div id="footer"></div>
 
   <!-- Project Modal -->
   <div id="project-modal" class="modal">
@@ -775,6 +737,16 @@
 
   <!-- Script Section -->
   <script>
+
+  // Fetch header and footer HTML
+  fetch('/assets/header.html')
+    .then(res => res.text())
+    .then(html => document.getElementById('header').innerHTML = html);
+
+  fetch('/assets/footer.html')
+    .then(res => res.text())
+    .then(html => document.getElementById('footer').innerHTML = html);
+
     let allProjects = [];
     let map, markersLayer;
     const GEOCODING_API_KEY = '595604d27a984913acdce947d8a70f54';

@@ -5,26 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AquaLens - Projects</title>
   <link rel="stylesheet" href="projects.css" />
+  <link rel="stylesheet" href="/css/global.css" />
 </head>
 <body>
   <!-- Header with Navigation -->
-  <header>
-    <div class="container header-content">
-      <div class="logo">
-        <a href="..">
-          <img src="../images/Logo.png" alt="AquaLens" />
-        </a>
-      </div>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="..">Home</a></li>
-          <li><a href="">Projects</a></li>
-          <li><a href="../data">Data</a></li>
-          <li><a href="../froggy"><img src="../images/Froggy 3.png" alt="AI agent" class="nav-icon"></a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  <div id="header"></div>
   
   <!-- Main Content Container -->
   <div class="container">
@@ -318,30 +303,7 @@
   </div>
 
   <!-- Footer -->
-  <footer>
-    <div class="container footer-columns">
-      <div class="footer-column">
-        <h4>About AquaLens</h4>
-        <p>
-            AquaLens is a digital platform dedicated to showcasing global initiatives that improve urban water quality. Developed by students from the University of Amsterdam, the project aims to inspire action and raise awareness about the vital importance of underwater ecosystems in our cities.
-        </p>
-      </div>
-      <div class="footer-column">
-        <h4>Useful Links</h4>
-        <ul>
-          <li><a href="">Explore Projects</a></li>
-          <li><a href="../data">Explore Data</a></li>
-          <li><a href="../froggy">Ask Froggy</a></li>
-          <li><a href="https://www.linkedin.com/groups/13190462/" target="_blank" rel="noopener noreferrer">Join LinkedIn Community</a></li>
-        </ul>
-      </div>
-      <div class="footer-column footer-logos">
-        <img src="../images/CSSci.png" alt="CSSci Logo" />
-        <img src="../images/UvA.jpg" alt="University Logo" />
-        <img src="../images/City.png" alt="City Logo" />
-      </div>
-    </div>
-  </footer>
+  <div id="footer"></div>
 
   <div id="project-modal" class="modal">
     <div class="modal-content">
@@ -357,6 +319,15 @@
   </div> 
 
   <script>
+  // Fetch header and footer HTML
+  fetch('/assets/header.html')
+    .then(res => res.text())
+    .then(html => document.getElementById('header').innerHTML = html);
+
+  fetch('/assets/footer.html')
+    .then(res => res.text())
+    .then(html => document.getElementById('footer').innerHTML = html);
+
     let allProjects = []; // Store all projects globally
     let currentPage = 1;
     let projectsPerPage = 9;
@@ -585,7 +556,7 @@
     
     try {
       // Send the user's question to the Render-hosted Flask API with improved error handling
-      const response = await fetch('https://capstone-tutj.onrender.com/api/ask', {
+      const response = await fetch('https://aqualens-froggy-backend.hf.space/api/ask', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

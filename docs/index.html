@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AquaLens</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="/css/global.css" />
 </head>
 
 <body>
@@ -29,42 +30,33 @@
         </nav>
       </div>
     </header>
+    <div id="header"></div>
+
+    <!-- Spacing Content Area (placeholder)-->
+    <main style="min-height: 700px;"></main>
 
     <!-- Video Background (placeholder example)-->
     <video autoplay muted loop id="bg-video">
-      <source src="videos/water-background.MOV" type="video/mp4">
+      <source src="videos/water-background.mp4" type="video/mp4">
       Your browser does not support HTML5 video.
     </video>
-    
-    <div class="fade-in-text">
-      E.g. What does it take...
-    </div>
 
     <!-- Footer -->
-  <footer>
-    <div class="container footer-columns">
-      <div class="footer-column">
-        <h4>About AquaLens</h4>
-        <p>
-            AquaLens is a digital platform dedicated to showcasing global initiatives that improve urban water quality. Developed by students from the University of Amsterdam, the project aims to inspire action and raise awareness about the vital importance of underwater ecosystems in our cities.
-        </p>
-      </div>
-      <div class="footer-column">
-        <h4>Useful Links</h4>
-        <ul>
-          <li><a href="projects">Explore Projects</a></li>
-          <li><a href="data">Explore Data</a></li>
-          <li><a href="froggy">Ask Froggy</a></li>
-          <li><a href="https://www.linkedin.com/groups/13190462/" target="_blank" rel="noopener noreferrer">Join LinkedIn Community</a></li>
-        </ul>
-      </div>
-      <div class="footer-column footer-logos">
-        <img src="images/CSSci.png" alt="CSSci Logo" />
-        <img src="images/UvA.jpg" alt="University Logo" />
-        <img src="images/City.png" alt="City Logo" />
-      </div>
-    </div>
-  </footer>
+    <div id="footer"></div>
 
 </body>
+
+<script>
+  // Special class to the body so the header knows it's the homepage
+  document.body.classList.add('home');
+  // Fetch header and footer HTML
+  fetch('/assets/header.html')
+    .then(res => res.text())
+    .then(html => document.getElementById('header').innerHTML = html);
+
+  fetch('/assets/footer.html')
+    .then(res => res.text())
+    .then(html => document.getElementById('footer').innerHTML = html);
+</script>
+
 </html>

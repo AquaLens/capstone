@@ -5,28 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AquaLens</title>
   <link rel="stylesheet" href="about_us.css" />
+  <link rel="stylesheet" href="/css/global.css" />
 </head>
 
 <body>
-         <!-- Header with Navigation -->
-    <header>
-      <div class="container header-content">
-        <div class="logo">
-          <a href="index.html">
-            <img src="images/Logo.png" alt="AquaLens" />
-          </a>
-        </div>
-        <nav>
-          <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="data.html">Data</a></li>
-            <li><a href="about_us.html">Community</a></li>
-            <li><a href="froggy.html"><img src="images/Froggy 3.png" alt="AI agent" class="nav-icon"></a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+    <!-- Header with Navigation -->
+    <div id="header"></div>
+
     <main class="container">
   <section class="intro">
     <h1>Welcome to AquaLens</h1>
@@ -47,7 +32,7 @@
 
   <section class="case-study">
     <h2>De Ceuvel</h2>
-    <img src="images/Ceuvel.jpg" alt="De Ceuvel" class="case-image">
+    <img src="/images/Ceuvel.jpg" alt="De Ceuvel" class="case-image">
     <p>
       De Ceuvel is a community built on the grounds of a former shipyard in the north of Amsterdam. The community entails office space, a well-known café, a floating hotel and galleries, some which are inhabited. From its onset, De Ceuvel was designed to be a fully circular community.
     </p>
@@ -67,7 +52,7 @@
 
   <section class="case-study">
     <h2>FilterOn Lake Lowlands</h2>
-    <img src="images/Lake Lowlands.png" alt="Lake Lowlands" class="case-image">
+    <img src="/images/Lake Lowlands.png" alt="Lake Lowlands" class="case-image">
     <p>
       Music festivals are a huge part of the contemporary performing arts culture of the Netherlands. About 1100-1200 with more than 3000 attendants are organized. This gives the country one of the highest festival densities anywhere. All these festivals are each a challenge when it comes to sustainability. In our context, they can result in water pollution from festivalgoers.
     </p>
@@ -81,7 +66,7 @@
 
   <section class="case-study">
     <h2>De Grachtwacht</h2>
-    <img src="images/Grachtwacht.jpg" alt="De Grachtwacht" class="case-image">
+    <img src="/images/Grachtwacht.jpg" alt="De Grachtwacht" class="case-image">
     <p>
       De Grachtwacht is a volunteer group that meets weekly to canoe around the canals of Leiden, clearing them from plastic waste. Anyone is free them join on Sundays, with the possibility to join from the canal banks too. 
     </p>
@@ -109,29 +94,17 @@
 </main>
 
     <!-- Footer -->
-  <footer>
-    <div class="container footer-columns">
-      <div class="footer-column">
-        <h4>About AquaLens</h4>
-        <p>
-            AquaLens is a digital platform dedicated to showcasing global initiatives that improve urban water quality. Developed by students from the University of Amsterdam, the project aims to inspire action and raise awareness about the vital importance of underwater ecosystems in our cities.
-        </p>
-      </div>
-      <div class="footer-column">
-        <h4>Useful Links</h4>
-        <ul>
-          <li><a href="projects.html">Explore Projects</a></li>
-          <li><a href="data.html">Explore Data</a></li>
-          <li><a href="froggy.html">Ask Froggy</a></li>
-          <li><a href="https://www.linkedin.com/groups/13190462/" target="_blank" rel="noopener noreferrer">Join LinkedIn Community</a></li>
-        </ul>
-      </div>
-      <div class="footer-column footer-logos">
-        <img src="images/CSSci.png" alt="CSSci Logo" />
-        <img src="images/UvA.jpg" alt="University Logo" />
-        <img src="images/City.png" alt="City Logo" />
-      </div>
-    </div>
-  </footer>
+  <div id="footer"></div>
+
+  <script>
+    // Fetch header and footer HTML
+    fetch('/assets/header.html')
+      .then(res => res.text())
+      .then(html => document.getElementById('header').innerHTML = html);
+  
+    fetch('/assets/footer.html')
+      .then(res => res.text())
+      .then(html => document.getElementById('footer').innerHTML = html);
+  </script>
 
 </body>
