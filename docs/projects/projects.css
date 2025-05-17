@@ -327,13 +327,14 @@
     border-radius: 4px;
     padding: 1rem;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
   
   .submit-idea-box h3 {
     margin-bottom: 0.1rem;
     text-align: left;
-    justify-content: center;
   }
   
   .submit-idea-btn {
