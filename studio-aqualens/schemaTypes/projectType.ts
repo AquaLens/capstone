@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import {defineField, defineType, Rule} from 'sanity'
 
 // Define a list of country options; expand this array to include any countries you require
 const countryOptions = [
@@ -321,7 +321,7 @@ export const projectType = defineType({
       title: 'Project Name',
       type: 'string',
       description: 'Enter the name of the project',
-      validation: (rule) => rule.required(),
+      validation: (rule: Rule) => rule.required(),
     }),
     defineField({
       name: 'keywordLabel',
@@ -331,7 +331,7 @@ export const projectType = defineType({
         list: keywordOptions,
       },
       description: 'Select a keyword or label that best describes the project',
-      validation: (rule) => rule.required(),
+      validation: (rule: Rule) => rule.required(),
     }),
     defineField({
       name: 'continent',
@@ -369,14 +369,14 @@ export const projectType = defineType({
       title: 'Description',
       type: 'text',
       description: 'Description of the project',
-      validation: (rule) => rule.required(),
+      validation: (rule: Rule) => rule.required(),
     }),
     defineField({
       name: 'fullText',
       title: 'Full Text',
       type: 'text',
       description: 'Copy Paste the full text of the research paper/article/blog etc. for Froggy (AI) to read',
-      validation: (rule) => rule.required(),
+      validation: (rule: Rule) => rule.required(),
     }),
     defineField({
       name: 'tags',
@@ -397,8 +397,9 @@ export const projectType = defineType({
       title: 'Source',
       type: 'url',
       description: 'Reference URL for the research source',
-      validation: (rule) => rule.required(),
+      validation: (rule: Rule) => rule.required(),
     }),
+
     defineField({
       name: 'context',
       title: 'Context',
@@ -408,6 +409,7 @@ export const projectType = defineType({
       },
       description: 'Select the context of the project'
     }),
+
     defineField({
       name: 'target',
       title: 'Target',
@@ -438,15 +440,28 @@ export const projectType = defineType({
       title: 'Budget',
       type: 'string',
       description: 'Enter the financial budget of the project',
-      validation: (rule) => rule.required(),
+      validation: (rule: Rule) => rule.required(),
     }),
+
+    defineField({
+      name: 'other',
+      title: 'Other',
+      type: 'string',
+      description: 'Any other information'
+    }),
+
 
     defineField({
       name: 'contact',
       title: 'Contact',
-      type: 'string',
+      type: 'object',
       description: 'Enter the name of the Contact Person',
-      validation: (rule) => rule.required(),
+      fields: [
+        { name: 'name',  title: 'Name',  type: 'string', validation: Rule => Rule.required() },
+        { name: 'email', title: 'Email', type: 'string', validation: Rule => Rule.required() },
+        { name: 'phone', title: 'Phone', type: 'string' }
+      ],
+      validation: (rule: Rule) => rule.required(),
     }),
 
 
