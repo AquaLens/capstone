@@ -121,7 +121,7 @@
 
 /* Header */
 .froggy-chat-header {
-  background-color: #43a047;
+  background-color: #7fa43a;
   color: white;
   padding: 12px;
   display: flex;
@@ -162,12 +162,12 @@
 
 .froggy-user {
   align-self: flex-end;
-  background-color: #dcf8c6;
+  background-color: #9cc948;
 }
 
 .froggy-froggy {
   align-self: flex-start;
-  background-color: #e1f5fe;
+  background-color: #a4b5ca;
 }
 
 /* Input area */
