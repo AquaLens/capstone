@@ -150,7 +150,7 @@
     }
     
     .footer-column h4 {
-      font-size: 0.9rem;
+      font-size: 01rem;
       color:#ffffff;
       margin-bottom: 0.2rem;
     }
@@ -183,7 +183,9 @@
     .footer-logos {
       display: flex;
       gap: 1rem;
-      align-items: center;
+      position: absolute;
+      bottom: 1rem;
+      right: 1 rem;
     }
     
     .footer-logos img {
