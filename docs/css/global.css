@@ -4,6 +4,13 @@
     src: url('../fonts/Futura\ Light.ttf') format('woff2'),
          url('../fonts/Futura\ Light.ttf') format('woff');
   }
+
+  h2 {
+    font-family: 'Futura', Arial, sans-serif;
+    font-weight: 300;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
   
   * {
       margin: 0;
