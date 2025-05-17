@@ -160,7 +160,7 @@
     
     .footer-column p,
     .footer-column ul {
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       color:#ffffff;
       line-height: 1.4;
     }
@@ -187,6 +187,7 @@
       display: flex;
       gap: 1rem;
       position: absolute;
+      bottom: 1rem;
     }
     
     .footer-logos img {
