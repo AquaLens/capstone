@@ -72,8 +72,9 @@
   .nav-links {
     display: flex;
     gap: 1.5rem;
-    justify-content: right;
+    justify-content: flex-end;
     list-style: none;
+    margin-right: 0.5rem;
   }
   
   .nav-links li {
