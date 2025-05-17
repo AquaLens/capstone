@@ -137,7 +137,7 @@
     .footer-columns {
       display: flex;
       flex-wrap: wrap;
-      gap: 6rem;
+      gap: 2rem;
       margin-bottom: 1rem;
     }
     
