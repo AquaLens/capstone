@@ -51,9 +51,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0;
     flex-wrap: wrap;
     min-height: 3.5rem; /* Based on logo height instead of fixed header height */
+    width: 100%; /* Ensure it spans the full width */
+    max-width: 100%; /* Prevent any unintentional width restriction */
   }
   
   .header-video {
