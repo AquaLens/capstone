@@ -138,18 +138,18 @@
     }
     
     .footer-column {
-      flex: 1 1 200px;
+      flex: 1 1 300px;
       text-align: justify;
     }
     
     .footer-column h4 {
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
+      font-size: 0.7rem;
+      margin-bottom: 0.2rem;
     }
     
     .footer-column p,
     .footer-column ul {
-      font-size: 0.9rem;
+      font-size: 0.7rem;
       line-height: 1.4;
     }
   
@@ -159,7 +159,7 @@
     }
   
     .footer-column ul li {
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.2rem;
       position: relative;
       padding-left: 1rem;
     }
@@ -168,7 +168,7 @@
       content: "-";
       position: absolute;
       left: 0;
-      color: #000; /* Optional: dash color */
+      color: #ffffff; /* Optional: dash color */
     }
     
     .footer-logos {
@@ -178,5 +178,5 @@
     }
     
     .footer-logos img {
-      height: 40px;
+      height: 20px;
     }
