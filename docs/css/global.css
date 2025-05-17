@@ -51,6 +51,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0 0.5rem;
     flex-wrap: wrap;
     min-height: 3.5rem; /* Based on logo height instead of fixed header height */
   }
@@ -69,7 +70,6 @@
   .logo img {
     height: 3.5rem;
     margin-bottom: -0.5rem;
-    margin-left: 0.5rem;
   }
   
   nav {
@@ -81,7 +81,6 @@
     gap: 1.5rem;
     justify-content: flex-end;
     list-style: none;
-    margin-right: 0.5rem;
   }
   
   .nav-links li {
