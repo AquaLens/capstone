@@ -23,6 +23,8 @@
       color: #333;
       background-color: #f8f8f8;
       line-height: 1.6;
+      margin: 0;
+      padding: 0;
     }
     
     a {
