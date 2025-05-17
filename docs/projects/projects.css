@@ -329,7 +329,6 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    text-align: left;
   }
   
   .submit-idea-box h3 {
@@ -338,6 +337,7 @@
   }
   
   .submit-idea-btn {
+    align-self: flex-end;
     background-color: #3B609C;
     color: #ffffff;
     padding: 0.6rem 1rem;
