@@ -49,6 +49,7 @@
     padding: 1rem;
     border-radius: 4px;
     font-size: 0.9rem;
+    width: 218px;
     transition: background-color 0.2s ease;
     text-align: center;
   }
