@@ -327,8 +327,7 @@
     border-radius: 4px;
     padding: 1rem;
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
+    flex-direction: column;
   }
   
   .submit-idea-box h3 {
