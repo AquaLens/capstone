@@ -334,7 +334,7 @@
   .submit-idea-box h3 {
     margin-bottom: 0.1rem;
     text-align: left;
-    align-items: center;
+    justify-content: center;
   }
   
   .submit-idea-btn {
