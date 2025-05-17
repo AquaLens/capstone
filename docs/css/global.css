@@ -131,6 +131,8 @@
       margin: 0;
       margin-top: auto;
       padding: 0.5rem 0;
+      position: relative;
+      left: 0;
     }
     
     .footer-columns {
