@@ -127,9 +127,10 @@
     /* ------------ Footer ------------ */
     footer {
       background-color: #a4b5ca;
-      width: 100%;
+      width: 100vw;
+      margin: 0;
       margin-top: auto;
-      padding: 0 1rem;
+      padding: 0.5rem 0;
     }
     
     .footer-columns {
