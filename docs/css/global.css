@@ -133,7 +133,7 @@
       background-color: #a4b5ca;
       width: 100vw;
       margin-top: auto;
-      padding: 1rem 1;
+      padding: 1rem 0;
       position: relative;
     }
     
@@ -142,6 +142,7 @@
       flex-wrap: wrap;
       gap: 6rem;
       margin-bottom: 1rem;
+      width: 100%;
     }
     
     .footer-column {
