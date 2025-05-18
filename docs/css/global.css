@@ -28,6 +28,7 @@
     body {
       display: flex;
       flex-direction: column;
+      position: relative;
       font-family: 'Future', Arial, sans-serif;
       color: #333;
       background-color: #f8f8f8;
@@ -199,7 +200,7 @@
       height: 40px;
       width: auto;
     }
-    html, body {
+    body {
       position: relative;
     }
 

@@ -13,7 +13,7 @@
   <header id="header"></header>
 
   <main class="container" style="flex: 1; min-height: 700px;"></main>   
-  
+
   <footer id="footer"></footer> 
 
   <video autoplay muted loop id="bg-video">
@@ -27,7 +27,7 @@
     // Fetch header and footer HTML
     fetch('/assets/header.html')
       .then(res => res.text())
-      .then(html => document.getElementById('header').innerHTML = html);
+      .then(html => document.getElementById('header').outerHTML = html);
 
     fetch('/assets/footer.html')
       .then(res => res.text())
