@@ -211,9 +211,9 @@
       opacity: 0.8;
     }
     /* ensure content sits above video */
-    header, main, footer {
+    main, footer {
       position: relative;
-      z-index: 1;
+      z-index: 5;
     }
 
     /* ------------ Fade-in keyframe (if used) ------------ */
