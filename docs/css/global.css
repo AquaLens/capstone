@@ -199,6 +199,9 @@
       height: 40px;
       width: auto;
     }
+    html, body {
+      position: relative;
+    }
 
     #bg-video {
       position: fixed;
@@ -210,10 +213,16 @@
       z-index: -1;
       opacity: 0.8;
     }
+
+    header {
+      position: relative;
+      z-index: 1000;
+    }
+
     /* ensure content sits above video */
     main, footer {
       position: relative;
-      z-index: 5;
+      z-index: 500;
     }
 
     /* ------------ Fade-in keyframe (if used) ------------ */
