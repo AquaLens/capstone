@@ -187,14 +187,16 @@
       content: "-";
       position: absolute;
       left: 0;
-      color: #ffffff; /* Optional: dash color */
+      color: #ffffff; 
     }
     
     .footer-logos {
-      position: absolute;
-      bottom: 1rem;
       display: flex;
       gap: 1rem;
+      margin-top: 1rem; 
+      padding-bottom: 1rem; 
+      position: relative; 
+      justify-content: flex-start; /* or center or end depending on desired alignment */
     }
     
     .footer-logos img {
