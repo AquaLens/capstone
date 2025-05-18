@@ -151,15 +151,16 @@
 
     .footer-columns {
       display: flex;
-      flex-wrap: wrap;
-      gap: 3rem;
-      justify-content: space-between;
-      width: 100%;
+      justify-content: space-evenly;
+      align-items: flex-start;
+      gap: 1.5rem;
     }
+
     
     .footer-column {
-      flex: 1 1 300px;
+      flex: 1;
       text-align: justify;
+      min-width: 0;
     }
     
     .footer-column h4 {
@@ -195,9 +196,7 @@
     
     .footer-logos {
       display: flex;
-      gap: 1rem;
-      margin-top: 1rem; 
-      padding-bottom: 1rem; 
+      gap: 1rem; 
       justify-content: flex-end; /* or center or end depending on desired alignment */
     }
     
