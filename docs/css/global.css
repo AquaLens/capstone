@@ -191,11 +191,10 @@
     }
     
     .footer-logos {
-      flex: 1 1 100%;
+      position: absolute;
+      bottom: 1rem;
       display: flex;
       gap: 1rem;
-      justify-content: center;
-      margin-top: 1rem;
     }
     
     .footer-logos img {
