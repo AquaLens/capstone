@@ -1,6 +1,8 @@
 flask
 requests
 faiss-cpu
-sentence-transformers
 together
+sentence-transformers
 flask-cors
+gunicorn
+hf_xet

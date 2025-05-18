@@ -13,7 +13,10 @@ TOGETHER_API_KEY = os.environ.get("TOGETHER_API_KEY", "")
 MODEL_NAME = "meta-llama/Llama-3.3-70B-Instruct-Turbo-Free"
 
 # === Initialize clients ===
-embedder = SentenceTransformer("all-MiniLM-L6-v2")
+embedder = SentenceTransformer(
+    "sentence-transformers/all-MiniLM-L6-v2",
+    cache_folder="/tmp/all-MiniLM-L6-v2"
+)
 client = Together(api_key=TOGETHER_API_KEY)
 
 app = Flask(__name__)
