@@ -149,9 +149,10 @@
     .footer-columns {
       display: flex;
       flex-wrap: wrap;
-      gap: 2rem;
-      /* margin-bottom: 1rem; */
-      /*width: 100%; */
+      gap: 3rem;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 100%;
     }
     
     .footer-column {
@@ -195,8 +196,7 @@
       gap: 1rem;
       margin-top: 1rem; 
       padding-bottom: 1rem; 
-      position: relative; 
-      justify-content: flex-start; /* or center or end depending on desired alignment */
+      justify-content: flex-end; /* or center or end depending on desired alignment */
     }
     
     .footer-logos img {
