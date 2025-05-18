@@ -17,14 +17,6 @@
       padding: 0;
       box-sizing: border-box;
     }
-    
-    body {
-      font-family: 'Futura', Arial, sans-serif;
-      display: flex;
-      color: #333;
-      background-color: #f8f8f8;
-      line-height: 1.6;
-    }
 
     html, body {
       margin: 0;
@@ -36,8 +28,12 @@
     body {
       display: flex;
       flex-direction: column;
+      font-family: 'Future', Arial, sans-serif;
+      color: #333;
+      background-color: #f8f8f8;
+      line-height: 1.6;
     }
-
+    /* links */
     a {
       text-decoration: none;
       color: inherit;
@@ -53,7 +49,6 @@
     header {
         position: relative;
         padding: 1rem 0;
-        /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);*/
         margin-bottom: 3rem;
         overflow: hidden; /* Prevent video from overflowing */
     }
@@ -67,7 +62,6 @@
     flex-wrap: wrap;
     min-height: 3.5rem; /* Based on logo height instead of fixed header height */
     width: 100%; /* Ensure it spans the full width */
-    max-width: 100%; /* Prevent any unintentional width restriction */
   }
   
   .header-video {
@@ -143,6 +137,7 @@
       padding: 2rem 1.5rem;
       box-sizing: border-box;
     }
+
     .footer-inner {
       padding: 0 1.5rem;
       margin: 0 auto;
@@ -152,14 +147,14 @@
     .footer-columns {
       display: flex;
       flex-wrap: wrap;
-      width: 100%;
-      justify-content: flex-start;
+      justify-content: space-evenly;
+      align-items: flex-start;
       gap: 1.5rem;
     }
-
     
     .footer-column {
       flex: 1;
+      min-width: 0;
       text-align: justify;
     }
     
@@ -197,11 +192,32 @@
     .footer-logos {
       display: flex;
       gap: 1rem;
-      margin-top: 1rem; 
-      padding-bottom: 1rem; 
       justify-content: flex-end; /* or center or end depending on desired alignment */
     }
     
     .footer-logos img {
-      height: 20px;
+      height: 40px;
+      width: auto;
     }
+
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.8;
+    }
+    /* ensure content sits above video */
+    header, main, footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ------------ Fade-in keyframe (if used) ------------ */
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+        

@@ -1,6 +1,6 @@
 /* ------------ Main Layout ------------ */
 main {
-  flex: 1; /* Pushes footer down */
+  /*flex: 1; /* Pushes footer down */
   display: flex;
   gap: 2rem;
   margin-bottom: 2rem;
@@ -10,16 +10,6 @@ main {
 }
 
 /* ------------ Video Background (example) ------------ */
-#bg-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Change to 'contain' if zoom is too much */
-  z-index: -1;
-  opacity: 0.8;
-}
 
 /* ------------ Responsive ------------ */
 @media (max-width: 768px) {
@@ -39,6 +29,15 @@ main {
   .nav-links {
     flex-direction: column;
     gap: 0.5rem;
+  }
+
+  .footer-columns {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .footer-logos {
+    justify-content: flex-start;
   }
 }
 
