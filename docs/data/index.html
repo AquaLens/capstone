@@ -34,7 +34,7 @@
     <div class="gallery-item" onclick="openModal('visual_charts_graphs/water_quality_map_2023.html')">
       <img src="visual_charts_graphs/images/water_quality.jpg" alt="Percentage of Good Quality Water Bodies" />
       <h4>Percentage of Good Quality Water Bodies</h4>
-      <p>Description paragraph</p>
+      <p>Global data on country' water quality</p>
     </div>
 
     <div class="gallery-item" onclick="openModal('')">
@@ -115,14 +115,20 @@
     <script src="visualizations.js"></script>
     
     <script>
-      function openModal(src) {
+      const descriptions = {
+        'Water Quality Map' : '<h2>Global Water Quality (2023)</h2> <p>This map shows, for 2023, the share of each country’s natural water bodies (rivers, lakes, and groundwater)that meets the Sustainable Development Goal (SDG) “good ambient water quality threshold. <strong>Good water quality </strong>(dark blue) means all key physician, chemical, and biological parameters (pH, dissolved oxygen, nutrient levels, turbidity, microbial counts, etc) fall within established safe “reference” ranges. <strong>Poor water quality</strong> (light blue) means one or more of those parameters exceed acceptable limits, indicating pollution or ecosystem and public-health risks.</p><p><em>Data source:</em> UNECE SDG portal, Indicator 6.3.2(a): <a href="https://w3.unece.org/SDG/en/Indicator?id=136" target="_blank">w3.unece.org/SDG/Indicator?id=136</a></p>'
+      }
+
+      function openModal(src, key) {
         document.getElementById('modal').style.display = 'flex';
         document.getElementById('modal-content').src = src;
+        document.getElementById('modal-sidebar').innerHTML = description[key] || '';
       }
     
       function closeModal() {
         document.getElementById('modal').style.display = 'none';
         document.getElementById('modal-content').src = '';
+        document.getElementById('modal-sidebar').innerHTML = '';
       }
 
     fetch('/assets/header.html')
