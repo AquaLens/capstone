@@ -108,10 +108,10 @@
 /* Chat popup */
 .froggy-chat-popup {
   position: fixed;
-  bottom: 90px;
+  bottom: 30px;
   right: 20px;
-  width: 320px;
-  max-height: 500px;
+  width: 450px; /* wider - was 320px */
+  height: 550px; /* taller - was 500px */
   background: white;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
@@ -133,6 +133,28 @@
   font-weight: bold;
 }
 
+.froggy-header-buttons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Reset Button Style */
+.froggy-reset-button {
+  background-color: #3B609C;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.froggy-reset-button:hover {
+  background-color: #a4b5ca;
+}
+
 /* Close button */
 .froggy-close {
   background: transparent;
@@ -151,6 +173,7 @@
   flex-direction: column;
   gap: 8px;
   background: #f9f9f9;
+  max-height: calc(100% - 60px); /* Adjust to prevent overflow */
 }
 
 /* Message bubbles */
@@ -179,6 +202,7 @@
   border-top: 1px solid #ccc;
   padding: 8px;
   background: white;
+  box-sizing: border-box; /* Ensures padding doesn't add to element width */
 }
 
 .froggy-chat-input textarea {
@@ -189,7 +213,9 @@
   padding: 8px;
   font-size: 14px;
   height: 36px;
+  min-height: 36px; /* Ensure height is consistent */
   outline: none;
+  box-sizing: border-box; /* Ensures padding doesn't add to element height */
 }
 
 .froggy-chat-input button {
