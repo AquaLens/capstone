@@ -74,35 +74,12 @@
       border-radius: 12px;
     }
      
-    .modal-container {
-      display: flex;
-      gap: 1rem;
-      background: white;
-      padding: 1rem;
-      border-radius: 12px;
-      width: 90%;
-      max-height: 90%;
-      overflow: hidden;
-    }
-
     .modal-sidebar {
-      width: 30%;
+      width: 30%; 
       padding: 1rem;
       overflow-y: auto;
       background-color: #fff;
       color: #000;
-      border-radius: 8px;
-    }
-
-    .modal-iframe-wrapper {
-      width: 70%;
-      height: 100%;
-    }
-
-    .modal-iframe-wrapper iframe {
-      width: 100%;
-      height: 100%;
-      border-radius: 12px;
     }
   
     .gallery-item img {
