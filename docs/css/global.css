@@ -1,8 +1,7 @@
 /* ------------ Global Styles ------------ */
 @font-face {
     font-family: 'Futura';
-    src: url('../fonts/Futura\ Light.ttf') format('woff2'),
-         url('../fonts/Futura\ Light.ttf') format('woff');
+    src: url('../fonts/Futura\ Light.ttf') format('truetype'),
   }
 
   h2 {
@@ -146,7 +145,7 @@
     .footer-columns {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-evenly;
+      justify-content: flex-start;
       align-items: flex-start;
       gap: 1.5rem;
     }
