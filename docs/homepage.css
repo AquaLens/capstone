@@ -82,8 +82,8 @@
 
 #dive_button {
   position: absolute;
-  bottom: 30%;
-  right: 40%;
+  bottom: 20%;
+  right: 20%;
   padding: 1vw 2vw;
   font-size: 1.5vw;
   cursor: pointer;
@@ -100,8 +100,8 @@
 
 #explore_button {
   position: absolute;
-  bottom: 30%;
-  right: 15%;
+  bottom: 20%;
+  right: 10%;
   padding: 1vw 2vw;
   font-size: 1.5vw;
   cursor: pointer;
