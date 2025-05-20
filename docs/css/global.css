@@ -53,6 +53,21 @@
         padding: 1rem 0;
     }
   
+    body.home header {
+      position: fixed; /* Make the header fixed to stay on top during scrolling */
+      top: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.8); /* Optional: Add a semi-transparent background */
+      color: white;
+      z-index: 1000;
+      transform: translateY(-100%); /* Initially hide the header by moving it out of view */
+      transition: transform 0.3s ease-in-out; /* Smooth transition for sliding in and out */
+    }
+    
+    body.home header:hover {
+      transform: translateY(0); /* Slide the header into view when hovered */
+    }
+    
   .header-content {
     position: relative;
     z-index: 1;
