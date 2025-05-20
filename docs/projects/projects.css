@@ -6,10 +6,20 @@
     display: flex;
     gap: 2rem;
     margin-bottom: 2rem;
-    flex-wrap: wrap;
-    flex: 1 0 auto;
     width: 100%;
+    box-sizing: border-box;
+    flex-direction: row; /* Ensure flex items are in a row */
+    flex-wrap: wrap; /* Allow wrapping */
+    align-items: flex-start; /* Prevent stretching */
   }
+
+  /* Ensure the footer is outside the main flex influence */
+main::after {
+  content: "";
+  display: block;
+  width: 100%;
+  clear: both;
+}
   
   /* ------------ Sidebar (Filters) ------------ */
   aside {
@@ -268,7 +278,6 @@
     flex: 1 1 650px;
     display: flex;
     flex-direction: column;
-    width: 100%;
   }
   
   .projects-section h2 {

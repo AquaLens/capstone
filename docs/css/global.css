@@ -41,7 +41,7 @@
     }
     
     .container {
-      width: 90%;
+      width: 95%;
       max-width: 1200px;
       margin: 0 auto;
     }
@@ -138,8 +138,7 @@
       margin-top: auto;
       padding: 2rem 1.5rem;
       box-sizing: border-box;
-      flex-shrink: 0;
-      align-self: stretch;
+      clear: both; /* Clear any floating elements */
     }
 
     .footer-inner {
