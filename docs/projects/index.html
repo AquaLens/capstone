@@ -521,6 +521,11 @@
   const sendBtn = document.getElementById('froggy-send');
   const textarea = document.getElementById('froggy-question');
   const messages = document.getElementById('froggy-messages');
+
+
+chatButton.addEventListener('click', () => {
+  chatPopup.classList.toggle('active');
+});
   
   // Add the reset button to the header immediately
   const header = document.querySelector('.froggy-chat-header');

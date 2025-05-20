@@ -114,16 +114,21 @@
   position: fixed;
   bottom: 30px;
   right: 20px;
-  width: 450px; /* wider - was 320px */
-  height: 550px; /* taller - was 500px */
+  width: 450px;
+  height: 550px;
   background: white;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  display: none;
+  display: none; /* This should be changed to flex when the popup is active */
   flex-direction: column;
   overflow: hidden;
-  z-index: 9998;
+  z-index: 99999; /* Increased z-index */
   font-family: Arial, sans-serif;
+}
+
+/* Add this class to show the popup */
+.froggy-chat-popup.active {
+  display: flex;
 }
 
 /* Header */
