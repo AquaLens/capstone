@@ -1,0 +1,643 @@
+.water_animation_container {
+    height: 100vh;
+    background-size: contain;
+}
+
+.pin_section {
+  position: relative;
+  width: 100%;
+}
+
+.scene1 {
+  position: relative;
+  width: 100%;
+}
+
+.at_the_surface {
+  width: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 0;
+  padding: 0;
+  margin: 0;
+  -webkit-mask-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0));
+  background-size: contain;
+}
+
+.aqualens_title,
+.act1_section {
+  position: absolute;
+  z-index: 1;
+  color: white;
+}
+
+.aqualens_title {
+  font-weight: bold;
+  font-size: 5vw;
+  top: 20%;
+  left: 10%;
+  -webkit-text-stroke-width: 0.2px;
+  -webkit-text-stroke-color: black;
+}
+
+.blink_vid{
+  /* height: 100%; */
+  width: 100vw;
+  margin: 0px;
+  padding: 0px;
+}
+
+.at_the_surface,
+.blink_vid {
+  display: block;
+}
+
+.act1_section {
+  bottom: 16%;
+  left: 20%;
+  padding-right: 40px;
+  z-index: 10;
+}
+
+.act1_text_section_2 {
+  bottom: 10%;
+  left: 20%;
+  padding-right: 40px;
+  z-index: 10;
+}
+
+.act1_text {
+  color: white;
+  font-size: 2vw;
+  width: 80%;
+  opacity: 0;
+  transform: translateY(20px);
+}
+/* 
+.act1_text_2 {
+  color: white;
+  font-size: 2vw;
+  width: 80%;
+  opacity: 1;
+} */
+
+#dive_button {
+  position: absolute;
+  bottom: 30%;
+  right: 40%;
+  padding: 1vw 2vw;
+  font-size: 1.5vw;
+  cursor: pointer;
+  background: white;
+  border: none;
+  color: #222;
+  border-radius: 5px;
+  transition: transform 0.2s ease;
+}
+
+#dive_button:hover {
+  transform: scale(1.05);
+}
+
+#explore_button {
+  position: absolute;
+  bottom: 30%;
+  right: 15%;
+  padding: 1vw 2vw;
+  font-size: 1.5vw;
+  cursor: pointer;
+  background: white;
+  border: none;
+  color: #222;
+  border-radius: 5px;
+  transition: transform 0.2s ease;
+}
+
+#explore_button:hover {
+  transform: scale(1.05);
+}
+
+section.vid {
+  height: 3000px;
+  background-color: white;
+}
+
+section.vid div.holder {
+  position: sticky;
+  top: 0;
+}
+
+section.vid video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+
+.picture {
+  width: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: -10;
+  padding: 0;
+  margin: 0;
+  background-size: contain;
+}
+
+.pin_section_2 {
+  position: relative;
+  width: 100%;
+}
+
+.scene2 {
+  position: relative;
+  width: 100%;
+  min-height: 100vh; /* or a value that makes sense */
+}
+
+.act2_pollutant_section {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  top: 0;
+}
+
+#nitrate {
+  position: absolute;
+  /* top: 15vh; */
+  /* left: 10%; */
+  width: 15%; 
+  z-index: 3;
+}
+
+#ammonium {
+  position: absolute;
+  /* top: 40vh; */
+  /* right: 10%; */
+  width: 15%; 
+  z-index: 3;
+}
+
+#plastic_bag {
+  position: absolute;
+  /* top: 70vh; */
+  /* right: 30%; */
+  width: 12%; 
+  z-index: 3;
+}
+
+.nitrate_container {
+  position: relative;
+  top: 5%;
+  left: 10%;
+}
+
+.ammonium_container {
+  position: relative;
+  top: 17.5%;
+  right: -75%
+}
+
+.plastic_bag_container {
+  position: relative;
+  top: 30%;
+  right: -60%
+}
+
+.tooltip {
+  position: absolute;
+  bottom: -150px;
+  left: 20%; /* Adjust to move tooltip beside image */
+  color: black;
+  background:white;
+  border-radius: 10px;
+  max-width: 50vw;
+  /* height:150px; */
+  padding: 1% 2%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  white-space: nowrap;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  text-wrap: wrap;
+}
+
+.tooltip:before {
+    content:"";
+    position: absolute;
+    height: 0px;
+    width: 0px;
+    top: 60px;
+    left: -29px; /* 1px buffer for zooming problems while rendering*/
+    border-width: 15px;
+    border-color: transparent white transparent transparent;
+    border-style: solid;
+}
+
+.tooltip_left {
+  position: absolute;
+  bottom: -150px;
+  left: -53%; /* Adjust to move tooltip beside image */
+  color: black;
+  background:white;
+  border-radius: 10px;
+  max-width: 50vw;
+  /* height:150px; */
+  padding: 1% 2%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  white-space: nowrap;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  text-wrap: wrap;
+}
+
+.tooltip_left:after {
+    content:"";
+    position: absolute;
+    height: 0px;
+    width: 0px;
+    top: 60px;
+    right: -28px; /* 1px buffer for zooming problems while rendering */
+    border-width: 15px;
+    border-color: transparent transparent transparent white;
+    border-style: solid;
+}
+
+.tooltip_text {
+  font-size: 2vw;
+  color: rgb(37, 37, 37);
+}
+
+.nitrate_container:hover .tooltip {
+  opacity: 1;
+}
+
+.ammonium_container:hover .tooltip_left {
+  opacity: 1;
+}
+
+.plastic_bag_container:hover .tooltip_left {
+  opacity: 1;
+}
+
+.act2_text_section_1 {
+  position: absolute;
+  top: 45%;
+  left: 17%;
+  z-index: 10;
+}
+
+.act2_text_1 {
+  color: white;
+  font-size: 2vw;
+  width: 80%;
+  opacity: 0;
+}
+
+.act2_text_section_2 {
+  position: absolute;
+  bottom: 4.59%;
+  right: 5.5%;
+  z-index: 10;
+  width: 75%;
+}
+
+.act2_text_2 {
+  color: white;
+  font-size: 2vw;
+  width: 100%;
+  opacity: 0;
+}
+
+#explore_the_data_button {
+  position: absolute;
+  bottom: 13%;
+  right: 12%;
+  padding: 1vw 2vw;
+  font-size: 1.5vw;
+  cursor: pointer;
+  background: white;
+  border: none;
+  color: #222;
+  border-radius: 5px;
+  transition: transform 0.2s ease;
+}
+
+#join_linkedin_button {
+  position: absolute;
+  bottom: 5%;
+  right: 12%;
+  padding: 1vw 2vw;
+  font-size: 1.5vw;
+  cursor: pointer;
+  background: white;
+  border: none;
+  color: #222;
+  border-radius: 5px;
+  transition: transform 0.2s ease;
+}
+
+#explore_the_projects_button {
+  position: absolute;
+  bottom: 5%;
+  right: 12%;
+  padding: 1vw 2vw;
+  font-size: 1.5vw;
+  cursor: pointer;
+  background: white;
+  border: none;
+  color: #222;
+  border-radius: 5px;
+  transition: transform 0.2s ease;
+}
+
+.scene3 {
+  position: relative;
+  width: 100%;
+  min-height: 100vh; /* or a value that makes sense */
+}
+
+.pin_section_3 {
+  position: relative;
+  width: 100%;
+}
+
+.quote {
+  position: absolute;
+  width: 63%;
+}
+
+.quote_text_container {
+  position: absolute;
+  z-index: 100;
+  padding-top: 2%;
+  left: 8%;
+  /* border: solid 1px black; */
+  width: 50%;
+  text-wrap: wrap;
+  height: 100%
+}
+
+.quote_text_container_right {
+  position: absolute;
+  z-index: 100;
+  padding-top: 2%;
+  left: 5%;
+  /* border: solid 1px black; */
+  width: 50%;
+  text-wrap: wrap;
+  height: 100%;
+  margin-inline: auto; 
+  /* width: fit-content; */
+}
+
+.quote_text {
+  color: black;
+  font-size: 1.8vw;
+}
+
+#quote_1 {
+  position: absolute;
+  top: 5.8%;
+  left: 16%;
+  width: 100%;
+  z-index: 3;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.05s ease-out;
+}
+
+#quote_2 {
+  position: absolute;
+  top: 21.3%;
+  right: -20.4%;
+  width: 100%;
+  z-index: 3;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.05s ease-out;
+}
+
+#quote_3 {
+  position: absolute;
+  top: 36.3%;
+  left: 16%;
+  width: 100%;
+  z-index: 3;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.05s ease-out;
+}
+
+#quote_4 {
+  position: absolute;
+  top: 52.2%;
+  right: -20.4%;
+  width: 100%;
+  z-index: 3;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.05s ease-out;
+}
+
+#quote_5 {
+  position: absolute;
+  top: 66.8%;
+  left: 16%;
+  width: 100%;
+  z-index: 3;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.05s ease-out;
+}
+
+
+
+.act3_text_section {
+  position: absolute;
+  z-index: 10;
+  bottom: 10.5%;
+  left: 17.8%;
+}
+
+.act3_text{
+  color: white;
+  font-size: 2.5vw;
+  width: 90%;
+  opacity: 0;
+}
+
+.scene4 {
+  position: relative;
+  width: 100%;
+  min-height: 100vh; /* or a value that makes sense */
+}
+
+#hand_container {
+  position: absolute;
+  top: 17.4%;
+  left: -48.05%;
+  width: 48.1%;
+  z-index: 3;
+}
+
+#hand { 
+  position: absolute;
+  width: 100%;
+  z-index: 3;
+}
+
+.act4_text_section {
+  position: absolute;
+  z-index: 10;
+  top: 20%;
+  left: 50%;
+}
+
+.act4_text{
+  color: white;
+  font-size: 3.5vw;
+  width: 90%;
+  opacity: 1;
+}
+
+.project_container {
+  position: absolute;
+  z-index: 10;
+  width: 70%;
+  height: 15%;
+  left: 15%;
+  background-color: white;
+  border-radius: 25px;
+  top: 0%;
+  border: solid 4px white;
+  padding-top: 2.5%;
+  padding-left: 3.5%;
+  padding-right: 3.5%;
+  padding-bottom: 2.5%;
+}
+
+.project_title {
+  font-size: 2.25vw;
+}
+
+.project_text {
+  width: 64%;
+  font-size: 1vw;
+}
+
+.project_image {
+  position: absolute;
+  width: auto;
+  height:86%;
+  right: 3.5%;
+  top: 7%;
+  border-radius: 2%;
+}
+
+.scene5 {
+  position: relative;
+  width: 100%;
+  min-height: 100vh; /* or a value that makes sense */
+  /* border: solid 2px black; */
+}
+
+.pin_section_5 {
+  position: relative;
+  width: 100%;
+}
+
+/* #project_container_1 {
+  opacity: 0;
+  transform: translateY(2px);
+  transition: all 1s ease-out;
+  position: absolute;
+}  */
+
+#act5_text_section_1 {
+  position: absolute;
+  z-index: 10;
+  bottom: 58%;
+  left: 22%;
+  width: 70%;
+}
+
+#act5_text_section_2 {
+  position: absolute;
+  z-index: 10;
+  bottom: 34%;
+  left: 37%;
+}
+
+#act5_text_1 {
+  color: white;
+  font-size: 2vw;
+  width: 100%;
+  opacity: 0;
+  /* transform: translateY(20px); */
+}
+#act5_text_2 {
+  color: white;
+  font-size: 4vw;
+  width: 100%;
+  opacity: 0;
+  /* transform: translateY(20px); */
+}
+
+.surface_vid{
+  /* height: 100%; */
+  width: 100vw;
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+  /* z-index: -1; */
+}
+
+
+
+.explore {
+  position: relative;
+  margin-top: 60px;
+  margin-left: 80px;
+  margin-right: 80px;
+  margin-bottom: 60px;
+}
+
+.what_next {
+  text-align: center;
+  /* font-family: Arial, sans-serif; */
+  font-weight: bold;
+  font-size: 48px;
+}
+
+.website_sections {
+  display: flex;
+  justify-content: space-between   ;
+  gap: 30px; /* Minimum spacing */
+  padding: 20px;
+  flex-wrap: nowrap;
+}
+
+.section_box {
+  width: 300px;
+  height: 300px;
+  background-color: white;
+  color: black;
+  font-size: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Stack vertically if boxes + gaps won't fit */
+@media (max-width: 1080px) {
+  /* 3 boxes * 100px + 2 gaps * 30px = 360px */
+  .website_sections {
+    flex-direction: column;
+    gap: 20px; /* vertical spacing when stacked */
+    align-items: center; /* optional: center vertically stacked boxes */
+  }
+}
