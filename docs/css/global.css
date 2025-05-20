@@ -137,6 +137,8 @@
       margin-top: auto;
       padding: 2rem 1.5rem;
       box-sizing: border-box;
+      flex-shrink: 0;
+      align-self: stretch;
     }
 
     .footer-inner {
