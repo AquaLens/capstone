@@ -198,8 +198,8 @@
     }
     ------------*/
     footer {
-      background-color: #000; /* Adjust as needed */
-      color: #fff;
+      background-color: #a4b5ca; /* Adjust as needed */
+      color: #000;
       padding: 1rem 0; /* Vertical padding */
       position: relative;
     }
@@ -226,9 +226,13 @@
     }
     
     .footer-nav ul li a {
-      color: #fff;
+      color: #000;
       text-decoration: none;
       font-size: 0.9rem;
+    }
+
+    .footer-nav ul li a:hover {
+      color: #fff; 
     }
     
     .footer-logos {
