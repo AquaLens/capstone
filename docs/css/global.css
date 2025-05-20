@@ -52,7 +52,7 @@
         overflow: hidden; /* Prevent video from overflowing */
         padding: 1rem 0;
     }
-  
+    
   .header-content {
     position: relative;
     z-index: 1;

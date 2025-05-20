@@ -24,7 +24,7 @@
             <label><input type="checkbox" name="keywords" value="Citizen Science" /> Citizen Science </label>
             <label><input type="checkbox" name="keywords" value="Flood Management" /> Flood Management </label>
             <label><input type="checkbox" name="keywords" value="Nature Development" /> Nature Development </label>
-            <label><input type="checkbox" name="keywords" value="Object - based Solutions" /> Object-based Solutions </label>
+            <label><input type="checkbox" name="keywords" value="Object-based Solutions" /> Object-based Solutions </label>
             <label><input type="checkbox" name="keywords" value="Purification" /> Purification </label>
             <label><input type="checkbox" name="keywords" value="Recreation" /> Recreation </label>
           </div>
@@ -237,7 +237,8 @@
               <option value="Yemen">Yemen</option>
               <option value="Zambia">Zambia</option>
               <option value="Zimbabwe">Zimbabwe</option>
-            </select>            
+            </select> 
+            <div id="selectedCountries" class="selected-countries"></div>           
           </div>
         </div>
 
@@ -750,274 +751,246 @@
 
   <script>
   // Fetch header and footer HTML
-  fetch('/assets/header.html')
-    .then(res => res.text())
-    .then(html => document.getElementById('header').innerHTML = html);
+fetch('/assets/header.html')
+  .then(res => res.text())
+  .then(html => document.getElementById('header').innerHTML = html);
 
-  fetch('/assets/footer.html')
-    .then(res => res.text())
-    .then(html => document.getElementById('footer').innerHTML = html);
+fetch('/assets/footer.html')
+  .then(res => res.text())
+  .then(html => document.getElementById('footer').innerHTML = html);
 
-    let allProjects = []; // Store all projects globally
-    let currentPage = 1;
-    let projectsPerPage = 9;
+let allProjects = []; // Store all projects globally
+let currentPage = 1;
+let projectsPerPage = 9;
+let selectedCountries = []; // Declare this at the top level
 
     document.addEventListener('DOMContentLoaded', async () => {
       const projectsGrid = document.getElementById('projects-grid');
       const apiUrl = 'https://594hcrq0.api.sanity.io/v2025-04-14/data/query/production?query=' +
         encodeURIComponent(`*[_type == "projects"]{
-          _id,
           projectName,
           description,
           "imageURL": image.asset->url,
           "imageAlt": projectName,
           location,
-          specificLocations,
           keywordLabel,
           source,
           companyOrganization,
           context
         }`);
 
-      try {
-        const response = await fetch(apiUrl);
-        if (!response.ok) throw new Error(`API request failed with status ${response.status}`);
-        const { result: projects } = await response.json();
-        allProjects = projects; // store for filtering
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) throw new Error(`API request failed with status ${response.status}`);
+    const { result: projects } = await response.json();
+    allProjects = projects; // store for filtering
 
-        renderProjects();
-        setupFilters();
-      } catch (error) {
-        console.error('Error fetching project data:', error);
-        projectsGrid.innerHTML = '<p>Sorry, we are unable to load the projects at this time.</p>';
-      }
+    renderProjects();
+    setupFilters();
+  } catch (error) {
+    console.error('Error fetching project data:', error);
+    projectsGrid.innerHTML = '<p>Sorry, we are unable to load the projects at this time.</p>';
+  }
+});
+
+// Render only the projects corresponding to the current page
+function renderProjects(filteredProjects = allProjects) {
+  const projectsGrid = document.getElementById('projects-grid');
+  projectsGrid.innerHTML = '';
+
+  if (!filteredProjects.length) {
+    projectsGrid.innerHTML = '<p>No projects match your filters.</p>';
+    return;
+  }
+
+  // Calculate start and end indices for slicing based on page number and projectsPerPage
+  const startIndex = (currentPage - 1) * projectsPerPage;
+  const endIndex = startIndex + Number(projectsPerPage);
+  const projectsToShow = filteredProjects.slice(startIndex, endIndex);
+
+  projectsToShow.forEach(project => {
+    const card = document.createElement('div');
+    card.classList.add('project-card');
+
+    const img = document.createElement('img');
+    img.src = project.imageURL || 'https://via.placeholder.com/400x300?text=No+Image';
+    img.alt = project.imageAlt || 'Project image';
+    card.appendChild(img);
+
+    if (project.keywordLabel) {
+      const label = document.createElement('p');
+      label.textContent = project.keywordLabel;
+      label.classList.add('project-keyword');
+      card.appendChild(label);
+    }
+
+    const title = document.createElement('h3');
+    title.textContent = project.projectName || 'Untitled Project';
+    card.appendChild(title);
+
+    card.addEventListener('click', () => {
+      showModal(project);
     });
 
-    // Render only the projects corresponding to the current page
-    function renderProjects(filteredProjects = allProjects) {
-      const projectsGrid = document.getElementById('projects-grid');
-      projectsGrid.innerHTML = '';
+    projectsGrid.appendChild(card);
+  });
 
-      if (!filteredProjects.length) {
-        projectsGrid.innerHTML = '<p>No projects match your filters.</p>';
-        return;
-      }
+  // Update the current page display
+  document.getElementById('current-page').textContent = `Page ${currentPage}`;
+}
 
-      // Calculate start and end indices for slicing based on page number and projectsPerPage
-      const startIndex = (currentPage - 1) * projectsPerPage;
-      const endIndex = startIndex + Number(projectsPerPage);
-      const projectsToShow = filteredProjects.slice(startIndex, endIndex);
+function setupFilters() {
+  // Set up keyword and context filters
+  const checkboxes = document.querySelectorAll('input[name="keywords"], input[name="context"]');
+  checkboxes.forEach(cb => {
+    cb.addEventListener('change', applyFilters);
+  });
+  
+  // Set up country dropdown filter
+  const countryDropdown = document.getElementById('countryDropdown');
+  const selectedCountriesDiv = document.getElementById('selectedCountries');
+  selectedCountries = []; // Initialize/reset the array
 
-      projectsToShow.forEach(project => {
-        const card = document.createElement('div');
-        card.classList.add('project-card');
+  countryDropdown.addEventListener('change', () => {
+    const selected = countryDropdown.value;
+    if (selected && !selectedCountries.includes(selected)) {
+      selectedCountries.push(selected);
+      updateSelectedCountries();
+      applyFilters(); // Apply filters when a country is selected
+    }
+    countryDropdown.value = ""; // Reset dropdown after selection
+  });
 
-        const img = document.createElement('img');
-        img.src = project.imageURL || 'https://via.placeholder.com/400x300?text=No+Image';
-        img.alt = project.imageAlt || 'Project image';
-        card.appendChild(img);
+  function updateSelectedCountries() {
+    selectedCountriesDiv.innerHTML = '';
+    selectedCountries.forEach(country => {
+      const span = document.createElement('span');
+      span.className = 'country-chip';
+      span.textContent = country;
 
-        if (project.keywordLabel) {
-          const label = document.createElement('p');
-          label.textContent = project.keywordLabel;
-          label.classList.add('project-keyword');
-          card.appendChild(label);
+      const removeBtn = document.createElement('button');
+      removeBtn.textContent = '×';
+      removeBtn.className = 'remove-btn';
+      removeBtn.onclick = () => {
+        selectedCountries = selectedCountries.filter(c => c !== country);
+        updateSelectedCountries();
+        applyFilters(); // Apply filters when a country is removed
+      };
+
+      span.appendChild(removeBtn);
+      selectedCountriesDiv.appendChild(span);
+    });
+  }
+}
+
+function applyFilters() {
+  currentPage = 1; // reset page when filters change
+
+  const selectedKeywords = Array.from(
+    document.querySelectorAll('input[name="keywords"]:checked')
+  ).map(cb => cb.value);
+
+  const selectedContexts = Array.from(
+    document.querySelectorAll('input[name="context"]:checked')
+  ).map(cb => cb.value);
+
+  // Filter projects by keywords, context, and countries
+  const filtered = allProjects.filter(project => {
+    // For Object-based Solutions, check for exact match or normalized version
+    const matchesKeyword = selectedKeywords.length === 0 || 
+      selectedKeywords.some(keyword => {
+        // Handle special case for "Object - based Solutions"
+        if (keyword === "Object - based Solutions") {
+          return project.keywordLabel === keyword || 
+                 project.keywordLabel === "Object-based Solutions";
         }
-
-        const title = document.createElement('h3');
-        title.textContent = project.projectName || 'Untitled Project';
-        card.appendChild(title);
-
-        card.addEventListener('click', () => {
-          showModal(project);
-        });
-
-        projectsGrid.appendChild(card);
+        return project.keywordLabel === keyword;
       });
+    
+    const matchesContext = selectedContexts.length === 0 || 
+      selectedContexts.some(context => project.context?.includes(context));
+    
+    // Use the selectedCountries array instead of the dropdown value
+    const matchesCountry = selectedCountries.length === 0 || 
+      selectedCountries.includes(project.location);
+    
+    return matchesKeyword && matchesContext && matchesCountry;
+  });
 
-      // Update the current page display
-      document.getElementById('current-page').textContent = `Page ${currentPage}`;
-    }
+  renderProjects(filtered);
+}
 
-    function setupFilters() {
-      // Set up keyword and context filters
-      const checkboxes = document.querySelectorAll('input[name="keywords"], input[name="context"]');
-      checkboxes.forEach(cb => {
-        cb.addEventListener('change', applyFilters);
-      });
-      
-      // Set up country dropdown filter
-      const countryDropdown = document.getElementById('countryDropdown');
-      countryDropdown.addEventListener('change', applyFilters);
-    }
+function showModal(project) {
+  document.getElementById('modal-title').textContent = project.projectName || 'Untitled Project';
+  document.getElementById('modal-description').textContent = project.description || 'No description available';
+  document.getElementById('modal-organization').textContent = project.companyOrganization || 'Unknown organization';
+  document.getElementById('modal-keyword').textContent = project.keywordLabel || 'No label specified';
+  document.getElementById('modal-location').textContent = project.location || 'No location';
+  document.getElementById('modal-context').textContent = project.context || 'No context specified';
 
-    function applyFilters() {
-      currentPage = 1; // reset page when filters change
-
-      const selectedKeywords = Array.from(
-        document.querySelectorAll('input[name="keywords"]:checked')
-      ).map(cb => cb.value);
-
-      const selectedContexts = Array.from(
-        document.querySelectorAll('input[name="context"]:checked')
-      ).map(cb => cb.value);
-
-      // Get the selected country from the dropdown
-      const selectedCountry = document.getElementById('countryDropdown').value;
-
-      const filtered = allProjects.filter(project => {
-        const matchesKeyword = selectedKeywords.length === 0 || selectedKeywords.includes(project.keywordLabel);
-        const matchesContext = selectedContexts.length === 0 || selectedContexts.some(context => project.context?.includes(context));
-        const matchesCountry = !selectedCountry || project.location === selectedCountry;
-        return matchesKeyword && matchesContext && matchesCountry;
-      });
-
-      renderProjects(filtered);
-    }
-
-    function showModal(project) {
-      document.getElementById('modal-title').textContent = project.projectName || 'Untitled Project';
-      document.getElementById('modal-description').textContent = project.description || 'No description available';
-      document.getElementById('modal-organization').textContent = project.companyOrganization || 'Unknown organization';
-      document.getElementById('modal-keyword').textContent = project.keywordLabel || 'No label specified';
-      document.getElementById('modal-location').textContent = project.location || 'No location';
-      document.getElementById('modal-context').textContent = project.context || 'No context';
-
-      const modalSource = document.getElementById('modal-source');
-      if (project.source) {
-        modalSource.href = project.source;
-        modalSource.style.display = 'inline';
-      } else {
-        modalSource.style.display = 'none';
-      }
+  const modalSource = document.getElementById('modal-source');
+  if (project.source) {
+    modalSource.href = project.source;
+    modalSource.style.display = 'inline';
+  } else {
+    modalSource.style.display = 'none';
+  }
 
       document.getElementById('project-modal').style.display = 'block';
     }
 
-    // functions for the Submission form:
-    document.addEventListener('DOMContentLoaded', () => {
-      const submitBtn = document.querySelector('.submit-idea-btn');
-      const submitModal = document.getElementById('submit-modal');
-      const submitClose = document.getElementById('submit-close');
-      const submitForm = document.getElementById('submit-form');
+function closeModal() {
+  document.getElementById('project-modal').style.display = 'none';
+}
 
-      // Show modal
-      submitBtn.addEventListener('click', () => {
-        submitModal.style.display = 'flex';
-      });
+// Change page by increment (-1 for previous, 1 for next)
+function changePage(increment) {
+  // Get currently filtered projects
+  const filteredProjects = getFilteredProjects();
+  const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
+  const newPage = currentPage + increment;
+  if (newPage < 1 || newPage > totalPages) return;  // Do nothing if out of range
+  currentPage = newPage;
+  renderProjects(filteredProjects);
+}
 
-      // Close on ×
-      submitClose.addEventListener('click', () => {
-        submitModal.style.display = 'none';
-      });
+// Change number of projects shown per page and re-render
+function changeProjectsPerPage(value) {
+  projectsPerPage = Number(value);
+  currentPage = 1; // Reset to the first page on change
+  renderProjects(getFilteredProjects());
+}
 
-      // Close on backdrop click
-      submitModal.addEventListener('click', e => {
-        if (e.target === submitModal) submitModal.style.display = 'none';
-      });
+// Helper function to get currently filtered projects
+function getFilteredProjects() {
+  const selectedKeywords = Array.from(
+    document.querySelectorAll('input[name="keywords"]:checked')
+  ).map(cb => cb.value);
 
-      // Handle submit -- send it to Sanity as a draft project
-      submitForm.addEventListener('submit', async e => {
-        console.log('submit handler hit');
-        e.preventDefault();
+  const selectedContexts = Array.from(
+    document.querySelectorAll('input[name="context"]:checked')
+  ).map(cb => cb.value);
 
-        const values = Object.fromEntries(new FormData(submitForm).entries());
-        const measurements = Array.from(
-          submitForm.querySelectorAll('input[name="measurements"]:checked')
-        ).map(el => el.value);
+  if (selectedKeywords.length === 0 && selectedContexts.length === 0 && selectedCountries.length === 0) {
+    return allProjects;
+  }
 
-        const tags = Array.from(
-          submitForm.querySelectorAll('input[name="tags"]:checked')
-        ).map(el => el.value);
+  return allProjects.filter(project => {
+    // For Object-based Solutions, check for exact match or normalized version
+    const matchesKeyword = selectedKeywords.length === 0 || 
+                      selectedKeywords.includes(project.keywordLabel);
+    
+    const matchesContext = selectedContexts.length === 0 || 
+      selectedContexts.some(context => project.context?.includes(context));
+    
+    // Use the selectedCountries array
+    const matchesCountry = selectedCountries.length === 0 || 
+      selectedCountries.includes(project.location);
+    
+    return matchesKeyword && matchesContext && matchesCountry;
+  });
+}
 
-        let budget;
-        if (values.budgetAmount) {
-          budget = '${parseFloat(values.budgetAmount).toFixed(2)} ${values.budgetCurrency}';
-        }
-        const doc = {
-          _id: `drafts.${Date.now()}`,   // draft ID must start with "drafts."
-          _type: 'projects',
-          projectName: values.title,
-          companyOrganization: values.organization,
-          continent: values.continent,
-          location: values.country,
-          specificLocations: [ values.city ],
-          context: values.context,
-          keywordLabel: values.keyword,
-          target: values.target,
-          measurements,
-          tags,
-          description: values.description,
-          fullText: values['full-description'],
-          source: values.source,
-          other: values.other,
-          ...(budget && { budget }), // only if provided
-          contact: {
-            name: values.contactName,
-            email: values.contactEmail,
-            phone: values.contactPhone
-          }
-        };
-
-        try {
-          const res = await fetch(
-            'https://594hcrq0.api.sanity.io/v2025-04-14/data/mutate/production',
-            {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer skcRAaDkrmCvD2VQSMccbrU1AsLeuZt4vtz8fqnxWvOB4rw2U8S6P8nSGW10rIHpVo2Ce7YyPtN9TSAj79vizQhDzzIsF0gKBOKkXIdtdoyyn1ipA5lbKbmjRoak8I54sPaiE9zfvameZuLcSCxzWNzborON7Vpw0QtAlrKAN8AgjqufBiAK'
-              },
-              body: JSON.stringify({
-                // ‘create’ a draft doc
-                mutations: [{ create: doc } ]
-              })
-            }
-          );
-          const payload = await res.json();
-          if (payload.error) throw new Error(payload.error.message);
-
-          alert('Your submission was saved and will be uplaoded after verification.');
-        } catch (err) {
-          console.error('Sanity draft-save error:', err);
-          alert('Failed to save draft. Check console for details.');
-        }
-
-        // Cleanup UI
-        submitModal.style.display = 'none';
-        submitForm.reset();
-      });
-
-    });
-
-    function closeModal() {
-      document.getElementById('project-modal').style.display = 'none';
-    }
-
-    // Change page by increment (-1 for previous, 1 for next)
-    function changePage(increment) {
-      // Determine the total number of projects based on the current filter setting
-      // (If filters are active, use the filtered projects; otherwise use allProjects)
-      let currentProjects = allProjects;
-      const selectedKeywords = Array.from(document.querySelectorAll('input[name="keywords"]:checked')).map(cb => cb.value);
-      const selectedContexts = Array.from(document.querySelectorAll('input[name="context"]:checked')).map(cb => cb.value);
-      const selectedCountry = document.getElementById('countryDropdown').value;
-      
-      if (selectedKeywords.length || selectedContexts.length || selectedCountry) {
-        currentProjects = allProjects.filter(project => {
-          const matchesKeyword = selectedKeywords.length === 0 || selectedKeywords.includes(project.keywordLabel);
-          const matchesContext = selectedContexts.length === 0 || selectedContexts.some(context => project.context?.includes(context));
-          const matchesCountry = !selectedCountry || project.location === selectedCountry;
-          return matchesKeyword && matchesContext && matchesCountry;
-        });
-      }
-      
-      const totalPages = Math.ceil(currentProjects.length / projectsPerPage);
-      const newPage = currentPage + increment;
-      if (newPage < 1 || newPage > totalPages) return;  // Do nothing if out of range
-      currentPage = newPage;
-      renderProjects(currentProjects);
-    }
 
     // Change number of projects shown per page and re-render
     function changeProjectsPerPage(value) {
