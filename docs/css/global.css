@@ -49,7 +49,6 @@
     /* ------------ Header ------------ */
     header {
         position: relative;
-        padding: 1rem 0;
         margin-bottom: 3rem;
         overflow: hidden; /* Prevent video from overflowing */
     }
