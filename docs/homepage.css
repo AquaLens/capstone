@@ -82,7 +82,7 @@
 
 #dive_button {
   position: absolute;
-  bottom: 20%;
+  bottom: 10%;
   right: 25%;
   padding: 1vw 2vw;
   font-size: 1.5vw;
@@ -100,7 +100,7 @@
 
 #explore_button {
   position: absolute;
-  bottom: 20%;
+  bottom: 10%;
   right: 5%;
   padding: 1vw 2vw;
   font-size: 1.5vw;
