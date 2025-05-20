@@ -63,6 +63,7 @@
     flex-wrap: wrap;
     min-height: 3.5rem; /* Based on logo height instead of fixed header height */
     width: 100%; /* Ensure it spans the full width */
+    padding: 0 1rem;
   }
   
   .header-video {
