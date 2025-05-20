@@ -282,13 +282,33 @@
           </select>
         </div>
 
-      <div class="submit-idea-box">
-        <h3>Have an idea or a project that's missing here?</h3>
-          <div class="button-wrapper">
-            <button class="submit-idea-btn">Submit Project</button>
-          </div>
-      </div>
+        <div class="submit-idea-box">
+          <h3>Have an idea or a project that's missing here?</h3>
+            <div class="button-wrapper">
+              <button class="submit-idea-btn">Submit Project</button>
+            </div>
+        </div>
+      </section>
+    </main>
+  </div>
 
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <div id="project-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal()">&times;</span>
+      <h2 id="modal-title">Project Title</h2>
+      <p><strong>Organization:</strong> <span id="modal-organization"></span></p>
+      <p><strong>Keyword/Label:</strong> <span id="modal-keyword"></span></p>
+      <p><strong>Location:</strong> <span id="modal-location"></span></p>
+      <p><strong>Context:</strong> <span id="modal-context"></span></p>
+      <p id="modal-description">Project description here.</p>
+      <a id="modal-source" href="#" target="_blank">View Source</a>
+    </div>
+  </div> 
+
+  
       <div id="submit-modal" class="modal">
         <div class="modal-content form-content">
           <span class="close-button" id="submit-close">&times;</span>
@@ -724,38 +744,18 @@
         </div>
       </div>
 
-      </section>
-    </main>
-  </div>
-
-  <!-- Footer -->
-  <div id="footer"></div>
-
-  <div id="project-modal" class="modal">
-    <div class="modal-content">
-      <span class="close-button" onclick="closeModal()">&times;</span>
-      <h2 id="modal-title">Project Title</h2>
-      <p><strong>Organization:</strong> <span id="modal-organization"></span></p>
-      <p><strong>Keyword/Label:</strong> <span id="modal-keyword"></span></p>
-      <p><strong>Location:</strong> <span id="modal-location"></span></p>
-      <p><strong>Context:</strong> <span id="modal-context"></span></p>
-      <p id="modal-description">Project description here.</p>
-      <a id="modal-source" href="#" target="_blank">View Source</a>
-    </div>
-  </div> 
-
             <!-- Froggy Chat Popup -->
-<div class="froggy-chat-popup" id="froggy-popup">
-  <div class="froggy-chat-header">
-    <span>Froggy</span>
-    <button id="froggy-close" class="froggy-close">&times;</button>
-  </div>
-  <div class="froggy-chat-messages" id="froggy-messages"></div>
-  <div class="froggy-chat-input">
-    <textarea id="froggy-question" placeholder="Type a message..."></textarea>
-    <button id="froggy-send">➤</button>
-  </div>
-</div>
+    <div class="froggy-chat-popup" id="froggy-popup">
+      <div class="froggy-chat-header">
+        <span>Froggy</span>
+        <button id="froggy-close" class="froggy-close">&times;</button>
+      </div>
+      <div class="froggy-chat-messages" id="froggy-messages"></div>
+      <div class="froggy-chat-input">
+        <textarea id="froggy-question" placeholder="Type a message..."></textarea>
+        <button id="froggy-send">➤</button>
+      </div>
+    </div>
 
 
   <script>
@@ -947,6 +947,102 @@ function showModal(project) {
 
       document.getElementById('project-modal').style.display = 'block';
     }
+
+  // functions for the Submission form:
+      document.addEventListener('DOMContentLoaded', () => {
+      const submitBtn = document.querySelector('.submit-idea-btn');
+      const submitModal = document.getElementById('submit-modal');
+      const submitClose = document.getElementById('submit-close');
+      const submitForm = document.getElementById('submit-form');
+
+      // Show modal
+      submitBtn.addEventListener('click', () => {
+        submitModal.style.display = 'flex';
+      });
+
+      // Close on ×
+      submitClose.addEventListener('click', () => {
+        submitModal.style.display = 'none';
+      });
+
+      // Close on backdrop click
+      submitModal.addEventListener('click', e => {
+        if (e.target === submitModal) submitModal.style.display = 'none';
+      });
+
+      // Handle submit -- send it to Sanity as a draft project
+      submitForm.addEventListener('submit', async e => {
+        console.log('submit handler hit');
+        e.preventDefault();
+
+        const values = Object.fromEntries(new FormData(submitForm).entries());
+        const measurements = Array.from(
+          submitForm.querySelectorAll('input[name="measurements"]:checked')
+        ).map(el => el.value);
+
+        const tags = Array.from(
+          submitForm.querySelectorAll('input[name="tags"]:checked')
+        ).map(el => el.value);
+
+        let budget;
+        if (values.budgetAmount) {
+          budget = '${parseFloat(values.budgetAmount).toFixed(2)} ${values.budgetCurrency}';
+        }
+        const doc = {
+          _id: `drafts.${Date.now()}`,   // draft ID must start with "drafts."
+          _type: 'projects',
+          projectName: values.title,
+          companyOrganization: values.organization,
+          continent: values.continent,
+          location: values.country,
+          specificLocations: [ values.city ],
+          context: values.context,
+          keywordLabel: values.keyword,
+          target: values.target,
+          measurements,
+          tags,
+          description: values.description,
+          fullText: values['full-description'],
+          source: values.source,
+          other: values.other,
+          ...(budget && { budget }), // only if provided
+          contact: {
+            name: values.contactName,
+            email: values.contactEmail,
+            phone: values.contactPhone
+          }
+        };
+
+        try {
+          const res = await fetch(
+            'https://594hcrq0.api.sanity.io/v2025-04-14/data/mutate/production',
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer skcRAaDkrmCvD2VQSMccbrU1AsLeuZt4vtz8fqnxWvOB4rw2U8S6P8nSGW10rIHpVo2Ce7YyPtN9TSAj79vizQhDzzIsF0gKBOKkXIdtdoyyn1ipA5lbKbmjRoak8I54sPaiE9zfvameZuLcSCxzWNzborON7Vpw0QtAlrKAN8AgjqufBiAK'
+              },
+              body: JSON.stringify({
+                // ‘create’ a draft doc
+                mutations: [{ create: doc } ]
+              })
+            }
+          );
+          const payload = await res.json();
+          if (payload.error) throw new Error(payload.error.message);
+
+          alert('Your submission was saved and will be uplaoded after verification.');
+        } catch (err) {
+          console.error('Sanity draft-save error:', err);
+          alert('Failed to save draft. Check console for details.');
+        }
+
+        // Cleanup UI
+        submitModal.style.display = 'none';
+        submitForm.reset();
+      });
+
+    });
 
 function closeModal() {
   document.getElementById('project-modal').style.display = 'none';
