@@ -32,12 +32,11 @@
 }
 
 .aqualens_title {
+  font-family: 'Futura';
   font-weight: bold;
   font-size: 5vw;
   top: 20%;
   left: 10%;
-  -webkit-text-stroke-width: 0.2px;
-  -webkit-text-stroke-color: black;
 }
 
 .blink_vid{
