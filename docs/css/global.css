@@ -216,6 +216,16 @@
       flex: 1;
       padding-left: 0; /* Already aligned by .footer-inner */
     }
+
+    .about-link {
+      color: #000;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    
+    .about-link:hover {
+      color: #fff; 
+    }
     
     .footer-nav ul {
       display: flex;
