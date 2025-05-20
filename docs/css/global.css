@@ -51,6 +51,7 @@
         position: relative;
         margin-bottom: 3rem;
         overflow: hidden; /* Prevent video from overflowing */
+        padding: 0 1rem;
     }
   
   .header-content {
@@ -62,7 +63,6 @@
     flex-wrap: wrap;
     min-height: 3.5rem; /* Based on logo height instead of fixed header height */
     width: 100%; /* Ensure it spans the full width */
-    padding: 0 1rem;
   }
   
   .header-video {
