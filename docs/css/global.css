@@ -135,8 +135,6 @@
       width: 100%;
       margin-top: auto;
       padding: 2rem 1.5rem;
-      box-sizing: border-box;
-      clear: both; /* Clear any floating elements */
     }
 
     .footer-inner {
