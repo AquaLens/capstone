@@ -12,14 +12,6 @@
     flex-wrap: wrap; /* Allow wrapping */
     align-items: flex-start; /* Prevent stretching */
   }
-
-  /* Ensure the footer is outside the main flex influence */
-main::after {
-  content: "";
-  display: block;
-  width: 100%;
-  clear: both;
-}
   
   /* ------------ Sidebar (Filters) ------------ */
   aside {
