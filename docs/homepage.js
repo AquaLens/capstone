@@ -41,25 +41,6 @@ ScrollTrigger.create({
     scrub: true
 });
 
-// Scroll detection for header visibility
-document.addEventListener("DOMContentLoaded", () => {
-  const body = document.body;
-
-  let lastScrollY = window.scrollY;
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > lastScrollY && window.scrollY > 50) {
-      // User is scrolling down
-      body.classList.add("scrolled");
-    } else {
-      // User is scrolling up
-      body.classList.remove("scrolled");
-    }
-
-    lastScrollY = window.scrollY;
-  });
-});
-
 // fade in the overlay text
 gsap.to(".act1_text", {
     opacity: 1,
