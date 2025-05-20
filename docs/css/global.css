@@ -178,7 +178,7 @@
     .footer-column ul li {
       margin-bottom: 0.2rem;
       position: relative;
-      padding-left: 1rem;
+      /*padding-left: 1rem;*/
     }
   
     .footer-column ul li::before {
