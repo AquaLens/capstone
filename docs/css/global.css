@@ -1,7 +1,10 @@
 /* ------------ Global Styles ------------ */
 @font-face {
     font-family: 'Futura';
-    src: url('../fonts/Futura\ Light.ttf') format('truetype'),
+    src: url('../fonts/Futura\ Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
   }
 
   h2 {
