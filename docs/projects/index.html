@@ -259,19 +259,6 @@
               <button id="froggy-button">Ask Froggy</button>
             </div>
           </div>
-          
-          <!-- Froggy Chat Popup -->
-<div class="froggy-chat-popup" id="froggy-popup">
-  <div class="froggy-chat-header">
-    <span>Froggy</span>
-    <button id="froggy-close" class="froggy-close">&times;</button>
-  </div>
-  <div class="froggy-chat-messages" id="froggy-messages"></div>
-  <div class="froggy-chat-input">
-    <textarea id="froggy-question" placeholder="Type a message..."></textarea>
-    <button id="froggy-send">➤</button>
-  </div>
-</div>
         
       </aside>
 
@@ -319,6 +306,19 @@
       <a id="modal-source" href="#" target="_blank">View Source</a>
     </div>
   </div> 
+
+            <!-- Froggy Chat Popup -->
+<div class="froggy-chat-popup" id="froggy-popup">
+  <div class="froggy-chat-header">
+    <span>Froggy</span>
+    <button id="froggy-close" class="froggy-close">&times;</button>
+  </div>
+  <div class="froggy-chat-messages" id="froggy-messages"></div>
+  <div class="froggy-chat-input">
+    <textarea id="froggy-question" placeholder="Type a message..."></textarea>
+    <button id="froggy-send">➤</button>
+  </div>
+</div>
 
   <script>
   // Fetch header and footer HTML
@@ -521,6 +521,7 @@
   const sendBtn = document.getElementById('froggy-send');
   const textarea = document.getElementById('froggy-question');
   const messages = document.getElementById('froggy-messages');
+
   
   // Add the reset button to the header immediately
   const header = document.querySelector('.froggy-chat-header');
