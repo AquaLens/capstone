@@ -139,6 +139,14 @@
   body.about .header-video {
     display: none; /* Completely hide video on homepage */
   }
+
+  body.about .footer-wrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+  }
   
     
     /* ------------ Footer ------------ */
