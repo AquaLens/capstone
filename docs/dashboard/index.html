@@ -855,10 +855,10 @@
         // Process projects
         for (const project of projects) {
           const locations = Array.isArray(project.specificLocations) ? project.specificLocations : [];
-          
-          if (!project.location) continue;
+          const country = project.location || '';
           
           for (const city of locations) {
+            if (!city || !country) continue; 
             markerPromises.push(
               geocodeCity(city, country).then(coords => {
                 if (coords) {
