@@ -377,8 +377,11 @@ function initializeAnimations() {
 
     // If we're leaving the last section, hide footer immediately
     if (current === 4) {
-      timeline.to(footerWrapper, { autoAlpha: 0, duration: 0.3 }, 0);
-    }
+    timeline.to(footerWrapper, {
+      autoAlpha: 0,
+      duration: 0.5
+    }, 0);
+  }
     
     // If we're going to the last section, show footer
     if (next === 4) {
