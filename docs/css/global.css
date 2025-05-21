@@ -151,6 +151,10 @@
       padding-left: 0; /* Already aligned by .footer-inner */
     }
 
+    .about-section:hover {
+      color:#ffffff;
+    }
+
     .footer-nav ul {
       display: flex;
       gap: 1rem; /* Space between links */
