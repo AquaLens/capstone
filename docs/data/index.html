@@ -108,15 +108,15 @@
 
 
   <!-- Modal -->
-<div id="modal" class="modal" onclick="closeModal()">
-  <iframe id="modal-content" src="" frameborder="0"></iframe>
-  <div id="modal" class="modal">
-    <div class="modal-content-wrapper">
-      <iframe id="modal-content" src="" frameborder="0"></iframe>
+<div id="modal" class="modal">
+  <div class="modal-content-wrapper">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h2 id="modal-title"></h2>
+    <div class="modal-body">
+      <iframe id="modal-content" frameborder="0"></iframe>
       <div id="modal-description" class="modal-description"></div>
     </div>
   </div>
-  
 </div>
 
 <!-- Footer -->
@@ -132,6 +132,78 @@
         
         'Water Quality Map' : '<h2>Global Water Quality (2023)</h2> <p>This map shows, for 2023, the share of each country’s natural water bodies (rivers, lakes, and groundwater)that meets the Sustainable Development Goal (SDG) “good ambient water quality threshold. <strong>Good water quality </strong>(dark blue) means all key physician, chemical, and biological parameters (pH, dissolved oxygen, nutrient levels, turbidity, microbial counts, etc) fall within established safe “reference” ranges. <strong>Poor water quality</strong> (light blue) means one or more of those parameters exceed acceptable limits, indicating pollution or ecosystem and public-health risks.</p><p><em>Data source:</em> UNECE SDG portal, Indicator 6.3.2(a): <a href="https://w3.unece.org/SDG/en/Indicator?id=136" target="_blank">w3.unece.org/SDG/Indicator?id=136</a></p>',
         
+        'Average pH Levels': {
+          title: 'Average pH Levels',
+          html: `
+            <div class="modal-intro">
+              This choropleth map displays the average pH levels in freshwater sources by country, based on GEMStat data.
+              Green indicates near-neutral water, while yellow highlights increased alkalinity.
+            </div>
+            <div class="modal-analysis">
+              <h2>Analysis of pH Levels in Global Water Quality</h2>
+
+              <h3>Why pH Was Chosen as an Indicator</h3>
+              <p>
+                pH is a critical water quality parameter that indicates the acidity or alkalinity of water. It influences chemical and biological processes in aquatic environments and affects the solubility and toxicity of pollutants. A pH range of 6.5 to 8.5 is generally considered acceptable for healthy ecosystems. Extreme pH levels can harm aquatic organisms and compromise water usability for drinking, irrigation, and industry.
+              </p>
+
+              <h3>Data Sources and Tools</h3>
+              <ul>
+                <li><strong>Source:</strong> GEMStat global water quality database</li>
+                <li><strong>Analysis Tools:</strong>
+                  <ul>
+                    <li><code>pandas</code> for data manipulation</li>
+                    <li><code>matplotlib</code> and <code>seaborn</code> for visualizations</li>
+                    <li><code>geopandas</code> for spatial mapping</li>
+                    <li><code>plotly</code> for interactive charts</li>
+                  </ul>
+                </li>
+              </ul>
+
+              <h3>Number of pH Measurements per Country</h3>
+              <p>
+                India and Mexico contributed the most pH observations. This may reflect monitoring capacity, population size, or national priorities in water quality.
+              </p>
+
+              <h3>Average pH by Country</h3>
+              <p>
+                Most countries fall within a safe pH range. However, countries like the Netherlands report significantly high average values (&gt;14), which may indicate industrial influences or data inaccuracies.
+                Denmark and Norway showed slightly lower averages, potentially reflecting acidification concerns.
+              </p>
+
+              <h3>pH Trends Over Time</h3>
+              <ul>
+                <li><strong>Poland:</strong> Gradual increase from ~8 to 8.8, indicating improved neutrality</li>
+                <li><strong>Netherlands &amp; Norway:</strong> Recovery from acidic levels in the 1970s to stable ~6.8–7.2</li>
+                <li><strong>Denmark:</strong> Decline between 2010–2015 suggests deterioration</li>
+              </ul>
+
+              <h3>Geographical Map of Average pH</h3>
+              <p>
+                The map shows spatial variation, with Western Europe showing moderate pH levels, while some South Asian and South American countries trend higher. This helps highlight regions where environmental monitoring and policy attention may be needed.
+              </p>
+
+              <h3>Top 10 Countries with Highest pH</h3>
+              <p>
+                Countries such as Switzerland, Lithuania, and Slovenia report average pH levels around 8. These are within acceptable limits but should be monitored to prevent long-term ecological imbalance.
+              </p>
+
+              <div class="modal-highlight">
+                <h3>Why This Is Useful</h3>
+                <ul>
+                  <li>Helps identify regions at risk of acidification or alkalinity</li>
+                  <li>Monitors progress of pollution control efforts</li>
+                  <li>Reveals chemical imbalances when correlated with nitrogen or oxygen demand</li>
+                </ul>
+              </div>
+
+              <p style="margin-top:2rem;">
+                <strong>Data Source:</strong>
+                <a href="https://gemstat.org/data" target="_blank">GEMStat Water Quality Database</a>
+              </p>
+            </div>
+          `
+        },
         
       }
 
