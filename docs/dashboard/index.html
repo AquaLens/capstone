@@ -243,9 +243,11 @@
               <option value="Yemen">Yemen</option>
               <option value="Zambia">Zambia</option>
               <option value="Zimbabwe">Zimbabwe</option>
-            </select>            
+            </select>
+            <div id="selectedCountries" class="selected-countries"></div>        
           </div>
         </div>
+        
 
         <!-- Froggy Chat -->
         <div class="froggy-help">
@@ -257,18 +259,6 @@
           <div class="froggy-action">
             <img src="../images/Froggy 3.png" alt="Froggy">
             <button id="froggy-button">Ask Froggy</button>
-          </div>
-        </div>
-          <!-- Froggy Chat popup-->
-        <div class="froggy-chat-popup" id="froggy-popup">
-          <div class="froggy-chat-header">
-            <span>Froggy</span>
-            <button id="froggy-close" class="froggy-close">&times;</button>
-          </div>
-          <div class="froggy-chat-messages" id="froggy-messages"></div>
-          <div class="froggy-chat-input">
-            <textarea id="froggy-question" placeholder="Type a message..."></textarea>
-            <button id="froggy-send">➤</button>
           </div>
         </div>
       </aside>
@@ -291,6 +281,19 @@
   <!-- Footer -->
   <div id="footer"></div>
 
+    <!-- Froggy Chat popup-->
+    <div class="froggy-chat-popup" id="froggy-popup">
+      <div class="froggy-chat-header">
+        <span>Froggy</span>
+        <button id="froggy-close" class="froggy-close">&times;</button>
+      </div>
+      <div class="froggy-chat-messages" id="froggy-messages"></div>
+      <div class="froggy-chat-input">
+        <textarea id="froggy-question" placeholder="Type a message..."></textarea>
+        <button id="froggy-send">➤</button>
+      </div>
+    </div>
+
   <!-- Project Modal -->
   <div id="project-modal" class="modal">
     <div class="modal-content">
@@ -298,7 +301,7 @@
       <h2 id="modal-title">Project Title</h2>
       <p><strong>Organization:</strong> <span id="modal-organization"></span></p>
       <p><strong>Keyword/Label:</strong> <span id="modal-keyword"></span></p>
-      <p><strong>Location:</strong> <span id="modal-location"></span></p>
+      <p><strong>Country:</strong> <span id="modal-location"></span></p>
       <p><strong>City:</strong> <span id="modal-city"></span></p>
       <p><strong>Context:</strong> <span id="modal-context"></span></p>
       <p id="modal-description">Project description here.</p>
@@ -755,6 +758,7 @@
 
     let allProjects = [];
     let map, markersLayer;
+    let selectedCountries = [];
     const GEOCODING_API_KEY = '595604d27a984913acdce947d8a70f54';
     const geoCache = new Map(); // visible map
     const projectMap = new Map();  // to help display project info after
@@ -788,7 +792,7 @@
       document.getElementById('modal-description').textContent = project.description || 'No description available';
       document.getElementById('modal-organization').textContent = project.companyOrganization || 'Unknown organization';
       document.getElementById('modal-keyword').textContent = project.keywordLabel || 'No label specified';
-      document.getElementById('modal-location').textContent = project.location || 'No location';
+      document.getElementById('modal-location').textContent = project.location || 'No country specified';
       document.getElementById('modal-city').textContent = project.specificLocations || 'No city specified';
       document.getElementById('modal-context').textContent = project.context || 'No context';
 
@@ -848,13 +852,12 @@
 
         // Process projects
         for (const project of projects) {
-          const locations = Array.isArray(project.specificLocations) 
-            ? project.specificLocations 
-            : [];
+          const locations = Array.isArray(project.specificLocations) ? project.specificLocations : [];
+          const country = project.location || 'Unkown';
           
           for (const city of locations) {
             markerPromises.push(
-              geocodeCity(city).then(coords => {
+              geocodeCity(city, country).then(coords => {
                 if (coords) {
                   const marker = L.marker(coords).addTo(markersLayer);
                   if (project._id) {
@@ -882,58 +885,89 @@
       }
     }
     // function to get the city's lat/lon trhough Geocode API
-    async function geocodeCity(cityName) {
-      if (!cityName) return null;
-      if (geoCache.has(cityName)) return geoCache.get(cityName);
+    async function geocodeCity(city, country) {
       try {
-        const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(cityName)}&key=${GEOCODING_API_KEY}`);
+        const response = await fetch(`http://localhost:5000/geocode?city=${encodeURIComponent(city)}&country=${encodeURIComponent(country)}`);
         const data = await response.json();
-        if (data.results?.length > 0) {
-          const { lat, lng } = data.results[0].geometry;
-          const coords = [lat, lng];
-          geoCache.set(cityName, coords);
-          return coords;
-        }
+        if (data.error) throw new Error(data.error);
+        return [data.lat, data.lon];
       } catch (error) {
-        console.error('Geocoding error:', error);
+        console.error('Oops! Geocoding failed:', error);
+        return null;
       }
-      return null;
     }
 
-    function setupFilters() {
-      // setup checkbox filters
-      document.querySelectorAll('input[type="checkbox"]').forEach(input => {
-        input.addEventListener('change', applyFilters);
-      });
+  function setupFilters() {
+  // Setup checkbox filters (keep this line from original code)
+  document.querySelectorAll('input[type="checkbox"]').forEach(input => {
+    input.addEventListener('change', applyFilters);
+  });
+
+  // Set up country dropdown filter
+  const countryDropdown = document.getElementById('countryDropdown');
+  const selectedCountriesDiv = document.getElementById('selectedCountries');
+  selectedCountries = []; // Initialize/reset the array
+
+  if (countryDropdown) {
+    countryDropdown.addEventListener('change', () => {
+      const selected = countryDropdown.value;
+      if (selected && !selectedCountries.includes(selected)) {
+        selectedCountries.push(selected);
+        updateSelectedCountries();
+        applyFilters(); // Apply filters when a country is selected
+      }
+      countryDropdown.value = ""; // Reset dropdown after selection
+    });
+  }
+
+  function updateSelectedCountries() {
+    selectedCountriesDiv.innerHTML = '';
+    selectedCountries.forEach(country => {
+      const span = document.createElement('span');
+      span.className = 'country-chip';
+      span.textContent = country;
+
+      const removeBtn = document.createElement('button');
+      removeBtn.textContent = '×';
+      removeBtn.className = 'remove-btn';
+      removeBtn.onclick = () => {
+        selectedCountries = selectedCountries.filter(c => c !== country);
+        updateSelectedCountries();
+        applyFilters(); // Apply filters when a country is removed
+      };
+
+      span.appendChild(removeBtn);
+      selectedCountriesDiv.appendChild(span);
+    });
+  }
+}
+
     
+  function applyFilters() {
+  const selectedKeywords = Array.from(
+    document.querySelectorAll('input[name="keywords"]:checked')
+  ).map(cb => cb.value);
 
-    // set up country dropdown filter
-    const countryDropdown = document.getElementById('countryDropdown');
-    if (countryDropdown) { countryDropdown.addEventListener('change', applyFilters); }
+  const selectedContexts = Array.from(
+    document.querySelectorAll('input[name="context"]:checked')
+  ).map(cb => cb.value);
 
-    }
-    function applyFilters() {
-      const selectedKeywords = Array.from(
-        document.querySelectorAll('input[name="keywords"]:checked')
-      ).map(cb => cb.value);
+  // Filter the projects
+  const filteredProjects = allProjects.filter(project => {
+    const keywordMatch = selectedKeywords.length === 0 || 
+                    selectedKeywords.some(keyword => project.keywordLabel?.includes(keyword));
+    const contextMatch = selectedContexts.length === 0 || 
+                    selectedContexts.includes(project.context);
+    // Update to use selectedCountries array instead of single dropdown value
+    const countryMatch = selectedCountries.length === 0 || 
+                    selectedCountries.includes(project.location);
+    
+    return keywordMatch && contextMatch && countryMatch;
+  });
 
-      const selectedContexts = Array.from(
-        document.querySelectorAll('input[name="context"]:checked')
-      ).map(cb => cb.value);
-
-      const selectedCountry = document.getElementById('countryDropdown').value;
-
-      // filter the projects
-      const filteredProjects = allProjects.filter(project => {
-        const keywordMatch = selectedKeywords.length === 0 || selectedKeywords.some(keyword => project.keywordLabel?.includes(keyword));
-        const contextMatch = selectedContexts.length === 0 || selectedContexts.includes(project.context);
-        const countryMatch = !selectedCountry || project.location?.toLowerCase() === selectedCountry.toLowerCase();
-        return keywordMatch && contextMatch && countryMatch;
-      });
-
-      console.log('Filtered projects:', filteredProjects);
-      addProjectsToMap(filteredProjects);
-    }
+  console.log('Filtered projects:', filteredProjects);
+  addProjectsToMap(filteredProjects);
+}
 
     // functions for the Submission form:
       document.addEventListener('DOMContentLoaded', () => {
