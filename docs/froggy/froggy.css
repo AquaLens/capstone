@@ -1,0 +1,188 @@
+/* ------------ Main Layout ------------ */
+  main {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  /* ------------ Responsive ------------ */
+  @media (max-width: 768px) {
+    header {
+      text-align: center;
+    }
+  
+    .header-content {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  
+    main {
+      flex-direction: column;
+    }
+  
+    .nav-links {
+      flex-direction: column;
+      gap: 0.5rem;
+    }}
+
+   .froggy-help {
+    background-color: #ffffff; /* white background */
+    border: 1px solid #d3d3d3; /* light grey solid border */
+    padding: 1rem;
+    border-radius: 4px;
+    text-align: left;
+  }
+  
+  .froggy-text .title {
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .froggy-text .subtitle {
+    font-weight: normal;
+    margin-bottom: 1rem;
+  }
+  
+  .froggy-action {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .froggy-help img {
+    width: 50px;
+    margin-bottom: 0;
+  }
+  
+  .froggy-help button {
+    background-color: #3B609C;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .froggy-help button:hover {
+    background-color: #CCCCCC;
+    color: #000000;
+  }
+
+/* Chat (non) pop-up */
+.froggy-chat-popup {
+  position: relative;      /* No longer fixed to viewport */
+  width: 100%;             /* Full width of container or page */
+  max-width: 600px;        /* Optional max width */
+  height: 80vh;            /* Tall enough to feel like a chat window */
+  margin: 2rem auto;       /* Center horizontally with margin */
+  display: flex;           /* Flex layout for header/messages/input */
+  flex-direction: column;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  background: white;
+}
+
+
+
+/* Header */
+.froggy-chat-header {
+  background-color: #7fa43a;
+  color: white;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+/* Reset Button Style */
+.froggy-reset-button {
+  background-color: #3B609C;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.froggy-reset-button:hover {
+  background-color: #a4b5ca;
+}
+
+/* Close button */
+.froggy-close {
+  display: none;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Messages area */
+.froggy-chat-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #f9f9f9;
+}
+
+/* Message bubbles */
+.froggy-message {
+  max-width: 80%;
+  padding: 8px 12px;
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+.froggy-user {
+  align-self: flex-end;
+  background-color: #c0d3ea;
+}
+
+.froggy-froggy {
+  align-self: flex-start;
+  background-color: #a4b5ca;
+}
+
+/* Input area */
+.froggy-chat-input {
+  display: flex;
+  border-top: 1px solid #ccc;
+  padding: 8px;
+  background: white;
+}
+
+.froggy-chat-input textarea {
+  flex: 1;
+  resize: none;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  padding: 8px;
+  font-size: 14px;
+  height: 36px;
+  outline: none;
+}
+
+.froggy-chat-input button {
+  background-color: #7fa43a;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  margin-left: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+}
