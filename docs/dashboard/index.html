@@ -747,6 +747,12 @@
 
   <!-- Script Section -->
   <script>
+    const redPinIcon = L.icon({
+      iconUrl: 'pin.svg',  
+      iconSize: [30, 40],                 // adjust as needed
+      iconAnchor: [15, 40],               // tip of pin should touch location
+      popupAnchor: [0, -35]               // where popup opens relative to pin
+    });
 
   // Fetch header and footer HTML
   fetch('/assets/header.html')
@@ -862,7 +868,7 @@
             markerPromises.push(
               geocodeCity(city, country).then(coords => {
                 if (coords) {
-                  const marker = L.marker(coords).addTo(markersLayer);
+                  const marker = L.marker(coords, {icon: redPinIcon}).addTo(markersLayer);
                   if (project._id) {
                     projectMap.set(project._id, project);
                   }
