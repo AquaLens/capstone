@@ -130,73 +130,58 @@
     
     /* ------------ Footer ------------ */
     footer {
-      background-color: #a4b5ca;
-      width: 100%;
-      margin-top: auto;
-      padding: 1.5rem 0;
+      background-color: #000; /* Adjust as needed */
+      color: #fff;
+      background-color: #a4b5ca; /* Adjust as needed */
+      color: #000;
+      padding: 1rem 0; /* Vertical padding */
+      position: relative;
     }
 
     .footer-inner {
-      padding: 0 1.5rem;
-      margin: 0 auto;
-      max-width: 1200px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      padding: 0 1.5rem; /* Ensure content starts 1.5rem from the edges */
+    }
+    
+    .about-section {
+      flex: 1;
+      padding-left: 0; /* Already aligned by .footer-inner */
     }
 
-    .footer-columns {
+    .footer-nav ul {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: space-evenly;
-      align-items: flex-start;
-      gap: 1.5rem;
-    }
-    
-    .footer-column {
-      flex: 1;
-      min-width: 0;
-      text-align: justify;
-    }
-    
-    .footer-column h4 {
-      font-size: 1rem;
-      color:#ffffff;
-      margin-bottom: 0.2rem;
-    }
-    
-    .footer-column p,
-    .footer-column ul {
-      font-size: 0.8rem;
-      color:#ffffff;
-      line-height: 1.4;
-    }
-  
-    .footer-column ul {
+      gap: 1rem; /* Space between links */
       list-style: none;
-      padding-left: 0;
+      padding: 0;
+      margin: 0;
     }
-  
-    .footer-column ul li {
-      margin-bottom: 0.2rem;
-      position: relative;
-      /*padding-left: 1rem;*/
+    
+    .footer-nav ul li a {
+      color: #fff;
+      color: #000;
+      text-decoration: none;
+      font-size: 0.9rem;
     }
-  
-    .footer-column ul li::before {
-      content: "-";
-      position: absolute;
-      left: 0;
-      color: #ffffff; 
+
+    .footer-nav ul li a:hover {
+      color: #fff; 
     }
     
     .footer-logos {
+      position: absolute;
+      bottom: 1rem;
+      right: 1.5rem;
       display: flex;
-      gap: 1rem;
-      justify-content: flex-end; /* or center or end depending on desired alignment */
+      gap: 0.5rem; /* Space between logos */
     }
     
     .footer-logos img {
-      height: 40px;
-      width: auto;
+      height: 1.5rem; /* Adjust logo size */
     }
+
     body {
       position: relative;
     }
