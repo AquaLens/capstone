@@ -392,11 +392,13 @@ document.body.classList.add('about');
         
         // Add footer animation to the timeline if needed
         if (current === 4) {
-          // If we're leaving the last section, hide footer as part of the main animation
-          timeline.to(footerWrapper, {
+          // If we're leaving the last section, hide footer with a smooth fade-out
+          // Using a separate animation to make it more visible
+          gsap.to(footerWrapper, {
             autoAlpha: 0,
-            duration: 0.75
-          }, 0);
+            duration: 1.25, // Match the main transition duration
+            ease: "slow.inOut" // Match the main transition ease
+          });
         }
       }
     
