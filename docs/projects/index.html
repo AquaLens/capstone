@@ -271,14 +271,17 @@
         
         <!-- Pagination Controls -->
         <div class="pagination-controls" style="text-align: center; margin: 20px 0;">
-          <button id="prev-page" onclick="changePage(-1)">Previous</button>
-          <span id="current-page">Page 1</span>
-          <button id="next-page" onclick="changePage(1)">Next</button>
+          <button id="prev-page" onclick="changePage(-1)">←</button>
+          <div id="page-numbers" class="page-numbers"></div>
+          <button id="next-page" onclick="changePage(1)">→</button>
           <br/><br/>
           <label for="projectsPerPage">Projects per page: </label>
           <select id="projectsPerPage" onchange="changeProjectsPerPage(this.value)">
             <option value="9" selected>9</option>
             <option value="12">12</option>
+            <option value="15">15</option>
+            <option value="18">18</option>
+            <option value="21">21</option>
           </select>
         </div>
 
@@ -802,7 +805,7 @@ let selectedCountries = []; // Declare this at the top level
   }
 });
 
-// Render only the projects corresponding to the current page
+// renderProjects function to call updatePagination
 function renderProjects(filteredProjects = allProjects) {
   const projectsGrid = document.getElementById('projects-grid');
   projectsGrid.innerHTML = '';
@@ -844,8 +847,68 @@ function renderProjects(filteredProjects = allProjects) {
     projectsGrid.appendChild(card);
   });
 
-  // Update the current page display
-  document.getElementById('current-page').textContent = `Page ${currentPage}`;
+  // Update pagination
+  updatePagination(filteredProjects);
+}
+
+// Add this new function for pagination numbers
+function updatePagination(projects) {
+  const totalPages = Math.ceil(projects.length / projectsPerPage);
+  const pageNumbers = document.getElementById('page-numbers');
+  pageNumbers.innerHTML = '';
+  
+  // Enable/disable prev/next buttons
+  document.getElementById('prev-page').disabled = currentPage <= 1;
+  document.getElementById('next-page').disabled = currentPage >= totalPages;
+  
+  // Determine which page numbers to show (current page and 1 page on each side when possible)
+  let startPage = Math.max(1, currentPage - 1);
+  let endPage = Math.min(totalPages, currentPage + 1);
+  
+  // Adjust to show 3 pages when possible
+  if (endPage - startPage < 2) {
+    if (startPage === 1) {
+      endPage = Math.min(3, totalPages);
+    } else if (endPage === totalPages) {
+      startPage = Math.max(1, totalPages - 2);
+    }
+  }
+  
+  // Add first page if not included
+  if (startPage > 1) {
+    addPageNumber(1);
+    if (startPage > 2) {
+      addEllipsis();
+    }
+  }
+  
+  // Add page numbers
+  for (let i = startPage; i <= endPage; i++) {
+    addPageNumber(i);
+  }
+  
+  // Add last page if not included
+  if (endPage < totalPages) {
+    if (endPage < totalPages - 1) {
+      addEllipsis();
+    }
+    addPageNumber(totalPages);
+  }
+  
+  function addPageNumber(pageNum) {
+    const pageEl = document.createElement('span');
+    pageEl.className = 'page-number' + (pageNum === currentPage ? ' active' : '');
+    pageEl.textContent = pageNum;
+    pageEl.onclick = () => goToPage(pageNum);
+    pageNumbers.appendChild(pageEl);
+  }
+  
+  function addEllipsis() {
+    const ellipsis = document.createElement('span');
+    ellipsis.className = 'page-ellipsis';
+    ellipsis.textContent = '...';
+    pageNumbers.appendChild(ellipsis);
+  }
 }
 
 function setupFilters() {
@@ -1048,15 +1111,20 @@ function closeModal() {
   document.getElementById('project-modal').style.display = 'none';
 }
 
-// Change page by increment (-1 for previous, 1 for next)
+// changePage function
 function changePage(increment) {
-  // Get currently filtered projects
   const filteredProjects = getFilteredProjects();
   const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
   const newPage = currentPage + increment;
   if (newPage < 1 || newPage > totalPages) return;  // Do nothing if out of range
   currentPage = newPage;
   renderProjects(filteredProjects);
+}
+
+// function for directly going to a specific page
+function goToPage(pageNumber) {
+  currentPage = pageNumber;
+  renderProjects(getFilteredProjects());
 }
 
 // Change number of projects shown per page and re-render
