@@ -138,277 +138,321 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
 
   <script>
-    document.body.classList.add('about');
+document.body.classList.add('about');
     
-    // Fetch header and footer HTML
-    fetch('/assets/header.html')
-      .then(res => res.text())
-      .then(html => document.getElementById('header').innerHTML = html);
+// Fetch header and footer HTML
+fetch('/assets/header.html')
+  .then(res => res.text())
+  .then(html => document.getElementById('header').innerHTML = html);
+
+fetch('/assets/footer.html')
+  .then(res => res.text())
+  .then(html => document.getElementById('footer').innerHTML = html);
+
+// Wait for DOM content to be loaded before initializing animations
+document.addEventListener('DOMContentLoaded', initializeAnimations);
+
+function initializeAnimations() {
+  const sections = document.querySelectorAll("section");
+  const images = document.querySelectorAll(".bg");
+  const headings = gsap.utils.toArray(".section-heading");
+  const outerWrappers = gsap.utils.toArray(".outer");
+  const innerWrappers = gsap.utils.toArray(".inner");
+  const navPins = document.querySelectorAll(".nav-pin");
+  const footerWrapper = document.getElementById('footer-wrapper');
+
+  // Set initial visibility
+  gsap.set(sections, { autoAlpha: 0 });
+  gsap.set(sections[0], { autoAlpha: 1 });
+  
+  // Initially hide footer and position it properly
+  gsap.set(footerWrapper, { 
+    autoAlpha: 0,
+    position: 'fixed',
+    bottom: 0,
+    left: 0,
+    width: '100%',
+    zIndex: 999
+  });
+
+  document.addEventListener("wheel", handleWheel);
+  document.addEventListener("touchstart", handleTouchStart);
+  document.addEventListener("touchmove", handleTouchMove);
+  document.addEventListener("touchend", handleTouchEnd);
+
+  let listening = false,
+    direction = "down",
+    current = 0,
+    next = 0;
+
+  const touch = {
+    startX: 0,
+    startY: 0,
+    dx: 0,
+    dy: 0,
+    startTime: 0,
+    dt: 0
+  };
+
+  const tlDefaults = {
+    ease: "slow.inOut",
+    duration: 1.25
+  };
+
+  // Prepare headings for animation (simpler approach without SplitText)
+  headings.forEach(heading => {
+    // Add a wrapper span for animation
+    const content = heading.innerHTML;
+    heading.innerHTML = `<span class="heading-text">${content}</span>`;
     
-    fetch('/assets/footer.html')
-      .then(res => res.text())
-      .then(html => document.getElementById('footer').innerHTML = html);
+    // Set initial state
+    gsap.set(heading.querySelector('.heading-text'), { 
+      autoAlpha: 0, 
+      y: 50 
+    });
+  });
 
-    // Wait for DOM content to be loaded before initializing animations
-    document.addEventListener('DOMContentLoaded', initializeAnimations);
+  // Update footer visibility based on current section
+  function updateFooterVisibility() {
+    if (current === 4) { // If we're on the last section (Community)
+      gsap.to(footerWrapper, { 
+        autoAlpha: 1, 
+        duration: 0.5,
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        width: '100%',
+        zIndex: 999
+      });
+    } else {
+      gsap.to(footerWrapper, { autoAlpha: 0, duration: 0.5 });
+    }
+  }
 
-    function initializeAnimations() {
-      const sections = document.querySelectorAll("section");
-      const images = document.querySelectorAll(".bg");
-      const headings = gsap.utils.toArray(".section-heading");
-      const outerWrappers = gsap.utils.toArray(".outer");
-      const innerWrappers = gsap.utils.toArray(".inner");
-      const navPins = document.querySelectorAll(".nav-pin");
-      const footerWrapper = document.getElementById('footer-wrapper');
-
-      // Set initial visibility
-      gsap.set(sections, { autoAlpha: 0 });
-      gsap.set(sections[0], { autoAlpha: 1 });
+  // Update side navigation
+  function updateNavPins() {
+    // Clear all active states first
+    navPins.forEach(pin => {
+      pin.classList.remove("active");
+    });
+    
+    // Set active state based on current section
+    if (current >= 1 && current <= 3) {
+      // If we're in any case study section (1-3), activate the main pin
+      document.querySelector('.nav-pin.main-pin').classList.add('active');
       
-      // Initially hide footer
-      gsap.set(footerWrapper, { autoAlpha: 0 });
+      // Also activate the specific sub-pin for the current section
+      document.querySelector(`.nav-pin.sub-pin[data-section="${current}"]`).classList.add('active');
+    } else {
+      // For non-case study sections (About Us or Community), just activate that pin
+      document.querySelector(`.nav-pin[data-section="${current}"]:not(.sub-pin):not(.main-pin)`).classList.add('active');
+    }
+    
+    // Update footer visibility
+    updateFooterVisibility();
+  }
 
-      document.addEventListener("wheel", handleWheel);
-      document.addEventListener("touchstart", handleTouchStart);
-      document.addEventListener("touchmove", handleTouchMove);
-      document.addEventListener("touchend", handleTouchEnd);
-
-      let listening = false,
-        direction = "down",
-        current = 0,
-        next = 0;
-
-      const touch = {
-        startX: 0,
-        startY: 0,
-        dx: 0,
-        dy: 0,
-        startTime: 0,
-        dt: 0
-      };
-
-      const tlDefaults = {
-        ease: "slow.inOut",
-        duration: 1.25
-      };
-
-      // Prepare headings for animation (simpler approach without SplitText)
-      headings.forEach(heading => {
-        // Add a wrapper span for animation
-        const content = heading.innerHTML;
-        heading.innerHTML = `<span class="heading-text">${content}</span>`;
-        
-        // Set initial state
-        gsap.set(heading.querySelector('.heading-text'), { 
-          autoAlpha: 0, 
-          y: 50 
-        });
-      });
-
-      // Update footer visibility based on current section
-      function updateFooterVisibility() {
-        if (current === 4) { // If we're on the last section (Community)
-          gsap.to(footerWrapper, { autoAlpha: 1, duration: 0.5 });
-        } else {
-          gsap.to(footerWrapper, { autoAlpha: 0, duration: 0.5 });
-        }
-      }
-
-      // Update side navigation
-      function updateNavPins() {
-        // Clear all active states first
-        navPins.forEach(pin => {
-          pin.classList.remove("active");
-        });
-        
-        // Set active state based on current section
-        if (current >= 1 && current <= 3) {
-          // If we're in any case study section (1-3), activate the main pin
-          document.querySelector('.nav-pin.main-pin').classList.add('active');
-          
-          // Also activate the specific sub-pin for the current section
-          document.querySelector(`.nav-pin.sub-pin[data-section="${current}"]`).classList.add('active');
-        } else {
-          // For non-case study sections (About Us or Community), just activate that pin
-          document.querySelector(`.nav-pin[data-section="${current}"]:not(.sub-pin):not(.main-pin)`).classList.add('active');
-        }
-        
-        // Update footer visibility
-        updateFooterVisibility();
-      }
-
-      // Add click event listeners to navigation pins
-      navPins.forEach((pin) => {
-        pin.addEventListener("click", () => {
-          if (listening) {
-            listening = false;
-            
-            // Handle main pin and sub-pin relationship
-            if (pin.classList.contains('main-pin')) {
-              // If main pin is clicked, go to the first sub-section
-              next = 1; // First case study (De Ceuvel)
-            } else if (pin.classList.contains('sub-pin')) {
-              // If sub-pin is clicked, use its section index
-              next = parseInt(pin.getAttribute('data-section'));
-            } else {
-              // Regular pins
-              next = parseInt(pin.getAttribute('data-section'));
-            }
-            
-            if (next > current) {
-              direction = "down";
-              slideIn();
-            } else {
-              direction = "up";
-              slideOut();
-            }
-          }
-        });
-      });
-
-      function revealSectionHeading() {
-        return gsap.to(headings[next].querySelector('.heading-text'), {
-          autoAlpha: 1,
-          y: 0,
-          duration: 1,
-          ease: "power2"
-        });
-      }
-
-      // Set initial states
-      gsap.set(outerWrappers, { yPercent: 100 });
-      gsap.set(innerWrappers, { yPercent: -100 });
-      gsap.set(outerWrappers[0], { yPercent: 0 });
-      gsap.set(innerWrappers[0], { yPercent: 0 });
-      gsap.set(sections[0], { autoAlpha: 1 });
-
-      // Slides a section in on scroll down
-      function slideIn() {
-        // The first time this function runs, current is undefined
-        if (current !== undefined) gsap.set(sections[current], { zIndex: 0 });
-
-        gsap.set(sections[next], { autoAlpha: 1, zIndex: 1 });
-        gsap.set(images[next], { yPercent: 0 });
-        gsap.set(headings[next].querySelector('.heading-text'), { autoAlpha: 0, y: 50 });
-
-        const tl = gsap
-          .timeline({
-            paused: true,
-            defaults: tlDefaults,
-            onComplete: () => {
-              listening = true;
-              current = next;
-              updateNavPins();
-            }
-          })
-          .to([outerWrappers[next], innerWrappers[next]], { yPercent: 0 }, 0)
-          .from(images[next], { yPercent: 15 }, 0)
-          .add(revealSectionHeading(), 0);
-
-        if (current !== undefined) {
-          tl.add(
-            gsap.to(images[current], {
-              yPercent: -15,
-              ...tlDefaults
-            }),
-            0
-          ).add(
-            gsap
-              .timeline()
-              .set(outerWrappers[current], { yPercent: 100 })
-              .set(innerWrappers[current], { yPercent: -100 })
-              .set(images[current], { yPercent: 0 })
-              .set(sections[current], { autoAlpha: 0 })
-          );
-        }
-
-        tl.play(0);
-      }
-
-      // Slides a section out on scroll up
-      function slideOut() {
-        gsap.set(sections[current], { zIndex: 1 });
-        gsap.set(sections[next], { autoAlpha: 1, zIndex: 0 });
-        gsap.set(headings[next].querySelector('.heading-text'), { autoAlpha: 0, y: 50 });
-        gsap.set([outerWrappers[next], innerWrappers[next]], { yPercent: 0 });
-        gsap.set(images[next], { yPercent: 0 });
-
-        gsap
-          .timeline({
-            defaults: tlDefaults,
-            onComplete: () => {
-              listening = true;
-              current = next;
-              updateNavPins();
-            }
-          })
-          .to(outerWrappers[current], { yPercent: 100 }, 0)
-          .to(innerWrappers[current], { yPercent: -100 }, 0)
-          .to(images[current], { yPercent: 15 }, 0)
-          .from(images[next], { yPercent: -15 }, 0)
-          .add(revealSectionHeading(), ">-1")
-          .set(images[current], { yPercent: 0 });
-      }
-
-      function handleDirection() {
+  // Add click event listeners to navigation pins
+  navPins.forEach((pin) => {
+    pin.addEventListener("click", () => {
+      if (listening) {
         listening = false;
-
-        if (direction === "down") {
-          next = current + 1;
-          // Check if we're at the last section
-          if (next >= sections.length) {
-            listening = true; // Re-enable listening
-            return; // Don't proceed with animation
-          }
-          slideIn();
+        
+        // Handle main pin and sub-pin relationship
+        if (pin.classList.contains('main-pin')) {
+          // If main pin is clicked, go to the first sub-section
+          next = 1; // First case study (De Ceuvel)
+        } else if (pin.classList.contains('sub-pin')) {
+          // If sub-pin is clicked, use its section index
+          next = parseInt(pin.getAttribute('data-section'));
+        } else {
+          // Regular pins
+          next = parseInt(pin.getAttribute('data-section'));
         }
-
-        if (direction === "up") {
-          next = current - 1;
-          // Check if we're at the first section
-          if (next < 0) {
-            listening = true; // Re-enable listening
-            return; // Don't proceed with animation
-          }
+        
+        if (next > current) {
+          direction = "down";
+          slideIn();
+        } else {
+          direction = "up";
           slideOut();
         }
       }
+    });
+  });
 
-      function handleWheel(e) {
-        if (!listening) return;
-        direction = e.wheelDeltaY < 0 ? "down" : "up";
-        handleDirection();
-      }
+  function revealSectionHeading() {
+    return gsap.to(headings[next].querySelector('.heading-text'), {
+      autoAlpha: 1,
+      y: 0,
+      duration: 1,
+      ease: "power2"
+    });
+  }
 
-      function handleTouchStart(e) {
-        if (!listening) return;
-        const t = e.changedTouches[0];
-        touch.startX = t.pageX;
-        touch.startY = t.pageY;
-      }
+  // Set initial states
+  gsap.set(outerWrappers, { yPercent: 100 });
+  gsap.set(innerWrappers, { yPercent: -100 });
+  gsap.set(outerWrappers[0], { yPercent: 0 });
+  gsap.set(innerWrappers[0], { yPercent: 0 });
+  gsap.set(sections[0], { autoAlpha: 1 });
 
-      function handleTouchMove(e) {
-        if (!listening) return;
-        e.preventDefault();
-      }
+  // Slides a section in on scroll down
+  function slideIn() {
+    // The first time this function runs, current is undefined
+    if (current !== undefined) gsap.set(sections[current], { zIndex: 0 });
 
-      function handleTouchEnd(e) {
-        if (!listening) return;
-        const t = e.changedTouches[0];
-        touch.dx = t.pageX - touch.startX;
-        touch.dy = t.pageY - touch.startY;
-        if (touch.dy > 10) direction = "up";
-        if (touch.dy < -10) direction = "down";
-        handleDirection();
-      }
+    gsap.set(sections[next], { autoAlpha: 1, zIndex: 1 });
+    gsap.set(images[next], { yPercent: 0 });
+    gsap.set(headings[next].querySelector('.heading-text'), { autoAlpha: 0, y: 50 });
 
-      // Initialize the first slide and side navigation
-      revealSectionHeading();
-      navPins[0].classList.add("active");
-      // Initialize footer visibility
-      updateFooterVisibility();
-      listening = true;
+    // Pre-position footer if we're going to the last section
+    if (next === 4) {
+      gsap.set(footerWrapper, {
+        autoAlpha: 0,
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        width: '100%', 
+        zIndex: 999
+      });
     }
+
+    const tl = gsap
+      .timeline({
+        paused: true,
+        defaults: tlDefaults,
+        onComplete: () => {
+          listening = true;
+          current = next;
+          updateNavPins();
+        }
+      })
+      .to([outerWrappers[next], innerWrappers[next]], { yPercent: 0 }, 0)
+      .from(images[next], { yPercent: 15 }, 0)
+      .add(revealSectionHeading(), 0);
+
+    // Show footer immediately at the start of the animation if moving to last section
+    if (next === 4) {
+      tl.to(footerWrapper, { autoAlpha: 1, duration: 0.75 }, 0);
+    }
+
+    if (current !== undefined) {
+      tl.add(
+        gsap.to(images[current], {
+          yPercent: -15,
+          ...tlDefaults
+        }),
+        0
+      ).add(
+        gsap
+          .timeline()
+          .set(outerWrappers[current], { yPercent: 100 })
+          .set(innerWrappers[current], { yPercent: -100 })
+          .set(images[current], { yPercent: 0 })
+          .set(sections[current], { autoAlpha: 0 })
+      );
+    }
+
+    tl.play(0);
+  }
+
+  // Slides a section out on scroll up
+  function slideOut() {
+    gsap.set(sections[current], { zIndex: 1 });
+    gsap.set(sections[next], { autoAlpha: 1, zIndex: 0 });
+    gsap.set(headings[next].querySelector('.heading-text'), { autoAlpha: 0, y: 50 });
+    gsap.set([outerWrappers[next], innerWrappers[next]], { yPercent: 0 });
+    gsap.set(images[next], { yPercent: 0 });
+
+    // If we're navigating from last section, hide footer right away
+    const timeline = gsap.timeline({
+      defaults: tlDefaults,
+      onComplete: () => {
+        listening = true;
+        current = next;
+        updateNavPins();
+      }
+    });
+
+    // If we're leaving the last section, hide footer immediately
+    if (current === 4) {
+      timeline.to(footerWrapper, { autoAlpha: 0, duration: 0.3 }, 0);
+    }
+    
+    // If we're going to the last section, show footer
+    if (next === 4) {
+      timeline.to(footerWrapper, { autoAlpha: 1, duration: 0.75 }, 0);
+    }
+
+    timeline
+      .to(outerWrappers[current], { yPercent: 100 }, 0)
+      .to(innerWrappers[current], { yPercent: -100 }, 0)
+      .to(images[current], { yPercent: 15 }, 0)
+      .from(images[next], { yPercent: -15 }, 0)
+      .add(revealSectionHeading(), ">-1")
+      .set(images[current], { yPercent: 0 });
+  }
+
+  function handleDirection() {
+    listening = false;
+
+    if (direction === "down") {
+      next = current + 1;
+      // Check if we're at the last section
+      if (next >= sections.length) {
+        listening = true; // Re-enable listening
+        return; // Don't proceed with animation
+      }
+      slideIn();
+    }
+
+    if (direction === "up") {
+      next = current - 1;
+      // Check if we're at the first section
+      if (next < 0) {
+        listening = true; // Re-enable listening
+        return; // Don't proceed with animation
+      }
+      slideOut();
+    }
+  }
+
+  function handleWheel(e) {
+    if (!listening) return;
+    direction = e.wheelDeltaY < 0 ? "down" : "up";
+    handleDirection();
+  }
+
+  function handleTouchStart(e) {
+    if (!listening) return;
+    const t = e.changedTouches[0];
+    touch.startX = t.pageX;
+    touch.startY = t.pageY;
+  }
+
+  function handleTouchMove(e) {
+    if (!listening) return;
+    e.preventDefault();
+  }
+
+  function handleTouchEnd(e) {
+    if (!listening) return;
+    const t = e.changedTouches[0];
+    touch.dx = t.pageX - touch.startX;
+    touch.dy = t.pageY - touch.startY;
+    if (touch.dy > 10) direction = "up";
+    if (touch.dy < -10) direction = "down";
+    handleDirection();
+  }
+
+  // Initialize the first slide and side navigation
+  revealSectionHeading();
+  navPins[0].classList.add("active");
+  // Initialize footer visibility
+  updateFooterVisibility();
+  listening = true;
+}
   </script>
 </body>
 </html>
