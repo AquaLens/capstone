@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="about_us.css" />
 </head>
 
-<body>
+<body class="about">
   <!-- Header placeholder -->
   <div id="header"></div>
 
@@ -136,6 +136,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
 
   <script>
+    document.body.classList.add('about');
     // Fetch header and footer HTML
     fetch('/assets/header.html')
       .then(res => res.text())
@@ -330,21 +331,29 @@
           .set(images[current], { yPercent: 0 });
       }
 
-      function handleDirection() {
-        listening = false;
+  function handleDirection() {
+  listening = false;
 
-        if (direction === "down") {
-          next = current + 1;
-          if (next >= sections.length) next = 0;
-          slideIn();
-        }
+  if (direction === "down") {
+    next = current + 1;
+    // Check if we're at the last section
+    if (next >= sections.length) {
+      listening = true; // Re-enable listening
+      return; // Don't proceed with animation
+    }
+    slideIn();
+  }
 
-        if (direction === "up") {
-          next = current - 1;
-          if (next < 0) next = sections.length - 1;
-          slideOut();
-        }
-      }
+  if (direction === "up") {
+    next = current - 1;
+    // Check if we're at the first section
+    if (next < 0) {
+      listening = true; // Re-enable listening
+      return; // Don't proceed with animation
+    }
+    slideOut();
+  }
+}
 
       function handleWheel(e) {
         if (!listening) return;
@@ -380,7 +389,7 @@
       listening = true;
 
       // Add this to your initializeAnimations function - much simpler approach:
-function setupFooter() {
+  function setupFooter() {
   const footer = document.getElementById('footer');
   
   // Create a wrapper for the footer that we can position
