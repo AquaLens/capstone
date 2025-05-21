@@ -152,7 +152,7 @@
     }
 
     /* For about page */
-    #footer-wrapper {
+    body.about #footer-wrapper {
       position: fixed;
       bottom: 0;
       left: 0;
