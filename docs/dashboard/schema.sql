@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS cities (
+  id INTEGER PRIMARY KEY,
+  city TEXT NOT NULL,
+  country TEXT NOT NULL,
+  lat REAL NOT NULL,
+  lon REAL NOT NULL,
+  UNIQUE(city, country)
+);

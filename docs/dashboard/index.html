@@ -857,7 +857,7 @@
           
           for (const city of locations) {
             markerPromises.push(
-              geocodeCity(city).then(coords => {
+              geocodeCity(city, country).then(coords => {
                 if (coords) {
                   const marker = L.marker(coords).addTo(markersLayer);
                   if (project._id) {
@@ -885,22 +885,16 @@
       }
     }
     // function to get the city's lat/lon trhough Geocode API
-    async function geocodeCity(cityName) {
-      if (!cityName) return null;
-      if (geoCache.has(cityName)) return geoCache.get(cityName);
+    async function geocodeCity(city, country) {
       try {
-        const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(cityName)}&key=${GEOCODING_API_KEY}`);
+        const response = await fetch(`http://localhost:5000/geocode?city=${city}&country=${country}`);
         const data = await response.json();
-        if (data.results?.length > 0) {
-          const { lat, lng } = data.results[0].geometry;
-          const coords = [lat, lng];
-          geoCache.set(cityName, coords);
-          return coords;
-        }
+        if (data.error) throw new Error(data.error);
+        return [data.lat, data.lon];
       } catch (error) {
-        console.error('Geocoding error:', error);
+        console.error('Oops! Geocoding failed:', error);
+        return null;
       }
-      return null;
     }
 
   function setupFilters() {
