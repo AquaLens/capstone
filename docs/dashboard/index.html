@@ -243,10 +243,12 @@
               <option value="Yemen">Yemen</option>
               <option value="Zambia">Zambia</option>
               <option value="Zimbabwe">Zimbabwe</option>
-            </select>            
+            </select>
+            <div id="selectedCountries" class="selected-countries"></div>        
           </div>
         </div>
-
+        
+        
         <!-- Froggy Chat -->
         <div class="froggy-help">
           <div class="froggy-text">
@@ -755,6 +757,7 @@
 
     let allProjects = [];
     let map, markersLayer;
+    let selectedCountries = [];
     const GEOCODING_API_KEY = '595604d27a984913acdce947d8a70f54';
     const geoCache = new Map(); // visible map
     const projectMap = new Map();  // to help display project info after
@@ -900,40 +903,77 @@
       return null;
     }
 
-    function setupFilters() {
-      // setup checkbox filters
-      document.querySelectorAll('input[type="checkbox"]').forEach(input => {
-        input.addEventListener('change', applyFilters);
-      });
+  function setupFilters() {
+  // Setup checkbox filters (keep this line from original code)
+  document.querySelectorAll('input[type="checkbox"]').forEach(input => {
+    input.addEventListener('change', applyFilters);
+  });
+
+  // Set up country dropdown filter
+  const countryDropdown = document.getElementById('countryDropdown');
+  const selectedCountriesDiv = document.getElementById('selectedCountries');
+  selectedCountries = []; // Initialize/reset the array
+
+  if (countryDropdown) {
+    countryDropdown.addEventListener('change', () => {
+      const selected = countryDropdown.value;
+      if (selected && !selectedCountries.includes(selected)) {
+        selectedCountries.push(selected);
+        updateSelectedCountries();
+        applyFilters(); // Apply filters when a country is selected
+      }
+      countryDropdown.value = ""; // Reset dropdown after selection
+    });
+  }
+
+  function updateSelectedCountries() {
+    selectedCountriesDiv.innerHTML = '';
+    selectedCountries.forEach(country => {
+      const span = document.createElement('span');
+      span.className = 'country-chip';
+      span.textContent = country;
+
+      const removeBtn = document.createElement('button');
+      removeBtn.textContent = '×';
+      removeBtn.className = 'remove-btn';
+      removeBtn.onclick = () => {
+        selectedCountries = selectedCountries.filter(c => c !== country);
+        updateSelectedCountries();
+        applyFilters(); // Apply filters when a country is removed
+      };
+
+      span.appendChild(removeBtn);
+      selectedCountriesDiv.appendChild(span);
+    });
+  }
+}
+
     
+  function applyFilters() {
+  const selectedKeywords = Array.from(
+    document.querySelectorAll('input[name="keywords"]:checked')
+  ).map(cb => cb.value);
 
-    // set up country dropdown filter
-    const countryDropdown = document.getElementById('countryDropdown');
-    if (countryDropdown) { countryDropdown.addEventListener('change', applyFilters); }
+  const selectedContexts = Array.from(
+    document.querySelectorAll('input[name="context"]:checked')
+  ).map(cb => cb.value);
 
-    }
-    function applyFilters() {
-      const selectedKeywords = Array.from(
-        document.querySelectorAll('input[name="keywords"]:checked')
-      ).map(cb => cb.value);
+  // Filter the projects
+  const filteredProjects = allProjects.filter(project => {
+    const keywordMatch = selectedKeywords.length === 0 || 
+                    selectedKeywords.some(keyword => project.keywordLabel?.includes(keyword));
+    const contextMatch = selectedContexts.length === 0 || 
+                    selectedContexts.includes(project.context);
+    // Update to use selectedCountries array instead of single dropdown value
+    const countryMatch = selectedCountries.length === 0 || 
+                    selectedCountries.includes(project.location);
+    
+    return keywordMatch && contextMatch && countryMatch;
+  });
 
-      const selectedContexts = Array.from(
-        document.querySelectorAll('input[name="context"]:checked')
-      ).map(cb => cb.value);
-
-      const selectedCountry = document.getElementById('countryDropdown').value;
-
-      // filter the projects
-      const filteredProjects = allProjects.filter(project => {
-        const keywordMatch = selectedKeywords.length === 0 || selectedKeywords.some(keyword => project.keywordLabel?.includes(keyword));
-        const contextMatch = selectedContexts.length === 0 || selectedContexts.includes(project.context);
-        const countryMatch = !selectedCountry || project.location?.toLowerCase() === selectedCountry.toLowerCase();
-        return keywordMatch && contextMatch && countryMatch;
-      });
-
-      console.log('Filtered projects:', filteredProjects);
-      addProjectsToMap(filteredProjects);
-    }
+  console.log('Filtered projects:', filteredProjects);
+  addProjectsToMap(filteredProjects);
+}
 
     // functions for the Submission form:
       document.addEventListener('DOMContentLoaded', () => {
