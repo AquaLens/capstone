@@ -42,10 +42,13 @@
             <div class="section-content">
               <h2 class="section-heading">Welcome to AquaLens</h2>
               <p>
-                This website was developed by the AquaLens team in collaboration with Joyce van den Berg from the City of Amsterdam. AquaLens is a project team composed of final-year students from the University of Amsterdam's BSc in Computational Social Science.
+                This website was developed by the AquaLens team in collaboration with the City of Amsterdam. AquaLens is a project team composed of final-year students from the University of Amsterdam's BSc in Computational Social Science.
               </p>
               <p>
-                When faced with a challenge as large and complex as water quality, it can be tempting to give up. However, there are many ways that you as an individual can have an impact.
+                When faced with a challenge as large and complex as water quality, it can be tempting to give up. However, there are many ways that you as an individual can have an impact. This page presents three Dutch case studies that demonstrate that action on water quality issues is not only manageable, but something you can incorporate into your daily life.
+              </p>
+              <p>
+                As a low-lying country, the Netherlands has a unique existential relationship to water. There’s a wealth of knowledge and experience around water management here, but also many myths. These case studies help dispel those myths.
               </p>
             </div>
           </div>
@@ -64,7 +67,10 @@
                 De Ceuvel is a community built on the grounds of a former shipyard in the north of Amsterdam. The community entails office space, a well-known café, a floating hotel and galleries, some which are inhabited. From its onset, De Ceuvel was designed to be a fully circular community.
               </p>
               <p>
-                A big part of its focus on sustainability relies on its water management, seeing as it is built on a former shipyard.
+                A big part of its focus on sustainability relies on its water management, seeing as it is built on a former shipyard. Helophyte filters are used to clean water water before disposing of it, there are community pumps that provide clean drinking water sourced from captured and purified rainwater, and struvite reactors are used to extract valuable soil nutrients from human wastewater.
+              </p>
+              <p>
+                Additionally, an aquaponic greenhouse produces much of the produce served at the café. Aquaponics in this context refers to a process where fish waste is used as a nutrient for plants, which then filter the water so it can be reused by said fish. Most notably, compost toilets were used instead of a sewer system due to soil pollution. These toilets require no water and produce usable compost. This creative solution shows that sometimes, breaking convention leads to better outcomes. These many small examples show that water quality does not run counter to function, but rather can be a part of the daily fabric of community and actually enhances function.
               </p>
             </div>
           </div>
@@ -216,18 +222,21 @@ document.body.classList.add('about');
       // Update footer visibility based on current section
       function updateFooterVisibility() {
         if (current === 4) { // If we're on the last section (Community)
-          // Show footer with animation
-          gsap.set(footerWrapper, { display: "block", y: 50 }); // Start below view
-          gsap.to(footerWrapper, { 
-            autoAlpha: 1, 
-            y: 0, // Slide up into view
-            duration: 0.75,
-            position: 'fixed',
-            bottom: 0,
-            left: 0,
-            width: '100%',
-            zIndex: 999
-          });
+          // Show footer with animation if it's not already showing
+          if (getComputedStyle(footerWrapper).display === "none") {
+            gsap.set(footerWrapper, { display: "block", y: 50 }); // Start below view
+            gsap.to(footerWrapper, { 
+              autoAlpha: 1, 
+              y: 0, // Slide up into view
+              duration: 0.75,
+              ease: "power2.out",
+              position: 'fixed',
+              bottom: 0,
+              left: 0,
+              width: '100%',
+              zIndex: 999
+            });
+          }
         } else {
           // Make sure footer is hidden when on other sections
           gsap.set(footerWrapper, { autoAlpha: 0, display: "none" });
@@ -314,15 +323,25 @@ document.body.classList.add('about');
         gsap.set(images[next], { yPercent: 0 });
         gsap.set(headings[next].querySelector('.heading-text'), { autoAlpha: 0, y: 50 });
     
-        // Pre-position footer if we're going to the last section
+        // Show footer animation immediately if going to the last section
         if (next === 4) {
-          gsap.set(footerWrapper, {
-            autoAlpha: 0,
+          // Make sure the footer is properly positioned to start
+          gsap.set(footerWrapper, { 
+            display: "block", 
+            y: 50, 
             position: 'fixed',
             bottom: 0,
             left: 0,
-            width: '100%', 
-            zIndex: 999
+            width: '100%',
+            zIndex: 999 
+          });
+          
+          // Animate footer into view immediately as the section transition starts
+          gsap.to(footerWrapper, { 
+            autoAlpha: 1, 
+            y: 0,
+            duration: 1,
+            ease: "power2.out"
           });
         }
     
@@ -339,11 +358,6 @@ document.body.classList.add('about');
           .to([outerWrappers[next], innerWrappers[next]], { yPercent: 0 }, 0)
           .from(images[next], { yPercent: 15 }, 0)
           .add(revealSectionHeading(), 0);
-    
-        // Show footer immediately at the start of the animation if moving to last section
-        if (next === 4) {
-          tl.to(footerWrapper, { autoAlpha: 1, duration: 0.75 }, 0);
-        }
     
         if (current !== undefined) {
           tl.add(
@@ -396,12 +410,12 @@ document.body.classList.add('about');
         
         // Add footer animation to the timeline if needed
         if (current === 4) {
-          // If we're leaving the last section, hide footer with a smooth fade-out AND slide down
+          // If we're leaving the last section, hide footer with a faster fade-out and slide down
           gsap.to(footerWrapper, {
             autoAlpha: 0, 
             y: 50, // Move footer down out of view as it fades
-            duration: 1.25,
-            ease: "slow.inOut",
+            duration: 0.85, // Faster than the section transition
+            ease: "power3.inOut", // Slightly different easing for snappier feel
             onComplete: function() {
               // Reset position when fully invisible
               gsap.set(footerWrapper, { y: 0, display: "none" });
