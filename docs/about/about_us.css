@@ -1,100 +1,202 @@
-/* ------------ Main Layout ------------ */
-main {
-  flex: 1; /* Pushes footer down */
+/* About Us Page Specific Styles */
+
+/* Side Navigation */
+.side-nav {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
   display: flex;
-  gap: 2rem;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
-  position: relative;
-  z-index: 1;
+  flex-direction: column;
+  gap: 12px;
 }
 
-/* ------------ Video Background (example) ------------ */
-#bg-video {
+.nav-pin {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-pin.main-pin {
+  width: 15px;
+  height: 15px;
+  margin-left: 0;
+}
+
+.nav-pin.sub-pin {
+  width: 10px;
+  height: 10px;
+  margin-left: 10px;
+}
+
+.nav-pin:hover, .nav-pin.active {
+  background-color: #a4b5ca;
+  transform: scale(1.2);
+}
+
+.nav-pin .tooltip {
+  position: absolute;
+  right: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.nav-pin:hover .tooltip {
+  opacity: 1;
+}
+
+/* Section Styles */
+section {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  object-fit: cover; /* Change to 'contain' if zoom is too much */
-  z-index: -1;
-  opacity: 0.8;
+  height: 100vh;
+  overflow: hidden;
+  visibility: hidden;
 }
 
-/* Centered fade-in text (example) */
-.fade-in-text {
+section.first {
+  visibility: visible;
+}
+
+.outer {
   position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 2rem;
-  color: white;
-  font-weight: bold;
-  animation: fadeIn 4s ease-in-out forwards;
-  opacity: 0;
-  z-index: 2;
-  text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.6);
-}
-
-/* ------------ Responsive ------------ */
-@media (max-width: 768px) {
-  header {
-    text-align: center;
-  }
-
-  .header-content {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  main {
-    flex-direction: column;
-  }
-
-  .nav-links {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-}
-
-/* Fade-in keyframes (example) */
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
-}
-
-/* Content Sections */
-section {
-  margin-bottom: 3rem;
-}
-
-section h1, section h2 {
-  color: #3B609C;
-  margin-bottom: 1rem;
-}
-
-.case-image {
+  top: 0;
+  left: 0;
   width: 100%;
-  max-height: 400px;
-  object-fit: cover;
-  margin: 1rem 0;
-  border-radius: 8px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  height: 100%;
+  overflow: hidden;
 }
 
+.inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f8f8f8;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Background for each section */
+.bg.one {
+  background-color: #e8f4f8;
+}
+
+.bg.two, .bg.three, .bg.four {
+  position: relative;
+}
+
+.bg.five {
+  background-color: #a8ccd0;
+}
+
+/* Case study images */
+.case-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.7;
+}
+
+/* Content Styles */
+.section-content {
+  max-width: 800px;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.section-heading {
+  margin-bottom: 1.5rem;
+  color: #3a5a78;
+  font-size: 2.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.heading-text {
+  display: block;
+}
+
+/* Button Styles */
 .btn {
   display: inline-block;
-  padding: 0.6rem 1.2rem;
-  background-color: #3B609C;
+  margin-top: 1.5rem;
+  padding: 0.8rem 1.5rem;
+  background-color: #a4b5ca;
   color: white;
+  border: none;
   border-radius: 4px;
+  text-decoration: none;
   font-weight: bold;
-  transition: background 0.3s ease;
-  margin-top: 0.5rem;
+  transition: background-color 0.3s ease;
 }
 
 .btn:hover {
-  background-color: #2a4979;
+  background-color: #7c8fa8;
 }
 
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .section-content {
+    max-width: 90%;
+    padding: 1.5rem;
+  }
+  
+  .section-heading {
+    font-size: 2rem;
+  }
+  
+  .side-nav {
+    right: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-content {
+    padding: 1rem;
+  }
+  
+  .section-heading {
+    font-size: 1.8rem;
+  }
+}
