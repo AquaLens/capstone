@@ -49,15 +49,14 @@
       <p>Map visualizing water stress felt globally between 2016 - 2022 </p>
     </div>
 
-    <div class="gallery-item" onclick="openModal('visual_charts_graphs/water_stress_map.html')">
-      <img src="visual_charts_graphs/images/water_stress.jpg" alt="Global Water Stress Across Time" />
+    <div class="gallery-item" onclick="openModal('visual_charts_graphs/top_20_water_stress_excluding.html')">
+      <img src="visual_charts_graphs/images/topstress.jpg" alt="Top 20 Countries with Highest Water Stress (2016 - 2022)" />
       <h4>Countries with Highest Water Stress </h4>
       <p>Top 20 countries with highest water stress felt between 2016 - 2022 </p>
     </div>
 
   </section>
 </div>
-
 
 <!-- === CHEMICAL INDICATORS === -->
 <div class="gallery-section">
@@ -117,12 +116,19 @@
   <!-- Modal -->
 <div id="modal" class="modal" onclick="closeModal()">
   <iframe id="modal-content" src="" frameborder="0"></iframe>
+  <div id="modal" class="modal">
+    <div class="modal-content-wrapper">
+      <iframe id="modal-content" src="" frameborder="0"></iframe>
+      <div id="modal-description" class="modal-description"></div>
+    </div>
+  </div>
+  
 </div>
 
 <!-- Footer -->
 <div id="footer"></div>
 
-<!-- Modal (Step 4 - Updated with sidebar) -->
+<!-- Modal -->
 <div id="modal" class="modal" onclick="closeModal()" style="display:none; flex-direction:row;background:rgba(0,0,0,0.8);position:fixed; top:0; left:0; width:100%; height:100%; z-index:1000;">
     <iframe id="modal-content" src="" frameborder="0" style="width:75%; height:100%; border:none;"></iframe>
     <div id="modal-sidebar" style="width:25%; padding:1rem; background:#fff; overflow-y:auto; color:#000;"></div>
@@ -133,9 +139,12 @@
     <script src="visualizations.js"></script>
     
     <script>
-      const descriptions = {
+      const descriptions = {      
         'Water Quality Map' : '<h2>Global Water Quality (2023)</h2> <p>This map shows, for 2023, the share of each country’s natural water bodies (rivers, lakes, and groundwater)that meets the Sustainable Development Goal (SDG) “good ambient water quality threshold. <strong>Good water quality </strong>(dark blue) means all key physician, chemical, and biological parameters (pH, dissolved oxygen, nutrient levels, turbidity, microbial counts, etc) fall within established safe “reference” ranges. <strong>Poor water quality</strong> (light blue) means one or more of those parameters exceed acceptable limits, indicating pollution or ecosystem and public-health risks.</p><p><em>Data source:</em> UNECE SDG portal, Indicator 6.3.2(a): <a href="https://w3.unece.org/SDG/en/Indicator?id=136" target="_blank">w3.unece.org/SDG/Indicator?id=136</a></p>',
-        'Water Stress Map' : '<h2> Global Water Stress (2016 - 2022)</h2> <p>This map map demonstrates water stress(%), classified as "Low", "Medium", and "High", experienced across the globe between 2016 and 2022. The Water Stress Indicator, monitors SDG 6.4.2, as a ratio between withdrawn freshwater from economic activity, and the total renewable freshwater resources availbe in the country.<strong>Water Stress</strong> Red represents a high-level classification of water stress experienced in a country, following the parameters established by the UN.</p><p><em>Data source:</em> UN Water, Indicator 6.4.2: <a href="https://www.unwater.org/publications/progress-level-water-stress-2024-update</a></p>'    
+        
+        'Water Stress Map' : '<h2> Global Water Stress (2016 - 2022)</h2> <p>This map map demonstrates water stress(%), classified as "Low", "Medium", and "High", experienced across the globe between 2016 and 2022. The Water Stress Indicator, monitors SDG 6.4.2, as a ratio between withdrawn freshwater from economic activity, and the total renewable freshwater resources availbe in the country.<strong>Water Stress</strong> Red represents a high-level classification of water stress experienced in a country, following the parameters established by the UN.</p><p><em>Data source:</em> UN Water, Indicator 6.4.2: <a href="https://www.unwater.org/publications/progress-level-water-stress-2024-update</a></p>' 
+
+          'Top 20 Countries with Higest Water Stress (%)' : '<h2> Countries with Higest Water Stress (2016 - 2022)</h2> <p>This visualization illustrates the countries with higest reported water stress (%) between 2016 and 2022.<strong>Countries With Highest Water Stress</strong> The map excludes Kuwait and the UAE, as these countries experience a critical water stress level that goes beyond that of "high water stress," and that experience percentage levels much higher than in other countries.</p><p><em>Data source:</em> UN Water, Indicator 6.4.2: <a href="https://www.unwater.org/publications/progress-level-water-stress-2024-update</a></p>'
       }
 
       function openModal(src, key) {

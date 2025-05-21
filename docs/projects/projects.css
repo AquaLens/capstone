@@ -40,6 +40,32 @@
     cursor: pointer;
   }
 
+  .selected-countries {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  
+  .country-chip {
+    background-color: #e0f0ff;
+    border: 1px solid #90caff;
+    padding: 5px 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+  }
+  
+  .country-chip .remove-btn {
+    margin-left: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    line-height: 1;
+  }  
+
   .dashboard-button-top {
     margin-top: 1rem;
     width: 100%;
