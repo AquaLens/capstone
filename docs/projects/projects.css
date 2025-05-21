@@ -6,7 +6,11 @@
     display: flex;
     gap: 2rem;
     margin-bottom: 2rem;
-    flex-wrap: wrap;
+    width: 100%;
+    box-sizing: border-box;
+    flex-direction: row; /* Ensure flex items are in a row */
+    flex-wrap: wrap; /* Allow wrapping */
+    align-items: flex-start; /* Prevent stretching */
   }
   
   /* ------------ Sidebar (Filters) ------------ */
@@ -35,6 +39,32 @@
     margin-bottom: 0.25rem;
     cursor: pointer;
   }
+
+  .selected-countries {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  
+  .country-chip {
+    background-color: #e0f0ff;
+    border: 1px solid #90caff;
+    padding: 5px 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+  }
+  
+  .country-chip .remove-btn {
+    margin-left: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    line-height: 1;
+  }  
 
   .dashboard-button-top {
     margin-top: 1rem;
@@ -108,18 +138,23 @@
 /* Chat popup */
 .froggy-chat-popup {
   position: fixed;
-  bottom: 90px;
+  bottom: 30px;
   right: 20px;
-  width: 320px;
-  max-height: 500px;
+  width: 450px;
+  height: 550px;
   background: white;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  display: none;
+  display: none; /* This should be changed to flex when the popup is active */
   flex-direction: column;
   overflow: hidden;
-  z-index: 9998;
+  z-index: 99999; /* Increased z-index */
   font-family: Arial, sans-serif;
+}
+
+/* Add this class to show the popup */
+.froggy-chat-popup.active {
+  display: flex;
 }
 
 /* Header */
@@ -131,6 +166,28 @@
   justify-content: space-between;
   align-items: center;
   font-weight: bold;
+}
+
+.froggy-header-buttons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Reset Button Style */
+.froggy-reset-button {
+  background-color: #3B609C;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.froggy-reset-button:hover {
+  background-color: #a4b5ca;
 }
 
 /* Close button */
@@ -151,6 +208,7 @@
   flex-direction: column;
   gap: 8px;
   background: #f9f9f9;
+  max-height: calc(100% - 60px); /* Adjust to prevent overflow */
 }
 
 /* Message bubbles */
@@ -179,6 +237,7 @@
   border-top: 1px solid #ccc;
   padding: 8px;
   background: white;
+  box-sizing: border-box; /* Ensures padding doesn't add to element width */
 }
 
 .froggy-chat-input textarea {
@@ -189,7 +248,9 @@
   padding: 8px;
   font-size: 14px;
   height: 36px;
+  min-height: 36px; /* Ensure height is consistent */
   outline: none;
+  box-sizing: border-box; /* Ensures padding doesn't add to element height */
 }
 
 .froggy-chat-input button {

@@ -10,7 +10,12 @@ main {
 }
 
 /* ------------ Video Background (example) ------------ */
-
+#bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
 /* ------------ Responsive ------------ */
 @media (max-width: 768px) {
   header {

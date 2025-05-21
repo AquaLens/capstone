@@ -440,8 +440,16 @@ export const projectType = defineType({
       title: 'Budget',
       type: 'string',
       description: 'Enter the financial budget of the project',
-      validation: (rule: Rule) => rule.required(),
     }),
+
+    defineField({
+      name: 'timeline',
+      title: 'Timeline',
+      type: 'string',
+      description: 'Start and end date of project',
+      validation: (rule: Rule) => rule.required()
+    }),
+
 
     defineField({
       name: 'other',
