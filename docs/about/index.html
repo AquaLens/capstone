@@ -388,11 +388,11 @@
       navPins[0].classList.add("active");
       listening = true;
 
-      // Add this to your initializeAnimations function - much simpler approach:
+// setupFooter function
   function setupFooter() {
   const footer = document.getElementById('footer');
   
-  // Create a wrapper for the footer that we can position
+  // Create a wrapper for the footer
   const footerWrapper = document.createElement('div');
   footerWrapper.id = 'footer-wrapper';
   document.body.appendChild(footerWrapper);
@@ -408,26 +408,37 @@
   footerWrapper.style.zIndex = '999';
   footerWrapper.style.display = 'none';
   
-  // Function to toggle footer visibility
-  function toggleFooter() {
+  // Function to update footer visibility
+  function updateFooterVisibility() {
+    // Only show footer on the last section (Community - section index 4)
     footerWrapper.style.display = current === 4 ? 'block' : 'none';
   }
   
-  // Override the onComplete callback in slideIn and slideOut
-  const originalHandleDirection = handleDirection;
-  handleDirection = function() {
-    originalHandleDirection();
-    setTimeout(toggleFooter, 1200); // Wait for animation to complete
+  // Add our footer update to the existing timeline completion callbacks
+  const originalSlideIn = window.slideIn;
+  window.slideIn = function() {
+    const result = originalSlideIn.apply(this, arguments);
+    updateFooterVisibility();
+    return result;
   };
   
-  // For navigation pin clicks
+  const originalSlideOut = window.slideOut;
+  window.slideOut = function() {
+    const result = originalSlideOut.apply(this, arguments);
+    updateFooterVisibility();
+    return result;
+  };
+  
+  // Also update footer when navigation pins are clicked
   navPins.forEach(pin => {
-    const originalClickHandler = pin.onclick;
-    pin.onclick = function(event) {
-      if (originalClickHandler) originalClickHandler(event);
-      setTimeout(toggleFooter, 1200); // Wait for animation to complete
-    };
+    pin.addEventListener('click', () => {
+      // Allow animation to complete first
+      setTimeout(updateFooterVisibility, 1300);
+    });
   });
+  
+  // Initial footer visibility check
+  updateFooterVisibility();
 }
 
 // Call setupFooter after all your other initialization

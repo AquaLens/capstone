@@ -135,6 +135,10 @@
   body.home .header-video {
     display: none; /* Completely hide video on homepage */
   }
+
+  body.about .header-video {
+    display: none; /* Completely hide video on homepage */
+  }
   
     
     /* ------------ Footer ------------ */
