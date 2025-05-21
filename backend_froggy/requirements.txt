@@ -1,0 +1,8 @@
+flask
+requests
+faiss-cpu
+together
+sentence-transformers
+flask-cors
+gunicorn
+hf_xet
