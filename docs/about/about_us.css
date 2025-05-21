@@ -109,11 +109,7 @@ section.first {
 }
 
 /* Background for each section */
-.bg.one {
-  background-color: #e8f4f8;
-}
-
-.bg.two, .bg.three, .bg.four {
+.bg.one, .bg.two, .bg.three, .bg.four {
   position: relative;
 }
 
