@@ -378,6 +378,51 @@
       revealSectionHeading();
       navPins[0].classList.add("active");
       listening = true;
+
+      // Add this to your initializeAnimations function - much simpler approach:
+function setupFooter() {
+  const footer = document.getElementById('footer');
+  
+  // Create a wrapper for the footer that we can position
+  const footerWrapper = document.createElement('div');
+  footerWrapper.id = 'footer-wrapper';
+  document.body.appendChild(footerWrapper);
+  
+  // Move the footer into our wrapper
+  footerWrapper.appendChild(footer);
+  
+  // Style the wrapper
+  footerWrapper.style.position = 'fixed';
+  footerWrapper.style.bottom = '0';
+  footerWrapper.style.left = '0';
+  footerWrapper.style.width = '100%';
+  footerWrapper.style.zIndex = '999';
+  footerWrapper.style.display = 'none';
+  
+  // Function to toggle footer visibility
+  function toggleFooter() {
+    footerWrapper.style.display = current === 4 ? 'block' : 'none';
+  }
+  
+  // Override the onComplete callback in slideIn and slideOut
+  const originalHandleDirection = handleDirection;
+  handleDirection = function() {
+    originalHandleDirection();
+    setTimeout(toggleFooter, 1200); // Wait for animation to complete
+  };
+  
+  // For navigation pin clicks
+  navPins.forEach(pin => {
+    const originalClickHandler = pin.onclick;
+    pin.onclick = function(event) {
+      if (originalClickHandler) originalClickHandler(event);
+      setTimeout(toggleFooter, 1200); // Wait for animation to complete
+    };
+  });
+}
+
+// Call setupFooter after all your other initialization
+setupFooter();
     }
   </script>
 </body>
