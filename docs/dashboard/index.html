@@ -300,7 +300,7 @@
       <h2 id="modal-title">Project Title</h2>
       <p><strong>Organization:</strong> <span id="modal-organization"></span></p>
       <p><strong>Keyword/Label:</strong> <span id="modal-keyword"></span></p>
-      <p><strong>Location:</strong> <span id="modal-location"></span></p>
+      <p><strong>Country:</strong> <span id="modal-location"></span></p>
       <p><strong>City:</strong> <span id="modal-city"></span></p>
       <p><strong>Context:</strong> <span id="modal-context"></span></p>
       <p id="modal-description">Project description here.</p>
@@ -791,7 +791,7 @@
       document.getElementById('modal-description').textContent = project.description || 'No description available';
       document.getElementById('modal-organization').textContent = project.companyOrganization || 'Unknown organization';
       document.getElementById('modal-keyword').textContent = project.keywordLabel || 'No label specified';
-      document.getElementById('modal-location').textContent = project.location || 'No location';
+      document.getElementById('modal-location').textContent = project.location || 'No country specified';
       document.getElementById('modal-city').textContent = project.specificLocations || 'No city specified';
       document.getElementById('modal-context').textContent = project.context || 'No context';
 
@@ -851,9 +851,8 @@
 
         // Process projects
         for (const project of projects) {
-          const locations = Array.isArray(project.specificLocations) 
-            ? project.specificLocations 
-            : [];
+          const locations = Array.isArray(project.specificLocations) ? project.specificLocations : [];
+          const country = project.location || 'Unkown';
           
           for (const city of locations) {
             markerPromises.push(
@@ -887,7 +886,7 @@
     // function to get the city's lat/lon trhough Geocode API
     async function geocodeCity(city, country) {
       try {
-        const response = await fetch(`http://localhost:5000/geocode?city=${city}&country=${country}`);
+        const response = await fetch(`http://localhost:5000/geocode?city=${encodeURIComponent(city)}&country=${encodeURIComponent(country)}`);
         const data = await response.json();
         if (data.error) throw new Error(data.error);
         return [data.lat, data.lon];
