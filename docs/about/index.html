@@ -216,9 +216,12 @@ document.body.classList.add('about');
       // Update footer visibility based on current section
       function updateFooterVisibility() {
         if (current === 4) { // If we're on the last section (Community)
+          // Show footer with animation
+          gsap.set(footerWrapper, { display: "block", y: 50 }); // Start below view
           gsap.to(footerWrapper, { 
             autoAlpha: 1, 
-            duration: 0.5,
+            y: 0, // Slide up into view
+            duration: 0.75,
             position: 'fixed',
             bottom: 0,
             left: 0,
@@ -226,7 +229,8 @@ document.body.classList.add('about');
             zIndex: 999
           });
         } else {
-          gsap.to(footerWrapper, { autoAlpha: 0, duration: 0.5 });
+          // Make sure footer is hidden when on other sections
+          gsap.set(footerWrapper, { autoAlpha: 0, display: "none" });
         }
       }
     
@@ -392,12 +396,16 @@ document.body.classList.add('about');
         
         // Add footer animation to the timeline if needed
         if (current === 4) {
-          // If we're leaving the last section, hide footer with a smooth fade-out
-          // Using a separate animation to make it more visible
+          // If we're leaving the last section, hide footer with a smooth fade-out AND slide down
           gsap.to(footerWrapper, {
-            autoAlpha: 0,
-            duration: 1.25, // Match the main transition duration
-            ease: "slow.inOut" // Match the main transition ease
+            autoAlpha: 0, 
+            y: 50, // Move footer down out of view as it fades
+            duration: 1.25,
+            ease: "slow.inOut",
+            onComplete: function() {
+              // Reset position when fully invisible
+              gsap.set(footerWrapper, { y: 0, display: "none" });
+            }
           });
         }
       }
