@@ -109,16 +109,23 @@ section.first {
 }
 
 /* Background for each section */
-.bg.one {
-  background-color: #b7c3d5;
+.bg.one, .bg.five {
+  position: relative;
+  overflow: hidden;
+}
+
+.bg.one video, .bg.five video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
 }
 
 .bg.two, .bg.three, .bg.four {
   position: relative;
-}
-
-.bg.five {
-  background-color: #a8ccd0;
 }
 
 /* Case study images */
