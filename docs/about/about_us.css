@@ -109,12 +109,23 @@ section.first {
 }
 
 /* Background for each section */
-.bg.one, .bg.two, .bg.three, .bg.four {
+.bg.one, .bg.five {
   position: relative;
+  overflow: hidden;
 }
 
-.bg.five {
-  background-color: #a8ccd0;
+.bg.one video, .bg.five video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.bg.two, .bg.three, .bg.four {
+  position: relative;
 }
 
 /* Case study images */
@@ -136,9 +147,13 @@ section.first {
   background-color: rgba(255, 255, 255, 0.85);
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  text-align: left;
   position: relative;
   z-index: 2;
+}
+
+.section-content p {
+  margin-bottom: 1em;
 }
 
 .section-heading {
