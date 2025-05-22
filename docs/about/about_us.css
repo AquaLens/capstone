@@ -110,7 +110,7 @@ section.first {
 
 /* Background for each section */
 .bg.one {
-  background: linear-gradient(to top, #a4b5ca 50%, rgba(164, 181, 202, 0) 100%);
+  background: linear-gradient(to top, #a4b5ca 10%, rgba(164, 181, 202, 0) 100%);
 }
 
 .bg.two, .bg.three, .bg.four {
