@@ -26,6 +26,7 @@
   margin: 0;
   -webkit-mask-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0));
   background-size: contain;
+  margin-bottom: -1px;
 }
 
 .at_the_surface, .blink_vid {
@@ -52,6 +53,7 @@
   /* height: 100%; */
   width: 100vw;
   margin: 0px;
+  margin-top: -1px;
   padding: 0px;
 }
 
