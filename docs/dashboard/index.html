@@ -747,15 +747,6 @@
 
   <!-- Script Section -->
   <script>
-    const redPinIcon = L.icon({
-      iconUrl: 'pin2.png',  
-      iconSize: [25, 40],                 // adjust as needed
-      iconAnchor: [12, 41],               // tip of pin should touch location
-      popupAnchor: [1, -34],               // where popup opens relative to pin
-      shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
-      shadowSize: [41, 41],
-      shadowAnchor: [12, 41]
-    });
 
   // Fetch header and footer HTML
   fetch('/assets/header.html')
@@ -865,14 +856,15 @@
         for (const project of projects) {
           const locations = Array.isArray(project.specificLocations) ? project.specificLocations : [];
           const country = project.location || '';
-          
+          const customIcon = L.icon({iconUrl: 'pin2.png', iconSize: [32,32], iconAnchor: [16,32], popupAnchor: [0,-32]});
+
           for (const city of locations) {
             if (!city || !country) continue; 
             markerPromises.push(
               geocodeCity(city, country).then(coords => {
                 if (coords) {
-                  const marker = L.marker(coords, {icon: redPinIcon}).addTo(markersLayer);
-                  if (project._id) {
+                 const marker = L.marker(coords, {icon: customIcon}).addTo(markersLayer);
+                 if (project._id) {
                     projectMap.set(project._id, project);
                   }
 
