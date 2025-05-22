@@ -152,6 +152,10 @@ section.first {
   z-index: 2;
 }
 
+.section-content p {
+  margin-bottom: 1em;
+}
+
 .section-heading {
   margin-bottom: 1.5rem;
   color: #3a5a78;
