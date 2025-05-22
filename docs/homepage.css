@@ -56,11 +56,6 @@
   padding: 0px;
 }
 
-.at_the_surface,
-.blink_vid {
-  display: block;
-}
-
 .act1_section {
   bottom: 16%;
   left: 20%;
@@ -76,6 +71,7 @@
 }
 
 .act1_text {
+  display: block;
   color: white;
   font-size: 2vw;
   width: 80%;
