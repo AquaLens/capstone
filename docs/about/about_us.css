@@ -110,7 +110,7 @@ section.first {
 
 /* Background for each section */
 .bg.one {
-  background: radial-gradient(circle, #a4b5ca 90%, rgba(164, 181, 202, 0) 100%);
+  background-color: #b7c3d5;
 }
 
 .bg.two, .bg.three, .bg.four {
