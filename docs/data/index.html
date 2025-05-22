@@ -169,8 +169,8 @@
         </div>
           ` 
         },
-        'Nitrate Chlorophleth' : '...',
-        'Nitrogen Oxygen' : {
+        'Nitrate Chlorophleth' : {
+          
           'title' : 'Oxidized Nitrogen Levels',
           html: `
           <h2 style="text-align:center; margin-bottom: 1.2rem; color: #2a5885;">Global Trends in Oxidized Nitrogen Levels (1900–2025)</h2>
@@ -207,6 +207,45 @@
           </ul>
 
           <p style="margin-top: 2rem;"><strong>Data Source:</strong> <a href="https://gemstat.org/data-gemstat/data-portal/" target="_blank" style="color: #2a5885;">GEMStat Water Quality Database</a></p>
+        </div>
+          ` 
+        },
+        'Nitrogen Oxygen' : {
+          'title' : 'Oxidized Nitrogen Levels',
+          html: `
+          <h2 style="text-align:center; margin-bottom: 1.2rem; color: #2a5885;">
+          Oxidized Nitrogen vs Oxygen Demand (by Country)
+          </h2>
+
+          <h3>Data Source</h3>
+          <p>
+            The data was obtained from the GEMStat (Global Environmental Monitoring System for Water) database, a United Nations Environment Programme initiative. It compiles long-term chemical and biological water quality measurements from global monitoring stations.
+          </p>
+
+          <h3>Description of the Chart</h3>
+          <p>
+            This scatter plot compares average <strong>Oxidized Nitrogen</strong> (mg/L) and <strong>Oxygen Demand</strong> (mg/L) across countries. Each point represents the average values for one country:
+          </p>
+          <ul>
+            <li>The x-axis shows oxidized nitrogen concentrations — common in agricultural and wastewater pollution.</li>
+            <li>The y-axis reflects biological oxygen demand (BOD) — a measure of organic pollution.</li>
+            <li>Country names are labeled, and axes are scaled for readability.</li>
+          </ul>
+
+          <h3>Key Observations</h3>
+          <ul>
+            <li><strong>Greece</strong> and <strong>Italy</strong> have particularly high oxidized nitrogen levels.</li>
+            <li><strong>Mexico</strong> stands out with extremely high oxygen demand, indicating significant organic pollution.</li>
+            <li>Most countries cluster in the lower-left quadrant, showing lower levels of both pollutants.</li>
+            <li>A mild positive trend suggests a link between nitrogen runoff and organic pollution—consistent with eutrophication effects.</li>
+          </ul>
+
+          <div style="margin-top: 2rem; border-top: 1px solid #ddd; padding-top: 1rem; font-size: 14px; color: #555;">
+            <strong>Source:</strong> 
+            <a href="https://gemstat.org/data-gemstat/data-portal/" target="_blank" style="color: #2a5885;">
+              GEMStat Water Quality Database
+            </a>
+          </div>
         </div>
           ` 
         },
