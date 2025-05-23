@@ -31,7 +31,7 @@ document.querySelector('#dive_button').addEventListener('click', function () {
 
 // button scroll to explore
 document.querySelector('#explore_button').addEventListener('click', function () {
-  window.location.href = '/projects.html'; // Replace with the actual path to your projects page
+  window.location.href = '/projects/index.html'; // Replace with the actual path to your projects page
 });
 
 // importing gsap and ScrollTrigger
