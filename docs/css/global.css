@@ -1,11 +1,40 @@
 /* ------------ Global Styles ------------ */
+
 @font-face {
-    font-family: 'Futura';
-    src: url('../fonts/Futura Light.ttf') format('truetype');
-  }
+  font-family: 'Futura';
+  src: url('/fonts/Futura Std Book.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Futura';
+  src: url('/fonts/Futura Std Book Oblique.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Futura';
+  src: url('/fonts/Futura Std Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Futura';
+  src: url('/fonts/Futura Std Bold Oblique.woff2') format('woff2');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
 
   h2 {
-    font-family: 'Futura', Arial, sans-serif;
+    font-family: 'Futura', sans-serif;
     font-weight: 450;
     font-size: 2rem;
     margin-bottom: 1rem;
@@ -28,7 +57,7 @@
       display: flex;
       flex-direction: column;
       position: relative;
-      font-family: 'Futura', Arial, sans-serif;
+      font-family: 'Futura', sans-serif;
       color: #333;
       background-color: #f8f8f8;
       line-height: 1.6;
