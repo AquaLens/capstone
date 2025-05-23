@@ -130,7 +130,7 @@
 </div>
 
 <div class="gallery-item" onclick="openModal('visual_charts_graphs/forecast_diarrheal_deaths.html', 'Forecast: Diarrheal Disease Death Rate')">
-  <img src="visual_charts_graphs/images/diarrhea_forecast_thumb.png" alt="Forecast Chart" />
+  <img src="visual_charts_graphs/images/deathrate.jpg" alt="Forecast Chart" />
   <h4>Forecast: Diarrheal Death Rate</h4>
   <p>Projected global death rates from diarrheal diseases through 2030.</p>
 </div>
@@ -530,6 +530,60 @@
             </div>
           `
         },
+
+        'Forecasted Diarrheal Deaths': {
+          title: 'Forecast: Global Death Rate from Diarrheal Diseases (per 100,000)',
+          html: `
+            <div class="modal-analysis">
+
+              <p>
+                This chart presents a forecast of global mortality from diarrheal diseases per 100,000 people, using historical data from 1980 to 2020 and a 10-year projection through 2030.
+                The <strong>blue line</strong> represents the model's predicted death rate based on historical trends, while the <strong>shaded region</strong> shows the 95% confidence interval.
+                A <strong>red dashed line</strong> marks the start of the forecast period in 2024.
+              </p>
+
+              <h3>Why Diarrhea Was Chosen as a Water-Linked Indicator</h3>
+              <p>
+                Diarrheal diseases are one of the clearest indicators of poor water, sanitation, and hygiene (WASH) conditions. They are:
+              </p>
+              <ul>
+                <li><strong>Directly waterborne:</strong> Caused by consuming or coming into contact with unsafe water contaminated by bacteria, viruses, or parasites.</li>
+                <li><strong>Highly preventable:</strong> Through access to clean water, safe sanitation, and handwashing with soap.</li>
+                <li><strong>Globally impactful:</strong> Responsible for over <strong>440,000 child deaths annually</strong>, primarily in low-income countries.</li>
+              </ul>
+              <p>
+                Tracking diarrheal disease mortality offers a powerful lens into how well global water access goals (like SDG 6) are being achieved.
+              </p>
+
+              <h3>Model & Data</h3>
+              <ul>
+                <li><strong>Source Data:</strong> WHO/UNICEF Joint Monitoring Programme (JMP), IHME Global Burden of Disease (GBD)</li>
+                <li><strong>Timeframe:</strong> Observed data from 1980–2020, forecast through 2030</li>
+              </ul>
+
+              <h3>Key Insights</h3>
+              <ul>
+                <li><strong>Consistent decline:</strong> Mortality has dropped from 100 to below 20 per 100,000 between 1980 and 2020.</li>
+                <li><strong>Forecast:</strong> The trend is projected to continue, with deaths potentially reaching single digits globally by 2030.</li>
+                <li><strong>Regional Disparities:</strong> Sub-Saharan Africa and South Asia remain disproportionately affected.</li>
+              </ul>
+
+              <h3>Health and Policy Implications</h3>
+              <p>
+                The forecast underscores the critical need for <strong>sustainable water infrastructure</strong>, <strong>sanitation systems</strong>, and <strong>health education</strong>.
+                It highlights how improved WASH conditions can directly reduce child mortality and prevent future disease outbreaks.
+              </p>
+
+              <p style="margin-top: 2rem;">
+                <strong>Data Source:</strong> 
+                <a href="https://www.who.int/data/gho" target="_blank" style="color:#2a5885;">WHO Global Health Observatory</a>, 
+                <a href="https://vizhub.healthdata.org/gbd-results/" target="_blank" style="color:#2a5885;">IHME GBD Results Tool</a>
+              </p>
+
+            </div>
+          `
+        },
+
 
 
 
