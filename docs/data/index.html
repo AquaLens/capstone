@@ -222,8 +222,55 @@
 
           'Access to Drinking Water based on Wealth' : {
             title : 'Access to Drinking Water based on Wealth',
-            html : ''
-          },
+            html : `<div class="modal-analysis"> 
+              <p>This visualization examines disparities in access to basic services between wealth quintiles, aligned with SDG 10 (Reduced Inequalities) and SDG 6 (Clean Water and Sanitation). The map tracks service access gaps through three key metrics:</p>
+              
+              <p>The animated map shows:<br>
+              <strong>Equitable Access</strong> (Dark Green): ≤1.5 ratio between richest and poorest quintiles<br>
+              <strong>Moderate Inequality</strong> (Yellow): 1.6-3.0 ratio<br>
+              <strong>Severe Inequality</strong> (Red): >3.0 ratio</p>
+
+              <p><strong>Extreme Disparity Cases:</strong><br>
+              - Chad (19.2x advantage for richest)<br>
+              - DR Congo (49.8x advantage)<br>
+              - Angola (4.3x advantage)</p>
+
+              <h3>Key Inequality Patterns</h3>
+              <ul>
+                  <li><strong>Urban-Rural Divide:</strong> 
+                      <br>- Capital cities show 2-3x better access than rural areas
+                      <br>- Nigeria: 95% urban vs 43% rural water access</li>
+                  <li><strong>Conflict Zones:</strong> 
+                      <br>- Yemen (3.0x), Afghanistan (8.0x) show crisis-level disparities</li>
+                  <li><strong>Regional Leaders:</strong>
+                      <br>- <span style="color:#2E8B57">Costa Rica</span> (1.0x)
+                      <br>- <span style="color:#2E8B57">Belarus</span> (1.0x)</li>
+              </ul>
+
+              <h3>Service-Specific Trends</h3>
+              <ul>
+                  <li><strong>Water Access:</strong> Largest disparities in Sub-Saharan Africa (Avg ratio 4.1x)</li>
+                  <li><strong>Sanitation:</strong> South Asia shows highest inequality (India 1.1x vs Pakistan 1.2x)</li>
+                  <li><strong>Healthcare:</strong> Latin America has widest gaps (Brazil 9.0x historical peak)</li>
+              </ul>
+
+              <div class="data-highlights">
+                  <p><strong>Notable Improvements (2010-2020):</strong><br>
+                  - Bangladesh: Reduced ratio from 5.4x to 1.1x<br>
+                  - Ethiopia: 8.2x → 3.1x<br>
+                  - Cambodia: 3.0x → 1.6x</p>
+              </div>
+
+              <p style="margin-top:2rem;">
+                  <strong>Methodology Note:</strong> 'Poorest'/'Richest' represent bottom/top 20% wealth quintiles. Ratios calculated as [Richest% ÷ Poorest%].
+              </p>
+
+              <p style="margin-top:1rem;">
+                  <strong>Data Source:</strong>
+                  <a href="https://www.who.int/publications/i/item/9789240030848" target="_blank">WHO Global Health Observatory, Annex 7</a>
+              </p>
+          </div>`
+      },
 
           'Oxygen Map' : {
           'title' : 'Oxygen demand',
