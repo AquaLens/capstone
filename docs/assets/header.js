@@ -1,3 +1,5 @@
+console.log("global.js loaded");
+
 document.addEventListener("DOMContentLoaded", () => {
   const currentPath = window.location.pathname.replace(/\/$/, '');
   console.log("Current Path:", currentPath);
