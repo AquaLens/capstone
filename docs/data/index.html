@@ -346,6 +346,72 @@
           ` 
         },
         'Transperency Map' : {
+          title: 'Global Transparency in Water Reporting',
+          html: `
+            <div class="modal-analysis">
+              <h2 style="text-align:center; margin-bottom: 1.2rem; color: #2a5885;">
+                Transparency in National Water Quality Reporting
+              </h2>
+
+              <h3>Data Source and Methodology</h3>
+              <p>
+                This data is derived from the 
+                <a href="https://glaas.who.int" target="_blank" style="color: #2a5885;">
+                  WHO GLAAS (Global Analysis and Assessment of Sanitation and Drinking-Water)
+                </a> portal, based on the 2021 reporting cycle. It evaluates countries’ practices in publishing national water safety reports across urban and rural areas.
+                Data processing and visualization were performed using <code>pandas</code>, <code>matplotlib</code>, <code>seaborn</code>, and <code>plotly.express</code> in Python.
+              </p>
+
+              <h3>Choropleth Map Overview</h3>
+              <p>
+                The map visualizes global transparency scores on a scale from 0 to 1:
+                <ul>
+                  <li><strong>Green (1):</strong> Full transparency in water reporting.</li>
+                  <li><strong>Red (0):</strong> No reporting or publicly available data.</li>
+                </ul>
+                Europe and East Asia tend to perform well, while large portions of Sub-Saharan Africa, Southeast Asia, and Latin America show serious reporting gaps.
+              </p>
+
+              <h3>Urban vs Rural Reporting</h3>
+              <p>
+                Urban areas tend to have more robust reporting systems than rural ones:
+                <ul>
+                  <li><strong>Urban:</strong> Higher share of “Fully Reported” entries.</li>
+                  <li><strong>Rural:</strong> Dominated by “No” or “Partial” reporting — a sign of systemic inequities in infrastructure and data systems.</li>
+                </ul>
+              </p>
+
+              <h3>Publishing Status Breakdown (Bar + Pie Charts)</h3>
+              <p>
+                Bar and pie charts reinforce these insights:
+                <ul>
+                  <li>Urban water safety reports: 37.1% Fully published, 29.8% Partially, 25% Not published, and 8.1% No response.</li>
+                  <li>These figures highlight ongoing inconsistencies in national WASH transparency, even in more resourced areas.</li>
+                </ul>
+              </p>
+
+              <h3>Why Transparency Matters</h3>
+              <ul>
+                <li><strong>Public Health:</strong> Transparent data enables faster responses to contamination and builds public trust.</li>
+                <li><strong>Governance:</strong> Countries that report consistently demonstrate institutional strength and accountability.</li>
+                <li><strong>Equity:</strong> The urban-rural divide underscores global inequality in monitoring systems and access to safe water.</li>
+                <li><strong>Policy Design:</strong> Reliable reporting informs better infrastructure decisions and international comparisons.</li>
+              </ul>
+
+              <h3>Conclusion</h3>
+              <p>
+                While global efforts toward WASH transparency are advancing, significant disparities persist — especially in rural and low-income regions.
+                Supporting monitoring capacity and institutional infrastructure remains essential to achieving SDG 6 (Clean Water and Sanitation for All).
+              </p>
+
+              <div style="margin-top: 2rem; border-top: 1px solid #ddd; padding-top: 1rem; font-size: 14px; color: #555;">
+                <strong>Source:</strong> 
+                <a href="https://glaas.who.int" target="_blank" style="color: #2a5885;">
+                  WHO GLAAS Portal
+                </a>
+              </div>
+            </div>
+          `
           
         },
         'Average pH Levels': {
