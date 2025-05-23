@@ -14,19 +14,25 @@ requestAnimationFrame(raf)
 
 // button scroll to scene1
 document.querySelector('#dive_button').addEventListener('click', function () {
-    const target = document.querySelector('.scene1');
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
+    const scene1 = document.querySelector('.scene1');
+
+    if (scene1) {
+        // calculate the scroll position
+        const scene1Top = scene1.getBoundingClientRect().top + window.scrollY;
+        const scrollTarget = scene1Top + (scene1.offsetHeight * 0.30);
+
+        // ccroll to the calculated position
+        window.scrollTo({
+            top: scrollTarget,
+            behavior: 'smooth'
+        });
     }
-  });
+});
 
 // button scroll to explore
 document.querySelector('#explore_button').addEventListener('click', function () {
-    const target = document.querySelector('.explore');
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
-  });
+  window.location.href = '/projects'; 
+});
 
 // importing gsap and ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
@@ -55,26 +61,35 @@ gsap.to(".act1_text", {
     }
 });
 
-gsap.to(".wiggle_n", {
-    y: -8,
-    duration: 1.0,
-    repeat: -1,
-    yoyo: true,
-    ease: "sine.inOut"
+gsap.set(".wiggle_a img, .wiggle_p img, .wiggle_n img", {
+  force3D: true
 });
-gsap.to(".wiggle_a", {
-    y: -8,
-    duration: 1.1,
-    repeat: -1,
-    yoyo: true,
-    ease: "cos.inOut"
+
+gsap.to(".wiggle_a img", {
+  y: -8,
+  duration: 1.1,
+  repeat: -1,
+  yoyo: true,
+  ease: "power1.inOut",
+  force3D: true
 });
-gsap.to(".wiggle_p", {
-    y: -8,
-    duration: 0.85,
-    repeat: -1,
-    yoyo: true,
-    ease: "cos.inOut"
+
+gsap.to(".wiggle_p img", {
+  y: -8,
+  duration: 0.85,
+  repeat: -1,
+  yoyo: true,
+  ease: "power1.inOut",
+  force3D: true
+});
+
+gsap.to(".wiggle_n img", {
+  y: -8,
+  duration: 1,
+  repeat: -1,
+  yoyo: true,
+  ease: "power1.inOut",
+  force3D: true
 });
 
 // // Create the timeline
@@ -137,7 +152,7 @@ gsap.fromTo("#quote_1",
     ease: "power2.out",
     scrollTrigger: {
       trigger: ".scene3",
-      start: "top top", // when the top of ___ hits the center of viewport
+      start: "10%-top center", // when the top of ___ hits the center of viewport
       toggleActions: "play none none reverse", // optional: makes it fade out on scroll up
       markers: false  
     }
@@ -153,7 +168,7 @@ gsap.fromTo("#quote_2",
     ease: "power2.out",
     scrollTrigger: {
       trigger: ".scene3",
-      start: "15.5%+top top", // when the top of ___ hits the center of viewport
+      start: "9.5%+top top", // when the top of ___ hits the center of viewport
       toggleActions: "play none none reverse", // optional: makes it fade out on scroll up
       markers: false  
     }
@@ -169,7 +184,7 @@ gsap.fromTo("#quote_3",
     ease: "power2.out",
     scrollTrigger: {
       trigger: ".scene3",
-      start: "30.5%+top top", // when the top of ___ hits the center of viewport
+      start: "25%+top top", // when the top of ___ hits the center of viewport
       toggleActions: "play none none reverse", // optional: makes it fade out on scroll up
       markers: false  
     }
@@ -185,7 +200,7 @@ gsap.fromTo("#quote_4",
     ease: "power2.out",
     scrollTrigger: {
       trigger: ".scene3",
-      start: "46.4%+top top", // when the top of ___ hits the center of viewport
+      start: "40%+top top", // when the top of ___ hits the center of viewport
       toggleActions: "play none none reverse", // optional: makes it fade out on scroll up
       markers: false  
     }
@@ -201,7 +216,7 @@ gsap.fromTo("#quote_5",
     ease: "power2.out",
     scrollTrigger: {
       trigger: ".scene3",
-      start: "61%+top top", // when the top of ___ hits the center of viewport
+      start: "55%+top top", // when the top of ___ hits the center of viewport
       toggleActions: "play none none reverse", // optional: makes it fade out on scroll up
       markers: false  
     }
@@ -214,8 +229,8 @@ gsap.to(".act3_text", {
     duration: 1,
     ease: "power2.out",
     scrollTrigger: {
-        trigger: ".scene3",
-        start: "bottom bottom",
+        trigger: ".act3_text",
+        start: "bottom 80%+bottom",
         end: "+=400",
         scrub: true
     }
@@ -303,7 +318,7 @@ gsap.fromTo(".project_container",
 ScrollTrigger.create({
     trigger: ".scene5",
     start: "bottom bottom",
-    end: "+=2000",
+    end: "+=1600",
     pin: true,
     anticipatePin: 1,
     scrub: true
@@ -337,7 +352,7 @@ scene5Timeline.to("#act5_text_2", {
   y: 0,
   duration: 2,
   ease: "power2.out",
-  delay: 3 // x-second delay before this animation starts
+  delay: 2.5 // x-second delay before this animation starts
 });
 
 // const section = document.querySelector('section.vid')

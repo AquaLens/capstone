@@ -764,9 +764,18 @@
 
   <script>
   // Fetch header and footer HTML
-fetch('/assets/header.html')
+  fetch('/assets/header.html')
   .then(res => res.text())
-  .then(html => document.getElementById('header').innerHTML = html);
+  .then(html => {
+    document.getElementById('header').innerHTML = html;
+    // Manually load and execute the header script
+    return fetch('/assets/header.js');
+  })
+  .then(res => res.text())
+  .then(scriptContent => {
+    // Execute the script content
+    eval(scriptContent);
+  });
 
 fetch('/assets/footer.html')
   .then(res => res.text())

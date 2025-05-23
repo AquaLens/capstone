@@ -1,23 +1,33 @@
-.water_animation_container {
+h.water_animation_container {
     height: 100vh;
     background-size: contain;
 }
 
+.wiggle_a, .wiggle_p {
+    /* display: inline-block; /* necessary if animating y movement on inline elements */
+    /* position: relative; */
+    will-change: transform;
+}
+
+.wiggle_img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  will-change: transform;
+}
+
 .pin_section {
   position: relative;
-  width: 100%;
-  margin: 0;
-  padding: 0;
+  width: 100vw;
 }
 
 .scene1 {
   position: relative;
-  width: 100%;
-  overflow: hidden;
+  width: 100vw;
 }
 
 .at_the_surface {
-  width: 100%;
+  width: 100vw;
   object-fit: cover;
   display: block;
   z-index: 0;
@@ -25,12 +35,6 @@
   margin: 0;
   -webkit-mask-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0));
   background-size: contain;
-  margin-bottom: -1px;
-}
-
-.at_the_surface, .blink_vid {
-  display: block; /* Prevents inline spacing issues */
-  border: none;
 }
 
 .aqualens_title,
@@ -51,27 +55,30 @@
 .blink_vid{
   /* height: 100%; */
   width: 100vw;
-  margin: 0px;
-  margin-top: -1px;
-  padding: 0px;
+  margin: 0%;
+  padding: 0%;
+}
+
+.at_the_surface,
+.blink_vid {
+  display: block;
 }
 
 .act1_section {
   bottom: 16%;
   left: 20%;
-  padding-right: 40px;
+  padding-right: 4%;
   z-index: 10;
 }
 
 .act1_text_section_2 {
   bottom: 10%;
   left: 20%;
-  padding-right: 40px;
+  padding-right: 4%;
   z-index: 10;
 }
 
 .act1_text {
-  display: block;
   color: white;
   font-size: 2vw;
   width: 80%;
@@ -98,6 +105,7 @@
   color: #222;
   border-radius: 5px;
   transition: transform 0.2s ease;
+  z-index: 100;
 }
 
 #dive_button:hover {
@@ -116,13 +124,14 @@
   color: #222;
   border-radius: 5px;
   transition: transform 0.2s ease;
+  z-index: 100;
 }
 
 #explore_button:hover {
   transform: scale(1.05);
 }
 
-section.vid {
+/* section.vid {
   height: 3000px;
   background-color: white;
 }
@@ -136,10 +145,10 @@ section.vid video {
   width: 100vw;
   height: 100vh;
   object-fit: cover;
-}
+} */
 
 .picture {
-  width: 100%;
+  width: 100vw;
   object-fit: cover;
   display: block;
   z-index: -10;
@@ -150,12 +159,12 @@ section.vid video {
 
 .pin_section_2 {
   position: relative;
-  width: 100%;
+  width: 100vw;
 }
 
 .scene2 {
   position: relative;
-  width: 100%;
+  width: 100vw;
   min-height: 100vh; /* or a value that makes sense */
 }
 
@@ -171,7 +180,7 @@ section.vid video {
   position: absolute;
   /* top: 15vh; */
   /* left: 10%; */
-  width: 15%; 
+  width: 100%; 
   z-index: 3;
 }
 
@@ -179,7 +188,7 @@ section.vid video {
   position: absolute;
   /* top: 40vh; */
   /* right: 10%; */
-  width: 15%; 
+  width: 100%; 
   z-index: 3;
 }
 
@@ -187,7 +196,7 @@ section.vid video {
   position: absolute;
   /* top: 70vh; */
   /* right: 30%; */
-  width: 12%; 
+  width: 100%; 
   z-index: 3;
 }
 
@@ -195,30 +204,35 @@ section.vid video {
   position: relative;
   top: 5%;
   left: 10%;
+  width: 15%;
 }
 
 .ammonium_container {
   position: relative;
-  top: 17.5%;
-  right: -75%
+  top: 10.5%;
+  right: -75%;
+  width: 15%;
 }
 
 .plastic_bag_container {
   position: relative;
-  top: 30%;
-  right: -60%
+  top: 16%;
+  right: -60%;
+  width: 12%;
+  z-index: 1000;
+  /* height: 10%; */
 }
 
 .tooltip {
-  position: absolute;
-  bottom: -150px;
-  left: 20%; /* Adjust to move tooltip beside image */
+  position: relative;
+  left: 110%;
   color: black;
   background:white;
-  border-radius: 10px;
-  max-width: 50vw;
+  border-radius: 1vw;
+  width: 50vw;
+  /* max-width: 50vw; */
   /* height:150px; */
-  padding: 1% 2%;
+  padding: 8% 12%;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   white-space: nowrap;
   z-index: 10;
@@ -231,25 +245,25 @@ section.vid video {
 .tooltip:before {
     content:"";
     position: absolute;
-    height: 0px;
-    width: 0px;
-    top: 60px;
-    left: -29px; /* 1px buffer for zooming problems while rendering*/
-    border-width: 15px;
+    height: 0%;
+    width: 0%;
+    top: 40%;
+    left: -3.8%; /* 1px buffer for zooming problems while rendering*/
+    border-width: 1vw;
     border-color: transparent white transparent transparent;
     border-style: solid;
 }
 
 .tooltip_left {
-  position: absolute;
-  bottom: -150px;
-  left: -53%; /* Adjust to move tooltip beside image */
+  position: relative;
+  /* bottom: -150px; */
+  right: 348%; /* Adjust to move tooltip beside image */
   color: black;
   background:white;
-  border-radius: 10px;
-  max-width: 50vw;
+  border-radius: 1vw;
+  width: 50vw;
   /* height:150px; */
-  padding: 1% 2%;
+  padding: 8% 12%;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   white-space: nowrap;
   z-index: 10;
@@ -262,11 +276,42 @@ section.vid video {
 .tooltip_left:after {
     content:"";
     position: absolute;
-    height: 0px;
-    width: 0px;
-    top: 60px;
-    right: -28px; /* 1px buffer for zooming problems while rendering */
-    border-width: 15px;
+    height: 0%;
+    width: 0%;
+    top: 40%;
+    right: -3.8%; /* 1px buffer for zooming problems while rendering */
+    border-width: 1vw;
+    border-color: transparent transparent transparent white;
+    border-style: solid;
+}
+
+.tooltip_lefter {
+  position: relative;
+  /* bottom: -150px; */
+  right: 435%; /* Adjust to move tooltip beside image */
+  color: black;
+  background:white;
+  border-radius: 1vw;
+  width: 50vw;
+  /* height:150px; */
+  padding: 8% 12%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  white-space: nowrap;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  text-wrap: wrap;
+}
+
+.tooltip_lefter:after {
+    content:"";
+    position: absolute;
+    height: 0%;
+    width: 0%;
+    top: 40%;
+    right: -3.8%; /* 1px buffer for zooming problems while rendering */
+    border-width: 1vw;
     border-color: transparent transparent transparent white;
     border-style: solid;
 }
@@ -284,7 +329,7 @@ section.vid video {
   opacity: 1;
 }
 
-.plastic_bag_container:hover .tooltip_left {
+.plastic_bag_container:hover .tooltip_lefter {
   opacity: 1;
 }
 
@@ -361,54 +406,72 @@ section.vid video {
 
 .scene3 {
   position: relative;
-  width: 100%;
+  width: 100vw;
   min-height: 100vh; /* or a value that makes sense */
 }
 
 .pin_section_3 {
   position: relative;
-  width: 100%;
+  width: 100vw;
 }
 
 .quote {
   position: absolute;
-  width: 63%;
+  width: 100%;
 }
 
 .quote_text_container {
   position: absolute;
   z-index: 100;
-  padding-top: 2%;
-  left: 8%;
+  left: 13.9%;
+  padding-top: 3.4%;
+  padding-right: 5%;
   /* border: solid 1px black; */
-  width: 50%;
+  width: 83%;
   text-wrap: wrap;
-  height: 100%
+  height: 100%;
 }
 
 .quote_text_container_right {
   position: absolute;
   z-index: 100;
-  padding-top: 2%;
-  left: 5%;
+  padding-top: 5.3%;
+  left: 8.3%;
   /* border: solid 1px black; */
-  width: 50%;
+  width: 83%;
   text-wrap: wrap;
   height: 100%;
   margin-inline: auto; 
   /* width: fit-content; */
+  /* border: red solid 2px;  */
+}
+
+.quote_text_container_right_2 {
+  position: absolute;
+  z-index: 100;
+  padding-top: 3.4%;
+  padding-right: 4.5%;
+  left: 8.8%;
+  /* border: solid 1px black; */
+  width: 83%;
+  text-wrap: wrap;
+  height: 100%;
+  margin-inline: auto; 
+  /* width: fit-content; */
+  /* border: red solid 2px;  */
 }
 
 .quote_text {
   color: black;
-  font-size: 1.8vw;
+  font-size: 1.7vw;
+  /* border: red solid 2px;  */
 }
 
 #quote_1 {
   position: absolute;
   top: 5.8%;
   left: 16%;
-  width: 100%;
+  width: 60%;
   z-index: 3;
   opacity: 0;
   transform: translateY(10px);
@@ -418,8 +481,8 @@ section.vid video {
 #quote_2 {
   position: absolute;
   top: 21.3%;
-  right: -20.4%;
-  width: 100%;
+  right: 16.5%;
+  width: 60%;
   z-index: 3;
   opacity: 0;
   transform: translateY(10px);
@@ -430,7 +493,7 @@ section.vid video {
   position: absolute;
   top: 36.3%;
   left: 16%;
-  width: 100%;
+  width: 60%;
   z-index: 3;
   opacity: 0;
   transform: translateY(10px);
@@ -440,8 +503,8 @@ section.vid video {
 #quote_4 {
   position: absolute;
   top: 52.2%;
-  right: -20.4%;
-  width: 100%;
+  right: 16.5%;
+  width: 60%;
   z-index: 3;
   opacity: 0;
   transform: translateY(10px);
@@ -452,7 +515,7 @@ section.vid video {
   position: absolute;
   top: 66.8%;
   left: 16%;
-  width: 100%;
+  width: 60%;
   z-index: 3;
   opacity: 0;
   transform: translateY(10px);
@@ -477,7 +540,7 @@ section.vid video {
 
 .scene4 {
   position: relative;
-  width: 100%;
+  width: 100vw;
   min-height: 100vh; /* or a value that makes sense */
 }
 
@@ -545,14 +608,14 @@ section.vid video {
 
 .scene5 {
   position: relative;
-  width: 100%;
+  width: 100vw;
   min-height: 100vh; /* or a value that makes sense */
   /* border: solid 2px black; */
 }
 
 .pin_section_5 {
   position: relative;
-  width: 100%;
+  width: 100vw;
 }
 
 /* #project_container_1 {
@@ -643,6 +706,6 @@ section.vid video {
   .website_sections {
     flex-direction: column;
     gap: 20px; /* vertical spacing when stacked */
-    align-items: center; /* optional: center vertically stacked boxes */
-  }
+    align-items: center; /* optional: center vertically stacked boxes */  
+}
 }
