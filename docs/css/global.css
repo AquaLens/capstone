@@ -131,7 +131,7 @@
   }
   
   .nav-links a.active {
-    color: #ffffff !important;
+    color: #ffffff;
   }
 
   .nav-links a:hover {
