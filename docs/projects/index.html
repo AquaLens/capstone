@@ -1473,6 +1473,25 @@ function getFilteredProjects() {
   window.resetConversation = resetConversation;
 });
 
+// Debug script - remove after fixing
+setTimeout(() => {
+  console.log("=== DEBUGGING NAVIGATION ===");
+  console.log("Current URL:", window.location.href);
+  console.log("Current pathname:", window.location.pathname);
+  
+  const navLinks = document.querySelectorAll('.nav-links a');
+  console.log("Total nav links found:", navLinks.length);
+  
+  navLinks.forEach((link, index) => {
+    console.log(`Link ${index}:`, {
+      href: link.href,
+      pathname: new URL(link.href).pathname,
+      hasActiveClass: link.classList.contains('active'),
+      computedColor: window.getComputedStyle(link).color
+    });
+  });
+}, 1000);
+
   </script>
 </body>
 </html>
