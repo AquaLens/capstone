@@ -16,5 +16,4 @@ if (activeLinkId) {
   if (activeLink) {
     activeLink.classList.add('active');
   }
-  color: white; /* Highlight color for the active link */
 }
