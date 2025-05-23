@@ -159,7 +159,7 @@
 
 <!-- Modal -->
 <div id="modal" class="modal" onclick="closeModal()">
-  <div class = "model-content-wrapper" onlick= "event.stopPropagation()">
+  <div class = "modal-content-wrapper" onclick= "event.stopPropagation()">
     <button class ="modal-close" onclick = "closeModal()">x</button>
     <h2 id="modal-title"></h2>
     <iframe id="modal-content"></iframe>
@@ -610,14 +610,14 @@
     function openModal(src, key) {
         const desc = descriptions[key] || {};
         document.getElementById('modal-content').src = src;
-        document.getElementById('modal-sidebar').innerHTML = desc.html || '';
+        document.getElementById('modal-description').innerHTML = desc.html || '';
         document.getElementById('modal').style.display = 'flex';
     }
 
     function closeModal() {
         document.getElementById('modal').style.display = 'none';
         document.getElementById('modal-content').src = '';
-        document.getElementById('modal-sidebar').innerHTML = '';
+        document.getElementById('modal-description').innerHTML = '';
     }
 
     fetch('/assets/header.html')
