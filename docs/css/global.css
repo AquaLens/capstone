@@ -130,8 +130,8 @@
     transition: color 0.2s ease;
   }
   
-  .active {
-    color: white; /* Highlight color for the active link */
+  .nav-links a.active {
+    color: #ffffff;
   }
 
   .nav-links a:hover {

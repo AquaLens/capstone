@@ -1,5 +1,5 @@
 // Get the current path
-const currentPath = window.location.pathname;
+const currentPath = window.location.pathname.replace(/\/$/, '');
 
 // Map paths to their corresponding link IDs
 const linkMap = {
