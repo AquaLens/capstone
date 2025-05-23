@@ -306,40 +306,43 @@
         'Nitrogen Oxygen' : {
           'title' : 'Oxidized Nitrogen Levels',
           html: `
-          <h2 style="text-align:center; margin-bottom: 1.2rem; color: #2a5885;">
-          Oxidized Nitrogen vs Oxygen Demand (by Country)
-          </h2>
+          <div class="modal-analysis">
+            <h2 style="text-align:center; margin-bottom: 1.2rem; color: #2a5885;">
+              Oxidized Nitrogen vs Oxygen Demand (by Country)
+            </h2>
 
-          <h3>Data Source</h3>
-          <p>
-            The data was obtained from the GEMStat (Global Environmental Monitoring System for Water) database, a United Nations Environment Programme initiative. It compiles long-term chemical and biological water quality measurements from global monitoring stations.
-          </p>
+            <h3>Data Source</h3>
+            <p>
+              This data comes from the 
+              <a href="https://gemstat.org/data-gemstat/data-portal/" target="_blank" style="color: #2a5885;">
+              GEMStat Global Water Quality Database</a>, a UNEP initiative that provides chemical and biological monitoring data from water bodies worldwide.
+            </p>
 
-          <h3>Description of the Chart</h3>
-          <p>
-            This scatter plot compares average <strong>Oxidized Nitrogen</strong> (mg/L) and <strong>Oxygen Demand</strong> (mg/L) across countries. Each point represents the average values for one country:
-          </p>
-          <ul>
-            <li>The x-axis shows oxidized nitrogen concentrations — common in agricultural and wastewater pollution.</li>
-            <li>The y-axis reflects biological oxygen demand (BOD) — a measure of organic pollution.</li>
-            <li>Country names are labeled, and axes are scaled for readability.</li>
-          </ul>
+            <h3>Chart Overview</h3>
+            <p>
+              This scatter plot compares two key water quality parameters across countries:
+            </p>
+            <ul>
+              <li><strong>Oxidized Nitrogen (x-axis):</strong> Often linked to agricultural runoff and sewage discharge.</li>
+              <li><strong>Oxygen Demand (y-axis):</strong> Indicates organic pollution levels by measuring how much oxygen is consumed to break down waste.</li>
+              <li>Each point represents a country, with axes scaled for readability and labels for easy comparison.</li>
+            </ul>
 
-          <h3>Key Observations</h3>
-          <ul>
-            <li><strong>Greece</strong> and <strong>Italy</strong> have particularly high oxidized nitrogen levels.</li>
-            <li><strong>Mexico</strong> stands out with extremely high oxygen demand, indicating significant organic pollution.</li>
-            <li>Most countries cluster in the lower-left quadrant, showing lower levels of both pollutants.</li>
-            <li>A mild positive trend suggests a link between nitrogen runoff and organic pollution—consistent with eutrophication effects.</li>
-          </ul>
+            <h3>Key Observations</h3>
+            <ul>
+              <li><strong>Greece</strong> and <strong>Italy</strong> exhibit high oxidized nitrogen levels, suggesting intensive fertilizer use or insufficient treatment.</li>
+              <li><strong>Mexico</strong> stands out with the highest oxygen demand, indicating major organic pollution sources.</li>
+              <li>Most countries cluster near the lower-left quadrant, suggesting generally lower pollutant levels.</li>
+              <li>A weak positive trend suggests that higher nitrogen pollution may be associated with increased organic pollution — a classic sign of eutrophication.</li>
+            </ul>
 
-          <div style="margin-top: 2rem; border-top: 1px solid #ddd; padding-top: 1rem; font-size: 14px; color: #555;">
-            <strong>Source:</strong> 
-            <a href="https://gemstat.org/data-gemstat/data-portal/" target="_blank" style="color: #2a5885;">
-              GEMStat Water Quality Database
-            </a>
+            <div style="margin-top: 2rem; border-top: 1px solid #ddd; padding-top: 1rem; font-size: 14px; color: #555;">
+              <strong>Source:</strong> 
+              <a href="https://gemstat.org/data-gemstat/data-portal/" target="_blank" style="color: #2a5885;">
+                GEMStat Water Quality Database
+              </a>
+            </div>
           </div>
-        </div>
           ` 
         },
         'Transperency Map' : {
