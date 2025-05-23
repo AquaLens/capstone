@@ -55,7 +55,7 @@
     </div>
 
     <div class="gallery-item" onclick="openModal('visual_charts_graphs/poorest_access_map.html','Access to Drinking Water based on Wealth')">
-      <img src="visual_charts_graphs/images/topstress.jpg" alt="Access to Drinking Water based on Wealth" />
+      <img src="" alt="Access to Drinking Water based on Wealth" />
       <h4>Access to Drinking Water based on Wealth - Poorest </h4>
       <p>Access to Drinking Water based on Wealth</p>
     </div>
@@ -149,9 +149,13 @@
 <div id="footer"></div>
 
 <!-- Modal -->
-<div id="modal" class="modal" onclick="closeModal()" style="display:none; flex-direction:row;background:rgba(0,0,0,0.8);position:fixed; top:0; left:0; width:100%; height:100%; z-index:1000;">
-    <iframe id="modal-content" src="" frameborder="0" style="width:75%; height:100%; border:none;"></iframe>
-    <div id="modal-sidebar" style="width:25%; padding:1rem; background:#fff; overflow-y:auto; color:#000;"></div>
+<div id="modal" class="modal" onclick="closeModal()">
+  <div class = "model-content-wrapper" onlick= "event.stopPropagation()">
+    <button class ="modal-close" onclick = "closeModal()">x</button>
+    <h2 id="modal-title"></h2>
+    <iframe id="modal-content"></iframe>
+    <div id = "modal-description"></div>
+  </div>
 </div>
           
     <!-- Scripts -->
