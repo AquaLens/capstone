@@ -31,11 +31,8 @@ document.querySelector('#dive_button').addEventListener('click', function () {
 
 // button scroll to explore
 document.querySelector('#explore_button').addEventListener('click', function () {
-    const target = document.querySelector('.explore');
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
-  });
+  window.location.href = '/projects.html'; // Replace with the actual path to your projects page
+});
 
 // importing gsap and ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
