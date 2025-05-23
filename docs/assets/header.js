@@ -1,4 +1,4 @@
-console.log("global.js loaded");
+console.log("header.js loaded");
 
 document.addEventListener("DOMContentLoaded", () => {
   const currentPath = window.location.pathname.replace(/\/$/, '');
