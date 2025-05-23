@@ -130,7 +130,7 @@
     transition: color 0.2s ease;
   }
   
-  .nav-links a.active {
+  ul.nav-links a.active {
     color: #ffffff;
   }
 
