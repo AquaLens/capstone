@@ -209,6 +209,21 @@
       color: #2a5885;
     }
 
+    .modal-analysis img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 1rem auto;
+      border: 1px solid #eee;
+      border-radius: 3px;
+    }
+    .image-container {
+      padding: 15px;
+      background: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin: 25px 0;
+    }
+
     .modal-highlight {
       background: #f2f9ff;
       padding: 1.2rem 1.5rem;
