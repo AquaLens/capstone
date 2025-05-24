@@ -127,7 +127,7 @@
       <p>This scatter plot shows a positive trend</p>
     </div>
     <div class="gallery-item" onclick="openModal('visual_charts_graphs/forecast_diarrheal_deaths.html', 'Forecast: Diarrheal Disease Death Rate')">
-      <img src="visual_charts_graphs/images/deathrate.jpg" alt="Forecast Chart" />
+      <img src="visual_charts_graphs/images/death_rate_thumb.avif" alt="Forecast Chart" />
       <h4>Forecast: Diarrheal Death Rate</h4>
       <p>Projected global death rates from diarrheal diseases through 2030.</p>
     </div>
@@ -638,7 +638,67 @@
           },
 
           'Forecast: Diarrheal Disease Death Rate':{
-            
+            title: 'Forecast: Diarrheal Disease Death Rate',
+            html: `
+              <div class="modal-analysis">
+                <h2 style="text-align:center; margin-bottom: 1.2rem; color: #2a5885;">
+                  Forecast: Global Death Rate from Diarrheal Diseases (per 100,000 people)
+                </h2>
+
+                <p>
+                  This analysis uses time-series forecasting (Prophet model) to project death rates from diarrheal diseases through 2030. Diarrheal diseases are chosen as a key water-related health indicator because they directly reflect failures in water, sanitation, and hygiene (WASH) infrastructure — all of which are essential for preventing infectious disease transmission.
+                </p>
+
+                <h3>Why Diarrhea Was Selected</h3>
+                <p>
+                  Diarrheal diseases are a major global health burden, particularly in low-income regions. They are among the top causes of death in children under 5, yet they are preventable through basic WASH services:
+                  <ul>
+                    <li>Access to safe drinking water</li>
+                    <li>Improved sanitation</li>
+                    <li>Handwashing with soap</li>
+                    <li>Oral rehydration salts (ORS) and zinc treatments</li>
+                  </ul>
+                  Their strong link to water quality and their high preventability make them a sensitive indicator of public health and WASH effectiveness.
+                </p>
+
+                <h3>Data and Methodology</h3>
+                <ul>
+                  <li><strong>Data Source:</strong> WHO/UNICEF JMP and Global Burden of Disease (GBD) datasets</li>
+                  <li><strong>Timeframe:</strong> 1980–2020 (observed), 2021–2030 (forecast)</li>
+                  <li><strong>Forecasting Tool:</strong> Meta Prophet model with yearly seasonality</li>
+                </ul>
+
+                <h3>Key Chart Insights</h3>
+                <p>
+                  The line chart shows a steady decline in global diarrheal death rates. The shaded area indicates the 95% confidence interval. A red dashed line marks the start of the forecast (2021). The data suggests ongoing progress but warns that rates still remain high in certain regions.
+                </p>
+
+                <p style="text-align: center; margin: 1.5rem 0;">
+                  <img src="visual_charts_graphs/images/forecast_diarrhea.png" alt="Forecast: Global Death Rate from Diarrheal Diseases" style="max-width: 100%; height: auto; border-radius: 8px;">
+                </p>
+
+                <h3>Trend and Seasonality</h3>
+                <p>
+                  The Prophet model decomposes the time series into a long-term trend and yearly seasonality:
+                </p>
+                <ul>
+                  <li><strong>Trend:</strong> Steady decrease over time reflects improvements in global health systems and WASH services.</li>
+                  <li><strong>Seasonality:</strong> Minor seasonal fluctuations could relate to rainfall, contaminated food, or seasonal disease outbreaks.</li>
+                </ul>
+
+                <p style="text-align: center; margin: 1.5rem 0;">
+                  <img src="visual_charts_graphs/images/forecast_decomposition.png" alt="Trend and Seasonality Decomposition" style="max-width: 100%; height: auto; border-radius: 8px;">
+                </p>
+
+                <h3>Conclusion</h3>
+                <p>
+                  While global diarrheal mortality is on the decline, the disease remains a key threat — especially in regions with limited access to clean water and sanitation. This forecast helps identify future risk zones, advocate for WASH investment, and track Sustainable Development Goal 6 (Clean Water and Sanitation) progress.
+                </p>
+
+                <p style="margin-top: 2rem;"><strong>Source:</strong> <a href="https://washdata.org" target="_blank" style="color: #2a5885;">WHO/UNICEF JMP & IHME Global Burden of Disease</a></p>
+              </div>
+            `
+
           }
 
 
