@@ -88,6 +88,7 @@ input[type="reset"],
         margin-bottom: 3rem;
         overflow: hidden; /* Prevent video from overflowing */
         padding: 1rem 0;
+        z-index: 1000;
     }
     
   .header-content {
