@@ -39,6 +39,14 @@
     font-size: 2rem;
     margin-bottom: 1rem;
   }
+
+button, 
+input[type="button"], 
+input[type="submit"], 
+input[type="reset"], 
+.button {
+  font-family: 'Futura', sans-serif;
+}
   
   * {
       margin: 0;
