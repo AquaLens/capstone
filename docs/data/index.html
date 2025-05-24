@@ -55,7 +55,8 @@
     </div>
 
     <div class="gallery-item" onclick="openModal('visual_charts_graphs/poorest_access_map.html','Access to Drinking Water based on Wealth')">
-      <img src="visual_charts_graphs/images/topstress.jpg" alt="Access to Drinking Water based on Wealth" />
+      <img src="" alt="Access to Drinking Water based on Wealth" />
+      <img src="visual_charts_graphs/images/drinking_water.jpg" alt="Access to Drinking Water based on Wealth" />
       <h4>Access to Drinking Water based on Wealth - Poorest </h4>
       <p>Access to Drinking Water based on Wealth</p>
     </div>
@@ -108,10 +109,10 @@
       <h4>Heatmap with Vulnerable Marine Ecosystems (VME) in the Notheast Atlantic Ocean</h4>
       <p>Presence of VME and its indicators (e.g. sponge, corals) in the Northeast Atlantic Ocean</p>
     </div>
-<div class="gallery-item" onclick="openModal('Data_Visualizations/docs/data/visual_charts_graphs', 'Historical Concentration of Properties Found in GWB in The Nethelrands')">
-      <img src="" alt="Properties Found Netherlands GW" />
+<div class="gallery-item" onclick="openModal('visual_charts_graphs/concentration_properties_GW_NL.html', 'Historical Concentration of Properties Found in GWB in The Netherlands')">
+      <img src="visual_charts_graphs/images/historical_netherlands.jpg" alt="Properties Found Netherlands GW" />
       <h4>Concentration of Properties Found in GW in The Netherlands</h4>
-      <p>Visualizes historical data of properties (e.g. Ammonium, Nitrate) found in GW bodies in The Netherlands. </p>
+      <p>Visualizes historical data of properties (i.e. Ammonium, Nitrate) found in GW bodies in The Netherlands. </p>
     </div>
     </div>  
 </div>
@@ -154,9 +155,13 @@
 <div id="footer"></div>
 
 <!-- Modal -->
-<div id="modal" class="modal" onclick="closeModal()" style="display:none; flex-direction:row;background:rgba(0,0,0,0.8);position:fixed; top:0; left:0; width:100%; height:100%; z-index:1000;">
-    <iframe id="modal-content" src="" frameborder="0" style="width:75%; height:100%; border:none;"></iframe>
-    <div id="modal-sidebar" style="width:25%; padding:1rem; background:#fff; overflow-y:auto; color:#000;"></div>
+<div id="modal" class="modal" onclick="closeModal()">
+  <div class = "modal-content-wrapper" onclick= "event.stopPropagation()">
+    <button class ="modal-close" onclick = "closeModal()">x</button>
+    <h2 id="modal-title"></h2>
+    <iframe id="modal-content"></iframe>
+    <div id = "modal-description"></div>
+  </div>
 </div>
           
     <!-- Scripts -->
@@ -170,6 +175,9 @@
           `<div class="modal-analysis"> 
             <p>This section analyses countries' and continents' natural water bodies quality in relation to the Sustainable Development Goal (SDG) "good ambient water quality" threshold. The water is separated into three categories: rivers, lakes, and groundwater, with their values combined to assess overall water quality.</p>
             <p> The first map shows the share of each country's natural water bodies that does meet the SDG, meaning is of good quality.<strong>Good water quality </strong>(dark blue) means all key physician, chemical, and biological parameters (pH, dissolved oxygen, nutrient levels, turbidity, microbial counts, etc) fall within established safe “reference” ranges. <strong>Poor water quality</strong> (light blue) means one or more of those parameters exceed acceptable limits, indicating pollution or ecosystem and public-health risks.</p>
+            <p><strong>Top 10 countires with the best water quality and lowest water quality</p></strong>
+
+          <img src="visual_charts_graphs/images/top_countries_water_q.png" alt="Top Countries with best Water Quality"/>
             <p>The graphs following the map outline the 10 countries with the highest and lowest water quality, as well as per continent. </p>
 
             <h3>Key Findings from Water Quality Composition</h3>
@@ -214,8 +222,55 @@
 
           'Access to Drinking Water based on Wealth' : {
             title : 'Access to Drinking Water based on Wealth',
-            html : ''
-          },
+            html : `<div class="modal-analysis"> 
+              <p>This visualization examines disparities in access to basic services between wealth quintiles, aligned with SDG 10 (Reduced Inequalities) and SDG 6 (Clean Water and Sanitation). The map tracks service access gaps through three key metrics:</p>
+              
+              <p>The animated map shows:<br>
+              <strong>Equitable Access</strong> (Dark Green): ≤1.5 ratio between richest and poorest quintiles<br>
+              <strong>Moderate Inequality</strong> (Yellow): 1.6-3.0 ratio<br>
+              <strong>Severe Inequality</strong> (Red): >3.0 ratio</p>
+
+              <p><strong>Extreme Disparity Cases:</strong><br>
+              - Chad (19.2x advantage for richest)<br>
+              - DR Congo (49.8x advantage)<br>
+              - Angola (4.3x advantage)</p>
+
+              <h3>Key Inequality Patterns</h3>
+              <ul>
+                  <li><strong>Urban-Rural Divide:</strong> 
+                      <br>- Capital cities show 2-3x better access than rural areas
+                      <br>- Nigeria: 95% urban vs 43% rural water access</li>
+                  <li><strong>Conflict Zones:</strong> 
+                      <br>- Yemen (3.0x), Afghanistan (8.0x) show crisis-level disparities</li>
+                  <li><strong>Regional Leaders:</strong>
+                      <br>- <span style="color:#2E8B57">Costa Rica</span> (1.0x)
+                      <br>- <span style="color:#2E8B57">Belarus</span> (1.0x)</li>
+              </ul>
+
+              <h3>Service-Specific Trends</h3>
+              <ul>
+                  <li><strong>Water Access:</strong> Largest disparities in Sub-Saharan Africa (Avg ratio 4.1x)</li>
+                  <li><strong>Sanitation:</strong> South Asia shows highest inequality (India 1.1x vs Pakistan 1.2x)</li>
+                  <li><strong>Healthcare:</strong> Latin America has widest gaps (Brazil 9.0x historical peak)</li>
+              </ul>
+
+              <div class="data-highlights">
+                  <p><strong>Notable Improvements (2010-2020):</strong><br>
+                  - Bangladesh: Reduced ratio from 5.4x to 1.1x<br>
+                  - Ethiopia: 8.2x → 3.1x<br>
+                  - Cambodia: 3.0x → 1.6x</p>
+              </div>
+
+              <p style="margin-top:2rem;">
+                  <strong>Methodology Note:</strong> 'Poorest'/'Richest' represent bottom/top 20% wealth quintiles. Ratios calculated as [Richest% ÷ Poorest%].
+              </p>
+
+              <p style="margin-top:1rem;">
+                  <strong>Data Source:</strong>
+                  <a href="https://www.who.int/publications/i/item/9789240030848" target="_blank">WHO Global Health Observatory, Annex 7</a>
+              </p>
+          </div>`
+      },
 
           'Oxygen Map' : {
           'title' : 'Oxygen demand',
@@ -602,14 +657,14 @@
     function openModal(src, key) {
         const desc = descriptions[key] || {};
         document.getElementById('modal-content').src = src;
-        document.getElementById('modal-sidebar').innerHTML = desc.html || '';
+        document.getElementById('modal-description').innerHTML = desc.html || '';
         document.getElementById('modal').style.display = 'flex';
     }
 
     function closeModal() {
         document.getElementById('modal').style.display = 'none';
         document.getElementById('modal-content').src = '';
-        document.getElementById('modal-sidebar').innerHTML = '';
+        document.getElementById('modal-description').innerHTML = '';
     }
 
     fetch('/assets/header.html')
