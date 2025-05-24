@@ -47,6 +47,13 @@ input[type="reset"],
 .button {
   font-family: 'Futura', sans-serif;
 }
+
+select, 
+option,
+.filter-group,
+.selected-countries {
+  font-family: 'Futura', sans-serif;
+}
   
   * {
       margin: 0;
