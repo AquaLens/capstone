@@ -19,7 +19,7 @@ document.querySelector('#dive_button').addEventListener('click', function () {
     if (scene1) {
         // calculate the scroll position
         const scene1Top = scene1.getBoundingClientRect().top + window.scrollY;
-        const scrollTarget = scene1Top + (scene1.offsetHeight * 0.30);
+        const scrollTarget = scene1Top + (scene1.offsetHeight * 0.50);
 
         // ccroll to the calculated position
         window.scrollTo({
@@ -64,45 +64,6 @@ gsap.to(".act1_text", {
 gsap.set(".wiggle_a img, .wiggle_p img, .wiggle_n img", {
   force3D: true
 });
-
-gsap.to(".wiggle_a img", {
-  y: -8,
-  duration: 1.1,
-  repeat: -1,
-  yoyo: true,
-  ease: "power1.inOut",
-  force3D: true
-});
-
-gsap.to(".wiggle_p img", {
-  y: -8,
-  duration: 0.85,
-  repeat: -1,
-  yoyo: true,
-  ease: "power1.inOut",
-  force3D: true
-});
-
-gsap.to(".wiggle_n img", {
-  y: -8,
-  duration: 1,
-  repeat: -1,
-  yoyo: true,
-  ease: "power1.inOut",
-  force3D: true
-});
-
-// // Create the timeline
-// const tl = gsap.timeline({
-//   scrollTrigger: {
-//     trigger: "#plastic_bag",
-//     start: "+30% top top",
-//     end: "+=600", // adjust 
-//     pin: ".pin_section_2",
-//     scrub: true,
-//     // markers: true,
-//   }
-// });
 
 // Fade in the overlay text
 gsap.to(".act2_text_1", {

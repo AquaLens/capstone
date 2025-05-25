@@ -39,6 +39,21 @@
     font-size: 2rem;
     margin-bottom: 1rem;
   }
+
+button, 
+input[type="button"], 
+input[type="submit"], 
+input[type="reset"], 
+.button {
+  font-family: 'Futura', sans-serif;
+}
+
+select, 
+option,
+.filter-group,
+.selected-countries {
+  font-family: 'Futura', sans-serif;
+}
   
   * {
       margin: 0;
@@ -153,6 +168,7 @@
     top: 0;
     width: 100%;
     z-index: 1000;
+    height: 100%;
   }
 
   body.about header {
