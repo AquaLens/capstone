@@ -1,15 +1,45 @@
+html, body {
+  height: auto;
+}
+
 body {
   overflow-x: hidden;
   width: 100vw;
+  /* overflow-y: auto; */
+}
+
+#smooth-content {
+  will-change: transform;
 }
 
 /* * {
   outline: 1px solid rgba(255, 0, 0, 0.2);
 } */
 
-h.water_animation_container {
+.water_animation_container {
     height: 100vh;
     background-size: contain;
+    position: relative;
+    overflow: hidden;
+    display: block;
+}
+
+.aqualens_title,
+.act1_section {
+  position: absolute;
+  z-index: 1;
+  color: white;
+}
+
+.aqualens_title {
+  font-family: 'Futura';
+  font-weight: bold;
+  font-size: 5vw;
+  top: 20%;
+  left: 10%;
+  /* -webkit-text-stroke-width: 0.8px;
+  -webkit-text-stroke-color: rgb(158, 181, 203); */
+  text-shadow: 0 0 10px rgba(158, 181, 203, 1);
 }
 
 .pin_section {
@@ -33,27 +63,14 @@ h.water_animation_container {
   background-size: contain;
 }
 
-.aqualens_title,
-.act1_section {
-  position: absolute;
-  z-index: 1;
-  color: white;
-}
-
-.aqualens_title {
-  font-family: 'Futura';
-  font-weight: bold;
-  font-size: 5vw;
-  top: 20%;
-  left: 10%;
-}
-
 .blink_vid{
   /* height: 100%; */
   width: 100vw;
   /* height: 100%; */
   margin: 0%;
   padding: 0%;
+  display: block;
+  will-change: transform;
 }
 
 .at_the_surface,
@@ -102,7 +119,7 @@ h.water_animation_container {
   color: #222;
   border-radius: 5px;
   transition: transform 0.2s ease;
-  z-index: 100;
+  z-index: 1001;
 }
 
 #dive_button:hover {
@@ -121,7 +138,7 @@ h.water_animation_container {
   color: #222;
   border-radius: 5px;
   transition: transform 0.2s ease;
-  z-index: 100;
+  z-index: 1001;
 }
 
 #explore_button:hover {
@@ -202,15 +219,15 @@ section.vid video {
   top: 7%;
   left: 10%;
   width: 15%;
+  z-index: 1000;
 }
 
 .ammonium_container {
   position: absolute;
   top: 19%;
-  /* transform: translateX(505%); */
   right: 10%;
   width: 15%;
-  /* overflow: hidden; */
+  z-index: 1000;
 }
 
 .plastic_bag_container {
@@ -357,6 +374,7 @@ section.vid video {
   font-size: 2vw;
   width: 80%;
   opacity: 0;
+  text-align: center;
 }
 
 .act2_text_section_2 {
@@ -388,6 +406,10 @@ section.vid video {
   transition: transform 0.2s ease;
 }
 
+#explore_the_data_button:hover {
+  transform: scale(1.05);
+}
+
 #join_linkedin_button {
   position: absolute;
   bottom: 5%;
@@ -402,6 +424,10 @@ section.vid video {
   transition: transform 0.2s ease;
 }
 
+#join_linkedin_button:hover {
+  transform: scale(1.05);
+}
+
 #explore_the_projects_button {
   position: absolute;
   bottom: 5%;
@@ -414,6 +440,10 @@ section.vid video {
   color: #222;
   border-radius: 5px;
   transition: transform 0.2s ease;
+}
+
+#explore_the_projects_button:hover {
+  transform: scale(1.05);
 }
 
 .scene3 {
@@ -534,8 +564,6 @@ section.vid video {
   transition: all 0.05s ease-out;
 }
 
-
-
 .act3_text_section {
   position: absolute;
   z-index: 10;
@@ -558,7 +586,7 @@ section.vid video {
 
 #hand_container {
   position: absolute;
-  top: 17.4%;
+  top: 7.4%;
   left: -48.05%;
   width: 48.1%;
   z-index: 3;
@@ -573,7 +601,7 @@ section.vid video {
 .act4_text_section {
   position: absolute;
   z-index: 10;
-  top: 20%;
+  top: 10%;
   left: 50%;
 }
 

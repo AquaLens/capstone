@@ -1,3 +1,6 @@
+// importing ScrollTrigger from GSAP
+gsap.registerPlugin(ScrollTrigger);
+
 // smooth scroll function
 const lenis = new Lenis()
 
@@ -12,6 +15,8 @@ function raf(time) {
 
 requestAnimationFrame(raf)
 
+lenis.on('scroll', ScrollTrigger.update)
+
 // button scroll to scene1
 document.querySelector('#dive_button').addEventListener('click', function () {
     const scene1 = document.querySelector('.scene1');
@@ -21,7 +26,7 @@ document.querySelector('#dive_button').addEventListener('click', function () {
         const scene1Top = scene1.getBoundingClientRect().top + window.scrollY;
         const scrollTarget = scene1Top + (scene1.offsetHeight * 0.50);
 
-        // ccroll to the calculated position
+        // scroll to the calculated position
         window.scrollTo({
             top: scrollTarget,
             behavior: 'smooth'
@@ -33,9 +38,6 @@ document.querySelector('#dive_button').addEventListener('click', function () {
 document.querySelector('#explore_button').addEventListener('click', function () {
   window.location.href = '/projects'; 
 });
-
-// importing gsap and ScrollTrigger
-gsap.registerPlugin(ScrollTrigger);
 
 // pin the image when its bottom hits the viewport
 ScrollTrigger.create({
@@ -59,10 +61,6 @@ gsap.to(".act1_text", {
         end: "+=600",
         scrub: true
     }
-});
-
-gsap.set(".wiggle_a img, .wiggle_p img, .wiggle_n img", {
-  force3D: true
 });
 
 // Fade in the overlay text
@@ -200,7 +198,7 @@ gsap.to(".act3_text", {
 let tl3 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene4",
-    start: "top top", // when the top of ___ hits the center of viewport
+    start: "top 40%-top", // when the top of ___ hits the center of viewport
     end: "+=450", // adjust 
     scrub: true,
     markers: false
@@ -211,55 +209,8 @@ tl3.to("#hand_container", {
   x: "100%"
 })
 
-// gsap.fromTo("#project_container1",
-//   { opacity: 0, y: 20 },
-//   {
-//     opacity: 1,
-//     y: 0,
-//     duration: 1,
-//     ease: "power2.out",
-//     scrollTrigger: {
-//       trigger: "#project_container1",
-//       start: "top center", // when the top of ___ hits the center of viewport
-//       toggleActions: "play none none reverse", // optional: makes it fade out on scroll up
-//       markers: false  
-//     }
-//   }
-// );
 
-// gsap.fromTo("#project_container2",
-//   { opacity: 0, y: 20 },
-//   {
-//     opacity: 1,
-//     y: 0,
-//     duration: 1,
-//     ease: "power2.out",
-//     scrollTrigger: {
-//       trigger: "#project_container2",
-//       start: "top center", // when the top of ___ hits the center of viewport
-//       toggleActions: "play none none reverse", // optional: makes it fade out on scroll up
-//       markers: false 
-//     }
-//   }
-// );
-
-// gsap.fromTo("#project_container3",
-//   { opacity: 0, y: 20 },
-//   {
-//     opacity: 1,
-//     y: 0,
-//     duration: 1,
-//     ease: "power2.out",
-//     scrollTrigger: {
-//       trigger: "#project_container3",
-//       start: "top center", // when the top of ___ hits the center of viewport
-//       toggleActions: "play none none reverse", // optional: makes it fade out on scroll up
-//       markers: false 
-//     }
-//   }
-// );
-
-gsap.fromTo(".project_container",
+gsap.fromTo("#project_container_1",
   { opacity: 0, y: 20 },
   {
     opacity: 1,
@@ -267,7 +218,39 @@ gsap.fromTo(".project_container",
     duration: 1,
     ease: "power2.out",
     scrollTrigger: {
-      trigger: ".project_container",
+      trigger: "#project_container_1",
+      start: "top center", // when the top of ___ hits the center of viewport
+      toggleActions: "play none none reverse", // optional: makes it fade out on scroll up
+      markers: false  
+    }
+  }
+);
+
+gsap.fromTo("#project_container_2",
+  { opacity: 0, y: 20 },
+  {
+    opacity: 1,
+    y: 0,
+    duration: 1,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: "#project_container_2",
+      start: "top center", // when the top of ___ hits the center of viewport
+      toggleActions: "play none none reverse", // optional: makes it fade out on scroll up
+      markers: false  
+    }
+  }
+);
+
+gsap.fromTo("#project_container_3",
+  { opacity: 0, y: 20 },
+  {
+    opacity: 1,
+    y: 0,
+    duration: 1,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: "#project_container_3",
       start: "top center", // when the top of ___ hits the center of viewport
       toggleActions: "play none none reverse", // optional: makes it fade out on scroll up
       markers: false  
@@ -315,6 +298,10 @@ scene5Timeline.to("#act5_text_2", {
   ease: "power2.out",
   delay: 2.5 // x-second delay before this animation starts
 });
+
+window.addEventListener('load', () => {
+  ScrollTrigger.refresh()
+})
 
 // const section = document.querySelector('section.vid')
 // const vid = document.querySelector('video')
