@@ -8,8 +8,8 @@
   <link rel="stylesheet" href="/css/global.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="/css/froggy-chat.css" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="cities.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
 
@@ -996,7 +996,7 @@
 
       console.log(`Geocoding: "${city}" in "${country}" (normalized: "${cleanCountry}")`);
       console.log('cityCache exists:', typeof cityCache !== 'undefined');
-console.log('Sample city:', cityCache ? cityCache['amsterdam'] : 'not loaded');
+      console.log('Sample city:', cityCache ? cityCache['amsterdam'] : 'not loaded');
       // check first if its stored in local cache 
       if (localStorageCache[cacheKey]) {
         console.log(`Found in localStorage cache: ${cleanCity}, ${cleanCountry}`);
