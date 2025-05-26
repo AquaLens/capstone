@@ -863,18 +863,32 @@
             markerPromises.push(
               geocodeCity(city, country).then(coords => {
                 if (coords) {
-                 const marker = L.marker(coords, {icon: customIcon}).addTo(markersLayer);
-                 if (project._id) {
+                  const marker = L.marker(coords, {icon: customIcon}).addTo(markersLayer);
+                  if (project._id) {
                     projectMap.set(project._id, project);
                   }
 
-                  const popupHtml = `
-                    <strong>${project.projectName}</strong><br>
-                    <em>${city}</em><br>
-                    ${project.description?.substring(0, 100)}...<br>
-                    <a href="#" onclick="showModalById('${project._id}'); return false;">View Project</a>
+                  const tooltipHtml = `
+                    <div style="min-width: 200px;">
+                      <strong>${project.projectName}</strong><br>
+                      <em>${city}</em><br>
+                      ${project.description?.substring(0, 80)}...<br>
+                      <small style="color: #666;">Click for more details</small>
+                    </div>
                   `;
-                  marker.bindPopup(popupHtml);
+
+                  // Bind tooltip for hover
+                  marker.bindTooltip(tooltipHtml, {
+                    permanent: false,
+                    direction: 'top',
+                    offset: [0, -10],
+                    className: 'custom-tooltip'
+                  });
+
+                  // Keep click functionality for modal
+                  marker.on('click', function() {
+                    showModalById(project._id);
+                  });
                 }
               })
             );
