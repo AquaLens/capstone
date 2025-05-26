@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="dashboard.css" />
   <link rel="stylesheet" href="/css/global.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="/css/froggy-chat.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="cities.js"></script>
 </head>
@@ -264,6 +265,8 @@
         </div>
       </aside>
 
+      
+
       <!-- Main Section -->
       <section class="projects-section">
         <h2>Global Water Projects</h2>
@@ -292,6 +295,30 @@
       <div class="froggy-chat-input">
         <textarea id="froggy-question" placeholder="Type a message..."></textarea>
         <button id="froggy-send">➤</button>
+      </div>
+    </div>
+
+    <!-- Froggy Disclaimer Modal -->
+    <div class="froggy-disclaimer-modal" id="froggy-disclaimer-modal">
+      <div class="froggy-disclaimer-content">
+        <div class="froggy-disclaimer-title">
+          <img src="../images/Froggy 3.png" alt="Froggy">
+          Chat with Froggy
+        </div>
+        <div class="froggy-disclaimer-text">
+          <p>Before you start chatting with Froggy, please read and understand the following:</p>
+          <ul>
+            <li><strong>Data Processing:</strong> Your questions and conversations will be processed through Together.ai's AI services to provide you with responses.</li>
+            <li><strong>Information Accuracy:</strong> While Froggy strives to provide helpful and accurate information about water quality initiatives and research, the information provided may not always be complete or accurate.</li>
+            <li><strong>Fact-checking:</strong> If you're in doubt about any information provided, we encourage you to verify it through authoritative sources or consult with relevant experts.</li>
+            <li><strong>No Professional Advice:</strong> Froggy's responses should not be considered as professional, legal, or scientific advice.</li>
+          </ul>
+          <p>By proceeding, you acknowledge that you understand these terms and agree to use Froggy's services accordingly.</p>
+        </div>
+        <div class="froggy-disclaimer-buttons">
+          <button id="froggy-agree" class="froggy-disclaimer-btn">I Understand & Agree</button>
+          <button id="froggy-decline" class="froggy-disclaimer-btn">Cancel</button>
+        </div>
       </div>
     </div>
 
@@ -1398,6 +1425,8 @@
 });
 
   </script>
+
+  <script src="/assets/froggy-chat.js"></script>
 
 </body>
 </html>

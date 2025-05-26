@@ -255,7 +255,7 @@ class FroggyChat {
           this.messages.removeChild(typingMsg);
         }
         
-        this.addMessageToConversation('Sorry, there was an error connecting to my brain. Please try again later.', 'ai');
+        this.addMessageToConversation('Sorry, it seems that I might be having some connection issues. Please try again later.', 'ai');
         this.messages.scrollTop = this.messages.scrollHeight;
       }
     }
