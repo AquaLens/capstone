@@ -20,6 +20,23 @@
       <aside>
         <div class="filters">
           <h2>FILTER PROJECTS</h2>
+          
+          <!-- Search Feature -->
+          <div class="search-container">
+            <label class="search-label">Search Projects</label>
+            <div class="search-wrapper">
+              <input 
+                type="text" 
+                id="project-search" 
+                class="search-input" 
+                placeholder="Search by name, organization, description..."
+                autocomplete="off"
+              />
+              <button type="button" class="search-clear" id="search-clear">&times;</button>
+            </div>
+            <div class="search-results-info" id="search-info"></div>
+          </div>
+          
           <div class="filter-group">
             <strong>Keywords</strong>
             <label><input type="checkbox" name="keywords" value="Citizen Science" /> Citizen Science </label>
@@ -808,6 +825,7 @@ let allProjects = []; // Store all projects globally
 let currentPage = 1;
 let projectsPerPage = 9;
 let selectedCountries = []; // Declare this at the top level
+let searchQuery = ''; // Store current search query
 
     document.addEventListener('DOMContentLoaded', async () => {
       const projectsGrid = document.getElementById('projects-grid');
@@ -832,19 +850,109 @@ let selectedCountries = []; // Declare this at the top level
 
     renderProjects();
     setupFilters();
+    setupSearch();
   } catch (error) {
     console.error('Error fetching project data:', error);
     projectsGrid.innerHTML = '<p>Sorry, we are unable to load the projects at this time.</p>';
   }
 });
 
+// Setup search functionality
+function setupSearch() {
+  const searchInput = document.getElementById('project-search');
+  const clearButton = document.getElementById('search-clear');
+  const searchInfo = document.getElementById('search-info');
+  
+  let searchTimeout;
+  
+  // Real-time search with debouncing
+  searchInput.addEventListener('input', (e) => {
+    clearTimeout(searchTimeout);
+    searchQuery = e.target.value.trim();
+    
+    // Show/hide clear button
+    if (searchQuery) {
+      clearButton.style.display = 'block';
+    } else {
+      clearButton.style.display = 'none';
+      searchInfo.textContent = '';
+    }
+    
+    // Debounce search to avoid too many rapid searches
+    searchTimeout = setTimeout(() => {
+      currentPage = 1; // Reset to first page when searching
+      applyFilters();
+    }, 300);
+  });
+  
+  // Clear search
+  clearButton.addEventListener('click', () => {
+    searchInput.value = '';
+    searchQuery = '';
+    clearButton.style.display = 'none';
+    searchInfo.textContent = '';
+    currentPage = 1;
+    applyFilters();
+    searchInput.focus();
+  });
+  
+  // Allow clearing with Escape key
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && searchQuery) {
+      clearButton.click();
+    }
+  });
+}
+
+// Enhanced search function
+function searchProjects(projects, query) {
+  if (!query) return projects;
+  
+  const searchTerms = query.toLowerCase().split(' ').filter(term => term.length > 0);
+  
+  return projects.filter(project => {
+    // Create searchable text from project fields
+    const searchableText = [
+      project.projectName || '',
+      project.description || '',
+      project.companyOrganization || '',
+      project.location || '',
+      project.keywordLabel || '',
+      project.context || ''
+    ].join(' ').toLowerCase();
+    
+    // Check if all search terms are found in the searchable text
+    return searchTerms.every(term => searchableText.includes(term));
+  });
+}
+
 // renderProjects function to call updatePagination
-function renderProjects(filteredProjects = allProjects) {
+function renderProjects(filteredProjects = null) {
+  if (filteredProjects === null) {
+    filteredProjects = getFilteredProjects();
+  }
+  
   const projectsGrid = document.getElementById('projects-grid');
+  const searchInfo = document.getElementById('search-info');
   projectsGrid.innerHTML = '';
 
+  // Update search info
+  if (searchQuery) {
+    const totalCount = allProjects.length;
+    const resultCount = filteredProjects.length;
+    searchInfo.textContent = `${resultCount} of ${totalCount} projects found`;
+  } else {
+    searchInfo.textContent = '';
+  }
+
   if (!filteredProjects.length) {
-    projectsGrid.innerHTML = '<p>No projects match your filters.</p>';
+    const noResultsMsg = searchQuery ? 
+      `No projects found matching "${searchQuery}". Try different search terms or adjust your filters.` :
+      'No projects match your filters.';
+    projectsGrid.innerHTML = `<p>${noResultsMsg}</p>`;
+    document.getElementById('page-numbers').innerHTML = '';
+    document.getElementById('prev-page').disabled = true;
+    document.getElementById('next-page').disabled = true;
     return;
   }
 
@@ -871,6 +979,12 @@ function renderProjects(filteredProjects = allProjects) {
 
     const title = document.createElement('h3');
     title.textContent = project.projectName || 'Untitled Project';
+    
+    // Highlight search terms in title if searching
+    if (searchQuery) {
+      title.innerHTML = highlightSearchTerms(title.textContent, searchQuery);
+    }
+    
     card.appendChild(title);
 
     card.addEventListener('click', () => {
@@ -884,6 +998,21 @@ function renderProjects(filteredProjects = allProjects) {
   updatePagination(filteredProjects);
 }
 
+// Function to highlight search terms
+function highlightSearchTerms(text, query) {
+  if (!query) return text;
+  
+  const searchTerms = query.toLowerCase().split(' ').filter(term => term.length > 0);
+  let highlightedText = text;
+  
+  searchTerms.forEach(term => {
+    const regex = new RegExp(`(${term})`, 'gi');
+    highlightedText = highlightedText.replace(regex, '<mark>$1</mark>');
+  });
+  
+  return highlightedText;
+}
+
 // Add this new function for pagination numbers
 function updatePagination(projects) {
   const totalPages = Math.ceil(projects.length / projectsPerPage);
@@ -893,6 +1022,9 @@ function updatePagination(projects) {
   // Enable/disable prev/next buttons
   document.getElementById('prev-page').disabled = currentPage <= 1;
   document.getElementById('next-page').disabled = currentPage >= totalPages;
+  
+  // Don't show pagination if there's only one page or no projects
+  if (totalPages <= 1) return;
   
   // Determine which page numbers to show (current page and 1 page on each side when possible)
   let startPage = Math.max(1, currentPage - 1);
@@ -990,39 +1122,7 @@ function setupFilters() {
 
 function applyFilters() {
   currentPage = 1; // reset page when filters change
-
-  const selectedKeywords = Array.from(
-    document.querySelectorAll('input[name="keywords"]:checked')
-  ).map(cb => cb.value);
-
-  const selectedContexts = Array.from(
-    document.querySelectorAll('input[name="context"]:checked')
-  ).map(cb => cb.value);
-
-  // Filter projects by keywords, context, and countries
-  const filtered = allProjects.filter(project => {
-    // For Object-based Solutions, check for exact match or normalized version
-    const matchesKeyword = selectedKeywords.length === 0 || 
-      selectedKeywords.some(keyword => {
-        // Handle special case for "Object - based Solutions"
-        if (keyword === "Object - based Solutions") {
-          return project.keywordLabel === keyword || 
-                 project.keywordLabel === "Object-based Solutions";
-        }
-        return project.keywordLabel === keyword;
-      });
-    
-    const matchesContext = selectedContexts.length === 0 || 
-      selectedContexts.some(context => project.context?.includes(context));
-    
-    // Use the selectedCountries array instead of the dropdown value
-    const matchesCountry = selectedCountries.length === 0 || 
-      selectedCountries.includes(project.location);
-    
-    return matchesKeyword && matchesContext && matchesCountry;
-  });
-
-  renderProjects(filtered);
+  renderProjects();
 }
 
 function showModal(project) {
@@ -1177,24 +1277,38 @@ function getFilteredProjects() {
     document.querySelectorAll('input[name="context"]:checked')
   ).map(cb => cb.value);
 
-  if (selectedKeywords.length === 0 && selectedContexts.length === 0 && selectedCountries.length === 0) {
-    return allProjects;
+  // Start with all projects
+  let filtered = allProjects;
+  
+  // Apply search filter first
+  if (searchQuery) {
+    filtered = searchProjects(filtered, searchQuery);
   }
-
-  return allProjects.filter(project => {
-    // For Object-based Solutions, check for exact match or normalized version
-    const matchesKeyword = selectedKeywords.length === 0 || 
-                      selectedKeywords.includes(project.keywordLabel);
-    
-    const matchesContext = selectedContexts.length === 0 || 
-      selectedContexts.some(context => project.context?.includes(context));
-    
-    // Use the selectedCountries array
-    const matchesCountry = selectedCountries.length === 0 || 
-      selectedCountries.includes(project.location);
-    
-    return matchesKeyword && matchesContext && matchesCountry;
-  });
+  
+  // Apply other filters
+  if (selectedKeywords.length > 0 || selectedContexts.length > 0 || selectedCountries.length > 0) {
+    filtered = filtered.filter(project => {
+      // For Object-based Solutions, check for exact match or normalized version
+      const matchesKeyword = selectedKeywords.length === 0 || 
+        selectedKeywords.some(keyword => {
+          if (keyword === "Object-based Solutions") {
+            return project.keywordLabel === keyword || 
+                   project.keywordLabel === "Object - based Solutions";
+          }
+          return project.keywordLabel === keyword;
+        });
+      
+      const matchesContext = selectedContexts.length === 0 || 
+        selectedContexts.some(context => project.context?.includes(context));
+      
+      const matchesCountry = selectedCountries.length === 0 || 
+        selectedCountries.includes(project.location);
+      
+      return matchesKeyword && matchesContext && matchesCountry;
+    });
+  }
+  
+  return filtered;
 }
 
   </script>
