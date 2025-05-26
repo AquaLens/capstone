@@ -995,7 +995,8 @@
       const cacheKey = `${cleanCity}_${cleanCountry}`;
 
       console.log(`Geocoding: "${city}" in "${country}" (normalized: "${cleanCountry}")`);
-
+      console.log('cityCache exists:', typeof cityCache !== 'undefined');
+console.log('Sample city:', cityCache ? cityCache['amsterdam'] : 'not loaded');
       // check first if its stored in local cache 
       if (localStorageCache[cacheKey]) {
         console.log(`Found in localStorage cache: ${cleanCity}, ${cleanCountry}`);
