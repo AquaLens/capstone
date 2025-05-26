@@ -10,6 +10,9 @@ class FroggyChat {
       this.API_ENDPOINT = 'https://aqualens-froggy-backend.hf.space/api/ask';
       this.RESET_ENDPOINT = 'https://aqualens-froggy-backend.hf.space/api/reset_conversation';
       
+      // Check if we're on the standalone froggy page
+      this.isStandalonePage = document.body.classList.contains('froggy-standalone-page');
+      
       // Initialize conversation tracking
       this.conversationContext = {
         sessionIds: [],
@@ -33,7 +36,12 @@ class FroggyChat {
       document.addEventListener('DOMContentLoaded', () => {
         this.setupElements();
         this.setupEventListeners();
-        this.setupResetButton();
+        
+        if (this.isStandalonePage) {
+          this.setupStandalonePage();
+        } else {
+          this.setupResetButton();
+        }
         
         // Check if conversation is empty and add welcome message if needed
         if (this.messages && this.messages.children.length === 0) {
@@ -54,8 +62,34 @@ class FroggyChat {
       this.declineBtn = document.getElementById('froggy-decline');
     }
     
+    setupStandalonePage() {
+      // On standalone page, show disclaimer immediately if not agreed
+      if (!this.hasAgreedToTerms) {
+        this.showDisclaimer();
+        // Hide the chat until terms are agreed
+        if (this.froggyPopup) {
+          this.froggyPopup.style.opacity = '0.3';
+          this.froggyPopup.style.pointerEvents = 'none';
+        }
+      } else {
+        // Show chat normally
+        if (this.froggyPopup) {
+          this.froggyPopup.style.opacity = '1';
+          this.froggyPopup.style.pointerEvents = 'auto';
+        }
+      }
+      
+      // Remove close button on standalone page or replace with back functionality
+      if (this.froggyClose) {
+        this.froggyClose.style.display = 'none';
+      }
+      
+      // Setup reset button for standalone page
+      this.setupResetButtonStandalone();
+    }
+    
     setupEventListeners() {
-      if (this.froggyBtn) {
+      if (this.froggyBtn && !this.isStandalonePage) {
         this.froggyBtn.addEventListener('click', () => {
           if (!this.hasAgreedToTerms) {
             this.showDisclaimer();
@@ -91,12 +125,19 @@ class FroggyChat {
         });
       }
       
-      // Close disclaimer on backdrop click
-      if (this.disclaimerModal) {
+      // Close disclaimer on backdrop click (only for popup version)
+      if (this.disclaimerModal && !this.isStandalonePage) {
         this.disclaimerModal.addEventListener('click', (e) => {
           if (e.target === this.disclaimerModal) {
             this.declineTerms();
           }
+        });
+      }
+      
+      // Close button functionality for popup version
+      if (this.froggyClose && !this.isStandalonePage) {
+        this.froggyClose.addEventListener('click', () => {
+          this.froggyPopup.style.display = 'none';
         });
       }
     }
@@ -135,6 +176,13 @@ class FroggyChat {
       }
     }
     
+    setupResetButtonStandalone() {
+      const existingResetBtn = document.getElementById('froggy-reset');
+      if (existingResetBtn) {
+        existingResetBtn.addEventListener('click', () => this.resetConversation());
+      }
+    }
+    
     showDisclaimer() {
       if (this.disclaimerModal) {
         this.disclaimerModal.style.display = 'flex';
@@ -147,17 +195,37 @@ class FroggyChat {
       if (this.disclaimerModal) {
         this.disclaimerModal.style.display = 'none';
       }
-      this.openChat();
+      
+      if (this.isStandalonePage) {
+        // Enable the chat on standalone page
+        if (this.froggyPopup) {
+          this.froggyPopup.style.opacity = '1';
+          this.froggyPopup.style.pointerEvents = 'auto';
+        }
+      } else {
+        this.openChat();
+      }
     }
     
     declineTerms() {
       if (this.disclaimerModal) {
         this.disclaimerModal.style.display = 'none';
       }
+      
+      if (this.isStandalonePage) {
+        // Redirect away from the page
+        if (document.referrer) {
+          // Go back to previous page
+          window.history.back();
+        } else {
+          // Fallback to home page
+          window.location.href = '/';
+        }
+      }
     }
     
     openChat() {
-      if (this.froggyPopup) {
+      if (this.froggyPopup && !this.isStandalonePage) {
         this.froggyPopup.style.display = 'flex';
       }
     }
@@ -360,7 +428,7 @@ class FroggyChat {
         });
       });
     }
-  }
-  
-  // Initialize Froggy Chat when the script loads
-  new FroggyChat();
+}
+
+// Initialize Froggy Chat when the script loads
+new FroggyChat();
