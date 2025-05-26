@@ -299,7 +299,7 @@
               <h2 style="text-align: center; color: #2a5885;">Oxygen Demand and Organic Pollution</h2>
 
               <p>
-                Oxygen demand reflects the amount of dissolved oxygen needed to break down organic material in water. A high value typically signals elevated pollution from sewage, agricultural runoff, or industrial discharge. When oxygen demand is high, dissolved oxygen drops—leading to <strong>oxygen depletion</strong>, fish kills, and long-term damage to aquatic ecosystems.
+                Oxygen demand reflects the amount of dissolved oxygen needed to break down organic material in water. A high value typically signals elevated pollution from sewage, agricultural runoff, or industrial discharge. When oxygen demand is high, dissolved oxygen drops—leading to <strong>oxygen depletion</strong>, fish deaths, and long-term damage to aquatic ecosystems.
               </p>
 
               <h3>Choropleth Map Overview</h3>
@@ -384,47 +384,65 @@
         },
 
         'Nitrogen Oxygen' : {
-          'title' : 'Oxidized Nitrogen Levels',
+          title: 'Oxidized Nitrogen Levels',
           html: `
-          <div class="modal-analysis">
-            <h2 style="text-align:center; margin-bottom: 1.2rem; color: #2a5885;">
-              Oxidized Nitrogen vs Oxygen Demand (by Country)
-            </h2>
+            <div class="modal-analysis">
+              <h2 style="text-align:center; margin-bottom: 1.2rem; color: #2a5885;">
+                Oxidized Nitrogen vs Oxygen Demand (by Country)
+              </h2>
 
-            <h3>Data Source</h3>
-            <p>
-              This data comes from the 
-              <a href="https://gemstat.org/data-gemstat/data-portal/" target="_blank" style="color: #2a5885;">
-              GEMStat Global Water Quality Database</a>, a UNEP initiative that provides chemical and biological monitoring data from water bodies worldwide.
-            </p>
+              <h3>What Does This Show?</h3>
+              <p>
+                This section visualizes the connection between two important water pollution indicators across different countries:
+                <strong>Oxidized Nitrogen</strong> (from things like fertilizers and sewage) and
+                <strong>Oxygen Demand</strong> (how much oxygen is used to break down waste in water).
+                When nitrogen levels are high, it often means more pollution is entering rivers and lakes,
+                which can lower oxygen and harm fish and ecosystems.
+              </p>
 
-            <h3>Chart Overview</h3>
-            <p>
-              This scatter plot compares two key water quality parameters across countries:
-            </p>
-            <ul>
-              <li><strong>Oxidized Nitrogen (x-axis):</strong> Often linked to agricultural runoff and sewage discharge.</li>
-              <li><strong>Oxygen Demand (y-axis):</strong> Indicates organic pollution levels by measuring how much oxygen is consumed to break down waste.</li>
-              <li>Each point represents a country, with axes scaled for readability and labels for easy comparison.</li>
-            </ul>
+              <h3>Chart 1: Scatter Plot</h3>
+              <p>
+                This chart compares oxidized nitrogen (x-axis) and oxygen demand (y-axis) for each country.
+                Each dot is a country. The further right a dot is, the more nitrogen pollution;
+                the higher up it is, the more oxygen is needed to clean the water.
+                Countries like <strong>Mexico</strong> and <strong>Greece</strong> stand out with high values.
+              </p>
+              <iframe src="visual_charts_graphs/nitrogen_vs_oxygen_cleaned.html" width="100%" height="600" style="border:none; border-radius: 8px;"></iframe>
 
-            <h3>Key Observations</h3>
-            <ul>
-              <li><strong>Greece</strong> and <strong>Italy</strong> exhibit high oxidized nitrogen levels, suggesting intensive fertilizer use or insufficient treatment.</li>
-              <li><strong>Mexico</strong> stands out with the highest oxygen demand, indicating major organic pollution sources.</li>
-              <li>Most countries cluster near the lower-left quadrant, suggesting generally lower pollutant levels.</li>
-              <li>A weak positive trend suggests that higher nitrogen pollution may be associated with increased organic pollution — a classic sign of eutrophication.</li>
-            </ul>
+              <h3>Chart 2: Nitrogen Map</h3>
+              <p>
+                This world map shows how average oxidized nitrogen levels differ by country.
+                Darker colors mean higher nitrogen pollution in water bodies, often from farming, factories, or untreated sewage.
+              </p>
+              <iframe src="visual_charts_graphs/choropleth_nitrogen.html" width="100%" height="600" style="border:none; border-radius: 8px;"></iframe>
 
-            <div style="margin-top: 2rem; border-top: 1px solid #ddd; padding-top: 1rem; font-size: 14px; color: #555;">
-              <strong>Source:</strong> 
-              <a href="https://gemstat.org/data-gemstat/data-portal/" target="_blank" style="color: #2a5885;">
-                GEMStat Water Quality Database
-              </a>
+              <h3>Chart 3: Nitrogen + Oxygen Bubble Map</h3>
+              <p>
+                This map combines both indicators: 
+                <strong>Bubble size = nitrogen pollution</strong> and 
+                <strong>Bubble color = oxygen demand</strong>. 
+                It helps show which countries have big pollution challenges, 
+                and whether they affect both nutrients and oxygen in water.
+              </p>
+              <iframe src="visual_charts_graphs/bubble_map_nitrogen_oxygen.html" width="100%" height="600" style="border:none; border-radius: 8px;"></iframe>
+
+              <h3>Why It Matters</h3>
+              <p>
+                When too much nitrogen enters water, it can cause <strong>algae blooms</strong> that use up oxygen,
+                creating “dead zones” where fish and aquatic life can’t survive.
+                Tracking both nitrogen and oxygen helps detect early warning signs and guide better water management.
+              </p>
+
+              <div style="margin-top: 2rem; border-top: 1px solid #ddd; padding-top: 1rem; font-size: 14px; color: #555;">
+                <strong>Data Source:</strong> 
+                <a href="https://gemstat.org/data-gemstat/data-portal/" target="_blank" style="color: #2a5885;">
+                  GEMStat Water Quality Database
+                </a>
+              </div>
             </div>
-          </div>
-          ` 
+          `
         },
+
         'Transperency Map' : {
           title: 'Global Transparency in Water Reporting',
           html: `
