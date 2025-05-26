@@ -16,19 +16,22 @@
     <div class="nav-pin" data-section="0">
       <div class="tooltip">About Us</div>
     </div>
-    <div class="nav-pin main-pin" data-section="1">
+    <div class="nav-pin" data-section="1">
+      <div class="tooltip">Our Foundation</div>
+    </div>
+    <div class="nav-pin main-pin" data-section="2">
       <div class="tooltip">Here in the Netherlands</div>
     </div>
-    <div class="nav-pin sub-pin" data-section="1">
+    <div class="nav-pin sub-pin" data-section="2">
       <div class="tooltip">De Ceuvel</div>
     </div>
-    <div class="nav-pin sub-pin" data-section="2">
+    <div class="nav-pin sub-pin" data-section="3">
       <div class="tooltip">Lake Lowlands</div>
     </div>
-    <div class="nav-pin sub-pin" data-section="3">
+    <div class="nav-pin sub-pin" data-section="4">
       <div class="tooltip">De Grachtwacht</div>
     </div>
-    <div class="nav-pin" data-section="4">
+    <div class="nav-pin" data-section="5">
       <div class="tooltip">Community</div>
     </div>
   </div>
@@ -67,6 +70,45 @@
     <section class="second">
       <div class="outer">
         <div class="inner">
+          <div class="bg book">
+            <img src="/images/book.jpg" alt="Integral Design Public Method Space" class="case-image">
+            <div class="section-content">
+              <h2 class="section-heading">Our <span class="highlight">Foundation</span></h2>
+              <span class="innovation-tag">📚 Research-Based</span>
+              <span class="innovation-tag">🏙️ Urban Innovation</span>
+              
+              <p>
+                AquaLens extends research on <strong>Amsterdam's urban transformation challenges</strong>. The foundation publication explores how cities must radically rethink public space design in the face of climate change, energy transitions, and resource scarcity.
+              </p>
+              
+              <div class="key-point">
+                🏗️ Traditional top-down city planning is obsolete. Underground-first design creates space for water management, energy systems, and climate resilience.
+              </div>
+              
+              <p>
+                As Amsterdam grows denser, <span class="emphasis">underground infrastructure reaches capacity limits</span>. The research introduces integral programming methods where public and private parties collaborate early to reserve subsurface space for essential systems.
+              </p>
+              
+              <p>
+                This approach prioritizes <strong>healthy living environments</strong>, sustainable energy networks, climate adaptation solutions, circular resource flows, and nature-inclusive design—all while creating attractive public spaces.
+              </p>
+              
+              <div class="key-point">
+                🌱 Multiple underground functions + integrated surface design = resilient urban futures that work for both people and water systems.
+              </div>
+              
+              <p>
+                <span class="emphasis">Water quality isn't separate from urban planning—it's central to it.</span> The case studies you'll explore demonstrate how this research translates into real-world innovations that communities can actually implement and enjoy.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="third">
+      <div class="outer">
+        <div class="inner">
           <div class="bg two">
             <img src="/images/Ceuvel.jpg" alt="De Ceuvel" class="case-image">
             <div class="section-content">
@@ -99,7 +141,7 @@
       </div>
     </section>
 
-    <section class="third">
+    <section class="fourth">
       <div class="outer">
         <div class="inner">
           <div class="bg three">
@@ -134,7 +176,7 @@
       </div>
     </section>
 
-    <section class="fourth">
+    <section class="fifth">
       <div class="outer">
         <div class="inner">
           <div class="bg four">
@@ -169,7 +211,7 @@
       </div>
     </section>
 
-    <section class="fifth">
+    <section class="sixth">
       <div class="outer">
         <div class="inner">
           <div class="bg five">
@@ -297,7 +339,7 @@ document.body.classList.add('about');
     
       // Update footer visibility based on current section
       function updateFooterVisibility() {
-        if (current === 4) { // If we're on the last section (Community)
+        if (current === 5) { // If we're on the last section (Community) - updated to section 5
           // Show footer with animation if it's not already showing
           if (getComputedStyle(footerWrapper).display === "none") {
             gsap.set(footerWrapper, { display: "block", y: 50 }); // Start below view
@@ -327,14 +369,14 @@ document.body.classList.add('about');
         });
         
         // Set active state based on current section
-        if (current >= 1 && current <= 3) {
-          // If we're in any case study section (1-3), activate the main pin
+        if (current >= 2 && current <= 4) { // Updated range for case studies (sections 2-4)
+          // If we're in any case study section (2-4), activate the main pin
           document.querySelector('.nav-pin.main-pin').classList.add('active');
           
           // Also activate the specific sub-pin for the current section
           document.querySelector(`.nav-pin.sub-pin[data-section="${current}"]`).classList.add('active');
         } else {
-          // For non-case study sections (About Us or Community), just activate that pin
+          // For non-case study sections (About Us, Foundation, or Community), just activate that pin
           document.querySelector(`.nav-pin[data-section="${current}"]:not(.sub-pin):not(.main-pin)`).classList.add('active');
         }
         
@@ -351,7 +393,7 @@ document.body.classList.add('about');
             // Handle main pin and sub-pin relationship
             if (pin.classList.contains('main-pin')) {
               // If main pin is clicked, go to the first sub-section
-              next = 1; // First case study (De Ceuvel)
+              next = 2; // First case study (De Ceuvel) - updated to section 2
             } else if (pin.classList.contains('sub-pin')) {
               // If sub-pin is clicked, use its section index
               next = parseInt(pin.getAttribute('data-section'));
@@ -400,7 +442,7 @@ document.body.classList.add('about');
         gsap.set(headings[next].querySelector('.heading-text'), { autoAlpha: 0, y: 50 });
     
         // Show footer animation immediately if going to the last section
-        if (next === 4) {
+        if (next === 5) { // Updated to section 5
           // Make sure the footer is properly positioned to start
           gsap.set(footerWrapper, { 
             display: "block", 
@@ -485,7 +527,7 @@ document.body.classList.add('about');
           .set(images[current], { yPercent: 0 });
         
         // Add footer animation to the timeline if needed
-        if (current === 4) {
+        if (current === 5) { // Updated to section 5
           // If we're leaving the last section, hide footer with a faster fade-out and slide down
           gsap.to(footerWrapper, {
             autoAlpha: 0, 
