@@ -24,7 +24,7 @@ document.querySelector('#dive_button').addEventListener('click', function () {
     if (scene1) {
         // calculate the scroll position
         const scene1Top = scene1.getBoundingClientRect().top + window.scrollY;
-        const scrollTarget = scene1Top + (scene1.offsetHeight * 0.50);
+        const scrollTarget = scene1Top + (scene1.offsetHeight * 0.90);
 
         // scroll to the calculated position
         window.scrollTo({
@@ -33,6 +33,10 @@ document.querySelector('#dive_button').addEventListener('click', function () {
         });
     }
 });
+
+// document.querySelector('#dive_button').addEventListener('click', function () {
+//   window.location.href = '/projects'; 
+// });
 
 // button scroll to explore
 document.querySelector('#explore_button').addEventListener('click', function () {
