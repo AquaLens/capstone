@@ -172,9 +172,4 @@ let cityCache = {
   "tellegang": { country: "unknown", lat: 0.0000, lng: 0.0000 }
 };
 
-try {
-  const savedCache = JSON.parse(localStorage.getItem('cityCache')) || {};
-  cityCache = { ...cityCache, ...savedCache };
-} catch (e) {
-  console.log('Using default city cache');
-}
+console.log(`Predefined cities loaded: ${Object.keys(cityCache).length} cities available`);
