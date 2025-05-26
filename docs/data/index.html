@@ -186,18 +186,9 @@
           `<div class="modal-analysis"> 
             <p>This section analyses countries' and continents' natural water bodies quality in relation to the Sustainable Development Goal (SDG) "good ambient water quality" threshold. The water is separated into three categories: rivers, lakes, and groundwater, with their values combined to assess overall water quality.</p>
             <p> The first map shows the share of each country's natural water bodies that does meet the SDG, meaning is of good quality.<strong>Good water quality </strong>(dark blue) means all key physician, chemical, and biological parameters (pH, dissolved oxygen, nutrient levels, turbidity, microbial counts, etc) fall within established safe “reference” ranges. <strong>Poor water quality</strong> (light blue) means one or more of those parameters exceed acceptable limits, indicating pollution or ecosystem and public-health risks.</p>
-            
             <p><strong>Top 10 countires with the best water quality and lowest water quality</p></strong>
-            <div class= "image container">
-            <img src="visual_charts_graphs/top_countries_water_q.png" alt="Top Countries with best Water Quality"/>
-            </div>  
-              <p>Continents compared based on water quality</p>
-            <div class="image-container"><img src="visual_charts_graphs/continents_good_water.png"  alt = "Continents compared based on water quality"/></div>
 
-        <p> Countries' water quality sorted from best highest to lowest</p>
-            
-          <div class="image-container"><img src="visual_charts_graphs/all_countries_water_q.png" alt="Countries' water quality sorted from best highest to lowest"/></div>
-            
+          <img src="visual_charts_graphs/images/top_countries_water_q.png" alt="Top Countries with best Water Quality"/>
             <p>The graphs following the map outline the 10 countries with the highest and lowest water quality, as well as per continent. </p>
 
             <h3>Key Findings from Water Quality Composition</h3>
@@ -231,13 +222,58 @@
 
 
           </div>` 
-
+            
         },
-
           'Water Stress Map' : {
-            title: 'Global Water Stress (2016 - 2022)',
-            html: '</h2> <p>This map map demonstrates water stress(%), classified as "Low", "Medium", and "High", experienced across the globe between 2016 and 2022. The Water Stress Indicator, monitors SDG 6.4.2, as a ratio between withdrawn freshwater from economic activity, and the total renewable freshwater resources availbe in the country.<strong>Water Stress</strong> Red represents a high-level classification of water stress experienced in a country, following the parameters established by the UN.</p><p><em>Data source:</em> UN Water, Indicator 6.4.2: <a href="https://www.unwater.org/publications/progress-level-water-stress-2024-update" target="_blank">UN Water Report</a></p>',
-          'Top 20 Countries with Higest Water Stress (%)' : '<h2> Countries with Higest Water Stress (2016 - 2022)</h2> <p>This visualization illustrates the countries with higest reported water stress (%) between 2016 and 2022.<strong>Countries With Highest Water Stress</strong> The map excludes Kuwait and the UAE, as these countries experience a critical water stress level that goes beyond that of "high water stress," and that experience percentage levels much higher than in other countries.</p><p><em>Data source:</em> UN Water, Indicator 6.4.2: <a href="https://www.unwater.org/publications/progress-level-water-stress-2024-update" target="_blank">UN Water Report</a></p>',
+            title: 'Global Water Stress (2022)',
+            html: `<div class="modal-analysis"> 
+  <p>This interactive map visualizes water stress (%), classified as "Low", "Medium", and "High", experienced globally in 2022. The Water Stress Indicator monitors the UN's Sustainable Development Goal (SDG) 6.4.2. <strong>Water stress</strong> is defined as the ratio of total freshwater withdrawn by all sectors (from economic activity) to the total renewable freshwater resources available in a country, after accounting for environmental flow requirements. This ratio reflects the pressure placed on freshwater systems by human activity, demonstrating whether a country is sustainable in their freshwater supply management.</p>
+  
+  <p><strong>SDG 6.4 Objective:</strong> to achieve a "substantial increase in water-use efficiency across all sectors and ensure sustainable withdrawals and supply of freshwater to address water scarcity"</p> 
+  <ul>
+    <li><strong>UN Water Stress Classifications:</strong> Our map provides a simpler classification from that of the UN for facilitated analysis. Green represents barely any water stress, yellow groups 'low and medium' stress countries together to show medium stress, and red groups 'high and critically high stress,' to visualize countries above any sustainable limits.    
+      <br>- No stress (<25%): Water withdrawals are within safe limits.
+      <br>- Low stress (25–50%): Increasing use but generally sustainable.
+      <br>- Medium stress (50–75%): Warning sign—resource availability under pressure.
+      <br>- High stress (75–100%): Freshwater resources are under severe stress. 
+      <br>- Critical stress (>100%): Withdrawals exceed the renewable supply; water scarcity is structural and acute.
+    </li>
+
+    <li><strong>Key Takeaways:</strong>
+      <br>- Most critically stressed countries include Kuwait, United Arab Emirates, Saudi Arabia, Libya, and Qatar, where withdrawals exceed 100% of renewable water resources.
+      <br>- Countries in Sub-Saharan Africa or Latin America may show low stress not because they have abundant water (despite this being true, the effects of climate change are still heavily felt), but due to limited infrastructure, data gaps, or inconsistent data collection.
+    </li>
+
+    <li><strong>Why is this map useful?</strong>
+      <br>- The map visualizes the way in which countries around the globe manage our most vital, scarce resource. It points to areas of high risk, indicating these countries are in need of targeted policy changes, or alternatively, accurate and transparent data collection.
+    </li>
+  </ul>
+
+  <h3>Water Stress in The Netherlands (2011–2022)</h3>
+  <div class="image container">
+    <iframe src="visual_charts_graphs/netherlands_water_stress.html" width="100%" height="500" frameborder="0"></iframe>
+  </div> 
+
+  <p>This line chart tracks the annual percentage of water stress in the Netherlands from 2011 to 2022, based on SDG Indicator 6.4.2. Water stress in the Netherlands has consistently remained below 25%, which places it in the “low stress” category according to UN thresholds. This suggests that the country is managing its freshwater withdrawals sustainably relative to its renewable freshwater availability. The Netherlands is an example of a developed country with high-quality water infrastructure and strong governance, maintaining sustainable water use even with a dense population and intensive agricultural activity.</p>
+
+  <p style="margin-top:2rem;"> 
+    <strong>Data Sources:</strong> 
+    <a href="https://www.fao.org/aquastat/en/databases/maindatabase" target="_blank">FAO AQUASTAT</a>, 
+    <a href="https://sdg6data.org/en/indicator/6.4.2" target="_blank">SDG 6.4.2 Database</a>, 
+    <a href="https://www.unwater.org/publications/progress-level-water-stress-2024-update" target="_blank">UN-Water Report (2024)</a> 
+  </p>
+</div>`
+
+          },
+                  
+             
+              
+          'Top 20 Countries with Higest Water Stress (%)' : {
+            title: 'Countries with Higest Water Stress (2016 - 2022)',
+            html : `<div class="modal-analysis">
+              <p>This visualization illustrates the countries with higest reported water stress (%) between 2016 and 2022.</p><strong>Countries With Highest Water Stress</strong> The map excludes Kuwait and the UAE, as these countries experience a critical water stress level that goes beyond that of "high water stress," and that experience percentage levels much higher than in other countries.</p><p><em>Data source:</em> UN Water, Indicator 6.4.2: <a href="https://www.unwater.org/publications/progress-level-water-stress-2024-update" target="_blank">UN Water Report</a></p>',
+          
+          </div>`
           },
 
           'Access to Drinking Water based on Wealth' : {
@@ -461,30 +497,14 @@
                 </ul>
               </p>
 
-              <!-- Embedded bar chart: Urban vs Rural Reporting -->
-              <div class="chart-embed">
-                <iframe src="visual_charts_graphs/urban_rural_publishing_bar.html"
-                        width="100%"
-                        height="900"
-                        style="border:none; border-radius: 8px;">
-                </iframe>
-              </div>
-
-
-
               <h3>Publishing Status Breakdown (Bar + Pie Charts)</h3>
               <p>
                 Bar and pie charts reinforce these insights:
                 <ul>
-                  <li>Urban water safety reports: 37.1% Fully published, 29.8% Partially, 25% Not published, and 8.06% No response.</li>
+                  <li>Urban water safety reports: 37.1% Fully published, 29.8% Partially, 25% Not published, and 8.1% No response.</li>
                   <li>These figures highlight ongoing inconsistencies in national WASH transparency, even in more resourced areas.</li>
                 </ul>
               </p>
-
-              <iframe src="visual_charts_graphs/urban_publishing_pie.html"
-                      style="width: 100%; height: 500px; border: none; border-radius: 8px;"
-                      title="Urban Publishing Pie Chart">
-              </iframe>
 
               <h3>Why Transparency Matters</h3>
               <ul>
@@ -720,11 +740,7 @@
                 </ul>
 
                 <p style="text-align: center; margin: 1.5rem 0;">
-                  <iframe src="visual_charts_graphs/forecast_trend_component.html"
-                          width="100%"
-                          height="600"
-                          style="border: none; border-radius: 8px;">
-                  </iframe>
+                  <img src="visual_charts_graphs/forecast_trend_component.html" alt="Trend and Seasonality Decomposition" style="max-width: 100%; height: auto; border-radius: 8px;">
                 </p>
 
                 <p style="text-align: center; margin: 1.5rem 0;">
