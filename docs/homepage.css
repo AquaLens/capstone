@@ -51,6 +51,8 @@ body {
 .scene1 {
   position: relative;
   width: 100vw;
+  padding: 0;
+  margin: 0;
 }
 
 .at_the_surface {
