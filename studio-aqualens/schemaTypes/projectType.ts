@@ -439,15 +439,14 @@ export const projectType = defineType({
       name: 'budget',
       title: 'Budget',
       type: 'string',
-      description: 'Enter the financial budget of the project',
+      description: 'Enter the financial budget of the project'
     }),
 
     defineField({
       name: 'timeline',
       title: 'Timeline',
       type: 'string',
-      description: 'Start and end date of project',
-      validation: (rule: Rule) => rule.required()
+      description: 'Start and end date of project'
     }),
 
 
@@ -465,11 +464,10 @@ export const projectType = defineType({
       type: 'object',
       description: 'Enter the name of the Contact Person',
       fields: [
-        { name: 'name',  title: 'Name',  type: 'string', validation: Rule => Rule.required() },
-        { name: 'email', title: 'Email', type: 'string', validation: Rule => Rule.required() },
+        { name: 'name',  title: 'Name',  type: 'string' },
+        { name: 'email', title: 'Email', type: 'string' },
         { name: 'phone', title: 'Phone', type: 'string' }
       ],
-      validation: (rule: Rule) => rule.required(),
     }),
 
 
