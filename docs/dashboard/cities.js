@@ -172,9 +172,12 @@ let cityCache = {
   "tellegang": { country: "unknown", lat: 0.0000, lng: 0.0000 }
 };
 
-try {
-  const savedCache = JSON.parse(localStorage.getItem('cityCache')) || {};
-  cityCache = { ...cityCache, ...savedCache };
-} catch (e) {
-  console.log('Using default city cache');
-}
+console.log(`Predefined cities loaded: ${Object.keys(cityCache).length} cities available`);
+
+// Debug: test if it works
+console.log('Sample predefined cities:', {
+  'danube river': cityCache['danube river'],
+  'montana': cityCache['montana'], 
+  'medmerry': cityCache['medmerry'],
+  'story mill': cityCache['story mill']
+});
