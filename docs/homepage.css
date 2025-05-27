@@ -799,9 +799,9 @@ section.vid video {
 .section_box {
   width: 300px;
   height: 300px;
-  background-color: white;
-  border: black solid 0.8px;
-  color: black;
+  background-color: rgb(164, 181, 202);
+  border: rgb(164, 181, 202) solid 0.8px;
+  color: white;
   font-size: 32px;
   display: flex;
   justify-content: center;
@@ -814,9 +814,9 @@ section.vid video {
 }
 
 .section_box:hover {
-  background-color: rgb(164, 181, 202);
-  border: rgb(164, 181, 202) solid 0.8px;
-  color: white;
+  background-color: white;
+  border: black solid 0.8px;
+  color: black;
 }
 
 /* Stack vertically if boxes + gaps won't fit */
