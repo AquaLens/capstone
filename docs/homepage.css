@@ -57,6 +57,7 @@ body {
   width: 100vw;
   height: 50vh;
   object-fit: cover;
+  object-position: top;
   display: block;
   z-index: 0;
   padding: 0;
