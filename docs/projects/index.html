@@ -258,6 +258,66 @@
             </select> 
             <div id="selectedCountries" class="selected-countries"></div>           
           </div>
+
+          <div class="filter-group">
+            <strong>Project Tags</strong>
+            <select id="tagDropdown">
+              <option value="">Select a Tag</option>
+              <option value="Agriculture">Agriculture</option>
+              <option value="Artificial Reefs">Artificial Reefs</option>
+              <option value="Awareness">Awareness</option>
+              <option value="Aquatic Ecosystems">Aquatic Ecosystems</option>
+              <option value="Biodiversity Enhancement">Biodiversity Enhancement</option>
+              <option value="Bioremediation">Bioremediation</option>
+              <option value="Blue Infrastructure">Blue Infrastructure</option>
+              <option value="Citizen Participation">Citizen Participation</option>
+              <option value="Clean Drinking Water">Clean Drinking Water</option>
+              <option value="Climate Adaptation">Climate Adaptation</option>
+              <option value="Coastal Protection">Coastal Protection</option>
+              <option value="Coastal Resilience">Coastal Resilience</option>
+              <option value="Ecological Corridors">Ecological Corridors</option>
+              <option value="Ecology">Ecology</option>
+              <option value="Ecology Restoration">Ecology Restoration</option>
+              <option value="Energy Consumption Reduction">Energy Consumption Reduction</option>
+              <option value="Fauna">Fauna</option>
+              <option value="Filtering Gardens">Filtering Gardens</option>
+              <option value="Fishing Dams">Fishing Dams</option>
+              <option value="Floating Garden">Floating Garden</option>
+              <option value="Flood Management">Flood Management</option>
+              <option value="Green Infrastructure">Green Infrastructure</option>
+              <option value="Habitat Creation">Habitat Creation</option>
+              <option value="Habitat Restoration">Habitat Restoration</option>
+              <option value="Heat-Island Mitigation">Heat-Island Mitigation</option>
+              <option value="Irrigation">Irrigation</option>
+              <option value="Indigenous">Indigenous</option>
+              <option value="Infrastructure">Infrastructure</option>
+              <option value="Nature-Based Solutions">Nature-Based Solutions</option>
+              <option value="Photosynthesis">Photosynthesis</option>
+              <option value="Pollution">Pollution</option>
+              <option value="Purification">Purification</option>
+              <option value="Public Space Development">Public Space Development</option>
+              <option value="Rainwater Collection">Rainwater Collection</option>
+              <option value="Recreation">Recreation</option>
+              <option value="Renovation">Renovation</option>
+              <option value="Research">Research</option>
+              <option value="River">River</option>
+              <option value="River Restoration">River Restoration</option>
+              <option value="Sewer System">Sewer System</option>
+              <option value="Soil Treatment">Soil Treatment</option>
+              <option value="Species Preservation">Species Preservation</option>
+              <option value="Stormwater Management">Stormwater Management</option>
+              <option value="Sustainable Development">Sustainable Development</option>
+              <option value="Urban Renewal">Urban Renewal</option>
+              <option value="Urban River Systems">Urban River Systems</option>
+              <option value="Water Consumption Reduction">Water Consumption Reduction</option>
+              <option value="Water Park">Water Park</option>
+              <option value="Water Purification">Water Purification</option>
+              <option value="Water Reclamation">Water Reclamation</option>
+              <option value="Water Treatment">Water Treatment</option>
+              <option value="Wetland Restoration">Wetland Restoration</option>
+            </select> 
+            <div id="selectedTags" class="selected-countries"></div>           
+          </div>
         </div>
 
           <!-- Dashboard Button -->
@@ -786,7 +846,7 @@
         Chat with Froggy
       </div>
       <div class="froggy-disclaimer-text">
-        <p>Before you start chatting with Froggy, please read and understand the following:</p>
+        <p>Froggy is an AI agent that can assist you with the information on this website. Before you start chatting with Froggy, please read and understand the following:</p>
         <ul>
           <li><strong>Data Processing:</strong> Your questions and conversations will be processed through Together.ai's AI services to provide you with responses.</li>
           <li><strong>Information Accuracy:</strong> While Froggy strives to provide helpful and accurate information about water quality initiatives and research, the information provided may not always be complete or accurate.</li>
@@ -825,6 +885,7 @@ let allProjects = []; // Store all projects globally
 let currentPage = 1;
 let projectsPerPage = 9;
 let selectedCountries = []; // Declare this at the top level
+let selectedTags = []; // Declare selected tags array
 let searchQuery = ''; // Store current search query
 
     document.addEventListener('DOMContentLoaded', async () => {
@@ -839,7 +900,8 @@ let searchQuery = ''; // Store current search query
           keywordLabel,
           source,
           companyOrganization,
-          context
+          context,
+          tags
         }`);
 
   try {
@@ -918,7 +980,8 @@ function searchProjects(projects, query) {
       project.companyOrganization || '',
       project.location || '',
       project.keywordLabel || '',
-      project.context || ''
+      project.context || '',
+      (project.tags || []).join(' ')
     ].join(' ').toLowerCase();
     
     // Check if all search terms are found in the searchable text
@@ -1118,6 +1181,42 @@ function setupFilters() {
       selectedCountriesDiv.appendChild(span);
     });
   }
+
+  // Set up tag dropdown filter
+  const tagDropdown = document.getElementById('tagDropdown');
+  const selectedTagsDiv = document.getElementById('selectedTags');
+  selectedTags = []; // Initialize/reset the array
+
+  tagDropdown.addEventListener('change', () => {
+    const selected = tagDropdown.value;
+    if (selected && !selectedTags.includes(selected)) {
+      selectedTags.push(selected);
+      updateSelectedTags();
+      applyFilters(); // Apply filters when a tag is selected
+    }
+    tagDropdown.value = ""; // Reset dropdown after selection
+  });
+
+  function updateSelectedTags() {
+    selectedTagsDiv.innerHTML = '';
+    selectedTags.forEach(tag => {
+      const span = document.createElement('span');
+      span.className = 'country-chip';
+      span.textContent = tag;
+
+      const removeBtn = document.createElement('button');
+      removeBtn.textContent = '×';
+      removeBtn.className = 'remove-btn';
+      removeBtn.onclick = () => {
+        selectedTags = selectedTags.filter(t => t !== tag);
+        updateSelectedTags();
+        applyFilters(); // Apply filters when a tag is removed
+      };
+
+      span.appendChild(removeBtn);
+      selectedTagsDiv.appendChild(span);
+    });
+  }
 }
 
 function applyFilters() {
@@ -1286,7 +1385,7 @@ function getFilteredProjects() {
   }
   
   // Apply other filters
-  if (selectedKeywords.length > 0 || selectedContexts.length > 0 || selectedCountries.length > 0) {
+  if (selectedKeywords.length > 0 || selectedContexts.length > 0 || selectedCountries.length > 0 || selectedTags.length > 0) {
     filtered = filtered.filter(project => {
       // For Object-based Solutions, check for exact match or normalized version
       const matchesKeyword = selectedKeywords.length === 0 || 
@@ -1304,7 +1403,13 @@ function getFilteredProjects() {
       const matchesCountry = selectedCountries.length === 0 || 
         selectedCountries.includes(project.location);
       
-      return matchesKeyword && matchesContext && matchesCountry;
+      // Check if project has any of the selected tags
+      const matchesTags = selectedTags.length === 0 || 
+        selectedTags.some(tag => {
+          return project.tags && project.tags.includes(tag);
+        });
+      
+      return matchesKeyword && matchesContext && matchesCountry && matchesTags;
     });
   }
   
