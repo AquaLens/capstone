@@ -55,7 +55,7 @@ body {
 
 .at_the_surface {
   width: 100vw;
-  height: 35vh;
+  height: 80vh;
   object-fit: cover;
   object-position: top;
   display: block;
