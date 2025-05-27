@@ -90,11 +90,6 @@ body {
   box-sizing: border-box;
 }
 
-.at_the_surface,
-.blink_vid {
-  display: block;
-}
-
 .act1_section {
   bottom: 16%;
   left: 20%;
@@ -191,12 +186,20 @@ section.vid video {
 .pin_section_2 {
   position: relative;
   width: 100vw;
+  padding: 0;
+  margin: 0;
+  border: none; 
+  box-sizing: border-box; 
 }
 
 .scene2 {
   position: relative;
   width: 100vw;
   min-height: 100vh; /* or a value that makes sense */
+  padding: 0;
+  margin: 0;
+  border: none; 
+  box-sizing: border-box; 
 }
 
 .act2_pollutant_section {
@@ -467,11 +470,19 @@ section.vid video {
   position: relative;
   width: 100vw;
   min-height: 100vh; /* or a value that makes sense */
+  padding: 0;
+  margin: 0;
+  border: none; 
+  box-sizing: border-box; 
 }
 
 .pin_section_3 {
   position: relative;
   width: 100vw;
+  padding: 0;
+  margin: 0;
+  border: none; 
+  box-sizing: border-box; 
 }
 
 .quote {
@@ -644,6 +655,10 @@ section.vid video {
   position: relative;
   width: 100vw;
   min-height: 100vh; /* or a value that makes sense */
+  padding: 0;
+  margin: 0;
+  border: none; 
+  box-sizing: border-box; 
 }
 
 #hand_container {
@@ -711,12 +726,20 @@ section.vid video {
 .pin_section_5 {
   position: relative;
   width: 100vw;
+  padding: 0;
+  margin: 0;
+  border: none; 
+  box-sizing: border-box; 
 }
 
 .scene5 {
   position: relative;
   width: 100vw;
   /* border: solid 2px black; */
+  padding: 0;
+  margin: 0;
+  border: none; 
+  box-sizing: border-box; 
 }
 
 #act5_text_section_1 {
