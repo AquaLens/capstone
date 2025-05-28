@@ -39,21 +39,34 @@ document.addEventListener('DOMContentLoaded', () => {
   const audio = document.getElementById('bubbly-sound');
   const waterAnimationContainer = document.querySelector('.water_animation_container');
 
-  // Adjust volume
-  audio.volume = 0.05; // Set volume (0.0 to 1.0)
+  // Adjust initial volume
+  audio.volume = 0.3; // Set initial volume (0.0 to 1.0)
 
   // Use IntersectionObserver to monitor visibility
   const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-              audio.play(); // Play audio when the container is visible
-          } else {
-              audio.pause(); // Pause audio when the container is not visible
-          }
-      });
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        audio.play(); // Play audio when the container is visible
+      } else {
+        audio.pause(); // Pause audio when the container is not visible
+      }
+    });
   });
 
   observer.observe(waterAnimationContainer);
+
+  // Fade out audio volume on scroll
+  window.addEventListener('scroll', () => {
+    const containerRect = waterAnimationContainer.getBoundingClientRect();
+    const fadeStart = 0; // Start fading when the container is fully visible
+    const fadeEnd = window.innerHeight; // End fading when the container is out of view
+
+    // Calculate the fade factor based on scroll position
+    const fadeFactor = Math.max(0, Math.min(1, containerRect.bottom / fadeEnd));
+
+    // Adjust the audio volume based on the fade factor
+    audio.volume = fadeFactor * 0.3; // Multiply by max volume (e.g., 0.5)
+  });
 });
 
 // document.querySelector('#dive_button').addEventListener('click', function () {
