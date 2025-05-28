@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const audio = document.getElementById('bubbly-sound');
   const waterAnimationContainer = document.querySelector('.water_animation_container');
 
-  // Optional: Adjust volume
+  // Adjust volume
   audio.volume = 0.5; // Set volume (0.0 to 1.0)
 
   // Use IntersectionObserver to monitor visibility
