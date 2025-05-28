@@ -34,7 +34,7 @@
 }
 
 .froggy-chat-header {
-  background: linear-gradient(135deg, #4CAF50, #66BB6A);
+  background: linear-gradient(135deg, #7ea53c, #98c749);
   color: white;
   padding: 15px 20px;
   border-radius: 12px 12px 0 0;
@@ -111,7 +111,7 @@
 }
 
 .froggy-user {
-  background: #007bff;
+  background: #395d9d;
   color: white;
   align-self: flex-end;
   border-bottom-right-radius: 4px;
