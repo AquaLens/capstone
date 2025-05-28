@@ -196,11 +196,11 @@
 }
 
 #froggy-question:focus {
-  border-color: #4CAF50;
+  border-color: #7ea53c;
 }
 
 #froggy-send {
-  background: #4CAF50;
+  background: #7ea53c;
   border: none;
   color: white;
   width: 40px;
@@ -216,7 +216,7 @@
 }
 
 #froggy-send:hover {
-  background: #45a049;
+  background: #7ea53c;
   transform: scale(1.05);
 }
 
@@ -300,12 +300,12 @@
 }
 
 #froggy-agree {
-  background: #4CAF50;
+  background: #7ea53c;
   color: white;
 }
 
 #froggy-agree:hover {
-  background: #45a049;
+  background: #7ea53c;
   transform: translateY(-1px);
 }
 
@@ -383,7 +383,7 @@
 
 /* Additional styling for better UX on standalone page */
 .froggy-standalone-page .froggy-chat-header {
-  background: linear-gradient(135deg, #4CAF50, #66BB6A);
+  background: linear-gradient(135deg, #7ea53c, #98c749);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
