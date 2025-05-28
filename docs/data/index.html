@@ -171,7 +171,12 @@
   <div class = "modal-content-wrapper" onclick= "event.stopPropagation()">
     <button class ="modal-close" onclick = "closeModal()">x</button>
     <h2 id="modal-title"></h2>
-    <iframe id="modal-content"></iframe>
+    <iframe 
+      id="modal-content" 
+      style="width: 100%; height: 90vh; border: none; border-radius: 8px;" 
+      loading="lazy">
+    </iframe>
+
     <div id = "modal-description"></div>
   </div>
 </div>
