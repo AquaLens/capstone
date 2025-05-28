@@ -244,3 +244,22 @@
       display: block;
       border: none;
     }
+
+    .modal-analysis h3 {
+      margin-top: 1.8rem;
+      margin-bottom: 0.8rem;
+    }
+    
+    .modal-analysis p,
+    .modal-analysis ul {
+      margin-bottom: 1rem;
+    }
+    
+    .modal-analysis li {
+      margin-bottom: 0.4rem;
+    }
+    
+    .modal-analysis ul {
+      padding-left: 1.2rem;
+    }
+    
