@@ -121,6 +121,7 @@
       background: #fff;              
       width: 90vw;
       max-width: 900px;
+      gap: 0.5rem;
       padding: 2rem;
       border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -191,8 +192,9 @@
 
     .modal-analysis {
       background: #fff;
-      padding: 0.5rem;
-      margin-top: 0.5rem;
+      padding: 0rem;
+      margin-top: 0rem;
+      margin-bottom: 0rem;
       font-family: 'Segoe UI', sans-serif;
       font-size: 16px;
       line-height: 1.7;
@@ -240,5 +242,4 @@
       margin-bottom: 0;   
       margin-top: 0;
       display: block;
-      height: 90vh;
     }
