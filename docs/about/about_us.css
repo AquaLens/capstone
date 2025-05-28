@@ -304,3 +304,9 @@ section.first {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(10px); }
 }
+
+a {
+  color: #0077cc; /* Or another high-contrast color */
+  text-decoration: underline;
+  font-weight: bold;
+}
