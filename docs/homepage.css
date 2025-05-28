@@ -24,6 +24,10 @@ body {
     display: block;
 }
 
+#bubbly-sound {
+  display: none;
+}
+
 .aqualens_title,
 .act1_section {
   position: absolute;

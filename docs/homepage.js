@@ -34,6 +34,28 @@ document.querySelector('#dive_button').addEventListener('click', function () {
     }
 });
 
+// Play or pause audio based on visibility of water_animation_container
+document.addEventListener('DOMContentLoaded', () => {
+  const audio = document.getElementById('bubbly-sound');
+  const waterAnimationContainer = document.querySelector('.water_animation_container');
+
+  // Optional: Adjust volume
+  audio.volume = 0.5; // Set volume (0.0 to 1.0)
+
+  // Use IntersectionObserver to monitor visibility
+  const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+              audio.play(); // Play audio when the container is visible
+          } else {
+              audio.pause(); // Pause audio when the container is not visible
+          }
+      });
+  });
+
+  observer.observe(waterAnimationContainer);
+});
+
 // document.querySelector('#dive_button').addEventListener('click', function () {
 //   window.location.href = '/projects'; 
 // });
