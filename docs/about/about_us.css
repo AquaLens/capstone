@@ -291,3 +291,16 @@ section.first {
     font-size: 1.8rem;
   }
 }
+
+.down-arrow {
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 1rem;
+  color: #333; /* or match your theme color */
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
