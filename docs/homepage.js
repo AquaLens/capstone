@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const waterAnimationContainer = document.querySelector('.water_animation_container');
 
   // Adjust volume
-  audio.volume = 0.5; // Set volume (0.0 to 1.0)
+  audio.volume = 0.1; // Set volume (0.0 to 1.0)
 
   // Use IntersectionObserver to monitor visibility
   const observer = new IntersectionObserver((entries) => {
