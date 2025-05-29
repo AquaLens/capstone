@@ -596,23 +596,50 @@ document.body.classList.add('about');
     }
 
     // Select all in-page anchors that link to IDs
+// Handle anchor links for section navigation
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
     e.preventDefault(); // prevent default immediate jump
     
     const id = this.getAttribute('href').substring(1);
-    const target = document.getElementById(id);
+    let targetSection = null;
     
-    if (target) {
-      // Scroll smoothly to target section using GSAP, with same offset & duration as your side nav
-      gsap.to(window, {
-        scrollTo: { y: target, offsetY: 20 },
-        duration: 1,
-        ease: "power2.out",
-        onComplete: () => {
-          ScrollTrigger.refresh();  // refresh triggers after scroll
+    // Map anchor IDs to section numbers
+    switch(id) {
+      case 'start':
+        targetSection = 1; // Section with "Our Foundation"
+        break;
+      case 'netherlands-section':
+        targetSection = 2; // Section with "De Ceuvel"
+        break;
+      // Add more cases here if you have other anchor links
+      default:
+        // Try to find the target element and determine its section
+        const target = document.getElementById(id);
+        if (target) {
+          // Find which section contains this element
+          const sections = document.querySelectorAll('section');
+          for (let i = 0; i < sections.length; i++) {
+            if (sections[i].contains(target)) {
+              targetSection = i;
+              break;
+            }
+          }
         }
-      });
+    }
+    
+    // If we found a target section and we're not already there
+    if (targetSection !== null && targetSection !== current && listening) {
+      listening = false;
+      next = targetSection;
+      
+      if (next > current) {
+        direction = "down";
+        slideIn();
+      } else {
+        direction = "up";
+        slideOut();
+      }
     }
   });
 });
