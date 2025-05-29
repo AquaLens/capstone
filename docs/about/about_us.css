@@ -305,7 +305,7 @@ section.first {
   50% { transform: translateY(10px); }
 }
 
-a {
+a.in-text {
   color: #0077cc; /* Or another high-contrast color */
   text-decoration: underline;
   font-weight: bold;
