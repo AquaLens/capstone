@@ -55,7 +55,7 @@
               </div>
               
               <p>
-                Discover <a href="#netherlands-section" class="emphasis">three powerful Dutch case studies</a> that prove water quality action isn't just manageable—it's something you can weave into your daily life, creating impact while building community.
+                Discover <a href="#netherlands-section" class="emphasis">three powerful Dutch case studies</a> that prove water quality action isn't just manageable, it's something you can weave into your daily life, creating impact while building community.
               </p>
               
               <p>
@@ -79,7 +79,7 @@
               <span class="innovation-tag">🏙️ Urban Innovation</span>
               
               <p>
-                AquaLens extends research from <strong>"Integral Design Method Public Space"</strong> - a publication exploring Amsterdam's urban transformation challenges in the face of climate change, energy transitions, and resource scarcity.
+                AquaLens extends research from <strong>"Integral Design Method Public Space"</strong>, a publication exploring Amsterdam's urban transformation challenges in the face of climate change, energy transitions, and resource scarcity.
               </p>
               
               <div class="key-point">
@@ -91,7 +91,7 @@
               </p>
               
               <p>
-                <span class="emphasis">Water quality isn't separate from urban planning—it's central to it.</span> The Dutch case studies you'll explore demonstrate how this research translates into real-world community innovations.
+                <span class="emphasis">Water quality isn't separate from urban planning; it's central to it.</span> The Dutch case studies you'll explore demonstrate how this research translates into real-world community innovations.
               </p>
             </div>
           </div>
@@ -110,7 +110,7 @@
               <span class="innovation-tag">♻️ Zero Waste</span>
               
               <p>
-                Imagine a <strong>fully circular community</strong> built on a former shipyard in Amsterdam's north. De Ceuvel isn't just sustainable—it's a living laboratory where <span class="emphasis">every drop of water tells a story</span>.
+                Imagine a <strong>fully circular community</strong> built on a former shipyard in Amsterdam's north. De Ceuvel isn't just sustainable, it's a living laboratory where <span class="emphasis">every drop of water tells a story</span>.
               </p>
               
               <div class="key-point">
@@ -122,11 +122,11 @@
               </p>
               
               <p>
-                The café's produce grows in an <span class="emphasis">aquaponic greenhouse</span> where fish waste feeds plants, plants filter water, and fish thrive again. But here's the genius: <strong>compost toilets replaced sewers entirely</strong> due to soil pollution—turning constraint into innovation. Find out more <a href="https://deceuvel.nl/en/">here</a>
+                The café's produce grows in an <span class="emphasis">aquaponic greenhouse</span> where fish waste feeds plants, plants filter water, and fish thrive again. But here's the genius: <strong>compost toilets replaced sewers entirely</strong> due to soil pollution, turning constraint into innovation. Find out more <a href="https://deceuvel.nl/en/">here</a>.
               </p>
               
               <div class="key-point">
-                💡 Breaking convention leads to better outcomes. Water quality doesn't limit function—it enhances it.
+                💡 Breaking convention leads to better outcomes. Water quality doesn't limit function, it enhances it.
               </div>
             </div>
           </div>
@@ -145,7 +145,7 @@
               <span class="innovation-tag">🚴 Filtration Bikes</span>
               
               <p>
-                The Netherlands hosts <span class="stat">1,100+ festivals annually</span>—one of the world's highest festival densities. Each event typically means water pollution. <strong>Lowlands Festival flipped the script.</strong>
+                The Netherlands hosts <span class="stat">1,100+ festivals annually</span>, one of the world's highest festival densities. Each event typically means water pollution. <strong>Lowlands Festival flipped the script.</strong>
               </p>
               
               <div class="key-point">
@@ -157,7 +157,7 @@
               </p>
               
               <p>
-                This breakthrough contributed to <strong>critical research</strong> on smaller water bodies—often overlooked but equally important. The message is clear: <span class="emphasis">water quality management integrates seamlessly with recreation, not against it. find out more <a href="https://translate.google.com/translate?hl=en&sl=nl&u=https://www.naturetoday.com/intl/nl/nature-reports/message/?msg=32728">here</a></span>.
+                This breakthrough contributed to <strong>critical research</strong> on smaller water bodies, often overlooked but equally important. The message is clear: <span class="emphasis">water quality management integrates seamlessly with recreation, not against it.</span> Find out more <a href="https://translate.google.com/translate?hl=en&sl=nl&u=https://www.naturetoday.com/intl/nl/nature-reports/message/?msg=32728">here</a>.
               </p>
               
               <div class="key-point">
@@ -180,11 +180,11 @@
               <span class="innovation-tag">🗓️ Weekly Impact</span>
               
               <p>
-                Every Sunday, <strong>volunteers unite</strong> to canoe through Leiden's historic canals, armed with nets and unshakeable determination. <span class="emphasis">Anyone can join—from canal banks or in canoes</span>.
+                Every Sunday, <strong>volunteers unite</strong> to canoe through Leiden's historic canals, armed with nets and unshakeable determination. <span class="emphasis">Anyone can join, from canal banks or in canoes</span>.
               </p>
               
               <div class="key-point">
-                🔍 They don't just clean—they investigate. Tracking plastic sources + studying wildlife impact = systematic change.
+                🔍 They don't just clean; they investigate. Tracking plastic sources + studying wildlife impact = systematic change.
               </div>
               
               <p>
@@ -196,7 +196,7 @@
               </p>
               
               <div class="key-point">
-                💪 Clean water isn't divisive—it's the ultimate unifying force.
+                💪 Clean water isn't divisive; it's the ultimate unifying force.
               </div>
             </div>
           </div>
@@ -219,11 +219,11 @@
               </div>
               
               <p>
-                Water management isn't just for experts—it's for everyone. The public can contribute actively, passively, and everything in between. <span class="emphasis">Your involvement matters more than you think.</span>
+                Water management isn't just for experts; it's for everyone. The public can contribute actively, passively, and everything in between. <span class="emphasis">Your involvement matters more than you think.</span>
               </p>
               
               <p>
-                These stories aren't about Dutch superiority—they're about <strong>urgent necessity driving innovation</strong>. When water quality hits rock bottom, creativity explodes upward.
+                These stories aren't about Dutch superiority, they're about <strong>urgent necessity driving innovation</strong>. When water quality hits rock bottom, creativity explodes upward.
               </p>
               
               <p>
@@ -594,6 +594,29 @@ document.body.classList.add('about');
       updateFooterVisibility();
       listening = true;
     }
+
+    // Select all in-page anchors that link to IDs
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault(); // prevent default immediate jump
+    
+    const id = this.getAttribute('href').substring(1);
+    const target = document.getElementById(id);
+    
+    if (target) {
+      // Scroll smoothly to target section using GSAP, with same offset & duration as your side nav
+      gsap.to(window, {
+        scrollTo: { y: target, offsetY: 20 },
+        duration: 1,
+        ease: "power2.out",
+        onComplete: () => {
+          ScrollTrigger.refresh();  // refresh triggers after scroll
+        }
+      });
+    }
+  });
+});
+
   </script>
 </body>
 </html>
