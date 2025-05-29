@@ -278,14 +278,14 @@
             html : `<div class="modal-analysis">
               <p>The first visualization illustrates the countries with higest reported water stress (%) between 2016 and 2022, excluding the top 5, as these remain the same through the selected years. Excluded: Kuwait, UAE, Saudi Arabia, Qatar and Libya. These countries experience a critical water stress level, going beyond that of 100%, showing these that freshwater supply is depeleted when compared to the country's withdrawals. Their percentage levels are much higher than in any other country. Hovering over the map shows the country name and how many US dollars were generated per cubic meter of water used. </p>
               
-              
+            <ul>
               <li><strong>Calculating Water Stress</strong>
               <br>- According to the UN, indicator 6.4.2 is caluclated as a ratio based on the following variables:
               <br>- TFWW: Total freshwater withdrawn
               <br>- TRFWR: Total renewable freshwater resources 
               <br>- EFR: Environmental flow requirements
               <br>-<strong> Water Stress(%) = <sup>TFWW</sup>&frasl;<sub>TRFWR - EFR</sub> * 100</strong> </li>
-              </ul>
+            </ul>
               
               <h3>Water Stress in 2022</h3>
               <img src="visual_charts_graphs/water_stress_2022.png" alt="Countries with Highest and Lowest Water Stress"/>
@@ -296,45 +296,45 @@
                 </p>
               </div>`
           },
-          
+            
           'Water Use Efficiency Map' : {
             title: 'Global Water Use Efficiency (2022)',
             html: `<div class="modal-analysis"> 
                 <p>This interactive map visualizes countries' water use efficiency (US$/m³) in 2022. This indicator monitors the UN's Sustainable Development Goal (SDG) 6.4.1 in the attempts of increasing water use efficiency across all sectors by 2030. <strong>Water use efficiency</strong> iconsists of the ratio between dollar value added and total volume of water used. This ratio reflects the efficiency of a country in its water usage. This indicator can also be understood as a way of evaluating how efficient a country uses its water resources given its economy.</p>
-                
+    
                 <p><strong>SDG 6.4 Objective:</strong> to achieve a "substantial increase in water-use efficiency across all sectors and ensure sustainable withdrawals and supply of freshwater to address water scarcity"</p> 
                 <ul>
-                
+    
                 <p><strong>Top 10 countires with the best and worst water use efficiency </p></strong>
 
-          <img src="visual_charts_graphs/water_efficiency_use_2022.png" alt="Water Use Efficiencyy"/>
-            <p>The graphs compliment the map, illustrating the 10 countries with the most efficient and leadt efficienct water usage.
-</p>
-                        
-                 <li><strong>What does high-efficiency vs. low-efficiency mean? </strong> 
-                  
+            <img src="visual_charts_graphs/water_efficiency_use_2022.png" alt="Water Use Efficiencyy"/>
+              <p>The graphs compliment the map, illustrating the 10 countries with the most efficient and leadt efficienct water usage.</p>
+    
+                <li><strong>What does high-efficiency vs. low-efficiency mean? </strong> 
                     <br>- Low Efficiency: Countries (e.g. Afghanistan and Madagascar).
                     <br>- High Efficiency: Countries (e.g. Austria and Slovakia) 
-                  </li>
+                 </li>
+    
+                </ul>
 
                 <h3>Evaluating the UN's Sustainable Development Goals</h3>
                 <div class="image container">
-                  <iframe src="visual_charts_graphs/water_stress_water_use.html" width="100%" height="500" frameborder="0 </iframe>
+                    <iframe src="visual_charts_graphs/water_stress_water_use.html" width="100%" height="500" frameborder="0"></iframe>
                 </div> 
 
                 <p>The scatter above illustrates no relationship between two of the indicators of the UN that track goal 6.4.</p>
 
                 <p style="margin-top:2rem;"> 
-                  <strong>Data Sources:</strong> 
-                  <a href="https://www.fao.org/aquastat/en/databases/maindatabase" target="_blank">FAO AQUASTAT</a>, 
-                  <a href="https://sdg6data.org/en/indicator/6.4.1" target="_blank">SDG 6.4.1 Database</a>, 
-                  <a href="https://www.unwater.org/publications/progress-water-use-efficiency-2021-update" target="_blank">Progress on Water-Use Efficiency-2021 Update</a> 
+                <strong>Data Sources:</strong> 
+                <a href="https://www.fao.org/aquastat/en/databases/maindatabase" target="_blank">FAO AQUASTAT</a>, 
+                <a href="https://sdg6data.org/en/indicator/6.4.1" target="_blank">SDG 6.4.1 Database</a>, 
+                <a href="https://www.unwater.org/publications/progress-water-use-efficiency-2021-update" target="_blank">Progress on Water-Use Efficiency-2021 Update</a> 
                 </p>
-              </div>`
-
+            </div>`
+              
           },
-            
 
+           
           'Access to Drinking Water based on Wealth' : {
             title : 'Access to Drinking Water based on Wealth',
             html : `<div class="modal-analysis"> 
