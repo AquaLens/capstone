@@ -53,19 +53,19 @@
     </div>
 
 
-    <div class="gallery-item" onclick="openModal('visual_charts_graphs/top_20_water_stress_excluding.html')">
+    <div class="gallery-item" onclick="openModal('visual_charts_graphs/top_20_water_stress_excluding.html', 'Countries with Highest and Lowest Water Stress (%))">
       <img src="visual_charts_graphs/images/topstress.jpg" alt="Countries with Highest and Lowest Water Stress (%)" />
       <h4>Countries with Highest and Lowest Water Stress (%)</h4>
       <p>Countries with highest and lowest water stress felt between 2016 - 2022 </p>
     </div>
       
-    <div class="gallery-item" onclick="openModal('visual_charts_graphs/images/random_forest_regression.png')">
+    <div class="gallery-item" onclick="openModal('visual_charts_graphs/images/random_forest_regression.png', 'What Drives Water Stress?')">
       <img src="visual_charts_graphs/images/driving_water_stress.jpg" alt="What Drives Water Stress?" />
       <h4>What Drives Water Stress? Insights From Random Forest Machine Learning Model</h4>
       <p>Explore the factors that help predicting water stress, countries that are most vulnerable, and what this means for policy. </p>
     </div>
 
-    <div class="gallery-item" onclick="openModal('visual_charts_graphs/water_use_efficiency_map_2023.html')">
+    <div class="gallery-item" onclick="openModal('visual_charts_graphs/water_use_efficiency_map_2023.html', 'Water Use Efficiency (US$/m³) Map')">
       <img src="visual_charts_graphs/images/SDG.jpg" alt="Water Use Efficiency (US$/m³) Map" />
       <h4>Global Water Use Efficiency (US$/m³) </h4>
       <p>Map visualizing global water use efficiency in 2022</p>
@@ -269,7 +269,7 @@
 
                 <h3>Case Study: Water Stress in The Netherlands (2011–2022)</h3>
                 <div class="image container">
-                  <iframe src="visual_charts_graphs/netherlands_water_stress_2011_2022.html" width="100%" height="500" frameborder="0"></iframe>
+                  <iframe src="visual_charts_graphs/netherlands_water_stress_2011_2022.html" width="100%" height="800" frameborder="0"></iframe>
                 </div> 
 
                 <p>This line chart tracks the annual percentage of water stress in the Netherlands from 2011 to 2022, based on SDG Indicator 6.4.2. Water stress in the Netherlands has consistently remained below 25%, making it a country with low water stress category according to UN thresholds. This suggests that the country is managing its freshwater withdrawals sustainably when compared to the renewable freshwater supply the country has. The Netherlands is an example of a developed country with high-quality water infrastructure, which has maintained sustainable water withdrawal despite intensive agricultural activity. Interestingly, while water stress does not seem to present itself as an issue for The Netherlands, there are other factors to consider when evaluating a country's water management policies. Water stress does not serve as the sole indicator linked to strong water management policies. Understanding other factors that reflect water quality (marine biodiveristy, clean water bodies, etc) strengthen policy through data-driven decisions. Explore the website to find out more!</p>
@@ -306,8 +306,8 @@
                   <strong>Data Sources:</strong>  
                   <a href="https://www.unwater.org/publications/progress-level-water-stress-2024-update" target="_blank">UN-Water Report (2024)</a> 
                 </p>
-              </div>`
-          },
+          </div>`
+      },
             
           'What Drives Water Stress?' : {
             title: 'Understanding the Features that Influence Water Stress',
@@ -338,8 +338,8 @@
                   <strong>Data Sources:</strong>  
                   <a href="https://www.fao.org/aquastat/en/databases/maindatabase" target="_blank">FAO AQUASTAT</a>> 
                 </p>
-              </div>`
-          },
+          </div>`
+      },
             
           'Water Use Efficiency (US$/m³) Map' : {
             title: 'Water Use Efficiency (US$/m³) in 2022',
@@ -373,9 +373,8 @@
                 <a href="https://sdg6data.org/en/indicator/6.4.1" target="_blank">SDG 6.4.1 Database</a>, 
                 <a href="https://www.unwater.org/publications/progress-water-use-efficiency-2021-update" target="_blank">Progress on Water Use Efficiency 2021</a> 
                 </p>
-            </div>`
-              
-          },
+           </div>`
+      },
 
            
           'Access to Drinking Water based on Wealth' : {
@@ -983,8 +982,50 @@
               </div>
             `
 
-          }
+          },
+            
+        'Presence of Vulnerable Marine Ecosystems': {
+          title: 'Heatmap with Presence of Vulnerable Marine Ecosystems (VME) in the Notheast Atlantic Ocean',
+          html: `
+            <div class="modal-analysis">
 
+              <p>
+                This interactive heatmap visualizes the presence of Vulnerable Marine Ecosystems (VME) in the Northeast Atlantic Ocean. The map illustrates VME density in different locations, highlighting areas where ecological conservation efforts are critical to maintain their presence in fragile habitats.
+              </p>
+
+              <p>
+                <strong>Vulnerable Marine Ecosystems</strong> are species and habitats at risk of severe harm from human activity, particularly that related to bottom fishing or seabed extraction. These habitats are home to marine species; thus, supporting the richness of biodiversity. 
+              </p>
+
+              <h3>VME provide services such as:</h3>
+              <ul>
+                <li>Nurse grounds</li>
+                <li>Biodiversity support</li>
+                <li>Carbon cycling</li>
+              </ul>
+
+              <p>Efforts to protect VME’s from vulnerability are of essence as VME recovers extremely slowly, or not at all. Hence, efforts focus highly on preservation and conservation over restoration and recovery. Lower presence of VME may indicate areas in which human activity may be of high impact, leading to degradation of these ecosystems and further highlighting areas of risk that require urgent conservation efforts.</p>
+              
+              <h3>Examples of VME:</h3>
+              <ul>
+                <li>Cold-water coral reefs</li>
+                <li>Deep-sea sponge aggregations</li>
+                <li>Seapen fields</li>
+              </ul>
+              
+              <p>The Food and Agriculture Organization of the United Nations (FAO) and the United Nations General Assembly (UNGA) stressed the importance of VME presence, urging for their protection, specifically in areas beyond national jurisdiction (ABNJ). Deep-sea fishing activity and overfishing may have negative effects on the species found in these locations, which in turn may alter ecosystems and their regular functionality (i.e. damage from fishing gears). Data collection and analysis of VME is limited and uneven and underreported, highlighting the need for scientific monitoring and investigation. Several VME species remain unknown and poorly understood, indicating an area of future research that could potentially support conservation objectives. </p>
+
+
+              <p style="font-size: 14px; color: #555;">
+                <strong>Source:</strong> <a href="https://www.fao.org/in-action/vulnerable-marine-ecosystems/background/en/" target="_blank" style="color:#2a5885;">
+                  FAO Vulnerable Marine Ecosystems
+                </a>
+              </p>
+
+
+            </div>
+          `
+        },
 
 
 
