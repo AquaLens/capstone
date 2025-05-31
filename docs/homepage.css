@@ -81,14 +81,14 @@ body {
 }
 
 .at_the_surface-container {
-  position: relative; /* Make the container a positioning context */
+  position: relative; 
+  height: 100%;
 }
 
 .scroll-text {
   position: absolute; 
-  top: 25%; 
+  top: 15%; 
   left: 10%; 
-  transform: translateY(-50%); 
   color: white; 
   font-size: 2vw; 
   width: 80%; 
