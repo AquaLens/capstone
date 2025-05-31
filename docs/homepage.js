@@ -78,6 +78,14 @@ document.querySelector('#explore_button').addEventListener('click', function () 
   window.location.href = '/projects'; 
 });
 
+// button scroll down by one viewport height when Dive In button is clicked
+document.querySelector('#dive_button').addEventListener('click', function () {
+  window.scrollBy({
+      top: window.innerHeight, // Scroll down by one viewport height
+      behavior: 'smooth' // Smooth scrolling
+  });
+});
+
 // pin the image when its bottom hits the viewport
 ScrollTrigger.create({
     trigger: ".scene1",
