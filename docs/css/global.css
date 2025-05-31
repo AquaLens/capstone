@@ -145,6 +145,8 @@ option,
   .nav-links a {
     color: #333;
     transition: color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
   }
   
   .nav-links a.active {
@@ -157,9 +159,8 @@ option,
   
   .nav-icon {
     height: 1.5rem; /* adjust height to match text */
-    vertical-align: text-bottom;
+    vertical-align: middle;
     display: inline-block;
-    margin-top: 0px; 
     margin-left: 8px;
   }
   
