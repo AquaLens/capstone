@@ -84,7 +84,7 @@ document.querySelector('#dive_button').addEventListener('click', function () {
 
   gsap.to(window, {
       scrollTo: targetScroll, // Scroll to the target position
-      duration: 2, // Duration in seconds (increase for slower scrolling)
+      duration: 4, // Duration in seconds (increase for slower scrolling)
       ease: "power2.out" // Smooth easing for a natural scroll effect
   });
 });
