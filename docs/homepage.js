@@ -1,5 +1,6 @@
 // importing ScrollTrigger from GSAP
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollToPlugin);
 
 // smooth scroll function
 const lenis = new Lenis()
