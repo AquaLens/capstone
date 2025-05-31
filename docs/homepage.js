@@ -80,16 +80,19 @@ document.querySelector('#explore_button').addEventListener('click', function () 
 
 // button scroll down by one viewport height when Dive In button is clicked
 document.querySelector('#dive_button').addEventListener('click', function () {
-  const targetScroll = window.scrollY + window.innerHeight; // Calculate the target scroll position
-  const scrollStep = 10; // Adjust this value to control the speed (smaller = slower)
+  const targetScroll = Math.round(window.scrollY + window.innerHeight); // Ensure the target is exactly one viewport height below
+  const scrollStep = 5; // Smaller value for smoother scrolling
   const interval = 10; // Time between each scroll step in milliseconds
 
   const scrollInterval = setInterval(() => {
       const currentScroll = window.scrollY;
-      if (currentScroll < targetScroll) {
+
+      if (currentScroll + scrollStep < targetScroll) {
           window.scrollBy(0, scrollStep); // Scroll by small steps
       } else {
-          clearInterval(scrollInterval); // Stop scrolling when the target is reached
+          // Stop scrolling and snap to the exact target position
+          window.scrollTo(0, targetScroll);
+          clearInterval(scrollInterval);
       }
   }, interval);
 });
