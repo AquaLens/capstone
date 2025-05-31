@@ -80,21 +80,13 @@ document.querySelector('#explore_button').addEventListener('click', function () 
 
 // button scroll down by one viewport height when Dive In button is clicked
 document.querySelector('#dive_button').addEventListener('click', function () {
-  const targetScroll = Math.round(window.scrollY + window.innerHeight); // Ensure the target is exactly one viewport height below
-  const scrollStep = 5; // Smaller value for smoother scrolling
-  const interval = 2; // Time between each scroll step in milliseconds
+  const targetScroll = window.scrollY + window.innerHeight; // Calculate the target scroll position
 
-  const scrollInterval = setInterval(() => {
-      const currentScroll = window.scrollY;
-
-      if (currentScroll + scrollStep < targetScroll) {
-          window.scrollBy(0, scrollStep); // Scroll by small steps
-      } else {
-          // Stop scrolling and snap to the exact target position
-          window.scrollTo(0, targetScroll);
-          clearInterval(scrollInterval);
-      }
-  }, interval);
+  gsap.to(window, {
+      scrollTo: targetScroll, // Scroll to the target position
+      duration: 3, // Duration in seconds (increase for slower scrolling)
+      ease: "power2.out" // Smooth easing for a natural scroll effect
+  });
 });
 
 // pin the image when its bottom hits the viewport
