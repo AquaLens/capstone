@@ -26,14 +26,18 @@
         <h2>What You’ll Find</h2>
         <p class="gallery-intro">
           This page brings together global data from sources like the WHO, UNICEF, and other environmental agencies.
-          You’ll see visual stories about clean drinking water, water stress, pollution, and how different countries
-          manage water. Whether you’re a student, a policymaker, or just curious — these visuals are designed to make complex water issues easy to understand.
+          You’ll see visual stories about clean drinking water, water stress, pollution, and how different countriesMore actions
+          manage water. Whether you’re a student, a policymaker, or just curious — these visuals are designed to make complex water issues easy to understand. </br>
+          The data is shown in five different categories: <strong style="font-weight: 600;"><a href = "#water_quality">General Water Quality and Availability </a></strong> , <strong style="font-weight: 600;"><a href = "#chemical_indicators">Chemical Indicators</a></strong>, <strong style="font-weight: 600;"><a href = "#ecological">Ecological</a></strong>, <strong style="font-weight: 600;"><a href="#health-impacts">Health Impacts</a></strong>, and <strong style="font-weight: 600;"><a href="#data_reporting">Data Reporting and Transperency</a></strong>.
+        </p>
+        <p style="color: #2a5885; font-size: 15px; margin-top: 0.5rem;">
+          💡 You can click on any of the bold category names above to jump straight to that section or explore related data stories.
         </p>
         
 
 <!-- === GENERAL WATER QUALITY AND AVAILABILITY === -->
 <div class="gallery-section">
-  <h3 class="gallery-section-title">General Water Quality and Availability</h3>
+  <h3 class="gallery-section-title" id ="water_quality">General Water Quality and Availability</h3>
   <div class="gallery-grid">
     
     <div class="gallery-item" onclick="openModal('visual_charts_graphs/water_quality_map_2023.html', 'Water Quality Map')">
@@ -49,25 +53,25 @@
     </div>
 
 
-    <div class="gallery-item" onclick="openModal('visual_charts_graphs/top_20_water_stress_excluding.html')">
-      <img src="visual_charts_graphs/images/topstress.jpg" alt="Top 20 Countries with Highest Water Stress (2016 - 2022)" />
-      <h4>Countries with Highest Water Stress </h4>
-      <p>Countries with highest water stress felt between 2016 - 2022 </p>
+    <div class="gallery-item" onclick="openModal('visual_charts_graphs/top_20_water_stress_excluding.html', 'Countries with Highest and Lowest Water Stress (%))">
+      <img src="visual_charts_graphs/images/topstress.jpg" alt="Countries with Highest and Lowest Water Stress (%)" />
+      <h4>Countries with Highest and Lowest Water Stress (%)</h4>
+      <p>Countries with highest and lowest water stress felt between 2016 - 2022 </p>
     </div>
       
-    <div class="gallery-item" onclick="openModal('visual_charts_graphs/images/random_forest_regression.png')">
-      <img src="visual_charts_graphs/images/driving_water_stress.jpg" alt="What Drive Water Stress?r" />
+    <div class="gallery-item" onclick="openModal('visual_charts_graphs/images/random_forest_regression.png', 'What Drives Water Stress?')">
+      <img src="visual_charts_graphs/images/driving_water_stress.jpg" alt="What Drives Water Stress?" />
       <h4>What Drives Water Stress? Insights From Random Forest Machine Learning Model</h4>
       <p>Explore the factors that help predicting water stress, countries that are most vulnerable, and what this means for policy. </p>
     </div>
 
-    <div class="gallery-item" onclick="openModal('visual_charts_graphs/water_stress_water_use.html')">
-      <img src="visual_charts_graphs/images/SDG.jpg" alt="Water Stress (%) vs. Water Use Efficiency (US$/m³) Scatter" />
-      <h4>Water Stress (%) vs. Water Use Efficiency (US$/m³) Scatter </h4>
-      <p>No correlation between two of the UN's Sustainable Development Goals Indicators (SDG). What does this mean?</p>
+    <div class="gallery-item" onclick="openModal('visual_charts_graphs/water_use_efficiency_map_2023.html', 'Water Use Efficiency (US$/m³) Map')">
+      <img src="visual_charts_graphs/images/SDG.jpg" alt="Water Use Efficiency (US$/m³) Map" />
+      <h4>Global Water Use Efficiency (US$/m³) </h4>
+      <p>Map visualizing global water use efficiency in 2022</p>
     </div>
 
-    <div class="gallery-item" onclick="openModal('visual_charts_graphs/poorest_access_map.html','Access to Drinking Water based on Wealth')">
+    <div class="gallery-item" onclick="openModal('visual_charts_graphs/poorest_access_map2.html','Access to Drinking Water based on Wealth')">
       <img src="visual_charts_graphs/images/drinking_water.jpg" alt="Access to Drinking Water based on Wealth" />
       <h4>Access to Drinking Water based on Wealth - Poorest </h4>
       <p>Access to Drinking Water based on Wealth</p>
@@ -78,7 +82,7 @@
 
 <!-- === CHEMICAL INDICATORS === -->
 <div class="gallery-section">
-  <h3 class="gallery-section-title">Chemical Indicators</h3>
+  <h3 class="gallery-section-title" id="chemical_indicators">Chemical Indicators</h3>
   <div class="gallery-grid">
     <div class="gallery-item" onclick="openModal('visual_charts_graphs/ph_map.html', 'Average pH Levels')">
       <img src="visual_charts_graphs/images/ph_tn.jpg" alt="pH Map" />
@@ -114,7 +118,7 @@
 
 <!-- === ECOLOGICAL === -->
 <div class="gallery-section">
-  <h3 class="gallery-section-title">Ecological</h3>
+  <h3 class="gallery-section-title" id="ecological">Ecological</h3>
   <div class="gallery-grid">
     <div class="gallery-item" onclick="openModal('visual_charts_graphs/vme_presence_heatmap.html', 'Presence of Vulnerable Marine Ecosystems')">
       <img src="visual_charts_graphs/images/vme.jpg" alt="Presence of Vulnerable Marine Ecosystems Heatmap" />
@@ -131,7 +135,7 @@
           
 <!-- === HEALTH IMPACTS === -->
 <div class="gallery-section">
-  <h3 class="gallery-section-title">Health Impacts</h3>
+  <h3 class="gallery-section-title" id="health_impacts">Health Impacts</h3>
   <div class="gallery-grid">
     <div class="gallery-item" onclick="openModal('visual_charts_graphs/scatter_water_cleanliness.html', 'Water quality and Healthcare Facilities')">
       <img src="visual_charts_graphs/images/w_healthcare.webp" alt="Water quality and Healthcare Facilities" />
@@ -149,7 +153,7 @@
 
 <!-- === TRANSPARENCY === -->
 <div class="gallery-section">
-  <h3 class="gallery-section-title">Data Reporting & Transparency</h3>
+  <h3 class="gallery-section-title" id="data_transparency">Data Reporting & Transparency</h3>
   <div class="gallery-grid">
     <div class="gallery-item" onclick="openModal('visual_charts_graphs/transparency_map.html', 'Transperency Map')">
       <img src="visual_charts_graphs/images/Transparency.jpg" alt="Water Reporting Transparency Map" />
@@ -189,13 +193,21 @@
         'Water Quality Map' : {
           title: 'Global Water Quality (2023)',
           html:  
-          `<div class="modal-analysis"> 
+          `
+          <div class="modal-analysis"> 
 
             <p>This section analyses countries' and continents' natural water bodies quality in relation to the Sustainable Development Goal (SDG) "good ambient water quality" threshold. The water is separated into three categories: rivers, lakes, and groundwater, with their values combined to assess overall water quality.</p>
             <p> The first map shows the share of each country's natural water bodies that does meet the SDG, meaning is of good quality.<strong>Good water quality </strong>(dark blue) means all key physician, chemical, and biological parameters (pH, dissolved oxygen, nutrient levels, turbidity, microbial counts, etc) fall within established safe “reference” ranges. <strong>Poor water quality</strong> (light blue) means one or more of those parameters exceed acceptable limits, indicating pollution or ecosystem and public-health risks.</p>
-            <p><strong>Top 10 countires with the best water quality and lowest water quality</p></strong>
 
-          <img src="visual_charts_graphs/images/top_countries_water_q.png" alt="Top Countries with best Water Quality"/>
+            <p><strong>Top 10 countires with the best water quality and lowest water quality</p></strong>
+            <img src="visual_charts_graphs/top_countries_water_q.png" alt="Top Countries with best Water Quality"/>
+            
+            <p><strong>Continents' overall water quality</p></strong>
+            <img src="visual_charts_graphs/continents_good_water.png" alt="Continents' Water Quality"/>
+            
+            <p><strong>All Countries' wwater quality shown trhough Rivers, groundwater, and lakes.</p></strong>
+            <img src="visual_charts_graphs/all_countries_water_q.png" alt="All countries' water quality"/>
+            
             <p>The graphs following the map outline the 10 countries with the highest and lowest water quality, as well as per continent. </p>
 
             <h3>Key Findings from Water Quality Composition</h3>
@@ -231,10 +243,11 @@
           </div>` 
             
         },
-          'Water Stress Map' : {
+            
+                    'Water Stress Map' : {
             title: 'Global Water Stress (2022)',
             html: `<div class="modal-analysis"> 
-                <p>This interactive map visualizes water stress (%), classified as "Low", "Medium", and "High", experienced globally in 2022. The Water Stress Indicator monitors the UN's Sustainable Development Goal (SDG) 6.4.2. <strong>Water stress</strong> is defined as the ratio of total freshwater withdrawn by all sectors (from economic activity) to the total renewable freshwater resources available in a country, after accounting for environmental flow requirements. This ratio reflects the pressure placed on freshwater systems by human activity, demonstrating whether a country is sustainable in their freshwater supply management.</p>
+                <p>This interactive map visualizes water stress (%), classified as "Low," "Medium," and "High," experienced globally from 2016 to 2022. The Water Stress Indicator monitors the UN's Sustainable Development Goal (SDG) 6.4.2. <strong>Water stress</strong> is defined as the ratio of total freshwater withdrawn by all sectors (from economic activity) to the total renewable freshwater resources available in a country, after accounting for environmental flow requirements. This ratio reflects the pressure placed on freshwater systems by human activity, demonstrating whether a country is sustainable in their freshwater supply management.</p>
                 
                 <p><strong>SDG 6.4 Objective:</strong> to achieve a "substantial increase in water-use efficiency across all sectors and ensure sustainable withdrawals and supply of freshwater to address water scarcity"</p> 
                 <ul>
@@ -256,7 +269,7 @@
 
                 <h3>Case Study: Water Stress in The Netherlands (2011–2022)</h3>
                 <div class="image container">
-                  <iframe src="Data_Visualizations/netherlands_water_stress_2011_2022.html" width="100%" height="500" frameborder="0"></iframe>
+                  <iframe src="visual_charts_graphs/netherlands_water_stress_2011_2022.html" width="100%" height="800" frameborder="0"></iframe>
                 </div> 
 
                 <p>This line chart tracks the annual percentage of water stress in the Netherlands from 2011 to 2022, based on SDG Indicator 6.4.2. Water stress in the Netherlands has consistently remained below 25%, making it a country with low water stress category according to UN thresholds. This suggests that the country is managing its freshwater withdrawals sustainably when compared to the renewable freshwater supply the country has. The Netherlands is an example of a developed country with high-quality water infrastructure, which has maintained sustainable water withdrawal despite intensive agricultural activity. Interestingly, while water stress does not seem to present itself as an issue for The Netherlands, there are other factors to consider when evaluating a country's water management policies. Water stress does not serve as the sole indicator linked to strong water management policies. Understanding other factors that reflect water quality (marine biodiveristy, clean water bodies, etc) strengthen policy through data-driven decisions. Explore the website to find out more!</p>
@@ -273,29 +286,97 @@
                   
              
               
-          'Top 20 Countries with Higest Water Stress (%)' : {
-            title: 'Countries with Higest Water Stress (2016 - 2022)',
-            html : `<div class="modal-analysis">
-              <p>The first visualization illustrates the countries with higest reported water stress (%) between 2016 and 2022, excluding the top 5, as these remain the same through the selected years. Excluded: Kuwait, UAE, Saudi Arabia, Qatar and Libya. These countries experience a critical water stress level, going beyond that of 100%, showing these that freshwater supply is depeleted when compared to the country's withdrawals. Their percentage levels are much higher than in any other country.</p>
-              
+          'Countries with Highest and Lowest Water Stress (%)' : {
+            title: 'Countries with Highest and Lowest Water Stress (2016 - 2022)',
+            html : `<div class="modal-analysis">              
+            <ul>
               <li><strong>Calculating Water Stress</strong>
-              <br>- According to the UN, indicator 6.4.2 is caluclated as a ratio based on the following variables:
-              <br>- TFWW: Total freshwater withdrawn
-              <br>- TRFWR: Total renewable freshwater resources 
-              <br>- EFR: Environmental flow requirements
-              <br>-<strong> Water Stress(%) = <sup>TFWW</sup>&frasl;<sub>TRFWR - EFR</sub> * 100</strong> </li>
-              </ul>
+                  <br>- According to the UN, indicator 6.4.2 is calculated as a ratio based on the following variables:
+                  <br>- TFWW: Total freshwater withdrawn
+                  <br>- TRFWR: Total renewable freshwater resources 
+                  <br>- EFR: Environmental flow requirements
+                  <br>-<strong> Water Stress(%) = <sup>TFWW</sup>&frasl;<sub>TRFWR - EFR</sub> * 100</strong> 
+              </li>
+            </ul>
               
               <h3>Water Stress in 2022</h3>
-              <img src="visual_charts_graphs/images/water_stress_2022.png" alt="Top Countries with Highest and Lowest Water Stress"/>
+              <img src="visual_charts_graphs/water_stress_2022.png" alt="Countries with Highest and Lowest Water Stress"/>
               
               <p style="margin-top:2rem;"> 
                   <strong>Data Sources:</strong>  
                   <a href="https://www.unwater.org/publications/progress-level-water-stress-2024-update" target="_blank">UN-Water Report (2024)</a> 
                 </p>
-              </div>`
-          },
+          </div>`
+      },
+            
+          'What Drives Water Stress?' : {
+            title: 'Understanding the Features that Influence Water Stress',
+            html : `<div class="modal-analysis">              
 
+                     <p>A <strong>random forest model</strong> is an ensemble learning technique that consists of multiple decision tress. Random Forest combines the predictions of individual decision trees to produce more accurate and stable predictions.</p> 
+<p>Feature importance shows which features that are used to predict the target variable are most important, meaning how much each feature contributes to the model's prediction. Since a country's water stress (%) is calculated from total freshwater withdrawn from economic activity, the features used for the model included water withdrawal from different sectors that contribute to economic activity. Understanding drive water stress up may facilitate and guide targeted policy making that ultimatley attempts to tackle water scarcity.</p> 
+            
+                <h3>Feature Importance Visualized</h3>
+                <img src="visual_charts_graphs/images/feature_importance.png" alt="What Features Help Predict Water Stress?"/>
+                <ul>
+                  <li><strong>Insights:</strong>
+                    <br>- Agricultural water withdrawal is the feature that, out of all the other ones, most impacted the predictive model's performance. This indicates that from economic activity, water withdrawn for the agriculutral sector (agriculutral practices) is the main driver of water stress.  
+                   <br>- GDP per Capita was not identified as a major predictor of water stress. This indicates that countries that withdraw large volumes of water for their agriculutral practices face a higher likelihood of experiencing higher water stress levles, regardless of the country's economic state. 
+                   <br>- The industrial sector drives water stress up, meaning that certain industries may overstress freshwater resources.
+                   <br>- Policy implications: The investment in sustainable, low-intensive alternatives to agriculuture should be explored, specially in country's with high water stress. Ccountry's with highest water stress (i.e. Kuwait, UAE) are mainly arid areas, suggesting these countries should draft policies that explore alternatives. In terms of the industrial sector, industries reliant on heavy water use should potentially be tarrifed, while the exploration of low-water usage technologies and companies could instead be promoted (or subsidized).  
+                </li>
+             </ul>
+              
+              <h3>Mean Squared Error (MSE)</h3>
+              <img src="visual_charts_graphs/images/mse_model_errors.png" alt="Model Prediction Errors"/>
+              <p> The MSE indicates where the model struggles to learn. Countries with a critically-high water stress impact the performance of the model. This can further be explained as countries with extreme values (acting as outliers), drive up the MSE as the model struggles to learn the patterns in the data and make accurate predictions. This further suggests that more structural and contextual features must be considered when evaluating water stress and its drivers, specially in countries critically-high.
+              
+             <h3>Case Study: Model's Performance in European Countries With Similar Water Infrastructure and Management</h3>
+             <img src="visual_charts_graphs/images/actual_vs_predicted_model_errors.png" alt="Countries with Highest and Lowest Water Stress"/>
+             
+             <p style="margin-top:2rem;"> 
+                  <strong>Data Sources:</strong>  
+                  <a href="https://www.fao.org/aquastat/en/databases/maindatabase" target="_blank">FAO AQUASTAT</a>> 
+                </p>
+          </div>`
+      },
+            
+          'Water Use Efficiency (US$/m³) Map' : {
+            title: 'Water Use Efficiency (US$/m³) in 2022',
+            html: `<div class="modal-analysis"> 
+                <p>This interactive map visualizes countries' water use efficiency (US$/m³) in 2022. This indicator monitors the UN's Sustainable Development Goal (SDG) 6.4.1 in the attempts of increasing water use efficiency across all sectors by 2030. <strong>Water use efficiency</strong> consists of the ratio between dollar value added and total volume of water used. This ratio reflects the efficiency of a country in its water usage. This indicator can also be understood as a way of evaluating how efficient a country uses its water resources given its economy.</p>
+    
+                <p><strong>SDG 6.4 Objective:</strong> to achieve a "substantial increase in water-use efficiency across all sectors and ensure sustainable withdrawals and supply of freshwater to address water scarcity"</p> 
+                <ul>
+    
+                <p><strong>Top 10 countries with the best and worst water use efficiency </strong></p>
+                <img src="visual_charts_graphs/water_efficiency_use_2022.png" alt="Water Use Efficiency"/>
+                <p>The graph compliments the map, illustrating the 10 countries with the most efficient and least efficienct water usage.</p>
+                
+             <ul>
+                <li><strong>What does high-efficiency vs. low-efficiency mean? </strong> 
+                    <br>- Low Efficiency: Countries (e.g. Afghanistan and Madagascar).
+                    <br>- High Efficiency: Countries (e.g. Austria and Slovakia) 
+                </li>
+             </ul>
+
+                <h3>Evaluating the UN's Sustainable Development Goals</h3>
+                <div class="image container">
+                    <iframe src="visual_charts_graphs/water_stress_water_use.html" width="100%" height="500" frameborder="0"></iframe>
+                </div> 
+
+                <p>The scatter above illustrates no relationship between two of the indicators of the UN that track goal 6.4.</p>
+
+                <p style="margin-top:2rem;"> 
+                <strong>Data Sources:</strong> 
+                <a href="https://www.fao.org/aquastat/en/databases/maindatabase" target="_blank">FAO AQUASTAT</a>, 
+                <a href="https://sdg6data.org/en/indicator/6.4.1" target="_blank">SDG 6.4.1 Database</a>, 
+                <a href="https://www.unwater.org/publications/progress-water-use-efficiency-2021-update" target="_blank">Progress on Water Use Efficiency 2021</a> 
+                </p>
+           </div>`
+      },
+
+           
           'Access to Drinking Water based on Wealth' : {
             title : 'Access to Drinking Water based on Wealth',
             html : `<div class="modal-analysis"> 
@@ -322,6 +403,12 @@
                       <br>- <span style="color:#2E8B57">Costa Rica</span> (1.0x)
                       <br>- <span style="color:#2E8B57">Belarus</span> (1.0x)</li>
               </ul>
+
+              <h3>The same inequality / accessibility is shown here, only highlihgting the richest populations access to good water quality.</h3>
+              <iframe 
+                src="visual_charts_graphs/richest_access_map.html" 
+                style="width: 100%; height: 700px; border: none; border-radius: 8px;">
+              </iframe>
 
               <h3>Service-Specific Trends</h3>
               <ul>
@@ -506,14 +593,15 @@
 
               <h3>Chart 2: Nitrogen Map</h3>
 
-              <p style="font-size: 14px; color: #555; text-align: center; margin-top: 0.5rem;">
-                <em>Note: Countries shown in grey had no available data in this dataset.</em>
-              </p>
-
               <p>
                 This world map shows how average oxidized nitrogen levels differ by country.
                 Darker colors mean higher nitrogen pollution in water bodies, often from farming, factories, or untreated sewage.
               </p>
+
+              <p style="font-size: 14px; color: #555; text-align: center; margin-top: 0.5rem;">
+                <em>Note: Countries shown in grey had no available data in this dataset.</em>
+              </p>
+
               <iframe 
                 src="visual_charts_graphs/choropleth_nitrogen.html" 
                 style="width: 100%; height: 600px; border: none; border-radius: 8px;">
@@ -894,8 +982,50 @@
               </div>
             `
 
-          }
+          },
+            
+        'Presence of Vulnerable Marine Ecosystems': {
+          title: 'Heatmap with Presence of Vulnerable Marine Ecosystems (VME) in the Notheast Atlantic Ocean',
+          html: `
+            <div class="modal-analysis">
 
+              <p>
+                This interactive heatmap visualizes the presence of Vulnerable Marine Ecosystems (VME) in the Northeast Atlantic Ocean. The map illustrates VME density in different locations, highlighting areas where ecological conservation efforts are critical to maintain their presence in fragile habitats.
+              </p>
+
+              <p>
+                <strong>Vulnerable Marine Ecosystems</strong> are species and habitats at risk of severe harm from human activity, particularly that related to bottom fishing or seabed extraction. These habitats are home to marine species; thus, supporting the richness of biodiversity. 
+              </p>
+
+              <h3>VME provide services such as:</h3>
+              <ul>
+                <li>Nurse grounds</li>
+                <li>Biodiversity support</li>
+                <li>Carbon cycling</li>
+              </ul>
+
+              <p>Efforts to protect VME’s from vulnerability are of essence as VME recovers extremely slowly, or not at all. Hence, efforts focus highly on preservation and conservation over restoration and recovery. Lower presence of VME may indicate areas in which human activity may be of high impact, leading to degradation of these ecosystems and further highlighting areas of risk that require urgent conservation efforts.</p>
+              
+              <h3>Examples of VME:</h3>
+              <ul>
+                <li>Cold-water coral reefs</li>
+                <li>Deep-sea sponge aggregations</li>
+                <li>Seapen fields</li>
+              </ul>
+              
+              <p>The Food and Agriculture Organization of the United Nations (FAO) and the United Nations General Assembly (UNGA) stressed the importance of VME presence, urging for their protection, specifically in areas beyond national jurisdiction (ABNJ). Deep-sea fishing activity and overfishing may have negative effects on the species found in these locations, which in turn may alter ecosystems and their regular functionality (i.e. damage from fishing gears). Data collection and analysis of VME is limited and uneven and underreported, highlighting the need for scientific monitoring and investigation. Several VME species remain unknown and poorly understood, indicating an area of future research that could potentially support conservation objectives. </p>
+
+
+              <p style="font-size: 14px; color: #555;">
+                <strong>Source:</strong> <a href="https://www.fao.org/in-action/vulnerable-marine-ecosystems/background/en/" target="_blank" style="color:#2a5885;">
+                  FAO Vulnerable Marine Ecosystems
+                </a>
+              </p>
+
+
+            </div>
+          `
+        },
 
 
 
@@ -911,6 +1041,7 @@
 
     function openModal(src, key) {
         const desc = descriptions[key] || {};
+        document.getElementById('modal-title').textContent = desc.title || key;
         document.getElementById('modal-content').src = src;
         document.getElementById('modal-description').innerHTML = desc.html || '';
         document.getElementById('modal').style.display = 'flex';
@@ -920,6 +1051,7 @@
         document.getElementById('modal').style.display = 'none';
         document.getElementById('modal-content').src = '';
         document.getElementById('modal-description').innerHTML = '';
+        document.getElementById('modal-title').textContent = '';
     }
 
     fetch('/assets/header.html')

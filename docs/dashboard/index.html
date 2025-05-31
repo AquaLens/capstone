@@ -4,8 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>AquaLens</title>
-<link rel="stylesheet" href="dashboard.css" />
 <link rel="stylesheet" href="/css/global.css" />
+<link rel="stylesheet" href="dashboard.css" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <link rel="stylesheet" href="/css/froggy-chat.css" />
 <script src="cities.js"></script>
@@ -13,11 +13,8 @@
 </head>
 <body>
 <!-- Header -->
-<div id="header"></div>
-<div class="container">
-<div class="button">
-<a href="../projects" class="btn">Return to Project Overview</a>
-</div>
+  <div id="header"></div>
+  <div class="container">
 <main>
 <!-- Sidebar Filters -->
 <aside>
@@ -319,6 +316,9 @@ autocomplete="off"
 </select> 
 <div id="selectedTags" class="selected-countries"></div>           
 </div>
+<div class="button">
+<a href="../projects" class="btn-projects">Return to Project Overview</a>
+</div>
 </div>
 <!-- Froggy Chat -->
 <div class="froggy-help">
@@ -335,14 +335,18 @@ autocomplete="off"
 <!-- Main Section -->
 <section class="projects-section">
 <h2>Global Water Projects</h2>
+<p>Explore a diverse range of projects from around the world that are dedicated to improving urban water quality. Each project is a step towards a cleaner, healthier future for our cities and their ecosystems.</p>
+<p>Hover over a pin to view the project.</p><br>
 <div id="map" style="height: 80vh; margin-bottom: 2rem;"></div>
 <div id = "map-loading" class = "loading-indicator"> Loading Projects ...</div>
+
 <div class="submit-idea-box">
-<h3>Have an idea or a project that's missing here?</h3>
-<div class="button-wrapper">
-<button class="submit-idea-btn">Submit Project</button>
+  <h3>Have an idea or a project that's missing here?</h3>
+  <div class="button-wrapper">
+    <button class="submit-idea-btn">Submit Project</button>
+  </div>
 </div>
-</div>
+
 </section>
 </main>
 </div>
