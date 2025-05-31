@@ -80,9 +80,12 @@ document.querySelector('#explore_button').addEventListener('click', function () 
 
 // button scroll down by one viewport height when Dive In button is clicked
 document.querySelector('#dive_button').addEventListener('click', function () {
-  window.scrollTo({
-    top: window.scrollY + window.innerHeight,
-    behavior: 'smooth',
+  const targetScroll = window.scrollY + window.innerHeight; // Calculate the target scroll position
+
+  gsap.to(window, {
+      scrollTo: targetScroll, // Scroll to the target position
+      duration: 2, // Duration in seconds (increase for slower scrolling)
+      ease: "power2.out" // Smooth easing for a natural scroll effect
   });
 });
 
