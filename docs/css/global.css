@@ -159,7 +159,7 @@ option,
   
   .nav-icon {
     height: 1.5rem; /* adjust height to match text */
-    vertical-align: middle;
+    vertical-align: bottom;
     display: inline-block;
     margin-left: 8px;
   }
