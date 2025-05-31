@@ -82,7 +82,7 @@ document.querySelector('#explore_button').addEventListener('click', function () 
 document.querySelector('#dive_button').addEventListener('click', function () {
   const targetScroll = Math.round(window.scrollY + window.innerHeight); // Ensure the target is exactly one viewport height below
   const scrollStep = 5; // Smaller value for smoother scrolling
-  const interval = 10; // Time between each scroll step in milliseconds
+  const interval = 2; // Time between each scroll step in milliseconds
 
   const scrollInterval = setInterval(() => {
       const currentScroll = window.scrollY;
