@@ -81,7 +81,7 @@ option,
     body.home {
       overflow-x: hidden; /* Prevent horizontal scrolling */
     }
-    
+
     /* links */
     a {
       text-decoration: none;
@@ -160,7 +160,7 @@ option,
   
   .nav-icon {
     height: 1.5rem; /* adjust height to match text */
-    vertical-align: middle;
+    vertical-align: bottom;
     display: inline-block;
     margin-top: -2px; /* tweak if it's still slightly off */
     margin-left: 8px;
