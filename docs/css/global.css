@@ -77,6 +77,11 @@ option,
       background-color: #f8f8f8;
       line-height: 1.6;
     }
+
+    body.home {
+      overflow-x: hidden; /* Prevent horizontal scrolling */
+    }
+    
     /* links */
     a {
       text-decoration: none;
