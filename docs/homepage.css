@@ -86,7 +86,7 @@ body {
 
 .scroll-text {
   position: absolute; 
-  top: 50%; 
+  top: 25%; 
   left: 10%; 
   transform: translateY(-50%); 
   color: white; 

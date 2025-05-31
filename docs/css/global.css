@@ -146,7 +146,7 @@ option,
     color: #333;
     transition: color 0.2s ease;
     display: inline-flex;
-    align-items: baseline;
+    align-items: flex-end;
     line-height: 1.5rem;
   }
   
@@ -160,7 +160,6 @@ option,
   
   .nav-icon {
     height: 1.5rem; /* adjust height to match text */
-    vertical-align: baseline;
     display: inline-block;
     margin-left: 8px;
   }
