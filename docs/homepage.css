@@ -80,20 +80,19 @@ body {
   box-sizing: border-box;
 }
 
-.at_the_surface-container {
-  position: relative; 
-  height: 100%;
+.act0_section {
+  bottom: 23%;
+  left: 20%;
+  padding-right: 4%;
+  z-index: 10;
 }
 
-.scroll-text {
-  position: absolute; 
-  top: 15%; 
-  left: 10%; 
-  color: white; 
-  font-size: 2vw; 
-  width: 80%; 
-  opacity: 1; 
-  z-index: 10;
+.act0_text {
+  color: white;
+  font-size: 2vw;
+  width: 80%;
+  opacity: 0;
+  transform: translateY(20px);
 }
 
 .blink_vid{
