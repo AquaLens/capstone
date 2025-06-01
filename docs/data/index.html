@@ -53,7 +53,7 @@
     </div>
 
 
-    <div class="gallery-item" onclick="openModal('visual_charts_graphs/top_20_water_stress_excluding.html', 'Countries with Highest and Lowest Water Stress (%))">
+    <div class="gallery-item" onclick="openModal('visual_charts_graphs/top_20_water_stress_excluding.html', 'Countries with Highest and Lowest Water Stress(%)')">
       <img src="visual_charts_graphs/images/topstress.jpg" alt="Countries with Highest and Lowest Water Stress (%)" />
       <h4>Countries with Highest and Lowest Water Stress (%)</h4>
       <p>Countries with highest and lowest water stress felt between 2016 - 2022 </p>
@@ -259,7 +259,7 @@
 
                   <li><strong>Key Takeaways:</strong>
                     <br>- Most critically stressed countries: Kuwait, United Arab Emirates (UAE), Saudi Arabia, Libya, and Qatar. These countires have freshwater withdrawals that exceed 100% of their renewable water resources.
-                    <br>-<strong>Note:</strong> Regions such as Sub-Saharan Africa or Latin America may report lower water stress levles not because they have abundant water bodies (despite this being true, the effects of climate change are still heavily felt), but due to limited infrastructure, inconsistent data collection, and undereported dire situations concerning water withdrawal.
+                    <br><strong>Note:</strong> Regions such as Sub-Saharan Africa or Latin America may report lower water stress levles not because they have abundant water bodies (despite this being true, the effects of climate change are still heavily felt), but due to limited infrastructure, inconsistent data collection, and undereported dire situations concerning water withdrawal.
                   </li>
 
                   <li><strong>Why is this map useful?</strong>
@@ -269,10 +269,12 @@
 
                 <h3>Case Study: Water Stress in The Netherlands (2011–2022)</h3>
                 <div class="image container">
-                  <iframe src="visual_charts_graphs/netherlands_water_stress_2011_2022.html" width="100%" height="800" frameborder="0"></iframe>
+                  <iframe src="visual_charts_graphs/netherlands_water_stress_2011_2022.html" 
+                          style="width: 100%; height: 600px; border: none; border-radius: 8px;">
+                </iframe>
                 </div> 
 
-                <p>This line chart tracks the annual percentage of water stress in the Netherlands from 2011 to 2022, based on SDG Indicator 6.4.2. Water stress in the Netherlands has consistently remained below 25%, making it a country with low water stress category according to UN thresholds. This suggests that the country is managing its freshwater withdrawals sustainably when compared to the renewable freshwater supply the country has. The Netherlands is an example of a developed country with high-quality water infrastructure, which has maintained sustainable water withdrawal despite intensive agricultural activity. Interestingly, while water stress does not seem to present itself as an issue for The Netherlands, there are other factors to consider when evaluating a country's water management policies. Water stress does not serve as the sole indicator linked to strong water management policies. Understanding other factors that reflect water quality (marine biodiveristy, clean water bodies, etc) strengthen policy through data-driven decisions. Explore the website to find out more!</p>
+                <p>This line chart tracks the annual percentage of water stress in the Netherlands from 2011 to 2022, based on SDG Indicator 6.4.2. Water stress in the Netherlands has consistently remained below 25%, making it a country with low water stress category according to UN thresholds. This suggests that the country is managing its freshwater withdrawals sustainably when compared to the renewable freshwater supply the country has. The Netherlands is an example of a developed country with high-quality water infrastructure, which has maintained sustainable water withdrawal despite intensive agricultural activity. Interestingly, while water stress does not seem to present itself as an issue for The Netherlands, there are other factors to consider when evaluating a country's water management policies. Water stress does not serve as the sole indicator linked to strong water management policies. Understanding other factors that reflect water quality (i.e. presence of marine biodiveristy, clean water bodies,etc) strengthen policy through data-driven decisions.</p>
 
                 <p style="margin-top:2rem;"> 
                   <strong>Data Sources:</strong> 
@@ -289,6 +291,9 @@
           'Countries with Highest and Lowest Water Stress (%)' : {
             title: 'Countries with Highest and Lowest Water Stress (2016 - 2022)',
             html : `<div class="modal-analysis">              
+            
+             <p>This graph visualizes the countries with highest water stress experiences between 2016 and 2022. It excludes the highest five countries as these remain the same throughout the years. Additionally, the top five countries with highest stress are over the threshold of "critical stress" with values urgung for strengthened policy and iediate action.</p>
+            
             <ul>
               <li><strong>Calculating Water Stress</strong>
                   <br>- According to the UN, indicator 6.4.2 is calculated as a ratio based on the following variables:
@@ -299,10 +304,23 @@
               </li>
             </ul>
               
+                
               <h3>Water Stress in 2022</h3>
               <img src="visual_charts_graphs/water_stress_2022.png" alt="Countries with Highest and Lowest Water Stress"/>
               
-              <p style="margin-top:2rem;"> 
+              <h3>Key Findings</h3>
+            <p>The stacked bar chart reveals significant global disparities in water resource pressure; highlighting areas for sustainability efforts and further data collection:</p>
+            <ul>
+              <li><strong>Low Water Stress Countries:</strong></li>
+                <br>- Low water stress may be attributed to the different countries' abundant freshwater availability. 
+                <br>- Iceland or DR Congo experience low water stress, despite having completley distinct environmental policies and developmental levels.  
+                <br>- Bolivia, despite being grouped with the bottom countries, experiences water scarcity in different regions of the country. This suggests there are challenges to data collection and availability that need further discernment to understand global water stress metrics.</li>
+              <li><strong> High Water Stress Countries:</strong></li>
+                    <br>-Top 5 countries are depleting their freshwater resources.
+                    <br>-These countries are arid or semi-arid and heavility rely on imports of water or non-renewable groundwater.</li>
+            </ul>
+ 
+                <p style="margin-top:2rem;"> 
                   <strong>Data Sources:</strong>  
                   <a href="https://www.unwater.org/publications/progress-level-water-stress-2024-update" target="_blank">UN-Water Report (2024)</a> 
                 </p>
@@ -362,7 +380,9 @@
 
                 <h3>Evaluating the UN's Sustainable Development Goals</h3>
                 <div class="image container">
-                    <iframe src="visual_charts_graphs/water_stress_water_use.html" width="100%" height="500" frameborder="0"></iframe>
+                    <iframe src="visual_charts_graphs/water_stress_water_use.html" 
+                                style="width: 100%; height: 600px; border: none; border-radius: 8px;">
+                    </iframe>
                 </div> 
 
                 <p>The scatter above illustrates no relationship between two of the indicators of the UN that track goal 6.4.</p>
