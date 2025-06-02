@@ -359,61 +359,79 @@
     animation: fadeIn 0.3s ease-in-out;
   }
   
-  /* Target the form specifically inside .modal-content */
-  .modal-content form {
-    max-height: 80vh;
-    overflow-y: auto;
-    font-family: Arial, sans-serif;
+  .modal-content h2 {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    text-align: center;
   }
 
-  /* Section headers inside form */
+  /* Space between form sections */
+  .modal-content form label,
+  .modal-content form fieldset,
+  .modal-content form details,
+  .modal-content form textarea,
+  .modal-content form input,
+  .modal-content form select {
+    margin-bottom: 20px;
+    display: block;
+    width: 100%;
+  }
+
+  /* Section headings inside form */
   .modal-content form h3 {
-    margin-top: 20px;
+    margin-top: 30px;
     margin-bottom: 10px;
-    font-size: 1.2em;
+    font-size: 1.3em;
     border-bottom: 1px solid #ccc;
     padding-bottom: 5px;
+    color: #34495e;
   }
 
-  /* Required field highlight and error border */
-  .modal-content form input:required:invalid,
-  .modal-content form select:required:invalid,
-  .modal-content form textarea:required:invalid {
-    border: 1px solid #e74c3c;
-    background-color: #fff5f5;
-  }
-
-  .modal-content form input:focus:invalid,
-  .modal-content form select:focus:invalid,
-  .modal-content form textarea:focus:invalid {
-    outline: none;
-    border-color: #e74c3c;
-    box-shadow: 0 0 4px rgba(231, 76, 60, 0.6);
-  }
-
-  /* Collapsible sections */
+  /* Collapsible container style */
   .modal-content form details {
     background: #f9f9f9;
     border: 1px solid #ddd;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 4px;
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
   }
 
+  /* Collapsible title */
   .modal-content form details summary {
     font-weight: bold;
+    font-size: 1em;
     cursor: pointer;
     margin-bottom: 10px;
+    color: #2c3e50;
   }
 
   /* Arrow indicators */
-  .modal-content form details[open] summary::after {
-    content: "▲";
-    float: right;
-  }
   .modal-content form details summary::after {
     content: "▼";
     float: right;
+  }
+  .modal-content form details[open] summary::after {
+    content: "▲";
+  }
+
+  /* Input styles: better spacing */
+  .modal-content form input,
+  .modal-content form select,
+  .modal-content form textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  /* Error highlight on required invalid */
+  .modal-content form input:required:invalid,
+  .modal-content form select:required:invalid,
+  .modal-content form textarea:required:invalid {
+    border-color: #e74c3c;
+    background-color: #fff5f5;
   }
 
   .close-button {
