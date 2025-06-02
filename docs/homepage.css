@@ -80,19 +80,15 @@ body {
   box-sizing: border-box;
 }
 
-.act0_section {
-  bottom: 23%;
-  left: 20%;
-  padding-right: 4%;
-  z-index: 10;
-}
-
-.act0_text {
-  color: white;
-  font-size: 2vw;
-  width: 80%;
-  opacity: 0;
-  transform: translateY(20px);
+.scroll-text {
+  position: absolute; 
+  top: 20%; 
+  left: 20%; 
+  color: white; 
+  font-size: 2vw; 
+  width: auto; 
+  opacity: 1; 
+  z-index: 10; 
 }
 
 .blink_vid{
