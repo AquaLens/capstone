@@ -114,6 +114,18 @@ gsap.to(".act1_text", {
     }
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+  // Swap video when froggy blink-2 ends
+  const blinkVideo = document.querySelector('.blink_vid'); // Select the froggy blink video
+
+  // Listen for the 'ended' event
+  blinkVideo.addEventListener('ended', () => {
+      // Swap the video source to froggy splash
+      blinkVideo.src = '/images/homepage_media/Froggy jump 2.mp4';
+      blinkVideo.load(); // Reload the video
+      blinkVideo.play(); // Play the new video
+  });
+
 // Fade in the overlay text
 gsap.to(".act2_text_1", {
     opacity: 1,
