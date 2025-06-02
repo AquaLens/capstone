@@ -1,5 +1,6 @@
 // importing ScrollTrigger from GSAP
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollToPlugin);
 
 // smooth scroll function
 const lenis = new Lenis()
@@ -76,6 +77,17 @@ document.addEventListener('DOMContentLoaded', () => {
 // button scroll to explore
 document.querySelector('#explore_button').addEventListener('click', function () {
   window.location.href = '/projects'; 
+});
+
+// button scroll down by one viewport height when Dive In button is clicked
+document.querySelector('#dive_button').addEventListener('click', function () {
+  const targetScroll = window.scrollY + window.innerHeight; // Calculate the target scroll position
+
+  gsap.to(window, {
+      scrollTo: targetScroll, // Scroll to the target position
+      duration: 2, // Duration in seconds (increase for slower scrolling)
+      ease: "power2.out" // Smooth easing for a natural scroll effect
+  });
 });
 
 // pin the image when its bottom hits the viewport
