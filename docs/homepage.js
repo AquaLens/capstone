@@ -125,6 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
       blinkVideo.load(); // Reload the video
       blinkVideo.play(); // Play the new video
   });
+});
 
 // Fade in the overlay text
 gsap.to(".act2_text_1", {
