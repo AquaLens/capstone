@@ -293,6 +293,14 @@ document.body.classList.add('about');
         zIndex: 999
       });
     
+      // Add scroll control variables
+      let isAnimating = false;
+      let scrollCooldown = false;
+      let lastScrollTime = 0;
+      let scrollAccumulator = 0;
+      const scrollThreshold = 50; // Minimum accumulated scroll to trigger transition
+      const cooldownDuration = 1500; // Cooldown after each animation (matches animation duration + buffer)
+    
       document.addEventListener("wheel", handleWheel);
       document.addEventListener("touchstart", handleTouchStart);
       document.addEventListener("touchmove", handleTouchMove);
@@ -332,7 +340,7 @@ document.body.classList.add('about');
     
       // Update footer visibility based on current section
       function updateFooterVisibility() {
-        if (current === 5) { // If we're on the last section (Community) - updated to section 5
+        if (current === 5) { // If we're on the last section (Community)
           // Show footer with animation if it's not already showing
           if (getComputedStyle(footerWrapper).display === "none") {
             gsap.set(footerWrapper, { display: "block", y: 50 }); // Start below view
@@ -362,15 +370,21 @@ document.body.classList.add('about');
         });
         
         // Set active state based on current section
-        if (current >= 2 && current <= 4) { // Updated range for case studies (sections 2-4)
+        if (current >= 2 && current <= 4) { // Case studies (sections 2-4)
           // If we're in any case study section (2-4), activate the main pin
           document.querySelector('.nav-pin.main-pin').classList.add('active');
           
           // Also activate the specific sub-pin for the current section
-          document.querySelector(`.nav-pin.sub-pin[data-section="${current}"]`).classList.add('active');
+          const subPin = document.querySelector(`.nav-pin.sub-pin[data-section="${current}"]`);
+          if (subPin) {
+            subPin.classList.add('active');
+          }
         } else {
-          // For non-case study sections (About Us, Foundation, or Community), just activate that pin
-          document.querySelector(`.nav-pin[data-section="${current}"]:not(.sub-pin):not(.main-pin)`).classList.add('active');
+          // For non-case study sections, just activate that pin
+          const regularPin = document.querySelector(`.nav-pin[data-section="${current}"]:not(.sub-pin):not(.main-pin)`);
+          if (regularPin) {
+            regularPin.classList.add('active');
+          }
         }
         
         // Update footer visibility
@@ -380,20 +394,27 @@ document.body.classList.add('about');
       // Add click event listeners to navigation pins
       navPins.forEach((pin) => {
         pin.addEventListener("click", () => {
-          if (listening) {
+          if (!listening || isAnimating) return; // Prevent clicks during animations
+          
+          let targetSection;
+          
+          // Handle main pin and sub-pin relationship
+          if (pin.classList.contains('main-pin')) {
+            // If main pin is clicked, go to the first sub-section
+            targetSection = 2; // First case study (De Ceuvel)
+          } else if (pin.classList.contains('sub-pin')) {
+            // If sub-pin is clicked, use its section index
+            targetSection = parseInt(pin.getAttribute('data-section'));
+          } else {
+            // Regular pins
+            targetSection = parseInt(pin.getAttribute('data-section'));
+          }
+          
+          // Only proceed if target is different from current
+          if (targetSection !== current) {
+            isAnimating = true;
             listening = false;
-            
-            // Handle main pin and sub-pin relationship
-            if (pin.classList.contains('main-pin')) {
-              // If main pin is clicked, go to the first sub-section
-              next = 2; // First case study (De Ceuvel) - updated to section 2
-            } else if (pin.classList.contains('sub-pin')) {
-              // If sub-pin is clicked, use its section index
-              next = parseInt(pin.getAttribute('data-section'));
-            } else {
-              // Regular pins
-              next = parseInt(pin.getAttribute('data-section'));
-            }
+            next = targetSection;
             
             if (next > current) {
               direction = "down";
@@ -407,12 +428,16 @@ document.body.classList.add('about');
       });
     
       function revealSectionHeading() {
-        return gsap.to(headings[next].querySelector('.heading-text'), {
-          autoAlpha: 1,
-          y: 0,
-          duration: 1,
-          ease: "power2"
-        });
+        const headingElement = headings[next];
+        if (headingElement && headingElement.querySelector('.heading-text')) {
+          return gsap.to(headingElement.querySelector('.heading-text'), {
+            autoAlpha: 1,
+            y: 0,
+            duration: 1,
+            ease: "power2"
+          });
+        }
+        return gsap.timeline(); // Return empty timeline if element not found
       }
     
       // Set initial states
@@ -427,15 +452,34 @@ document.body.classList.add('about');
     
       // Slides a section in on scroll down
       function slideIn() {
+        // Safety check
+        if (next >= sections.length || next < 0) {
+          listening = true;
+          return;
+        }
+        
         // The first time this function runs, current is undefined
-        if (current !== undefined) gsap.set(sections[current], { zIndex: 0 });
+        if (current !== undefined && current !== next) {
+          gsap.set(sections[current], { zIndex: 0 });
+        }
+    
+        // Ensure the target section exists
+        if (!sections[next] || !images[next]) {
+          listening = true;
+          return;
+        }
     
         gsap.set(sections[next], { autoAlpha: 1, zIndex: 1 });
-        gsap.set(images[next], { yPercent: 0 });
-        gsap.set(headings[next].querySelector('.heading-text'), { autoAlpha: 0, y: 50 });
+        gsap.set(images[next], { yPercent: 0, autoAlpha: 1 });
+        
+        // Safety check for heading
+        const headingElement = headings[next];
+        if (headingElement && headingElement.querySelector('.heading-text')) {
+          gsap.set(headingElement.querySelector('.heading-text'), { autoAlpha: 0, y: 50 });
+        }
     
         // Show footer animation immediately if going to the last section
-        if (next === 5) { // Updated to section 5
+        if (next === 5) {
           // Make sure the footer is properly positioned to start
           gsap.set(footerWrapper, { 
             display: "block", 
@@ -461,16 +505,17 @@ document.body.classList.add('about');
             paused: true,
             defaults: tlDefaults,
             onComplete: () => {
-              listening = true;
               current = next;
               updateNavPins();
+              isAnimating = false;
+              listening = true;
             }
           })
           .to([outerWrappers[next], innerWrappers[next]], { yPercent: 0 }, 0)
           .from(images[next], { yPercent: 15 }, 0)
           .add(revealSectionHeading(), 0);
     
-        if (current !== undefined) {
+        if (current !== undefined && current !== next && images[current]) {
           tl.add(
             gsap.to(images[current], {
               yPercent: -15,
@@ -492,11 +537,29 @@ document.body.classList.add('about');
     
       // Slides a section out on scroll up
       function slideOut() {
+        // Safety check
+        if (next >= sections.length || next < 0) {
+          listening = true;
+          return;
+        }
+        
+        // Ensure sections exist
+        if (!sections[current] || !sections[next] || !images[current] || !images[next]) {
+          listening = true;
+          return;
+        }
+        
         gsap.set(sections[current], { zIndex: 1 });
         gsap.set(sections[next], { autoAlpha: 1, zIndex: 0 });
-        gsap.set(headings[next].querySelector('.heading-text'), { autoAlpha: 0, y: 50 });
+        
+        // Safety check for heading
+        const headingElement = headings[next];
+        if (headingElement && headingElement.querySelector('.heading-text')) {
+          gsap.set(headingElement.querySelector('.heading-text'), { autoAlpha: 0, y: 50 });
+        }
+        
         gsap.set([outerWrappers[next], innerWrappers[next]], { yPercent: 0 });
-        gsap.set(images[next], { yPercent: 0 });
+        gsap.set(images[next], { yPercent: 0, autoAlpha: 1 });
     
         // Create the timeline
         const timeline = gsap.timeline({
@@ -506,6 +569,7 @@ document.body.classList.add('about');
             current = next;
             // Update navigation pins
             updateNavPins();
+            isAnimating = false;
             listening = true;
           }
         });
@@ -520,7 +584,7 @@ document.body.classList.add('about');
           .set(images[current], { yPercent: 0 });
         
         // Add footer animation to the timeline if needed
-        if (current === 5) { // Updated to section 5
+        if (current === 5) {
           // If we're leaving the last section, hide footer with a faster fade-out and slide down
           gsap.to(footerWrapper, {
             autoAlpha: 0, 
@@ -536,14 +600,19 @@ document.body.classList.add('about');
       }
     
       function handleDirection() {
+        if (!listening) return;
+        
         listening = false;
     
         if (direction === "down") {
           next = current + 1;
           // Check if we're at the last section
           if (next >= sections.length) {
-            listening = true; // Re-enable listening
-            return; // Don't proceed with animation
+            // Reset flags since no animation will happen
+            isAnimating = false;
+            scrollCooldown = false;
+            listening = true;
+            return;
           }
           slideIn();
         }
@@ -552,39 +621,85 @@ document.body.classList.add('about');
           next = current - 1;
           // Check if we're at the first section
           if (next < 0) {
-            listening = true; // Re-enable listening
-            return; // Don't proceed with animation
+            // Reset flags since no animation will happen
+            isAnimating = false;
+            scrollCooldown = false;
+            listening = true;
+            return;
           }
           slideOut();
         }
       }
     
       function handleWheel(e) {
-        if (!listening) return;
-        direction = e.wheelDeltaY < 0 ? "down" : "up";
-        handleDirection();
+        // Block all scrolling during animations or cooldown
+        if (isAnimating || scrollCooldown) return;
+        
+        const currentTime = Date.now();
+        
+        // Reset accumulator if it's been too long since last scroll (new gesture)
+        if (currentTime - lastScrollTime > 150) {
+          scrollAccumulator = 0;
+        }
+        
+        // Accumulate scroll delta
+        scrollAccumulator += Math.abs(e.deltaY);
+        lastScrollTime = currentTime;
+        
+        // Only trigger transition when we've accumulated enough scroll
+        if (scrollAccumulator >= scrollThreshold) {
+          // Reset accumulator and start cooldown
+          scrollAccumulator = 0;
+          scrollCooldown = true;
+          isAnimating = true;
+          
+          direction = e.deltaY > 0 ? "down" : "up";
+          handleDirection();
+          
+          // Set cooldown timer
+          setTimeout(() => {
+            scrollCooldown = false;
+          }, cooldownDuration);
+        }
       }
     
       function handleTouchStart(e) {
-        if (!listening) return;
+        if (isAnimating || scrollCooldown) return;
         const t = e.changedTouches[0];
         touch.startX = t.pageX;
         touch.startY = t.pageY;
+        touch.startTime = Date.now();
       }
     
       function handleTouchMove(e) {
-        if (!listening) return;
+        if (isAnimating || scrollCooldown) return;
         e.preventDefault();
       }
     
       function handleTouchEnd(e) {
-        if (!listening) return;
+        if (isAnimating || scrollCooldown) return;
+        
         const t = e.changedTouches[0];
         touch.dx = t.pageX - touch.startX;
         touch.dy = t.pageY - touch.startY;
-        if (touch.dy > 10) direction = "up";
-        if (touch.dy < -10) direction = "down";
-        handleDirection();
+        touch.dt = Date.now() - touch.startTime;
+        
+        // Only handle significant swipes
+        if (Math.abs(touch.dy) > 30 && touch.dt < 500) {
+          // Start cooldown and animation
+          scrollCooldown = true;
+          isAnimating = true;
+          
+          if (touch.dy > 10) direction = "up";
+          if (touch.dy < -10) direction = "down";
+          
+          handleDirection();
+          
+          // Set cooldown timer
+          setTimeout(() => {
+            scrollCooldown = false;
+          }, cooldownDuration);
+        }
       }
     
       // Initialize the first slide and side navigation
@@ -594,56 +709,57 @@ document.body.classList.add('about');
       updateFooterVisibility();
       listening = true;
 
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault(); // prevent default immediate jump
-        
-        const id = this.getAttribute('href').substring(1);
-        let targetSection = null;
-        
-        // Map anchor IDs to section numbers
-        switch(id) {
-          case 'start':
-            targetSection = 1; // Section with "Our Foundation"
-            break;
-          case 'netherlands-section':
-            targetSection = 2; // Section with "De Ceuvel"
-            break;
-          // Add more cases here if you have other anchor links
-          default:
-            // Try to find the target element and determine its section
-            const target = document.getElementById(id);
-            if (target) {
-              // Find which section contains this element
-              const sections = document.querySelectorAll('section');
-              for (let i = 0; i < sections.length; i++) {
-                if (sections[i].contains(target)) {
-                  targetSection = i;
-                  break;
+      // Handle anchor link navigation
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault(); // prevent default immediate jump
+          
+          if (!listening || isAnimating) return; // Don't allow navigation during animations
+          
+          const id = this.getAttribute('href').substring(1);
+          let targetSection = null;
+          
+          // Map anchor IDs to section numbers
+          switch(id) {
+            case 'start':
+              targetSection = 1; // Section with "Our Foundation"
+              break;
+            case 'netherlands-section':
+              targetSection = 2; // Section with "De Ceuvel"
+              break;
+            // Add more cases here if you have other anchor links
+            default:
+              // Try to find the target element and determine its section
+              const target = document.getElementById(id);
+              if (target) {
+                // Find which section contains this element
+                const sections = document.querySelectorAll('section');
+                for (let i = 0; i < sections.length; i++) {
+                  if (sections[i].contains(target)) {
+                    targetSection = i;
+                    break;
+                  }
                 }
               }
-            }
-        }
-        
-        // If we found a target section and we're not already there
-        if (targetSection !== null && targetSection !== current && listening) {
-          listening = false;
-          next = targetSection;
-          
-          if (next > current) {
-            direction = "down";
-            slideIn();
-          } else {
-            direction = "up";
-            slideOut();
           }
-        }
-      });
+          
+          // If we found a target section and we're not already there
+          if (targetSection !== null && targetSection !== current) {
+            isAnimating = true;
+            listening = false;
+            next = targetSection;
+            
+            if (next > current) {
+              direction = "down";
+              slideIn();
+            } else {
+              direction = "up";
+              slideOut();
+            }
+          }
+        });
       });
     }
-
-
   </script>
 </body>
 </html>
