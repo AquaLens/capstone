@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Listen for the 'ended' event
   blinkVideo.addEventListener('ended', () => {
       // Swap the video source to froggy splash
-      blinkVideo.src = '/images/homepage_media/Froggy jump 2.mp4';
+      blinkVideo.src = '/images/homepage_media/Froggy jump 4.mp4';
       blinkVideo.loop = false;
       blinkVideo.load(); // Reload the video
       blinkVideo.play(); // Play the new video
