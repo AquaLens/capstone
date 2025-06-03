@@ -756,6 +756,7 @@ section.vid video {
   margin: 0;
   border: none; 
   box-sizing: border-box; 
+  overflow: hidden;
 }
 
 #act5_text_section_1 {
@@ -794,11 +795,13 @@ section.vid video {
   width: 100vw;
   margin: 0%;
   padding: 0%;
+  top: 0;
+  background-color: #a4b5ca;
   position: relative;
   display: block;
   /* z-index: -1; */
   width: 100vw;
-  margin-top: -1px;
+  margin-top: -2px;
   margin-bottom: -1px;
   object-fit: cover;
   will-change: transform;
