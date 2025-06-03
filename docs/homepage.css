@@ -35,6 +35,15 @@ body {
   color: white;
 }
 
+.aqualens_subtitle {
+  font-family: 'Futura', sans-serif;
+  font-size: 1.2vw; 
+  font-weight: 300; 
+  color: white; 
+  margin: 0; 
+  opacity: 0.8; 
+}
+
 .aqualens_title {
   font-family: 'Futura';
   font-weight: bold;
