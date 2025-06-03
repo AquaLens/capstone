@@ -173,9 +173,11 @@ option,
 /* Dropdown menu style */
 .dropdown-menu {
   display: none;
-  position: fixed; /* ← important */
-  top: 3.5rem; /* adjust based on your header height */
-  left: 0;     /* default left edge */
+  position: fixed; 
+  opacity: 1;
+  pointer-events: auto;
+  top: 3.5rem; 
+  left: 0;     
   background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   padding: 0.5rem 0;
@@ -183,6 +185,8 @@ option,
   min-width: 160px;
   z-index: 9999; /* ← above everything */
   border-radius: 8px;
+  max-height: none;
+  overflow: visible;
 }
 
 /* Individual dropdown items */
@@ -198,6 +202,8 @@ option,
 /* Show menu on hover */
 .dropdown:hover .dropdown-menu {
   display: block;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* Hover effect */
