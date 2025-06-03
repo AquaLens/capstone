@@ -797,6 +797,13 @@ section.vid video {
   position: relative;
   display: block;
   /* z-index: -1; */
+  width: 100vw;
+  margin-top: -1px;
+  margin-bottom: -1px;
+  object-fit: cover;
+  will-change: transform;
+  border: none;
+  box-sizing: border-box;
 }
 
 .explore {
