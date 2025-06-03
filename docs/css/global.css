@@ -179,7 +179,6 @@ option,
 /* Dropdown container */
 .dropdown {
   position: relative;
-  overflow: visible !important;
 }
 
 /* Dropdown menu style */
@@ -239,17 +238,20 @@ body.home .dropdown-menu li a {
   text-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
-  /* Transparent header only on homepage */
-  body.home header {
-    background-color: transparent;
-    box-shadow: none;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    height: 9.1%;
-    overflow-y: hidden;
-  }
+/* Transparent header only on homepage */
+body.home header {
+  background-color: transparent;
+  box-shadow: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  /* Remove the height restriction and overflow hidden */
+  /* height: 9.1%; */
+  /* overflow-y: hidden; */
+  overflow: visible; /* Allow dropdown to extend beyond header */
+  min-height: 9.1vh; /* Use min-height instead to maintain minimum size */
+}
 
   body.about header {
     background-color: transparent;
