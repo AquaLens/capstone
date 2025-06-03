@@ -190,8 +190,8 @@ option,
   top: 100%;
   left: 50%;
   transform: translateX(-50%); /* Centers it under the parent */
-  background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+ /* background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px); */
   padding: 0.5rem 0;
   list-style: none;
   min-width: 160px;
@@ -206,7 +206,7 @@ option,
 .dropdown-menu li a {
   display: block;
   padding: 0.5rem 1rem;
-  color: white; 
+  color: black; 
   text-decoration: none;
   white-space: nowrap;
   font-size: 1rem;
