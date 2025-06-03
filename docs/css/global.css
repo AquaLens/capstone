@@ -190,8 +190,7 @@ option,
   top: 100%;
   left: 50%;
   transform: translateX(-50%); /* Centers it under the parent */
- /* background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px); */
+  background-color: white;
   padding: 0.5rem 0;
   list-style: none;
   min-width: 160px;
@@ -206,7 +205,7 @@ option,
 .dropdown-menu li a {
   display: block;
   padding: 0.5rem 1rem;
-  color: black; 
+  color: #000; 
   text-decoration: none;
   white-space: nowrap;
   font-size: 1rem;
@@ -215,12 +214,14 @@ option,
 /* Show menu on hover */
 .dropdown:hover .dropdown-menu {
   display: block;
+  opacity: 1;
   pointer-events: auto;
 }
 
 /* Hover effect */
 .dropdown-menu li a:hover {
-  color: white;
+  background-color: transparent;
+  color: #000; /* Keep text black on hover */
 }
 
   /* Transparent header only on homepage */
