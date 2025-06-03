@@ -166,42 +166,45 @@ option,
   }
   
   /* Dropdown container */
-  .dropdown {
-    position: relative;
-  }
+.dropdown {
+  position: relative;
+}
 
-  /* Hide the dropdown by default */
-  .dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 0.5rem 0;
-    list-style: none;
-    min-width: 150px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-  }
+/* Dropdown menu style */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.1); /* transparent white */
+  backdrop-filter: blur(10px); /* adds a frosted glass effect */
+  padding: 0.5rem 0;
+  list-style: none;
+  min-width: 160px;
+  z-index: 1000;
+  border-radius: 8px;
+}
 
-  /* Dropdown items */
-  .dropdown-menu li a {
-    display: block;
-    padding: 0.5rem 1rem;
-    color: #000;
-    text-decoration: none;
-    white-space: nowrap;
-  }
+/* Individual dropdown items */
+.dropdown-menu li a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: white; /* or #fff */
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: 1rem;
+}
 
-  /* Show dropdown on hover */
-  .dropdown:hover .dropdown-menu {
-    display: block;
-  }
+/* Show menu on hover */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
 
-  /* Optional: hover effect on links */
-  .dropdown-menu li a:hover {
-    background-color: #e0e0e0;
-  }
+/* Hover effect */
+.dropdown-menu li a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
 
 
   /* Transparent header only on homepage */
