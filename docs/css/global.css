@@ -179,6 +179,7 @@ option,
 /* Dropdown container */
 .dropdown {
   position: relative;
+  overflow: visible !important;
 }
 
 /* Dropdown menu style */
