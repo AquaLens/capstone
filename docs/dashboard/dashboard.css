@@ -40,10 +40,10 @@
   /* ------------ Main Layout ------------ */
   main {
     display: flex;
+    flex-wrap: nowrap; /* <-- Prevent stacking vertically */
+    align-items: flex-start;
     gap: 2rem;
     margin-bottom: 2rem;
-    flex-wrap: wrap;
-    align-items: stretch;
   }
   
 
