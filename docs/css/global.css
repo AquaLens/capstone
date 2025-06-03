@@ -95,7 +95,7 @@ option,
     header {
         position: relative;
         margin-bottom: 3rem;
-        overflow: hidden; /* Prevent video from overflowing */
+        /*overflow: hidden;  Prevent video from overflowing */
         padding: 1rem 0;
         z-index: 1000;
     }
