@@ -233,6 +233,11 @@ option,
   transform: translateY(-1px);
 }
 
+body.home .dropdown-menu li a {
+  color: #333;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
   /* Transparent header only on homepage */
   body.home header {
     background-color: transparent;
