@@ -32,5 +32,28 @@
 
 <script src="/assets/header.js"></script>
 
+<script>
+  const projectsLink = document.getElementById('projects-link');
+const dropdownMenu = document.getElementById('projects-menu');
+
+projectsLink.addEventListener('mouseenter', () => {
+  const rect = projectsLink.getBoundingClientRect();
+  dropdownMenu.style.left = `${rect.left}px`;
+  dropdownMenu.style.top = `${rect.bottom}px`;
+  dropdownMenu.style.display = 'block';
+});
+
+projectsLink.addEventListener('mouseleave', () => {
+  dropdownMenu.style.display = 'none';
+});
+
+dropdownMenu.addEventListener('mouseenter', () => {
+  dropdownMenu.style.display = 'block';
+});
+
+dropdownMenu.addEventListener('mouseleave', () => {
+  dropdownMenu.style.display = 'none';
+});
+</script>
 
   

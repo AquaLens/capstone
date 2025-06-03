@@ -173,15 +173,15 @@ option,
 /* Dropdown menu style */
 .dropdown-menu {
   display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: rgba(255, 255, 255, 0.1); /* transparent white */
-  backdrop-filter: blur(10px); /* adds a frosted glass effect */
+  position: fixed; /* ← important */
+  top: 3.5rem; /* adjust based on your header height */
+  left: 0;     /* default left edge */
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
   padding: 0.5rem 0;
   list-style: none;
   min-width: 160px;
-  z-index: 1000;
+  z-index: 9999; /* ← above everything */
   border-radius: 8px;
 }
 
