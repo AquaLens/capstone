@@ -1,6 +1,4 @@
- /* ------------ Dashboard Button Above Sidebar ------------ */
-  
-  
+
   /* ------------ Main Layout ------------ */
   main {
     display: flex;
@@ -10,21 +8,27 @@
     box-sizing: border-box;
     flex-direction: row; /* Ensure flex items are in a row */
     flex-wrap: wrap; /* Allow wrapping */
-    align-items: flex-start; /* Prevent stretching */
+    align-items: stretch; /* Prevent stretching */
   }
   
+  .sidebar-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1 1 220px;
+    max-width: 250px;
+  }
   /* ------------ Sidebar (Filters) ------------ */
   aside {
   background-color: #fff;
   border-radius: 4px;
   padding: 1rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  min-height: 400px;
   flex: 1 1 220px;
   max-width: 250px;
-  align-self: flex-start; /* This prevents stretching */
+  align-self: stretch; /* This prevents stretching */
 }
-  
+
   .filters h2 {
     font-size: 1.1rem;
     margin-bottom: 1rem;
@@ -459,7 +463,11 @@
     color: #333;
   }
   
-  
+  @media (min-width: 769px) {
+    .dashboard-button-top {
+      margin-left: 0.5rem;
+    }
+  }
   /* ------------ Responsive ------------ */
   @media (max-width: 768px) {
     header {
