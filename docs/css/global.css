@@ -309,17 +309,25 @@ body.home header {
 
     .footer-nav ul {
       display: flex;
-      gap: 1rem; /* Space between links */
+      gap: 1rem; 
       list-style: none;
       padding: 0;
       margin: 0;
     }
     
+    .footer-nav ul li {
+      flex: 0; 
+      padding: 0; 
+      margin: 0;
+      width: auto; /
+    }
+
     .footer-nav ul li a {
       color: #fff;
       color: #000;
       text-decoration: none;
       font-size: 0.9rem;
+      display: inline;
     }
 
     .footer-nav ul li a:hover {
@@ -331,11 +339,11 @@ body.home header {
       bottom: 1rem;
       right: 1.5rem;
       display: flex;
-      gap: 0.5rem; /* Space between logos */
+      gap: 1.5rem; 
     }
     
     .footer-logos img {
-      height: 1.5rem; /* Adjust logo size */
+      height: 1.5rem; 
     }
 
     body {
