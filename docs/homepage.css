@@ -4,6 +4,7 @@ html, body {
 
 body {
   overflow-x: hidden;
+  overflow-y: auto;
   width: 100vw;
   /* overflow-y: auto; */
 }
@@ -57,6 +58,19 @@ body {
   text-shadow: 0 0 10px rgba(158, 181, 203, 1);
 }
 
+#story {
+  position: relative;
+}
+
+.progress_bar {
+  position: fixed;
+  top: 0;
+  height: 1%;
+  background: #3498db;
+  width: 0%;
+  z-index: 1000;
+}
+
 .pin_section {
   position: relative;
   width: 100vw;
@@ -101,7 +115,7 @@ body {
   display: flex;
   align-items: center;
   gap: 1vw;
-  animation: bounce 1.5s infinite alternate ease-in;
+  animation: bounce 1.3s infinite alternate ease-in-out;
 }
 
 .scroll_text p {
@@ -125,7 +139,7 @@ body {
     transform: translateY(0); /* Start at original position */
   }
   50% {
-    transform: translateY(20%); /* Move up 20px */
+    transform: translateY(22%); /* Move up 20px */
   }
   100% {
     transform: translateY(0); /* Return to original position */

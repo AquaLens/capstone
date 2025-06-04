@@ -90,6 +90,17 @@ document.querySelector('#dive_button').addEventListener('click', function () {
   });
 });
 
+gsap.to(".progress_bar", {
+  width: "100vw",
+  ease: "none",
+  scrollTrigger: {
+    trigger: "#story",
+    start: "top top",
+    end: "bottom bottom",
+    scrub: true,
+  }
+});
+
 // pin the image when its bottom hits the viewport
 ScrollTrigger.create({
     trigger: ".scene1",
