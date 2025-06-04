@@ -332,7 +332,7 @@ body.home header {
       bottom: 1rem;
       right: 1.5rem;
       display: flex;
-      gap: 0.5rem; /* Space between logos */
+      gap: 1rem; /* Space between logos */
     }
     
     .footer-logos img {
