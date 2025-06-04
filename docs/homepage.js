@@ -125,6 +125,11 @@ document.addEventListener('DOMContentLoaded', () => {
   secondVideo.src = secondVideoSrc;
   secondVideo.muted = true; // Ensure autoplay works
   secondVideo.preload = 'auto'; // Preload the second video
+  secondVideo.className = 'blink_vid'; // Match the class of the first video
+  secondVideo.style.width = blinkVideo.style.width; // Match the width of the first video
+  secondVideo.style.height = blinkVideo.style.height; // Match the height of the first video
+  secondVideo.loop = false; // Ensure the second video does not loop
+  secondVideo.autoplay = true; // Ensure the second video plays automatically
 
   // Disable looping for the first video
   blinkVideo.loop = false;
@@ -134,10 +139,9 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Froggy blink video ended. Switching to Froggy jump 4...');
 
     // Replace the first video with the preloaded second video
-    blinkVideo.src = secondVideoSrc;
-    blinkVideo.loop = false; // Ensure the second video does not loop
-    blinkVideo.load(); // Reload the video
-    blinkVideo.play(); // Play the new video
+    const parent = blinkVideo.parentNode;
+    parent.replaceChild(secondVideo, blinkVideo); // Swap the video elements
+    secondVideo.play(); // Play the new video
   });
 });
 
