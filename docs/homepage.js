@@ -145,6 +145,22 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// fade in the overlay text
+gsap.from("#hover_text", {
+    opacity: 1,
+    y: 50,
+    duration: 1,
+    stagger: 0.1,
+    ease: "power4",
+    scrollTrigger: {
+        trigger: ".scene2",
+        start: "top top",
+        end: "+=400",
+        scrub: true,
+        toggleActions: "play none none none"
+    }
+});
+
 // Fade in the overlay text
 gsap.to(".act2_text_1", {
     opacity: 1,
@@ -405,3 +421,20 @@ window.addEventListener('load', () => {
 
 // scroll()
 // window.addEventListener("scroll", scroll)
+
+// window.addEventListener("scroll", scroll)
+
+let player = document.getElementById("hover_lottie");
+
+player.addEventListener("ready", () => {
+let inte = LottieInteractivity.create({
+    player: "#hover_lottie",
+    mode:"scroll",
+    actions: [
+        {
+        visibility: [0.50, 1.0],
+        type: "playOnce"
+        }
+    ]
+});
+});
