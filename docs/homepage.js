@@ -116,16 +116,28 @@ gsap.to(".act1_text", {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Swap video when froggy blink-2 ends
-  const blinkVideo = document.querySelector('.blink_vid'); // Select the froggy blink video
+  // Select the froggy blink video
+  const blinkVideo = document.querySelector('.blink_vid');
 
-  // Listen for the 'ended' event
+  // Preload the second video
+  const secondVideoSrc = '/images/homepage_media/Froggy jump 4.mp4';
+  const secondVideo = document.createElement('video');
+  secondVideo.src = secondVideoSrc;
+  secondVideo.muted = true; // Ensure autoplay works
+  secondVideo.preload = 'auto'; // Preload the second video
+
+  // Disable looping for the first video
+  blinkVideo.loop = false;
+
+  // Listen for the 'ended' event on the first video
   blinkVideo.addEventListener('ended', () => {
-      // Swap the video source to froggy splash
-      blinkVideo.src = '/images/homepage_media/Froggy jump 4.mp4';
-      blinkVideo.loop = false;
-      blinkVideo.load(); // Reload the video
-      blinkVideo.play(); // Play the new video
+    console.log('Froggy blink video ended. Switching to Froggy jump 4...');
+
+    // Replace the first video with the preloaded second video
+    blinkVideo.src = secondVideoSrc;
+    blinkVideo.loop = false; // Ensure the second video does not loop
+    blinkVideo.load(); // Reload the video
+    blinkVideo.play(); // Play the new video
   });
 });
 
