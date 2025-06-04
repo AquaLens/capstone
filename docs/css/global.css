@@ -322,12 +322,6 @@ body.home header {
       padding: 0;
       margin: 0;
     }
-    
-    .footer-nav ul li {
-      flex: 0; 
-      padding: 0; 
-      margin: 0;
-    }
 
     .footer-nav ul li a {
       color: #fff;
