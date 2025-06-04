@@ -8,7 +8,7 @@
     box-sizing: border-box;
     flex-direction: row; /* Ensure flex items are in a row */
     flex-wrap: wrap; /* Allow wrapping */
-    align-items: stretch; /* Prevent stretching */
+    /*align-items: stretch;  Prevent stretching */
   }
   
   .sidebar-stack {
