@@ -1,5 +1,6 @@
 // importing ScrollTrigger from GSAP
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollToPlugin);
 
 // smooth scroll function
 const lenis = new Lenis()
@@ -78,6 +79,17 @@ document.querySelector('#explore_button').addEventListener('click', function () 
   window.location.href = '/projects'; 
 });
 
+// button scroll down by one viewport height when Dive In button is clicked
+document.querySelector('#dive_button').addEventListener('click', function () {
+  const targetScroll = window.scrollY + window.innerHeight; // Calculate the target scroll position
+
+  gsap.to(window, {
+      scrollTo: targetScroll, // Scroll to the target position
+      duration: 2, // Duration in seconds (increase for slower scrolling)
+      ease: "power2.out" // Smooth easing for a natural scroll effect
+  });
+});
+
 // pin the image when its bottom hits the viewport
 ScrollTrigger.create({
     trigger: ".scene1",
@@ -102,6 +114,21 @@ gsap.to(".act1_text", {
     }
 });
 
+/*
+document.addEventListener('DOMContentLoaded', () => {
+  // Swap video when froggy blink-2 ends
+  const blinkVideo = document.querySelector('.blink_vid'); // Select the froggy blink video
+
+  // Listen for the 'ended' event
+  blinkVideo.addEventListener('ended', () => {
+      // Swap the video source to froggy splash
+      blinkVideo.src = '/images/homepage_media/Froggy jump 4.mp4';
+      blinkVideo.loop = false;
+      blinkVideo.load(); // Reload the video
+      blinkVideo.play(); // Play the new video
+  });
+});
+*/
 // Fade in the overlay text
 gsap.to(".act2_text_1", {
     opacity: 1,

@@ -1,8 +1,10 @@
 <header>
-  <video autoplay muted loop playsinline class="header-video">
-      <source src="/videos/water-background.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-  </video>
+  <div class="video-wrapper">
+    <video autoplay muted loop playsinline class="header-video">
+        <source src="/videos/water-background.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
+  </div>
 
   <div class="header-content">
     <div class="logo">
@@ -14,11 +16,17 @@
     <nav>
       <ul class="nav-links">
         <li><a href="/">Home</a></li>
-        <li><a href="/projects">Projects</a></li>
+        <li class="dropdown">
+          <a href="/projects" id="projects-link">Projects</a>
+          <ul class="dropdown-menu" id="projects-menu">
+            <li><a href="/projects">Gallery</a></li>
+            <li><a href="/dashboard">Map</a></li>
+          </ul>
+        </li>
         <li><a href="/data">Data</a></li>
         <li><a href="/about">About</a></li>
         <li><a href="https://www.linkedin.com/groups/13190462/" target="_blank" rel="noopener noreferrer">Join LinkedIn</a></li>
-        <li><a href="/froggy"><img src="/images/Froggy 3.png" alt="AI agent" class="nav-icon"></a></li>
+        <li><a href="/froggy">AI Chatbot<img src="/images/Froggy 3.png" alt="AI agent" class="nav-icon"></a></li>
       </ul>
     </nav>
   </div>
@@ -26,5 +34,4 @@
 
 <script src="/assets/header.js"></script>
 
-
-  
+    

@@ -26,9 +26,9 @@
         <h2>What You’ll Find</h2>
         <p class="gallery-intro">
           This page brings together global data from sources like the WHO, UNICEF, and other environmental agencies.
-          You’ll see visual stories about clean drinking water, water stress, pollution, and how different countries
+          You’ll see visual stories about clean drinking water, water stress, pollution, and how different countriesMore actions
           manage water. Whether you’re a student, a policymaker, or just curious — these visuals are designed to make complex water issues easy to understand. </br>
-          The data is shown in five different categories: <strong style="font-weight: 600;"><a href = "#water_quality">General Water Quality and Availability </a></strong> , <strong style="font-weight: 600;"><a href = "#chemical_indicators">Chemical Indicators</a></strong>, <strong style="font-weight: 600;"><a href = "#ecological">Ecological</a></strong>, <strong style="font-weight: 600;"><a href="#health-impacts">Health Impacts</a></strong>, and <strong style="font-weight: 600;"><a href="#data_reporting">Data Reporting and Transperency</a></strong>.
+          The data is shown in five different categories: <strong style="font-weight: 500;"><a href = "#water_quality">General Water Quality and Availability </a></strong> , <strong style="font-weight: 500;"><a href = "#chemical_indicators">Chemical Indicators</a></strong>, <strong style="font-weight: 500;"><a href = "#ecological">Ecological</a></strong>, <strong style="font-weight: 500;"><a href="#health-impacts">Health Impacts</a></strong>, and <strong style="font-weight: 500;"><a href="#data_reporting">Data Reporting and Transperency</a></strong>.
         </p>
         <p style="color: #2a5885; font-size: 15px; margin-top: 0.5rem;">
           💡 You can click on any of the bold category names above to jump straight to that section or explore related data stories.
@@ -49,23 +49,23 @@
     <div class="gallery-item" onclick="openModal('visual_charts_graphs/water_stress_map.html', 'Water Stress Map')">
       <img src="visual_charts_graphs/images/water_stress.jpg" alt="Global Water Stress Across Time" />
       <h4>Global Water Stress</h4>
-      <p>Map visualizing water stress felt globally in 2022</p>
+      <p>Map visualizing water stress felt globally between 2016 - 2022</p>
     </div>
 
 
-    <div class="gallery-item" onclick="openModal('visual_charts_graphs/top_20_water_stress_excluding.html')">
+    <div class="gallery-item" onclick="openModal('visual_charts_graphs/top_20_water_stress_excluding.html', 'Countries with Highest and Lowest Water Stress')">
       <img src="visual_charts_graphs/images/topstress.jpg" alt="Countries with Highest and Lowest Water Stress (%)" />
       <h4>Countries with Highest and Lowest Water Stress (%)</h4>
       <p>Countries with highest and lowest water stress felt between 2016 - 2022 </p>
     </div>
       
-    <div class="gallery-item" onclick="openModal('visual_charts_graphs/images/random_forest_regression.png')">
-      <img src="visual_charts_graphs/images/driving_water_stress.jpg" alt="What Drives Water Stress?" />
+    <div class="gallery-item" onclick="openModal('visual_charts_graphs/images/random_forest_regression.png', 'What Drives Water Stress?')">
+      <img src="visual_charts_graphs/images/driving_water_stress.jpg" alt="What Drives Water Stress?"/>
       <h4>What Drives Water Stress? Insights From Random Forest Machine Learning Model</h4>
       <p>Explore the factors that help predicting water stress, countries that are most vulnerable, and what this means for policy. </p>
     </div>
 
-    <div class="gallery-item" onclick="openModal('visual_charts_graphs/water_use_efficiency_map_2023.html')">
+    <div class="gallery-item" onclick="openModal('visual_charts_graphs/water_use_efficiency_map_2023.html', 'Water Use Efficiency (US$/m³) Map')">
       <img src="visual_charts_graphs/images/SDG.jpg" alt="Water Use Efficiency (US$/m³) Map" />
       <h4>Global Water Use Efficiency (US$/m³) </h4>
       <p>Map visualizing global water use efficiency in 2022</p>
@@ -243,36 +243,47 @@
           </div>` 
             
         },
-          'Water Stress Map' : {
-            title: 'Global Water Stress (2022)',
+            
+                    'Water Stress Map' : {
+            title: 'Global Water Stress (2016 - 2022)',
             html: `<div class="modal-analysis"> 
-                <p>This interactive map visualizes water stress (%), classified as "Low," "Medium," and "High," experienced globally from 2016 to 2022. The Water Stress Indicator monitors the UN's Sustainable Development Goal (SDG) 6.4.2. <strong>Water stress</strong> is defined as the ratio of total freshwater withdrawn by all sectors (from economic activity) to the total renewable freshwater resources available in a country, after accounting for environmental flow requirements. This ratio reflects the pressure placed on freshwater systems by human activity, demonstrating whether a country is sustainable in their freshwater supply management.</p>
+                <p>This interactive map visualizes water stress (%), classified as "Low," "Medium," and "High," experienced globally from 2016 to 2022. The Water Stress Indicator monitors the UN's Sustainable Development Goal <strong>(SDG)</strong> 6.4.2. <strong>Water stress</strong> is defined as the ratio of total freshwater withdrawn by all sectors (from economic activity) to the total renewable freshwater resources available in a country, after accounting for environmental flow requirements. This ratio reflects the pressure placed on freshwater systems by human activity, demonstrating whether a country is sustainable in their freshwater supply management.</p>
                 
-                <p><strong>SDG 6.4 Objective:</strong> to achieve a "substantial increase in water-use efficiency across all sectors and ensure sustainable withdrawals and supply of freshwater to address water scarcity"</p> 
+                <p><strong>SDG 6.4 Objective:</strong> to achieve a "substantial increase in water-use efficiency across all sectors and ensure sustainable withdrawals and supply of freshwater to address water scarcity."</p> 
                 <ul>
                   <li><strong>UN Water Stress Classifications:</strong> Our map provides a simpler classification from that of the UN for facilitated analysis. Green represents barely any water stress, yellow groups 'low and medium' stress countries together to show medium stress, and red visualizes 'high and critically high stress,' to show countries above any sustainable limits.    
-                    <br>- Green (<25%): Water withdrawals within safe, sustainable, limits.
-                    <br>- Yellow (25–75%): Increasing water withdrawlas that show a water resource avaialability may be under pressure. 
-                    <br>- Red (>75%): Freshwater withdrawal is under severe pressure. As water stress exceeds beyond 100% (critical), the freshwater withdrawls exceed supply itself, demonstrating a countrys' water scarcity. 
+                    <br><strong>- Green (<25%)</strong>: Water withdrawals within safe, sustainable, limits.
+                    <br><strong>- Yellow (25–75%)</strong>: Increasing water withdrawlas that show a water resource avaialability may be under pressure. 
+                    <br><strong>- Red (>75%)</strong>: Freshwater withdrawal is under severe pressure. As water stress exceeds beyond 100% (critical), the freshwater withdrawls exceed supply itself, demonstrating a countrys' water scarcity. 
                   </li>
 
                   <li><strong>Key Takeaways:</strong>
-                    <br>- Most critically stressed countries: Kuwait, United Arab Emirates (UAE), Saudi Arabia, Libya, and Qatar. These countires have freshwater withdrawals that exceed 100% of their renewable water resources.
-                    <br>-<strong>Note:</strong> Regions such as Sub-Saharan Africa or Latin America may report lower water stress levles not because they have abundant water bodies (despite this being true, the effects of climate change are still heavily felt), but due to limited infrastructure, inconsistent data collection, and undereported dire situations concerning water withdrawal.
+                    <br><strong>Most critically stressed</strong>: Kuwait, United Arab Emirates (UAE), Saudi Arabia, Libya, and Qatar. These countires have freshwater withdrawals that exceed 100% of their renewable water resources.
+                    <br><strong>Note:</strong> Regions such as <strong>Sub-Saharan Africa</strong> or <strong>Latin America</strong> may report lower water stress levles. While countries in these regions may have abundant water bodies, the effects of climate change are still heavily felt. Each countrys' classification further benefits from researching whether it has limited infrastructure, inconsistent data collection, or undereported dire situations concerning water withdrawals.
                   </li>
 
                   <li><strong>Why is this map useful?</strong>
-                    <br>- The map visualizes the way in which countries around the globe manage our most vital, scarce resource. It points to areas of high risk, indicating these countries are in need of targeted policy changes, or alternatively, accurate and transparent data collection. 
+                    <br>The map visualizes the way in which countries around the globe manage our most vital, scarce resource. It points to areas of high risk, indicating these countries are in need of targeted policy changes, or alternatively, accurate and transparent data collection. 
                   </li>
                 </ul>
 
                 <h3>Case Study: Water Stress in The Netherlands (2011–2022)</h3>
                 <div class="image container">
-                  <iframe src="Data_Visualizations/netherlands_water_stress_2011_2022.html" width="100%" height="500" frameborder="0"></iframe>
+                  <iframe src="visual_charts_graphs/netherlands_water_stress_2011_2022.html" 
+                          style="width: 100%; height: 500px; border: none; border-radius: 8px;">
+                </iframe>
                 </div> 
 
-                <p>This line chart tracks the annual percentage of water stress in the Netherlands from 2011 to 2022, based on SDG Indicator 6.4.2. Water stress in the Netherlands has consistently remained below 25%, making it a country with low water stress category according to UN thresholds. This suggests that the country is managing its freshwater withdrawals sustainably when compared to the renewable freshwater supply the country has. The Netherlands is an example of a developed country with high-quality water infrastructure, which has maintained sustainable water withdrawal despite intensive agricultural activity. Interestingly, while water stress does not seem to present itself as an issue for The Netherlands, there are other factors to consider when evaluating a country's water management policies. Water stress does not serve as the sole indicator linked to strong water management policies. Understanding other factors that reflect water quality (marine biodiveristy, clean water bodies, etc) strengthen policy through data-driven decisions. Explore the website to find out more!</p>
-
+                <p>This line chart tracks the annual percentage of water stress in the Netherlands from 2011 to 2022, based on SDG Indicator 6.4.2. Water stress in the Netherlands has consistently remained below 25%, making it a country with low water stress category according to UN thresholds.</p>
+                
+                <p><strong>What does this say about The Netherlands?</strong></p>  
+                <ul>
+                  <li>This suggests that the country is managing its freshwater withdrawals sustainably when compared to the renewable freshwater supply the country has.</li>
+                  <li>The Netherlands is an example of a developed country with high-quality water infrastructure, which has maintained sustainable water withdrawal despite intensive agricultural activity.</li>
+                  <li>Water stress is not an issue for The Netherlands; however, there are other factors to consider when evaluating a country's water management policies and whether these are strong.</li>
+                  <li><strong>Factors to consider</strong>: presence of marine biodiversity, clean water bodies, drinking water quality, properties found in water, among others.</li>
+                </ul>
+                  
                 <p style="margin-top:2rem;"> 
                   <strong>Data Sources:</strong> 
                   <a href="https://www.fao.org/aquastat/en/databases/maindatabase" target="_blank">FAO AQUASTAT</a>, 
@@ -285,9 +296,12 @@
                   
              
               
-          'Countries with Highest and Lowest Water Stress (%)' : {
+          'Countries with Highest and Lowest Water Stress' : {
             title: 'Countries with Highest and Lowest Water Stress (2016 - 2022)',
             html : `<div class="modal-analysis">              
+            
+             <p>This graph visualizes the countries with highest water stress experiences between 2016 and 2022. It excludes the highest five countries as these remain the same throughout the years. Additionally, the top five countries with highest stress are over the threshold of "critical stress" with values urgung for strengthened policy and iediate action.</p>
+            
             <ul>
               <li><strong>Calculating Water Stress</strong>
                   <br>- According to the UN, indicator 6.4.2 is calculated as a ratio based on the following variables:
@@ -298,37 +312,50 @@
               </li>
             </ul>
               
+                
               <h3>Water Stress in 2022</h3>
               <img src="visual_charts_graphs/water_stress_2022.png" alt="Countries with Highest and Lowest Water Stress"/>
               
-              <p style="margin-top:2rem;"> 
+              <h3>Key Findings</h3>
+            <p>The stacked bar chart reveals significant global disparities in water resource pressure; highlighting areas for sustainability efforts and further data collection:</p>
+            <ul>
+              <li><strong>Low Water Stress Countries:</strong></li>
+                <br>- Low water stress may be attributed to the different countries' abundant freshwater availability. 
+                <br>- Iceland or DR Congo experience low water stress, despite having completley distinct environmental policies and developmental levels.  
+                <br>- Bolivia, despite being grouped with the bottom countries, experiences water scarcity in different regions of the country. This suggests there are challenges to data collection and availability that need further discernment to understand global water stress metrics.</li>
+              <li><strong> High Water Stress Countries:</strong></li>
+                    <br>-Top 5 countries are depleting their freshwater resources.
+                    <br>-These countries are arid or semi-arid and heavility rely on imports of water or non-renewable groundwater.</li>
+            </ul>
+ 
+                <p style="margin-top:2rem;"> 
                   <strong>Data Sources:</strong>  
                   <a href="https://www.unwater.org/publications/progress-level-water-stress-2024-update" target="_blank">UN-Water Report (2024)</a> 
                 </p>
-              </div>`
-          },
+          </div>`
+      },
             
           'What Drives Water Stress?' : {
             title: 'Understanding the Features that Influence Water Stress',
             html : `<div class="modal-analysis">              
-           
-                   <h3></h3>
-                     <p>A <strong>random forest model</strong> is an ensemble learning technique that consists of multiple decision tress. Random Forest combines the predictions of individual decision trees to produce more accurate and stable predictions. Feature importance shows which features that are used to predict the target variable are most important, meaning how much each feature contributes to the model's prediction. Given that a country's water stress (%) is calculated from total freshwater withdrawn from economic activity, the features used for the model included water withdrawal from different sectors that contribute to economic activity. Understanding drive water stress up may facilitate and guide targeted policy making that ultimatley attempts to tackle water scarcity.</p> 
+
+                     <p>A <strong>random forest model</strong> is an ensemble learning technique that consists of multiple decision tress. Random Forest combines the predictions of individual decision trees to produce more accurate and stable predictions.</p> 
+<p>Feature importance shows which features that are used to predict the target variable are most important, meaning how much each feature contributes to the model's prediction. Since a country's water stress (%) is calculated from total freshwater withdrawn from economic activity, the features used for the model included water withdrawal from different sectors that contribute to economic activity. Understanding drive water stress up may facilitate and guide targeted policy making that ultimatley attempts to tackle water scarcity.</p> 
             
                 <h3>Feature Importance Visualized</h3>
                 <img src="visual_charts_graphs/images/feature_importance.png" alt="What Features Help Predict Water Stress?"/>
-            <ul>
-              <li>Insights:
-                  <br>- Agricultural water withdrawal is the feature that, out of all the other ones, most impacted the predictive model's performance. This indicates that from economic activity, water withdrawn for the agriculutral sector (agriculutral practices) dominates as the main driver of water stress.  
-                  <br>- Given that GDP per Capita was not identifies as a major driver of water stress, this indicates that countries that withdraw large volumes of water for their agriculutral practices face a higher likelihood of experiencing higher water stress levles, regardless of the country's economic state. 
-                  <br>- The industrial sector drives water stress up, meaning that certain industries may overstress freshwater resources.
-                  <br>- For policy, this means that the investment in sustainable, low-intensive alternatives to agriculuture should be explores, specially in country's with high water stress. Given that country's with highest water stress (i.e. Kuwait, UAE) are already arid areas, thi sresult suggests these countries should draft policies that explore alternatives. In terms of the industrial sector, industries reliant on heavy water use should potentially be tarrifed, while the exploration of low-water usage technologies and copanies could instead be promoted (or subsidized).  
-              </li>
-            </ul>
+                <ul>
+                  <li><strong>Insights:</strong>
+                    <br>- Agricultural water withdrawal is the feature that, out of all the other ones, most impacted the predictive model's performance. This indicates that from economic activity, water withdrawn for the agriculutral sector (agriculutral practices) is the main driver of water stress.  
+                   <br>- GDP per Capita was not identified as a major predictor of water stress. This indicates that countries that withdraw large volumes of water for their agriculutral practices face a higher likelihood of experiencing higher water stress levles, regardless of the country's economic state. 
+                   <br>- The industrial sector drives water stress up, meaning that certain industries may overstress freshwater resources.
+                   <br>- Policy implications: The investment in sustainable, low-intensive alternatives to agriculuture should be explored, specially in country's with high water stress. Ccountry's with highest water stress (i.e. Kuwait, UAE) are mainly arid areas, suggesting these countries should draft policies that explore alternatives. In terms of the industrial sector, industries reliant on heavy water use should potentially be tarrifed, while the exploration of low-water usage technologies and companies could instead be promoted (or subsidized).  
+                </li>
+             </ul>
               
               <h3>Mean Squared Error (MSE)</h3>
-              <img src="visual_charts_graphs/images/mse_model_errors.png" alt="Countries with Highest and Lowest Water Stress"/>
-              <p> Here, the MSE indicates where the model struggles to learn. In this case, countries with a critically-high water stress impact the performance of the model. This can further be explained as these countries, with extreme values (acting as outliers), drive up the MSE because the model struggles to learn the patterns in the data. Moreover, this further suggests that more features must be considered when evaluating water stress and its drivers, specially in countries critically-high.
+              <img src="visual_charts_graphs/images/mse_model_errors.png" alt="Model Prediction Errors"/>
+              <p> The MSE indicates where the model struggles to learn. Countries with a critically-high water stress impact the performance of the model. This can further be explained as countries with extreme values (acting as outliers), drive up the MSE as the model struggles to learn the patterns in the data and make accurate predictions. This further suggests that more structural and contextual features must be considered when evaluating water stress and its drivers, specially in countries critically-high.
               
              <h3>Case Study: Model's Performance in European Countries With Similar Water Infrastructure and Management</h3>
              <img src="visual_charts_graphs/images/actual_vs_predicted_model_errors.png" alt="Countries with Highest and Lowest Water Stress"/>
@@ -337,45 +364,54 @@
                   <strong>Data Sources:</strong>  
                   <a href="https://www.fao.org/aquastat/en/databases/maindatabase" target="_blank">FAO AQUASTAT</a>> 
                 </p>
-              </div>`
-          },
+          </div>`
+      },
             
           'Water Use Efficiency (US$/m³) Map' : {
-            title: 'Random Forest and Feature Importance',
+            title: 'Water Use Efficiency (US$/m³) in 2022',
             html: `<div class="modal-analysis"> 
                 <p>This interactive map visualizes countries' water use efficiency (US$/m³) in 2022. This indicator monitors the UN's Sustainable Development Goal (SDG) 6.4.1 in the attempts of increasing water use efficiency across all sectors by 2030. <strong>Water use efficiency</strong> consists of the ratio between dollar value added and total volume of water used. This ratio reflects the efficiency of a country in its water usage. This indicator can also be understood as a way of evaluating how efficient a country uses its water resources given its economy.</p>
     
-                <p><strong>SDG 6.4 Objective:</strong> to achieve a "substantial increase in water-use efficiency across all sectors and ensure sustainable withdrawals and supply of freshwater to address water scarcity"</p> 
+                <p><strong>SDG 6.4 Objective:</strong> to achieve a "substantial increase in water-use efficiency across all sectors and ensure sustainable withdrawals and supply of freshwater to address water scarcity."</p> 
                 <ul>
     
                 <p><strong>Top 10 countries with the best and worst water use efficiency </strong></p>
-
-            <img src="visual_charts_graphs/water_efficiency_use_2022.png" alt="Water Use Efficiency"/>
-              <p>The graphs compliment the map, illustrating the 10 countries with the most efficient and leadt efficienct water usage.</p>
-    
+                <img src="visual_charts_graphs/water_efficiency_use_2022.png" alt="Water Use Efficiency"/>
+                <p>The graph compliments the map, illustrating the 10 countries with the most efficient and least efficienct water usage.</p>
+                
+             <ul>
                 <li><strong>What does high-efficiency vs. low-efficiency mean? </strong> 
                     <br>- Low Efficiency: Countries (e.g. Afghanistan and Madagascar).
                     <br>- High Efficiency: Countries (e.g. Austria and Slovakia) 
-                 </li>
-    
+                </li>
              </ul>
 
                 <h3>Evaluating the UN's Sustainable Development Goals</h3>
                 <div class="image container">
-                    <iframe src="visual_charts_graphs/water_stress_water_use.html" width="100%" height="500" frameborder="0"></iframe>
+                    <iframe src="visual_charts_graphs/water_stress_water_use.html" 
+                                style="width: 100%; height: 600px; border: none; border-radius: 8px;">
+                    </iframe>
                 </div> 
 
-                <p>The scatter above illustrates no relationship between two of the indicators of the UN that track goal 6.4.</p>
+                <p>The scatter above plots a country's water stress vs its water use efficiency in the year 2022. The x-axis is on a log scale.</p>
+                <ul>
+                <li><strong>Keys insights and Interpetation:</strong> 
+                    <br>- The scattter visualizes no strong relationship between two of the indicators (SDG) from the UN that track goal 6.4. This indicates that a country's efficient water usage is not correlated to their stress level (in terms of water). 
+                    <br>- Research supports the lack of correlation inllustrated as it has been demonstrated that water stress is influenced by a variety of interlinked factors.
+                    <br>- While a country may use its water efficiently, water stress can futher be linked to overexploitation of resources, weak policies in water governance and management, and regional uneven distribution of water resources. 
+                    <br>- Accounting for these factors facilitates the creation of effective policy preventing the depletion of freshwater reosurces.  
+                </li>
+             </ul>
 
                 <p style="margin-top:2rem;"> 
                 <strong>Data Sources:</strong> 
                 <a href="https://www.fao.org/aquastat/en/databases/maindatabase" target="_blank">FAO AQUASTAT</a>, 
                 <a href="https://sdg6data.org/en/indicator/6.4.1" target="_blank">SDG 6.4.1 Database</a>, 
-                <a href="https://www.unwater.org/publications/progress-water-use-efficiency-2021-update" target="_blank">Progress on Water-Use Efficiency-2021 Update</a> 
+                <a href="https://www.unwater.org/publications/progress-water-use-efficiency-2021-update" target="_blank">Progress on Water Use Efficiency 2021</a>
+                <a href="https://doi.org/10.1016/j.scitotenv.2017.09.056" target="_blank">Physical water scarcity metrics for monitoring progress towards SDG target 6.4: An evaluation of indicator 6.4.2 “Level of water stress</a>
                 </p>
-            </div>`
-              
-          },
+           </div>`
+      },
 
            
           'Access to Drinking Water based on Wealth' : {
@@ -983,10 +1019,65 @@
               </div>
             `
 
-          }
+          },
+            
+        'Presence of Vulnerable Marine Ecosystems': {
+          title: 'Heatmap with Presence of Vulnerable Marine Ecosystems (VME) in the Notheast Atlantic Ocean',
+          html: `
+            <div class="modal-analysis">
+
+              <p>
+                This interactive heatmap visualizes the presence of Vulnerable Marine Ecosystems (VME) in the Northeast Atlantic Ocean. The map illustrates VME density in different locations, highlighting areas where ecological conservation efforts are critical to maintain their presence in fragile habitats.
+              </p>
+
+              <p>
+                <strong>Vulnerable Marine Ecosystems</strong> are species and habitats at risk of severe harm from human activity, particularly that related to bottom fishing or seabed extraction. These habitats are home to marine species; thus, supporting the richness of biodiversity. 
+              </p>
+
+              <h3>VME provide services such as:</h3>
+              <ul>
+                <li>Nurse grounds</li>
+                <li>Biodiversity support</li>
+                <li>Carbon cycling</li>
+              </ul>
+
+              <p>Efforts to protect VME’s from vulnerability are of essence as VME recovers extremely slowly, or not at all. Hence, efforts focus highly on preservation and conservation over restoration and recovery. Lower presence of VME may indicate areas in which human activity may be of high impact, leading to degradation of these ecosystems and further highlighting areas of risk that require urgent conservation efforts.</p>
+              
+              <h3>Examples of VME:</h3>
+              <ul>
+                <li>Cold-water coral reefs</li>
+                <li>Deep-sea sponge aggregations</li>
+                <li>Seapen fields</li>
+              </ul>
+              
+              <p>The Food and Agriculture Organization of the United Nations (FAO) and the United Nations General Assembly (UNGA) stressed the importance of VME presence, urging for their protection, specifically in areas beyond national jurisdiction (ABNJ). Deep-sea fishing activity and overfishing may have negative effects on the species found in these locations, which in turn may alter ecosystems and their regular functionality (i.e. damage from fishing gears). Data collection and analysis of VME is limited and uneven and underreported, highlighting the need for scientific monitoring and investigation. Several VME species remain unknown and poorly understood, indicating an area of future research that could potentially support conservation objectives. </p>
 
 
+              <p style="font-size: 14px; color: #555;">
+                <strong>Source:</strong> <a href="https://www.fao.org/in-action/vulnerable-marine-ecosystems/background/en/" target="_blank" style="color:#2a5885;">
+                  FAO Vulnerable Marine Ecosystems
+                </a>
+              </p>
 
+
+            </div>
+          `
+        },
+
+        'Historical Concentration of Properties Found in GWB in The Netherlands': {
+          title: 'Concentration of Ammonium and Nitrate Found In Ground Water Bodies in The Netherlands (2000 - 2012)',
+          html: `
+            <div class="modal-analysis">
+
+              <p>
+                This interactive bar plot visualizes properties found in GWB in The Netherlands, particularly Amonium and Nitrate. The most recent data found was collected between 2000 and 2012. This indicates that data availability reflecting the current properties in GWB in The Netherlands is limited, and may further reflect the country's issues with good water quality. 
+              </p>
+
+             
+
+          </div>
+          `     
+        }
 
         
       };

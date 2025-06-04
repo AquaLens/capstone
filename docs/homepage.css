@@ -35,12 +35,22 @@ body {
   color: white;
 }
 
+.aqualens_subtitle {
+  font-family: 'Futura', sans-serif;
+  font-size: 1.6vw; 
+  font-weight: 300; 
+  color: white; 
+  margin: 0; 
+  margin-top: 10px;
+  opacity: 0.8; 
+}
+
 .aqualens_title {
   font-family: 'Futura';
   font-weight: bold;
   /* font-size: 76px; */
   font-size: 5vw;
-  top: 20%;
+  top: 30%;
   left: 10%;
   /* -webkit-text-stroke-width: 0.8px;
   -webkit-text-stroke-color: rgb(158, 181, 203); */
@@ -80,10 +90,20 @@ body {
   box-sizing: border-box;
 }
 
+.scroll-text {
+  position: absolute; 
+  top: 25%; 
+  left: 20%; 
+  color: white; 
+  font-size: 2vw; 
+  width: auto; 
+  opacity: 1; 
+  z-index: 10; 
+}
+
 .blink_vid{
   /* height: 100%; */
   width: 100vw;
-  /* height: 100%; */
   margin: 0%;
   margin-top: -1px;
   margin-bottom: -1px;
@@ -96,7 +116,7 @@ body {
 }
 
 .act1_section {
-  bottom: 16%;
+  bottom: 23%;
   left: 20%;
   padding-right: 4%;
   z-index: 10;
@@ -740,7 +760,6 @@ section.vid video {
 .scene5 {
   position: relative;
   width: 100vw;
-  /* border: solid 2px black; */
   padding: 0;
   margin: 0;
   border: none; 
@@ -782,10 +801,14 @@ section.vid video {
   /* height: 100%; */
   width: 100vw;
   margin: 0%;
+  margin-top: -1px;
+  margin-bottom: -1px;
   padding: 0%;
-  position: relative;
+  object-fit: cover;
   display: block;
-  /* z-index: -1; */
+  will-change: transform;
+  border: none;
+  box-sizing: border-box;
 }
 
 .explore {
