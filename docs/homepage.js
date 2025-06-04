@@ -114,21 +114,37 @@ gsap.to(".act1_text", {
     }
 });
 
-/*
-document.addEventListener('DOMContentLoaded', () => {
-  // Swap video when froggy blink-2 ends
-  const blinkVideo = document.querySelector('.blink_vid'); // Select the froggy blink video
 
-  // Listen for the 'ended' event
+document.addEventListener('DOMContentLoaded', () => {
+  // Select the froggy blink video
+  const blinkVideo = document.querySelector('.blink_vid');
+
+  // Preload the second video
+  const secondVideoSrc = '/images/homepage_media/Froggy jump 4.mp4';
+  const secondVideo = document.createElement('video');
+  secondVideo.src = secondVideoSrc;
+  secondVideo.muted = true; // Ensure autoplay works
+  secondVideo.preload = 'auto'; // Preload the second video
+  secondVideo.className = 'blink_vid'; // Match the class of the first video
+  secondVideo.style.width = blinkVideo.style.width; // Match the width of the first video
+  secondVideo.style.height = blinkVideo.style.height; // Match the height of the first video
+  secondVideo.loop = false; // Ensure the second video does not loop
+  secondVideo.autoplay = true; // Ensure the second video plays automatically
+
+  // Disable looping for the first video
+  blinkVideo.loop = false;
+
+  // Listen for the 'ended' event on the first video
   blinkVideo.addEventListener('ended', () => {
-      // Swap the video source to froggy splash
-      blinkVideo.src = '/images/homepage_media/Froggy jump 4.mp4';
-      blinkVideo.loop = false;
-      blinkVideo.load(); // Reload the video
-      blinkVideo.play(); // Play the new video
+    console.log('Froggy blink video ended. Switching to Froggy jump 4...');
+
+    // Replace the first video with the preloaded second video
+    const parent = blinkVideo.parentNode;
+    parent.replaceChild(secondVideo, blinkVideo); // Swap the video elements
+    secondVideo.play(); // Play the new video
   });
 });
-*/
+
 // Fade in the overlay text
 gsap.to(".act2_text_1", {
     opacity: 1,
