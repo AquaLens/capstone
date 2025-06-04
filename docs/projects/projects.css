@@ -1,14 +1,11 @@
 
   /* ------------ Main Layout ------------ */
   main {
-    display: flex;
+   display: flex;
+    flex-wrap: nowrap; /* <-- Prevent stacking vertically */
+    align-items: flex-start;
     gap: 2rem;
     margin-bottom: 2rem;
-    width: 100%;
-    box-sizing: border-box;
-    flex-direction: row; /* Ensure flex items are in a row */
-    flex-wrap: wrap; /* Allow wrapping */
-    /*align-items: stretch;  Prevent stretching */
   }
   
   .sidebar-stack {
