@@ -4,6 +4,7 @@ html, body {
 
 body {
   overflow-x: hidden;
+  overflow-y: auto;
   width: 100vw;
   /* overflow-y: auto; */
 }
@@ -57,6 +58,19 @@ body {
   text-shadow: 0 0 10px rgba(158, 181, 203, 1);
 }
 
+#story {
+  position: relative;
+}
+
+.progress_bar {
+  position: fixed;
+  top: 0;
+  height: 1%;
+  background: #3498db;
+  width: 0%;
+  z-index: 1000;
+}
+
 .pin_section {
   position: relative;
   width: 100vw;
@@ -90,15 +104,59 @@ body {
   box-sizing: border-box;
 }
 
-.scroll-text {
+.scroll_text {
   position: absolute; 
   top: 25%; 
-  left: 20%; 
+  left: 9%; 
   color: white; 
   font-size: 2vw; 
-  width: auto; 
-  opacity: 1; 
-  z-index: 10; 
+ z-index: 10;
+
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+  animation: bounce 1.3s infinite alternate ease-in-out;
+}
+
+.scroll_text p {
+  margin: 0;
+  text-align: center;
+  white-space: nowrap;
+}
+
+#scroll_arrow_box {
+  display: flex;
+  align-items: center;
+}
+
+#scroll_arrow {
+  width: 2.2vw;
+  height: auto;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0); /* Start at original position */
+  }
+  50% {
+    transform: translateY(22%); /* Move up 20px */
+  }
+  100% {
+    transform: translateY(0); /* Return to original position */
+  }
+}
+
+#below_surface_text {
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: absolute;
+  top: 53%;
+  color: white; 
+  font-size: 1.8vw; 
+  z-index: 10;
+  padding: 0% 5%;
 }
 
 .blink_vid{
@@ -116,8 +174,8 @@ body {
 }
 
 .act1_section {
-  bottom: 23%;
-  left: 20%;
+  bottom: 21%;
+  left: 21%;
   padding-right: 4%;
   z-index: 10;
 }
@@ -406,6 +464,33 @@ section.vid video {
 .plastic_bag_container:hover .tooltip_lefter {
   opacity: 1;
 }
+
+#hover_container {
+  position: absolute;
+  top: 12.8%;
+  left: 17%;
+  width: 15%;
+  z-index: 100;
+}
+
+#hover_text_container {
+  position: absolute;
+  top: 16.19%;
+  left: 26%;
+  z-index: 100;
+  /* opacity: 0.1; */
+  overflow: hidden;
+  /* transform: translateY(-100); */
+}
+
+#hover_text {
+  color: white;
+  font-size: 2vw;
+  opacity: 1;
+  transform: translateY(-100);
+  /* overflow: hidden; */
+}
+
 
 .act2_text_section_1 {
   position: absolute;
@@ -703,14 +788,14 @@ section.vid video {
 .act4_text_section {
   position: absolute;
   z-index: 10;
-  top: 10%;
+  top: 7%;
   left: 50%;
 }
 
 .act4_text{
   color: white;
   font-size: 3.5vw;
-  width: 90%;
+  width: 95%;
   opacity: 1;
 }
 
