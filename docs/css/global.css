@@ -317,6 +317,16 @@ body.home header {
       color:#ffffff;
     }
 
+    .about-link {
+      display: inline; /* Ensure the link only takes up space for the text */
+      color: #000; /* Default link color */
+      text-decoration: none; /* Remove underline */
+    }
+    
+    .about-link:hover {
+      color: #ffffff; /* Change color on hover */
+    }
+    
     .footer-nav ul {
       display: flex;
       gap: 1rem; 
