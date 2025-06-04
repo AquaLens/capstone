@@ -90,6 +90,17 @@ document.querySelector('#dive_button').addEventListener('click', function () {
   });
 });
 
+gsap.to(".progress_bar", {
+  width: "100vw",
+  ease: "none",
+  scrollTrigger: {
+    trigger: "#story",
+    start: "top top",
+    end: "bottom bottom",
+    scrub: true,
+  }
+});
+
 // pin the image when its bottom hits the viewport
 ScrollTrigger.create({
     trigger: ".scene1",
@@ -143,6 +154,22 @@ document.addEventListener('DOMContentLoaded', () => {
     parent.replaceChild(secondVideo, blinkVideo); // Swap the video elements
     secondVideo.play(); // Play the new video
   });
+});
+
+// fade in the overlay text
+gsap.from("#hover_text", {
+    opacity: 1,
+    y: 50,
+    duration: 1,
+    stagger: 0.1,
+    ease: "power4",
+    scrollTrigger: {
+        trigger: ".scene2",
+        start: "top 80%",
+        end: "+=300",
+        scrub: true,
+        toggleActions: "play none none none"
+    }
 });
 
 // Fade in the overlay text
@@ -405,3 +432,20 @@ window.addEventListener('load', () => {
 
 // scroll()
 // window.addEventListener("scroll", scroll)
+
+// window.addEventListener("scroll", scroll)
+
+let player = document.getElementById("hover_lottie");
+
+player.addEventListener("ready", () => {
+let inte = LottieInteractivity.create({
+    player: "#hover_lottie",
+    mode:"scroll",
+    actions: [
+        {
+        visibility: [0.50, 1.0],
+        type: "playOnce"
+        }
+    ]
+});
+});

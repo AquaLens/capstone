@@ -392,6 +392,43 @@
     </div>
   </div> 
 
+    <!-- Froggy Chat Popup -->
+    <div class="froggy-chat-popup" id="froggy-popup">
+      <div class="froggy-chat-header">
+        <span>Froggy</span>
+        <button id="froggy-close" class="froggy-close">&times;</button>
+      </div>
+      <div class="froggy-chat-messages" id="froggy-messages"></div>
+      <div class="froggy-chat-input">
+        <textarea id="froggy-question" placeholder="Type a message..."></textarea>
+        <button id="froggy-send">➤</button>
+      </div>
+    </div>
+  
+    <!-- Froggy Disclaimer Modal -->
+    <div class="froggy-disclaimer-modal" id="froggy-disclaimer-modal">
+      <div class="froggy-disclaimer-content">
+        <div class="froggy-disclaimer-title">
+          <img src="../images/Froggy 3.png" alt="Froggy">
+          Chat with Froggy
+        </div>
+        <div class="froggy-disclaimer-text">
+          <p>Froggy is an AI agent that can assist you with the information on this website. Before you start chatting with Froggy, please read and understand the following:</p>
+          <ul>
+            <li><strong>Data Processing:</strong> Your questions and conversations will be processed through Together.ai's AI services to provide you with responses.</li>
+            <li><strong>Information Accuracy:</strong> While Froggy strives to provide helpful and accurate information about water quality initiatives and research, the information provided may not always be complete or accurate.</li>
+            <li><strong>Fact-checking:</strong> If you're in doubt about any information provided, we encourage you to verify it through authoritative sources or consult with relevant experts.</li>
+            <li><strong>No Professional Advice:</strong> Froggy's responses should not be considered as professional, legal, or scientific advice.</li>
+          </ul>
+          <p>By proceeding, you acknowledge that you understand these terms and agree to use Froggy's services accordingly.</p>
+        </div>
+        <div class="froggy-disclaimer-buttons">
+          <button id="froggy-agree" class="froggy-disclaimer-btn">I Understand & Agree</button>
+          <button id="froggy-decline" class="froggy-disclaimer-btn">Cancel</button>
+        </div>
+      </div>
+    </div>
+
   <!-- Submit Project Modal -->
   <div id="submit-modal" class="modal">
     <div class="modal-content form-content">
@@ -811,59 +848,12 @@
     </div>
   </div>
 
-  <!-- Froggy Chat Popup -->
-  <div class="froggy-chat-popup" id="froggy-popup">
-    <div class="froggy-chat-header">
-      <span>Froggy</span>
-      <button id="froggy-close" class="froggy-close">&times;</button>
-    </div>
-    <div class="froggy-chat-messages" id="froggy-messages"></div>
-    <div class="froggy-chat-input">
-      <textarea id="froggy-question" placeholder="Type a message..."></textarea>
-      <button id="froggy-send">➤</button>
-    </div>
-  </div>
-
-  <!-- Froggy Disclaimer Modal -->
-  <div class="froggy-disclaimer-modal" id="froggy-disclaimer-modal">
-    <div class="froggy-disclaimer-content">
-      <div class="froggy-disclaimer-title">
-        <img src="../images/Froggy 3.png" alt="Froggy">
-        Chat with Froggy
-      </div>
-      <div class="froggy-disclaimer-text">
-        <p>Froggy is an AI agent that can assist you with the information on this website. Before you start chatting with Froggy, please read and understand the following:</p>
-        <ul>
-          <li><strong>Data Processing:</strong> Your questions and conversations will be processed through Together.ai's AI services to provide you with responses.</li>
-          <li><strong>Information Accuracy:</strong> While Froggy strives to provide helpful and accurate information about water quality initiatives and research, the information provided may not always be complete or accurate.</li>
-          <li><strong>Fact-checking:</strong> If you're in doubt about any information provided, we encourage you to verify it through authoritative sources or consult with relevant experts.</li>
-          <li><strong>No Professional Advice:</strong> Froggy's responses should not be considered as professional, legal, or scientific advice.</li>
-        </ul>
-        <p>By proceeding, you acknowledge that you understand these terms and agree to use Froggy's services accordingly.</p>
-      </div>
-      <div class="froggy-disclaimer-buttons">
-        <button id="froggy-agree" class="froggy-disclaimer-btn">I Understand & Agree</button>
-        <button id="froggy-decline" class="froggy-disclaimer-btn">Cancel</button>
-      </div>
-    </div>
-  </div>
 
   <script>
-  // Fetch header and footer HTML
   fetch('/assets/header.html')
   .then(res => res.text())
-  .then(html => {
-    document.getElementById('header').innerHTML = html;
-    // Manually load and execute the header script
-    return fetch('/assets/header.js');
-  })
-  .then(res => res.text())
-  .then(scriptContent => {
-    // Execute the script content
-    eval(scriptContent);
-  });
-
-fetch('/assets/footer.html')
+  .then(html => document.getElementById('header').innerHTML = html);
+  fetch('/assets/footer.html')
   .then(res => res.text())
   .then(html => document.getElementById('footer').innerHTML = html);
 
@@ -874,21 +864,21 @@ let selectedCountries = []; // Declare this at the top level
 let selectedTags = []; // Declare selected tags array
 let searchQuery = ''; // Store current search query
 
-    document.addEventListener('DOMContentLoaded', async () => {
-      const projectsGrid = document.getElementById('projects-grid');
-      const apiUrl = 'https://594hcrq0.api.sanity.io/v2025-04-14/data/query/production?query=' +
-        encodeURIComponent(`*[_type == "projects"]{
-          projectName,
-          description,
-          "imageURL": image.asset->url,
-          "imageAlt": projectName,
-          location,
-          keywordLabel,
-          source,
-          companyOrganization,
-          context,
-          tags
-        }`);
+document.addEventListener('DOMContentLoaded', async () => {
+  const projectsGrid = document.getElementById('projects-grid');
+  const apiUrl = 'https://594hcrq0.api.sanity.io/v2025-04-14/data/query/production?query=' +
+    encodeURIComponent(`*[_type == "projects"]{
+      projectName,
+      description,
+      "imageURL": image.asset->url,
+      "imageAlt": projectName,
+      location,
+      keywordLabel,
+      source,
+      companyOrganization,
+      context,
+      tags
+    }`);
 
   try {
     const response = await fetch(apiUrl);
@@ -899,11 +889,43 @@ let searchQuery = ''; // Store current search query
     renderProjects();
     setupFilters();
     setupSearch();
+    
+    // NEW: Check for project parameter after data is loaded
+    checkForProjectParameter();
+    
   } catch (error) {
     console.error('Error fetching project data:', error);
     projectsGrid.innerHTML = '<p>Sorry, we are unable to load the projects at this time.</p>';
   }
 });
+
+function checkForProjectParameter() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const projectParam = urlParams.get('project');
+  
+  if (projectParam) {
+    // Decode the project name
+    const projectName = decodeURIComponent(projectParam);
+    
+    // Find the project in allProjects array
+    const project = allProjects.find(p => 
+      p.projectName === projectName ||
+      p.projectName?.toLowerCase() === projectName.toLowerCase()
+    );
+    
+    if (project) {
+      // Small delay to ensure page is fully loaded
+      setTimeout(() => {
+        showModal(project);
+        // Optional: Remove the parameter from URL without page reload
+        const newUrl = window.location.pathname;
+        window.history.replaceState({}, document.title, newUrl);
+      }, 500);
+    } else {
+      console.warn(`Project "${projectName}" not found`);
+    }
+  }
+}
 
 // Setup search functionality
 function setupSearch() {
@@ -1015,7 +1037,7 @@ function renderProjects(filteredProjects = null) {
     card.classList.add('project-card');
 
     const img = document.createElement('img');
-    img.src = project.imageURL || 'https://via.placeholder.com/400x300?text=No+Image';
+    img.src = project.imageURL || 'https://via.placeholder.com/400x300?text=No+Image'; // remove
     img.alt = project.imageAlt || 'Project image';
     card.appendChild(img);
 

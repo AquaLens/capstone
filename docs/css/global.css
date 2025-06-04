@@ -32,6 +32,14 @@
   font-display: swap;
 }
 
+/* @font-face {
+  font-family: 'Futura';
+  src: url('/fonts/Futura Std Light.woff2') format('woff2');
+  font-weight: light;
+  font-style: normal;
+  font-display: swap;
+} */
+
 
   h2 {
     font-family: 'Futura', sans-serif;
@@ -300,21 +308,33 @@ body.home header {
     
     .about-section {
       flex: 1;
-      padding-left: 0; /* Already aligned by .footer-inner */
+      padding: 0; /* Already aligned by .footer-inner */
+      margin: 0;
+      width: auto;
     }
 
     .about-section:hover {
       color:#ffffff;
     }
 
+    .about-link {
+      display: inline; /* Ensure the link only takes up space for the text */
+      color: #000; /* Default link color */
+      text-decoration: none; /* Remove underline */
+    }
+    
+    .about-link:hover {
+      color: #ffffff; /* Change color on hover */
+    }
+    
     .footer-nav ul {
       display: flex;
-      gap: 1rem; /* Space between links */
+      gap: 1rem; 
       list-style: none;
       padding: 0;
       margin: 0;
     }
-    
+
     .footer-nav ul li a {
       color: #fff;
       color: #000;
@@ -331,11 +351,11 @@ body.home header {
       bottom: 1rem;
       right: 1.5rem;
       display: flex;
-      gap: 0.5rem; /* Space between logos */
+      gap: 1.5rem; 
     }
     
     .footer-logos img {
-      height: 1.5rem; /* Adjust logo size */
+      height: 1.5rem; 
     }
 
     body {
