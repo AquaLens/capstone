@@ -18,12 +18,12 @@
     <div class="container">
       <main>
   <!-- Sidebar Filters -->
-  <aside>
+  
     <div class="sidebar-stack">
     <div class="button">
       <a href="../projects" class="btn-projects">Return to Project Overview</a>
     </div>
-
+   <aside>
     <div class="filters">
     <h2>Filter Projects</h2>
 
@@ -660,6 +660,7 @@
               <option value="">— Select Context —</option>
               <option>City</option>
               <option>Landscape</option>
+              <option>Peripheral</option>
             </select>
           </div>
 
@@ -773,10 +774,6 @@
             <textarea name="description" id="description" rows="2" required></textarea>
           </div>
 
-          <div class="form-group required">
-            <label for="full-description">Full Project Description *</label>
-            <textarea name="full-description" id="full-description" rows="5" required></textarea>
-          </div>
 
           <!-- Section: Budget -->
           <h3>Budget (optional)</h3>
@@ -795,7 +792,7 @@
           </div>
           
           <!-- Section: Metadata -->
-          <div class="form-group">
+          <div class="form-group-required">
             <label for="source">Source (URL)</label>
             <input type="url" name="source" id="source" placeholder="https://…" />
           </div>
