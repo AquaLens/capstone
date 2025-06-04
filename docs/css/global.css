@@ -315,6 +315,13 @@ body.home header {
       margin: 0;
     }
     
+    .footer-nav ul li {
+      flex: 0; 
+      padding: 0; 
+      margin: 0;
+      width: auto; /
+    }
+
     .footer-nav ul li a {
       color: #fff;
       color: #000;
@@ -332,7 +339,7 @@ body.home header {
       bottom: 1rem;
       right: 1.5rem;
       display: flex;
-      gap: 1rem; 
+      gap: 1.5rem; 
     }
     
     .footer-logos img {
