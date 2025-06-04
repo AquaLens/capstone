@@ -308,7 +308,9 @@ body.home header {
     
     .about-section {
       flex: 1;
-      padding-left: 0; /* Already aligned by .footer-inner */
+      padding: 0; /* Already aligned by .footer-inner */
+      margin: 0;
+      width: auto;
     }
 
     .about-section:hover {
