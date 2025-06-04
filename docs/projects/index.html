@@ -874,21 +874,21 @@ let selectedCountries = []; // Declare this at the top level
 let selectedTags = []; // Declare selected tags array
 let searchQuery = ''; // Store current search query
 
-    document.addEventListener('DOMContentLoaded', async () => {
-      const projectsGrid = document.getElementById('projects-grid');
-      const apiUrl = 'https://594hcrq0.api.sanity.io/v2025-04-14/data/query/production?query=' +
-        encodeURIComponent(`*[_type == "projects"]{
-          projectName,
-          description,
-          "imageURL": image.asset->url,
-          "imageAlt": projectName,
-          location,
-          keywordLabel,
-          source,
-          companyOrganization,
-          context,
-          tags
-        }`);
+document.addEventListener('DOMContentLoaded', async () => {
+  const projectsGrid = document.getElementById('projects-grid');
+  const apiUrl = 'https://594hcrq0.api.sanity.io/v2025-04-14/data/query/production?query=' +
+    encodeURIComponent(`*[_type == "projects"]{
+      projectName,
+      description,
+      "imageURL": image.asset->url,
+      "imageAlt": projectName,
+      location,
+      keywordLabel,
+      source,
+      companyOrganization,
+      context,
+      tags
+    }`);
 
   try {
     const response = await fetch(apiUrl);
@@ -899,11 +899,43 @@ let searchQuery = ''; // Store current search query
     renderProjects();
     setupFilters();
     setupSearch();
+    
+    // NEW: Check for project parameter after data is loaded
+    checkForProjectParameter();
+    
   } catch (error) {
     console.error('Error fetching project data:', error);
     projectsGrid.innerHTML = '<p>Sorry, we are unable to load the projects at this time.</p>';
   }
 });
+
+function checkForProjectParameter() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const projectParam = urlParams.get('project');
+  
+  if (projectParam) {
+    // Decode the project name
+    const projectName = decodeURIComponent(projectParam);
+    
+    // Find the project in allProjects array
+    const project = allProjects.find(p => 
+      p.projectName === projectName ||
+      p.projectName?.toLowerCase() === projectName.toLowerCase()
+    );
+    
+    if (project) {
+      // Small delay to ensure page is fully loaded
+      setTimeout(() => {
+        showModal(project);
+        // Optional: Remove the parameter from URL without page reload
+        const newUrl = window.location.pathname;
+        window.history.replaceState({}, document.title, newUrl);
+      }, 500);
+    } else {
+      console.warn(`Project "${projectName}" not found`);
+    }
+  }
+}
 
 // Setup search functionality
 function setupSearch() {
@@ -1015,7 +1047,7 @@ function renderProjects(filteredProjects = null) {
     card.classList.add('project-card');
 
     const img = document.createElement('img');
-    img.src = project.imageURL || 'https://via.placeholder.com/400x300?text=No+Image';
+    img.src = project.imageURL || 'https://via.placeholder.com/400x300?text=No+Image'; // remove
     img.alt = project.imageAlt || 'Project image';
     card.appendChild(img);
 
