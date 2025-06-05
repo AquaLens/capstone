@@ -963,6 +963,8 @@ section.vid video {
   will-change: transform;
   border: none;
   box-sizing: border-box;
+  line-height: 0;
+  backface-visibility: hidden;
 }
 
 .explore {
