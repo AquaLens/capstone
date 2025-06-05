@@ -349,6 +349,7 @@ let tl3 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene4",
     start: "top 40%-top",
+    end: "top top",
     scrub: true,
   }
 });
