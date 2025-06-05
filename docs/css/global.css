@@ -1,0 +1,391 @@
+/* ------------ Global Styles ------------ */
+
+@font-face {
+  font-family: 'Futura';
+  src: url('/fonts/Futura Std Book.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Futura';
+  src: url('/fonts/Futura Std Book Oblique.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Futura';
+  src: url('/fonts/Futura Std Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Futura';
+  src: url('/fonts/Futura Std Bold Oblique.woff2') format('woff2');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* @font-face {
+  font-family: 'Futura';
+  src: url('/fonts/Futura Std Light.woff2') format('woff2');
+  font-weight: light;
+  font-style: normal;
+  font-display: swap;
+} */
+
+
+  h2 {
+    font-family: 'Futura', sans-serif;
+    font-weight: 450;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+button, 
+input[type="button"], 
+input[type="submit"], 
+input[type="reset"], 
+.button {
+  font-family: 'Futura', sans-serif;
+}
+
+select, 
+option,
+.filter-group,
+.selected-countries {
+  font-family: 'Futura', sans-serif;
+}
+  
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow-x: hidden; /* Prevent horizontal scrolling */
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      font-family: 'Futura', sans-serif;
+      color: #333;
+      background-color: #f8f8f8;
+      line-height: 1.6;
+    }
+
+    /* links */
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    /* ------------ Header ------------ */
+    header {
+        position: relative;
+        margin-bottom: 3rem;
+        /*overflow: hidden;  Prevent video from overflowing */
+        padding: 1rem 0;
+        z-index: 1000;
+    }
+
+    .video-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .header-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none; /* Let clicks pass through */
+      z-index: 0;
+    }
+
+    
+    .header-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      min-height: 3.5rem; /* Based on logo height instead of fixed header height */
+      width: 100%; /* Ensure it spans the full width */
+      padding: 0 1.5rem;
+    }
+  
+
+  
+    .logo img {
+      height: 3.5rem;
+      margin-bottom: -0.5rem;
+    }
+  
+  nav {
+    flex-grow: 1;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: flex-end;
+    list-style: none;
+  }
+  
+  .nav-links li {
+    font-size: 1rem;
+  }
+  
+  .nav-links a {
+    color: #333;
+    transition: color 0.2s ease;
+    display: inline-flex;
+    line-height: 1.5rem;
+    align-items: baseline;
+  }
+  
+  .nav-links a.active {
+    color: #ffffff;
+  }
+
+  .nav-links a:hover {
+    color: #ffffff;
+  }
+  
+  .nav-icon {
+    height: 1em; /* adjust height to match text */
+    vertical-align: baseline;
+    display: inline-block;
+    margin-left: 8px;
+  }
+  
+/* Dropdown container */
+.dropdown {
+  position: relative;
+}
+
+/* Dropdown menu style */
+.dropdown-menu {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%); /* Centers it under the parent */
+  background-color: transparent; /* Changed to transparent */
+  padding: 0.5rem 0;
+  list-style: none;
+  min-width: 160px;
+  z-index: 1005; /* Increased z-index to be above header */
+  border-radius: 8px;
+  text-align: center;
+  max-height: none;
+  overflow: visible;
+  /* Add subtle backdrop for better readability */
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+/* Individual dropdown items */
+.dropdown-menu li a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #333 !important; /* Darker color for better visibility */
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: 1rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  /* Add subtle text shadow for better readability over video */
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Show menu on hover */
+.dropdown:hover .dropdown-menu {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.3s ease;
+}
+
+/* Hover effect for dropdown items */
+.dropdown-menu li a:hover {
+  background-color: rgba(255,255,255,0.2); /* Semi-transparent white on hover */
+  color: #000;
+  transform: translateY(-1px);
+}
+
+body.home .dropdown-menu li a {
+  color: #333;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Transparent header only on homepage */
+body.home header {
+  background-color: transparent;
+  box-shadow: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  overflow: visible; /* Allow dropdown to extend beyond header */
+  min-height: 9.1vh; /* Use min-height instead to maintain minimum size */
+}
+
+  body.about header {
+    background-color: transparent;
+    box-shadow: none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  } 
+  
+  /* Hide video background on homepage */
+  body.home .header-video {
+    display: none; /* Completely hide video on homepage */
+  }
+
+ body.about .header-video {
+    display: none; /* Completely hide video on homepage*/
+  }
+    
+    /* ------------ Footer ------------ */
+    footer {
+      background-color: #000; /* Adjust as needed */
+      color: #fff;
+      background-color: #a4b5ca; /* Adjust as needed */
+      color: #000;
+      padding: 1rem 0; /* Vertical padding */
+      position: relative;
+    }
+
+    /* For about page */
+    body.about #footer-wrapper {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+      opacity: 0; /* Initially hidden */
+      transition: opacity 0.5s ease;
+    }
+
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      padding: 0 1.5rem; /* Ensure content starts 1.5rem from the edges */
+    }
+    
+    .about-section {
+      flex: 1;
+      padding: 0; /* Already aligned by .footer-inner */
+      margin: 0;
+      width: auto;
+    }
+
+    .about-section:hover {
+      color:#ffffff;
+    }
+
+    .about-link {
+      display: inline; /* Ensure the link only takes up space for the text */
+      color: #000; /* Default link color */
+      text-decoration: none; /* Remove underline */
+    }
+    
+    .about-link:hover {
+      color: #ffffff; /* Change color on hover */
+    }
+    
+    .footer-nav ul {
+      display: flex;
+      gap: 1rem; 
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-nav ul li a {
+      color: #fff;
+      color: #000;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .footer-nav ul li a:hover {
+      color: #fff; 
+    }
+    
+    .footer-logos {
+      position: absolute;
+      bottom: 1rem;
+      right: 1.5rem;
+      display: flex;
+      gap: 1.5rem; 
+    }
+    
+    .footer-logos img {
+      height: 1.5rem; 
+    }
+
+    body {
+      position: relative;
+    }
+
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.8;
+    }
+
+    header {
+      position: relative;
+      z-index: 1000;
+    }
+
+    /* ensure content sits above video */
+    main, footer {
+      position: relative;
+      z-index: 500;
+    }
+
+    /* ------------ Fade-in keyframe (if used) ------------ */
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+        

@@ -1,0 +1,515 @@
+
+  /* ------------ Main Layout ------------ */
+  main {
+   display: flex;
+    flex-wrap: nowrap; /* <-- Prevent stacking vertically */
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .sidebar-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1 1 220px;
+    max-width: 250px;
+  }
+  /* ------------ Sidebar (Filters) ------------ */
+  aside {
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  flex: 1 1 220px;
+  max-width: 250px;
+}
+
+  .filters h2 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .filter-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .filter-group label {
+    display: block;
+    margin-bottom: 0.25rem;
+    cursor: pointer;
+  }
+
+  .selected-countries {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  
+  .country-chip {
+    background-color: #e0f0ff;
+    border: 1px solid #90caff;
+    padding: 5px 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+  }
+  
+  .country-chip .remove-btn {
+    margin-left: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    line-height: 1;
+  }  
+
+  .dashboard-button-top {
+    margin-top: 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .btn-dashboard {
+    display: inline-block;
+    background-color: #933f8d;
+    color: #ffffff;
+    padding: 1rem;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 1rem;
+    width: 218px;
+    transition: background-color 0.2s ease;
+    text-align: center;
+  }
+  
+  .btn-dashboard:hover {
+    background-color: #CCCCCC;
+    color: #000000;
+  }
+
+  .froggy-help {
+    background-color: #ffffff; /* white background */
+    border: 1px solid #d3d3d3; /* light grey solid border */
+    padding: 1rem;
+    border-radius: 4px;
+    text-align: left;
+  }
+  
+  .froggy-text .title {
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .froggy-text .subtitle {
+    font-weight: normal;
+    margin-bottom: 1rem;
+  }
+  
+  .froggy-action {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .froggy-help img {
+    width: 50px;
+    margin-bottom: 0;
+  }
+  
+  .froggy-help button {
+    background-color: #3B609C;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .froggy-help button:hover {
+    background-color: #CCCCCC;
+    color: #000000;
+  }
+
+  /* Search styling */
+  .search-container {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    background: #f9f9f9;
+    transition: all 0.3s ease;
+  }
+  
+  .search-input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    background: white;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+  }
+  
+  .search-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .search-clear {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: #999;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: none;
+  }
+  
+  .search-wrapper {
+    position: relative;
+  }
+  
+  .search-results-info {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #666;
+    font-style: italic;
+  }
+  
+  
+  
+  /* ------------ Projects Section ------------ */
+  .projects-section {
+    flex: 1 1 650px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .projects-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .projects-grid {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  
+  .project-card {
+    padding: 12px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    background-color: #fff;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  .project-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .project-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+  
+  .project-keyword {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 4px;
+    text-align: left;
+    padding: 0 4px;
+  }
+  
+  .project-card h3 {
+    font-weight: bold;
+    font-size: 1rem;
+    margin-top: 0;
+    margin-bottom: 8px;
+    text-align: left;
+    padding: 0 4px;
+  }
+
+  .pagination-controls button {
+    background-color: #3B609C;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin: 0 5px;
+  }
+  .pagination-controls button:hover {
+    background-color: #CCCCCC;
+    color: #000000;
+  }
+  
+  /* Optional additional styling for the page number display and dropdown */
+  .pagination-controls span {
+    font-weight: bold;
+    margin: 0 10px;
+  }
+
+  .pagination-controls select {
+    padding: 0.3rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+
+  .page-numbers {
+    display: inline-flex;
+    margin: 0 10px;
+  }
+  
+  .page-number {
+    padding: 5px 10px;
+    margin: 0 2px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .page-number.active {
+    background-color: #4CAF50;
+    color: white;
+    border-color: #4CAF50;
+  }
+
+  /* ------------ Submit Project Section ------------ */
+  .submit-idea-box {
+    margin-top: 2rem;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .submit-idea-box h3 {
+    margin-bottom: 0.1rem;
+    text-align: left;
+  }
+  
+  .submit-idea-btn {
+    align-self: flex-end;
+    background-color: #933f8d;
+    color: #ffffff;
+    padding: 1rem 1.4rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .submit-idea-btn:hover {
+    background-color: #CCCCCC;
+    color: #000000;
+  }
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    padding-top: 80px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+  }
+  
+  .modal-content {
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+    position: relative;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .modal-content h2 {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    text-align: center;
+  }
+
+  /* Space between form sections */
+  .modal-content form label,
+  .modal-content form fieldset,
+  .modal-content form details,
+  .modal-content form textarea,
+  .modal-content form input,
+  .modal-content form select {
+    margin-bottom: 20px;
+    display: block;
+    width: 100%;
+  }
+
+  /* Section headings inside form */
+  .modal-content form h3 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    color: #34495e;
+  }
+
+  /* Collapsible container style */
+  .modal-content form details {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+
+  .checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 4px 15px;
+  }
+
+  .checkbox-grid label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+  }
+
+  .checkbox-grid input[type="checkbox"] {
+    margin-right: 8px;
+    margin-bottom: 0;
+  }
+
+  /* Collapsible title */
+  .modal-content form details summary {
+    font-weight: bold;
+    font-size: 1em;
+    cursor: pointer;
+    margin-bottom: 10px;
+    color: #2c3e50;
+  }
+
+  /* Arrow indicators */
+  .modal-content form details summary::after {
+    content: "▼";
+    float: right;
+  }
+  .modal-content form details[open] summary::after {
+    content: "▲";
+  }
+
+  /* Input styles: better spacing */
+  .modal-content form input,
+  .modal-content form select,
+  .modal-content form textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  /* Error highlight on required invalid */
+  .modal-content form input:required:invalid,
+  .modal-content form select:required:invalid,
+  .modal-content form textarea:required:invalid {
+    border-color: #e74c3c;
+    background-color: #fff5f5;
+  }
+
+  .close-button {
+    color: #aaa;
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .close-button:hover {
+    color: #000;
+  }
+  
+  #modal-source {
+    display: inline-block;
+    margin-top: 10px;
+    color: #0077cc;
+  }
+  
+  .modal-content p {
+    margin: 8px 0;
+  }
+  
+  .modal-content strong {
+    color: #333;
+  }
+  
+  @media (min-width: 769px) {
+    .dashboard-button-top {
+      margin-left: 0.5rem;
+    }
+  }
+  /* ------------ Responsive ------------ */
+  @media (max-width: 768px) {
+    header {
+      text-align: center;
+    }
+  
+    .header-content {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  
+    main {
+      flex-direction: column;
+    }
+  
+    aside {
+      max-width: 100%;
+    }
+  
+    .projects-section {
+      max-width: 100%;
+    }
+  
+    .nav-links {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .btn-dashboard {
+      width: 100%;
+    }
+  }
