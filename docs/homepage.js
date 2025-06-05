@@ -167,7 +167,6 @@ gsap.from("#hover_text", {
         trigger: ".scene2",
         start: "-3% top",
         end: "+=300",
-        scrub: true,
         toggleActions: "play none none none",
         // markers: true
     }
