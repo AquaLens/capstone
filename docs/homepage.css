@@ -495,7 +495,7 @@ section.vid video {
 .act2_text_section_1 {
   position: absolute;
   top: 45%;
-  left: 17%;
+  left: 18%;
   z-index: 10;
 }
 
@@ -505,6 +505,75 @@ section.vid video {
   width: 80%;
   opacity: 0;
   text-align: left;
+}
+
+#graph1 {
+  position: absolute;
+  width: 48%;
+  top: 54%;
+  right: 5%;
+  transform: scale(0.01); 
+  opacity: 0;
+  transform-origin: center;
+  z-index: 12;
+}
+
+#graph1_text_wrapper {
+  position: absolute;
+  top: 56%;
+  left: 13.8%;
+  width: 33%;
+  padding-right: 3%;
+  height: auto;
+  overflow: hidden; /* This hides the sliding text until it enters */
+  z-index: 10;
+  /* match #graph1_text position */
+}
+
+#graph1_text {
+  color: white;
+  font-size: 3.5vw;
+  text-align: right;
+  transform: translateX(102%);
+  will-change: transform;
+  /* Remove transition here, GSAP will handle it */
+}
+
+#graph2 {
+  position: absolute;
+  width: 48%;
+  top: 71%;
+  left: 5%;
+  transform: scale(0.01); 
+  opacity: 0;
+  transform-origin: center;
+}
+
+
+#graph2_text_wrapper {
+  position: absolute;
+  top: 72.9%;
+  right: 2.1%;
+  width: 45%;
+  padding-left: 3%;
+  height: auto;
+  overflow: hidden; /* This hides the sliding text until it enters */
+  z-index: 10;
+  /* match #graph1_text position */
+}
+
+#graph2_text {
+  color: white;
+  font-size: 3vw;
+  text-align: left;
+  transform: translateX(102%);
+  will-change: transform;
+  /* Remove transition here, GSAP will handle it */
+}
+
+.data_image {
+  border-radius: 13px;
+  width: 100%
 }
 
 .act2_text_section_2 {
@@ -524,8 +593,8 @@ section.vid video {
 
 #explore_the_data_button {
   position: absolute;
-  bottom: 13%;
-  right: 12%;
+  bottom: 12.85%;
+  right: 10%;
   padding: 1vw 2vw;
   font-size: 1.5vw;
   cursor: pointer;
@@ -612,7 +681,7 @@ section.vid video {
   height: 100%;
 }
 
-.quote_text_container_right {
+.quote_text_container_right_2 {
   position: absolute;
   z-index: 100;
   padding-top: 5.3%;
@@ -626,7 +695,7 @@ section.vid video {
   /* border: red solid 2px;  */
 }
 
-.quote_text_container_right_2 {
+.quote_text_container_right {
   position: absolute;
   z-index: 100;
   padding-top: 3.4%;
@@ -709,7 +778,7 @@ section.vid video {
 
 #quoter_1 {
   position: absolute;
-  top: 17%;
+  top: 16%;
   left: 4.5%;
   width: 60%;
   z-index: 100;
@@ -717,7 +786,7 @@ section.vid video {
 
 #quoter_2 {
   position: absolute;
-  top: 32.7%;
+  top: 31.8%;
   right: -41.2%;
   width: 60%;
   z-index: 100;
@@ -733,16 +802,16 @@ section.vid video {
 
 #quoter_4 {
   position: absolute;
-  top: 63.8%;
-  right: -37.7%;
+  top: 63.9%;
+  right: -38.1%;
   width: 60%;
   z-index: 100;
 }
 
 #quoter_5 {
   position: absolute;
-  top: 78.6%;
-  left: 4.7%;
+  top: 80.1%;
+  left: 4.5%;
   width: 60%;
   z-index: 100;
 }

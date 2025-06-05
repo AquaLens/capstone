@@ -165,10 +165,11 @@ gsap.from("#hover_text", {
     ease: "power4",
     scrollTrigger: {
         trigger: ".scene2",
-        start: "top 80%",
+        start: "top top",
         end: "+=300",
         scrub: true,
-        toggleActions: "play none none none"
+        toggleActions: "play none none none",
+        // markers: true
     }
 });
 
@@ -179,23 +180,67 @@ gsap.to(".act2_text_1", {
     duration: 1,
     ease: "power2.out",
     scrollTrigger: {
-        trigger: "#plastic_bag",
-        start: "top top",
-        end: "+=600",
+        trigger: ".scene2",
+        start: "40% center",
+        end: "+=400",
         scrub: true
     }
 });
 
+gsap.to("#graph1", {
+  scrollTrigger: {
+    trigger: ".scene2",
+    start: "54% center", // when trigger hits center of viewport
+    toggleActions: "play none none reverse",
+  },
+  scale: 1,
+  opacity: 1,
+  duration: 0.5,
+  ease: "back.out(0.5)" // gives it a nice springy pop
+});
 
-// ScrollTrigger.create({
-//     trigger: ".pin_section_2",
-//     start: "bottom bottom",
-//     end: "+=800",
-//     pin: true,
-//     anticipatePin: 1,
-//     scrub: true,
-//     markers: true
-// });
+gsap.to("#graph2", {
+  scrollTrigger: {
+    trigger: ".scene2",
+    start: "71% center", // when trigger hits center of viewport
+    toggleActions: "play none none reverse",
+  },
+  scale: 1,
+  opacity: 1,
+  duration: 0.5,
+  ease: "back.out(0.5)", // gives it a nice springy pop
+  // markers: true
+});
+
+gsap.fromTo("#graph1_text",
+  { x: "102%" }, // Start fully hidden to the right
+  {
+    x: "0%",
+    duration: 1,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: ".scene2",
+      start: "58% center",
+      toggleActions: "play none none reverse",
+      // markers: true
+    }
+  }
+);
+
+gsap.fromTo("#graph2_text",
+  { x: "-102%" }, // Start fully hidden to the right
+  {
+    x: "0%",
+    duration: 1,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: ".scene2",
+      start: "75% center",
+      toggleActions: "play none none reverse",
+      // markers: true
+    }
+  }
+);
 
 // Fade in the overlay text
 gsap.to(".act2_text_2", {
@@ -220,7 +265,7 @@ gsap.fromTo("#quote_1",
     ease: "power2.out",
     scrollTrigger: {
       trigger: ".scene3",
-      start: "10%-top center", // when the top of ___ hits the center of viewport
+      start: "5.8% center", // when the top of ___ hits the center of viewport
       toggleActions: "play none none reverse", // optional: makes it fade out on scroll up
       markers: false  
     }
@@ -236,7 +281,7 @@ gsap.fromTo("#quote_2",
     ease: "power2.out",
     scrollTrigger: {
       trigger: ".scene3",
-      start: "9.5%+top top", // when the top of ___ hits the center of viewport
+      start: "21.3% center", // when the top of ___ hits the center of viewport
       toggleActions: "play none none reverse", // optional: makes it fade out on scroll up
       markers: false  
     }
@@ -252,7 +297,7 @@ gsap.fromTo("#quote_3",
     ease: "power2.out",
     scrollTrigger: {
       trigger: ".scene3",
-      start: "25%+top top", // when the top of ___ hits the center of viewport
+      start: "36.3% center", // when the top of ___ hits the center of viewport
       toggleActions: "play none none reverse", // optional: makes it fade out on scroll up
       markers: false  
     }
@@ -268,7 +313,7 @@ gsap.fromTo("#quote_4",
     ease: "power2.out",
     scrollTrigger: {
       trigger: ".scene3",
-      start: "40%+top top", // when the top of ___ hits the center of viewport
+      start: "52.2% center", // when the top of ___ hits the center of viewport
       toggleActions: "play none none reverse", // optional: makes it fade out on scroll up
       markers: false  
     }
@@ -284,7 +329,7 @@ gsap.fromTo("#quote_5",
     ease: "power2.out",
     scrollTrigger: {
       trigger: ".scene3",
-      start: "55%+top top", // when the top of ___ hits the center of viewport
+      start: "66.8% center", // when the top of ___ hits the center of viewport
       toggleActions: "play none none reverse", // optional: makes it fade out on scroll up
       markers: false  
     }
