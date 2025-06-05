@@ -1,8 +1,7 @@
 # AquaLens
 Capstone Project for AquaLens
 
-This GitHub Repository will contain all the coding and information of our Captstone Project website. 
-It will also contain the data abehind our visualisations.
+This zip file contains the website code, AI chatbot code (Froggy), Sanity database code, data visualisation code, and machine learning code.
 
 =====================================
 Website Intervention - aqualens.info
@@ -11,22 +10,19 @@ Website Intervention - aqualens.info
 The website files are all located in the 'docs' folder. Each page's code is located in its own folder, with its respective name. To launch the website locally, launch a live server with the 'docs' folder as the root.
 
 =====================================
-AquaLens' AI Agent - Froggy
+Sanity Database
+=====================================
+
+Database files are located in the 'studio-aqualens' folder and can be deployed or built within the folder.
+
+=====================================
+AquaLens' AI Chatbot - Froggy
 =====================================
 
 Froggy is an app built and hosted on huggingface.co. The code is located in a separate folder called 'froggy-backend'.
 
-A Flask-based API that provides computational search across water quality projects 
-and datasets. The system combines:
-- Project/initiative data from Sanity CMS/API
-- Multiple CSV datasets with water quality metrics
-- AI-powered response generation using Together AI
-- Conversation history management
-- Hybrid search (projects + data) capabilities
+========================================
+Data Visualisations and Machine Learning
+========================================
 
-Main Features:
-- Multi-dataset search with TF-IDF vectorization
-- Query type detection (projects, data, hybrid, catalog)
-- Country-specific data filtering
-- Time-series data handling
-- Session-based conversation management
+Visualisation and machine learning code is available in their respectively named folders.
