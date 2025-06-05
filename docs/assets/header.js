@@ -1,18 +1,16 @@
-console.log("header.js loaded");
-
-// Remove DOMContentLoaded wrapper since the DOM is already loaded when this runs
+// Get the current page path
 const currentPath = window.location.pathname.replace(/\/$/, '');
-console.log("Current Path:", currentPath);
 
+// Find all navigation links in the header
 const navLinks = document.querySelectorAll('.nav-links a');
-console.log("Found nav links:", navLinks.length);
 
+// Loop through each navigation link to check if it matches current page
 navLinks.forEach(link => {
-  const linkPath = new URL(link.href).pathname.replace(/\/$/, '');
-  console.log(`Comparing: ${linkPath} === ${currentPath}`);
-  
-  if (linkPath === currentPath) {
-    link.classList.add('active');
-    console.log("Added 'active' class to:", link);
-  }
+    // Extract the path from each link's href 
+    const linkPath = new URL(link.href).pathname.replace(/\/$/, '');
+    
+    // If the link path matches the current page path add active class
+    if (linkPath === currentPath) {
+        link.classList.add('active');
+    }
 });

@@ -16,12 +16,12 @@
 
 /* Standalone Page Overrides */
 .froggy-standalone-page .froggy-chat-popup {
-  display: flex; /* Always visible on standalone page */
-  position: relative; /* No longer fixed to viewport */
-  width: 100%; /* Full width of container or page */
-  max-width: 1100px; /* Optional max width */
-  height: 80vh; /* Tall enough to feel like a chat window */
-  margin: 2rem auto; /* Center horizontally with margin */
+  display: flex;
+  position: relative; 
+  width: 100%;
+  max-width: 1100px;
+  height: 80vh;
+  margin: 2rem auto; 
   bottom: auto;
   right: auto;
   transition: opacity 0.3s ease, pointer-events 0.3s ease;

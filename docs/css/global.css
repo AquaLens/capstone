@@ -32,14 +32,6 @@
   font-display: swap;
 }
 
-/* @font-face {
-  font-family: 'Futura';
-  src: url('/fonts/Futura Std Light.woff2') format('woff2');
-  font-weight: light;
-  font-style: normal;
-  font-display: swap;
-} */
-
 
   h2 {
     font-family: 'Futura', sans-serif;
@@ -74,7 +66,7 @@ option,
       padding: 0;
       width: 100%;
       height: 100%;
-      overflow-x: hidden; /* Prevent horizontal scrolling */
+      overflow-x: hidden; 
     }
 
     body {
@@ -103,7 +95,6 @@ option,
     header {
         position: relative;
         margin-bottom: 3rem;
-        /*overflow: hidden;  Prevent video from overflowing */
         padding: 1rem 0;
         z-index: 1000;
     }
@@ -134,8 +125,8 @@ option,
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      min-height: 3.5rem; /* Based on logo height instead of fixed header height */
-      width: 100%; /* Ensure it spans the full width */
+      min-height: 3.5rem;
+      width: 100%; 
       padding: 0 1.5rem;
     }
   
@@ -178,7 +169,7 @@ option,
   }
   
   .nav-icon {
-    height: 1em; /* adjust height to match text */
+    height: 1em; 
     vertical-align: baseline;
     display: inline-block;
     margin-left: 8px;
@@ -197,17 +188,16 @@ option,
   position: absolute;
   top: 100%;
   left: 50%;
-  transform: translateX(-50%); /* Centers it under the parent */
-  background-color: transparent; /* Changed to transparent */
+  transform: translateX(-50%); 
+  background-color: transparent;
   padding: 0.5rem 0;
   list-style: none;
   min-width: 160px;
-  z-index: 1005; /* Increased z-index to be above header */
+  z-index: 1005; 
   border-radius: 8px;
   text-align: center;
   max-height: none;
   overflow: visible;
-  /* Add subtle backdrop for better readability */
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
 }
@@ -216,13 +206,12 @@ option,
 .dropdown-menu li a {
   display: block;
   padding: 0.5rem 1rem;
-  color: #333 !important; /* Darker color for better visibility */
+  color: #333 !important;
   text-decoration: none;
   white-space: nowrap;
   font-size: 1rem;
   border-radius: 4px;
   transition: all 0.2s ease;
-  /* Add subtle text shadow for better readability over video */
   text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
@@ -236,7 +225,7 @@ option,
 
 /* Hover effect for dropdown items */
 .dropdown-menu li a:hover {
-  background-color: rgba(255,255,255,0.2); /* Semi-transparent white on hover */
+  background-color: rgba(255,255,255,0.2);
   color: #000;
   transform: translateY(-1px);
 }
@@ -254,8 +243,8 @@ body.home header {
   top: 0;
   width: 100%;
   z-index: 1000;
-  overflow: visible; /* Allow dropdown to extend beyond header */
-  min-height: 9.1vh; /* Use min-height instead to maintain minimum size */
+  overflow: visible;
+  min-height: 9.1vh; 
 }
 
   body.about header {
@@ -269,20 +258,20 @@ body.home header {
   
   /* Hide video background on homepage */
   body.home .header-video {
-    display: none; /* Completely hide video on homepage */
+    display: none;
   }
 
  body.about .header-video {
-    display: none; /* Completely hide video on homepage*/
+    display: none; 
   }
     
     /* ------------ Footer ------------ */
     footer {
-      background-color: #000; /* Adjust as needed */
+      background-color: #000; 
       color: #fff;
-      background-color: #a4b5ca; /* Adjust as needed */
+      background-color: #a4b5ca; 
       color: #000;
-      padding: 1rem 0; /* Vertical padding */
+      padding: 1rem 0;
       position: relative;
     }
 
@@ -293,7 +282,7 @@ body.home header {
       left: 0;
       width: 100%;
       z-index: 999;
-      opacity: 0; /* Initially hidden */
+      opacity: 0; 
       transition: opacity 0.5s ease;
     }
 
@@ -303,12 +292,12 @@ body.home header {
       justify-content: space-between;
       align-items: flex-start;
       flex-wrap: wrap;
-      padding: 0 1.5rem; /* Ensure content starts 1.5rem from the edges */
+      padding: 0 1.5rem; 
     }
     
     .about-section {
       flex: 1;
-      padding: 0; /* Already aligned by .footer-inner */
+      padding: 0; 
       margin: 0;
       width: auto;
     }
@@ -318,13 +307,13 @@ body.home header {
     }
 
     .about-link {
-      display: inline; /* Ensure the link only takes up space for the text */
-      color: #000; /* Default link color */
-      text-decoration: none; /* Remove underline */
+      display: inline;
+      color: #000;
+      text-decoration: none;
     }
     
     .about-link:hover {
-      color: #ffffff; /* Change color on hover */
+      color: #ffffff;
     }
     
     .footer-nav ul {

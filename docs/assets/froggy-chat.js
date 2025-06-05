@@ -1,6 +1,5 @@
 /**
- * Froggy Chat Widget
- * Standalone chat functionality for AquaLens
+ * Froggy Chat Website Script
  */
 
 class FroggyChat {
@@ -10,7 +9,7 @@ class FroggyChat {
       this.API_ENDPOINT = 'https://aqualens-froggy-backend.hf.space/api/ask';
       this.RESET_ENDPOINT = 'https://aqualens-froggy-backend.hf.space/api/reset_conversation';
       
-      // Check if we're on the standalone froggy page
+      // Check if on the standalone froggy page
       this.isStandalonePage = document.body.classList.contains('froggy-standalone-page');
       
       // Initialize conversation tracking
@@ -22,7 +21,7 @@ class FroggyChat {
       // Initialize session ID from localStorage if available
       this.sessionId = localStorage.getItem('froggy_session_id') || null;
       
-      // If we have a session ID, add it to our tracking
+      // If there is a session ID, add it to tracking
       if (this.sessionId) {
         this.conversationContext.sessionIds.push(this.sessionId);
       }
