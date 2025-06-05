@@ -15,6 +15,7 @@
     <script src="cities.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
+
 <body>
     <!-- Header Section -->
     <div id="header"></div>
@@ -23,6 +24,7 @@
         <main>
             <!-- ==================== SIDEBAR FILTERS ==================== -->
             <div class="sidebar-stack">
+
                 <!-- Return to Projects Button -->
                 <div class="button-top">
                     <a href="../projects" class="btn-projects">Return to Project Overview</a>
@@ -346,6 +348,7 @@
                             <button id="froggy-button">Ask Froggy</button>
                         </div>
                     </div>
+
                 </aside>
             </div>
 
@@ -366,6 +369,7 @@
                         <button class="submit-idea-btn">Submit Project</button>
                     </div>
                 </div>
+
             </section>
         </main>
     </div>
@@ -959,7 +963,7 @@
             
             let searchTimeout;
             
-            // Real-time search with debouncing to prevent excessive API calls
+            // Real-time search with debouncing to prevent too many API calls
             searchInput.addEventListener('input', (e) => {
                 clearTimeout(searchTimeout);
                 searchQuery = e.target.value.trim();
@@ -1026,16 +1030,15 @@
 
         // ==================== MAP FUNCTIONALITY ==================== 
 
-        /**
-         * Initializes the Leaflet map with basic configuration
-         */
+        /* Initializes the Leaflet map with basic configuration */
+
         function initMap() {
             map = L.map('map', {
                 center: [20, 0],
                 zoom: 2,
                 minZoom: 2,
                 maxZoom: 12,
-                worldCopyJump: true, // Prevent infinite horizontal scrolling
+                worldCopyJump: true, // prevent infinite horizontal scrolling
             });
             
             // Add OpenStreetMap tile layer
@@ -1047,11 +1050,10 @@
             markersLayer = L.layerGroup().addTo(map);
         }
 
-        // ==================== PROJECT DATA MANAGEMENT ==================== 
+        // ==================== PROJECT DATA MANAGEMENT ==================== //
 
-        /**
-         * Loads project data from Sanity CMS
-         */
+        /* Loads project data from Sanity */
+
         async function loadProjects() {
             try {
                 const apiUrl = 'https://594hcrq0.api.sanity.io/v2025-04-14/data/query/production?query=' +
@@ -1078,12 +1080,12 @@
             }
         }
 
-        /**
-         * Adds project markers to the map
-         * @param {Array} projects - Array of project objects to display
-         */
-        async function addProjectsToMap(projects) {
-            // Show loading indicator
+        /* Adds project markers to the map
+         * @param {Array} projects - Array of project objects to display */
+        
+         async function addProjectsToMap(projects) {
+           
+          // Show loading indicator
             const loadingIndicator = document.getElementById('map-loading');
             if (loadingIndicator) loadingIndicator.style.display = 'block';
 
@@ -1169,7 +1171,7 @@
         // ==================== GEOCODING FUNCTIONALITY ==================== 
 
         /**
-         * Gets latitude/longitude coordinates for a city using multiple data sources
+         * Gets latitude/longitude coordinates for a city using the local storage then API 
          * @param {string} city - The city name
          * @param {string} country - The country name
          * @returns {Array|null} - [lat, lng] coordinates or null if not found
@@ -1181,7 +1183,7 @@
             
             console.log(`Geocoding: "${city}" in "${country}" (normalized: "${cleanCountry}")`);
             
-            // 1. Check localStorage cache first (fastest)
+            // 1. Check localStorage cache first 
             if (localStorageCache[cacheKey]) {
                 console.log(`Found in localStorage cache: ${cleanCity}, ${cleanCountry}`);
                 return [localStorageCache[cacheKey].lat, localStorageCache[cacheKey].lng];
@@ -1216,7 +1218,7 @@
                 }
             }
             
-            // 3. Fall back to geocoding API (slowest, has quota limits)
+            // 3. Fall back to geocoding API 
             try {
                 const response = await fetch(
                     `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(city)},${encodeURIComponent(country)}&key=${GEOCODING_API_KEY}`
@@ -1285,6 +1287,7 @@
          * Shows project details modal by project ID
          * @param {string} projectId - The project ID to display
          */
+
         function showModalById(projectId) {
             const project = projectMap.get(projectId);
             if (project) {
@@ -1306,6 +1309,7 @@
         /**
          * Sets up all filter event handlers and dropdown functionality
          */
+
         function setupFilters() {
             // Setup checkbox filters for keywords and context
             document.querySelectorAll('input[type="checkbox"]').forEach(input => {
@@ -1332,6 +1336,7 @@
             /**
              * Updates the visual display of selected countries with remove buttons
              */
+            
             function updateSelectedCountries() {
                 selectedCountriesDiv.innerHTML = '';
                 selectedCountries.forEach(country => {

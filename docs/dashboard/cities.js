@@ -163,13 +163,7 @@ let cityCache = {
   "bishan-ang mo kio park": { country: "singapore", lat: 1.3667, lng: 103.8500 },
   "binnenhaven marineterriein": { country: "netherlands", lat: 52.3667, lng: 4.9000 },
   "story mill": { country: "usa", lat: 45.6769, lng: -111.0429 },
-
-  // Special codes/Invalid entries (keeping for completeness)
-  "ce": { country: "unknown", lat: 0.0000, lng: 0.0000 },
-  "dd": { country: "unknown", lat: 0.0000, lng: 0.0000 },
-  "ddd": { country: "unknown", lat: 0.0000, lng: 0.0000 },
-  "cd": { country: "unknown", lat: 0.0000, lng: 0.0000 },
-  "tellegang": { country: "unknown", lat: 0.0000, lng: 0.0000 }
+  
 };
 
 console.log(`Predefined cities loaded: ${Object.keys(cityCache).length} cities available`);
