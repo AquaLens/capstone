@@ -19,15 +19,15 @@
         <h1>Welcome to AquaLens: Water Data Visualizations</h1>
         <p class="intro">
           Explore interactive charts and maps that reveal key insights about the world's freshwater resources.
-          These visualizations help explain how water quality and access affect people’s health, the environment,
+          These visualizations help explain how water quality and access affect people's health, the environment,
           and communities around the globe.
         </p>
       <section id="data-visualizations">
-        <h2>What You’ll Find</h2>
+        <h2>What You'll Find</h2>
         <p class="gallery-intro">
           This page brings together global data from sources like the WHO, UNICEF, and other environmental agencies.
-          You’ll see visual stories about clean drinking water, water stress, pollution, and how statistics pertaining to different countries. More actions
-          manage water. Whether you’re a student, a policymaker, or just curious — these visuals are designed to make complex water issues easy to understand. </br>
+          You'll see visual stories about clean drinking water, water stress, pollution, and how statistics pertaining to different countries. More actions
+          manage water. Whether you're a student, a policymaker, or just curious — these visuals are designed to make complex water issues easy to understand. </br>
           <br> The data is shown in five different categories: <strong style="font-weight: 500;"><a href = "#water_quality" class="jump">General Water Quality and Availability</a></strong>, <strong style="font-weight: 500;"><a href = "#chemical_indicators" class="jump">Chemical Indicators</a></strong>, <strong style="font-weight: 500;"><a href = "#ecological" class="jump">Ecological</a></strong>, <strong style="font-weight: 500;"><a href="#health_impacts" class="jump">Health Impacts</a></strong>, and <strong style="font-weight: 500;"><a href="#data_transparency" class="jump">Data Reporting and Transperency</a></strong>.        </p>
         <p style="color: #2a5885; font-size: 15px; margin-top: 0.5rem;">
           💡 You can click on any of the bold category names above to jump straight to that section or explore related data stories.
@@ -170,7 +170,7 @@
 <!-- Footer -->
 <div id="footer"></div>
 
-<!-- Modal -->
+<!-- Modal Structure -->
 <div id="modal" class="modal" onclick="closeModal()">
   <div class = "modal-content-wrapper" onclick= "event.stopPropagation()">
     <button class ="modal-close" onclick = "closeModal()">x</button>
@@ -189,6 +189,7 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     
     <script>
+        // Modal descriptions object - contains all content for each visualization
         const descriptions = {      
         'Water Quality Map' : {
           title: 'Global Water Quality (2023)',
@@ -197,7 +198,7 @@
           <div class="modal-analysis"> 
 
             <p>This section analyses countries' and continents' natural water bodies quality in relation to the Sustainable Development Goal (SDG) "good ambient water quality" threshold. The water is separated into three categories: rivers, lakes, and groundwater, with their values combined to assess overall water quality.</p>
-            <p> The first map shows the share of each country's natural water bodies that does meet the SDG, meaning it's of good quality.<strong> Good water quality </strong>(dark blue) means all key physician, chemical, and biological parameters (pH, dissolved oxygen, nutrient levels, turbidity, microbial counts, etc) fall within established safe “reference” ranges. <strong>Poor water quality</strong> (light blue) indicates one or more of those parameters exceed acceptable limits, indicating pollution or ecosystem and public-health risks.</p>
+            <p> The first map shows the share of each country's natural water bodies that does meet the SDG, meaning it's of good quality.<strong> Good water quality </strong>(dark blue) means all key physician, chemical, and biological parameters (pH, dissolved oxygen, nutrient levels, turbidity, microbial counts, etc) fall within established safe "reference" ranges. <strong>Poor water quality</strong> (light blue) indicates one or more of those parameters exceed acceptable limits, indicating pollution or ecosystem and public-health risks.</p>
 
             <p><strong>Top 10 countries with the best water quality and lowest water quality</p></strong>
             <img src="visual_charts_graphs/top_countries_water_q.png" alt="Top Countries with best Water Quality"/>
@@ -358,7 +359,7 @@
 <p><strong>Feature importance</strong> shows which features from the ones used to predict the target variable are most important, meaning <strong>how much each feature contributes to the model's prediction</strong>. Since a country's water stress (%) is calculated from total freshwater withdrawn from economic activity, the features used for the model included water withdrawals from different sectors that contribute to economic activity. Understanding what drives water stress up may <strong>facilitate targeted policy making</strong> that  attempts to tackle water scarcity.</p> 
                   
                   <ul>
-                       <li>The main objective of this model wasn’t just to achieve high predictive performance, but rather to explore what drives water stress across different country contexts. By using Random Forest, it is possible to explore the features that contribute most to increasing pressure on freshwater resources</li>
+                       <li>The main objective of this model wasn't just to achieve high predictive performance, but rather to explore what drives water stress across different country contexts. By using Random Forest, it is possible to explore the features that contribute most to increasing pressure on freshwater resources</li>
                   </ul>   
             
                 <h3>Feature Importance Visualized</h3>
@@ -447,7 +448,7 @@
                 <a href="https://www.fao.org/aquastat/en/databases/maindatabase" target="_blank">FAO AQUASTAT</a>, 
                 <a href="https://sdg6data.org/en/indicator/6.4.1" target="_blank">SDG Target 6.4 </a>, 
                 <a href="https://www.unwater.org/publications/progress-water-use-efficiency-2021-update" target="_blank">Progress on Water Use Efficiency 2021</a>
-                <a href="https://doi.org/10.1016/j.scitotenv.2017.09.056" target="_blank">An evaluation of indicator 6.4.2 “Level of water stress</a>.
+                <a href="https://doi.org/10.1016/j.scitotenv.2017.09.056" target="_blank">An evaluation of indicator 6.4.2 "Level of water stress</a>.
                 </p>
            </div>`
       },
@@ -609,10 +610,10 @@
 
             <h3>Why Monitoring Nitrogen Matters</h3>
             <p>
-              Excess nitrogen in freshwater can throw ecosystems out of balance. When oxidized nitrogen (like nitrates and nitrites) enters rivers and lakes from fertilizer runoff or sewage, it acts like a growth booster, fueling excessive algae growth on the water’s surface. This is called <strong>eutrophication</strong>.
+              Excess nitrogen in freshwater can throw ecosystems out of balance. When oxidized nitrogen (like nitrates and nitrites) enters rivers and lakes from fertilizer runoff or sewage, it acts like a growth booster, fueling excessive algae growth on the water's surface. This is called <strong>eutrophication</strong>.
             </p>
             <p>
-              At first, algae blooms might seem harmless or even natural. But when algae die, they sink and are broken down by bacteria, a process that uses up large amounts of oxygen in the water. This leads to <strong>oxygen depletion</strong> (or hypoxia), where fish and other aquatic life can no longer survive. In extreme cases, this creates so-called <strong>“dead zones”</strong> — areas of water with almost no oxygen left.
+              At first, algae blooms might seem harmless or even natural. But when algae die, they sink and are broken down by bacteria, a process that uses up large amounts of oxygen in the water. This leads to <strong>oxygen depletion</strong> (or hypoxia), where fish and other aquatic life can no longer survive. In extreme cases, this creates so-called <strong>"dead zones"</strong> — areas of water with almost no oxygen left.
             </p>
 
             <ul>
@@ -700,7 +701,7 @@
               <h3>Why It Matters</h3>
               <p>
                 When too much nitrogen enters water, it can cause <strong>algae blooms</strong> that use up oxygen,
-                creating “dead zones” where fish and aquatic life can’t survive.
+                creating "dead zones" where fish and aquatic life can't survive.
                 Tracking both nitrogen and oxygen helps detect early warning signs and guide better water management.
               </p>
 
@@ -728,7 +729,7 @@
                 This data is derived from the 
                 <a href="https://glaas.who.int" target="_blank" style="color: #2a5885;">
                   WHO GLAAS (Global Analysis and Assessment of Sanitation and Drinking-Water)
-                </a> portal, based on the 2021 reporting cycle. It evaluates countries’ practices in publishing national water safety reports across urban and rural areas.
+                </a> portal, based on the 2021 reporting cycle. It evaluates countries' practices in publishing national water safety reports across urban and rural areas.
                 Data processing and visualization were performed using <code>pandas</code>, <code>matplotlib</code>, <code>seaborn</code>, and <code>plotly.express</code> in Python.
               </p>
 
@@ -746,8 +747,8 @@
               <p>
                 Urban areas tend to have more robust reporting systems than rural ones:
                 <ul>
-                  <li><strong>Urban:</strong> Higher share of “Fully Reported” entries.</li>
-                  <li><strong>Rural:</strong> Dominated by “No” or “Partial” reporting, a sign of systemic inequities in infrastructure and data systems.</li>
+                  <li><strong>Urban:</strong> Higher share of "Fully Reported" entries.</li>
+                  <li><strong>Rural:</strong> Dominated by "No" or "Partial" reporting, a sign of systemic inequities in infrastructure and data systems.</li>
                 </ul>
               </p>
             
@@ -885,7 +886,7 @@
               <p>
                 This chart visualizes how two key indicators of water quality—<strong>oxidized nitrogen</strong> (blue) and 
                 <strong>oxygen demand</strong> (green)—are expected to change in the coming years. The forecast is based on historical 
-                water quality measurements collected between 2000 and 2023 and modeled using Meta’s Prophet time series tool. 
+                water quality measurements collected between 2000 and 2023 and modeled using Meta's Prophet time series tool. 
               </p>
 
               <p>
@@ -914,7 +915,7 @@
 
               <h3>Environmental Insight</h3>
               <p>
-                These trends offer early-warning signals for ecological stress, particularly the formation of <strong>low-oxygen “dead zones”</strong>—areas where aquatic life cannot survive. Even small increases in nitrogen can disrupt entire food chains and ecosystem functions. The gradual drop in oxygen demand is encouraging, but rising nutrient levels remain a cause for concern. Proactive water quality monitoring and policy intervention will be key to preventing long-term degradation.
+                These trends offer early-warning signals for ecological stress, particularly the formation of <strong>low-oxygen "dead zones"</strong>—areas where aquatic life cannot survive. Even small increases in nitrogen can disrupt entire food chains and ecosystem functions. The gradual drop in oxygen demand is encouraging, but rising nutrient levels remain a cause for concern. Proactive water quality monitoring and policy intervention will be key to preventing long-term degradation.
               </p>
 
               <p style="font-size: 14px; color: #555;">
@@ -1048,7 +1049,7 @@
                 </p>
                 <ul>
                   <li><strong>Enable early intervention:</strong> Help governments and health agencies act before preventable deaths occur.</li>
-                  <li><strong>Inform policy decisions:</strong> Guide investments in WASH (Water, Sanitation, and Hygiene) infrastructure where they’re most needed.</li>
+                  <li><strong>Inform policy decisions:</strong> Guide investments in WASH (Water, Sanitation, and Hygiene) infrastructure where they're most needed.</li>
                   <li><strong>Support SDG 6 tracking:</strong> Diarrhea-related mortality is a key metric for Sustainable Development Goal 6 (Clean Water and Sanitation).</li>
                   <li><strong>Reduce human suffering:</strong> Fewer deaths from diarrheal disease mean healthier children, stronger communities, and more resilient healthcare systems.</li>
                 </ul>
@@ -1080,7 +1081,7 @@
                 <li>Carbon cycling</li>
               </ul>
 
-              <p>Efforts to protect VME’s from vulnerability are of essence as <strong>VME recovers extremely slowly, or not at all.</strong> Hence, efforts focus highly on preservation and conservation over restoration and recovery. Lower presence of VME may indicate areas in which human activity may be of high impact, leading to degradation of these ecosystems and further highlighting areas of risk that require urgent conservation efforts.</p>
+              <p>Efforts to protect VME's from vulnerability are of essence as <strong>VME recovers extremely slowly, or not at all.</strong> Hence, efforts focus highly on preservation and conservation over restoration and recovery. Lower presence of VME may indicate areas in which human activity may be of high impact, leading to degradation of these ecosystems and further highlighting areas of risk that require urgent conservation efforts.</p>
               
               <h3>Examples of VME:</h3>
               <ul>
@@ -1138,6 +1139,7 @@
         
       };
 
+      // Handle string descriptions for backward compatibility
       for (let key in descriptions) {
         if (typeof descriptions[key] === 'string') {
           descriptions[key] = {html: descriptions[key] };
@@ -1145,6 +1147,7 @@
 
       }
 
+    // Main modal open function
     function openModal(src, key) {
         const desc = descriptions[key] || {};
         document.getElementById('modal-title').textContent = desc.title || key;
@@ -1153,6 +1156,7 @@
         document.getElementById('modal').style.display = 'flex';
     }
 
+    // Close modal function
     function closeModal() {
         document.getElementById('modal').style.display = 'none';
         document.getElementById('modal-content').src = '';
@@ -1160,6 +1164,7 @@
         document.getElementById('modal-title').textContent = '';
     }
 
+    // Load header and footer components
     fetch('/assets/header.html')
   .then(res => res.text())
   .then(html => {
@@ -1177,9 +1182,7 @@
     .then(res => res.text())
     .then(html => document.getElementById('footer').innerHTML = html);
 
-    // Add this JavaScript code to your existing script section
-
-// Modal mapping object
+    // Modal mapping object for URL parameters
 const modalMap = {
   'water_quality_map': {
     src: 'visual_charts_graphs/water_quality_map_2023.html',
