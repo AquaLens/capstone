@@ -1174,7 +1174,37 @@
     fetch('/assets/footer.html')
     .then(res => res.text())
     .then(html => document.getElementById('footer').innerHTML = html);
-    </script>
+
+    // Add this JavaScript code to your existing script section
+
+// Modal mapping object
+const modalMap = {
+  'water_quality_map': {
+    src: 'visual_charts_graphs/water_quality_map_2023.html',
+    key: 'Water Quality Map'
+  },
+  'netherlands_concentration': {
+    src: 'visual_charts_graphs/concentration_properties_GW_NL.html',
+    key: 'Historical Concentration of Properties Found in GWB in The Netherlands'
+  }
+};
+
+// Function to automatically open modal based on URL parameter
+function checkForModalParameter() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const modalParam = urlParams.get('modal');
+  
+  if (modalParam && modalMap[modalParam]) {
+    const modalConfig = modalMap[modalParam];
+    setTimeout(() => {
+      openModal(modalConfig.src, modalConfig.key);
+    }, 500);
+  }
+}
+
+// Run when page loads
+document.addEventListener('DOMContentLoaded', checkForModalParameter);
+</script>
 
 </body>
 
