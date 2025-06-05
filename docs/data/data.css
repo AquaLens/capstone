@@ -64,6 +64,12 @@
       height: auto;
       border-radius: 8px;
     }
+
+    iframe[src*="random_forest_regression_smaller_fig.png"] {
+    zoom: 0.4 !important; 
+    height: 150vh !important;
+  }
+
     
     .modal {
       display: none;
