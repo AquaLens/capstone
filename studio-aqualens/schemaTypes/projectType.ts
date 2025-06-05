@@ -1,6 +1,5 @@
 import {defineField, defineType, Rule} from 'sanity'
 
-// Define a list of country options; expand this array to include any countries you require
 const countryOptions = [
   {title: 'Afghanistan', value: 'Afghanistan'},
   {title: 'Albania', value: 'Albania'},
@@ -355,7 +354,7 @@ export const projectType = defineType({
       type: 'array',
       of: [{type: 'string'}],
       options: {
-      layout: 'tags' // Enables tag-style UI for easy multiple entries
+      layout: 'tags'
 },
       description: 'Add one or more city or regional locations relevant to this entry.',
     }),
@@ -476,7 +475,7 @@ export const projectType = defineType({
       title: 'Image',
       type: 'image',
       options: {
-        hotspot: true, // Optional: allows image cropping focus
+        hotspot: true,
       }
     }),
   ],
