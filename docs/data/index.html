@@ -28,12 +28,7 @@
           This page brings together global data from sources like the WHO, UNICEF, and other environmental agencies.
           You’ll see visual stories about clean drinking water, water stress, pollution, and how different countries. More actions
           manage water. Whether you’re a student, a policymaker, or just curious — these visuals are designed to make complex water issues easy to understand. </br>
-          The data is shown in five different categories: 
-          <a href="#water_quality" style="font-weight: 500;">General Water Quality and Availability</a>
-          <a href="#chemical_indicators" style="font-weight: 500;">Chemical Indicators</a>
-          <a href="#ecological" style="font-weight: 500;">Ecological</a>
-          <a href="#health-impacts" style="font-weight: 500;">Health Impacts</a>
-          <a href="#data_reporting" style="font-weight: 500;">Data Reporting and Transparency</a>
+          The data is shown in five different categories: <strong style="font-weight: 500;"><a href = "#water_quality">General Water Quality and Availability </a></strong> , <strong style="font-weight: 500;"><a href = "#chemical_indicators">Chemical Indicators</a></strong>, <strong style="font-weight: 500;"><a href = "#ecological">Ecological</a></strong>, <strong style="font-weight: 500;"><a href="#health-impacts">Health Impacts</a></strong>, and <strong style="font-weight: 500;"><a href="#data_reporting">Data Reporting and Transperency</a></strong>.
         </p>
         <p style="color: #2a5885; font-size: 15px; margin-top: 0.5rem;">
           💡 You can click on any of the bold category names above to jump straight to that section or explore related data stories.
@@ -369,8 +364,8 @@
                 
                   <p><strong>Key Insights:</strong></p>
                 <ul>
-                    <li><strong>Agricultural water withdrawal</strong> is the feature that, out of all the other ones, most impacted the predictive model's performance. This indicates that from economic activity, water withdrawn for the agriculutral sector (agriculutral practices) is the main driver of water stress.<li>  
-                   <li><strong>GDP per Capita</strong> was not identified as a major predictor of water stress. This indicates that countries that withdraw large volumes of water for their agriculutral practices face a higher likelihood of experiencing higher water stress levles, regardless of the country's economic state.<li>
+                    <li><strong>Agricultural water withdrawal</strong> is the feature that, out of all the other ones, most impacted the predictive model's performance. This indicates that from economic activity, water withdrawn for the agriculutral sector (agriculutral practices) is the main driver of water stress.</li>  
+                   <li><strong>GDP per Capita</strong> was not identified as a major predictor of water stress. This indicates that countries that withdraw large volumes of water for their agriculutral practices face a higher likelihood of experiencing higher water stress levles, regardless of the country's economic state.</li>
                    <li><strong>The industrial sector</strong> drives water stress up, meaning that certain industries may overstress freshwater resources.</li>
                 </ul>
                 
@@ -388,9 +383,16 @@
               <p> The model had an MSE = 3729.5 and an R² = 0.99. </p>
               <p><strong>Interpretation:</strong> Countries with a critically-high water stress impact the performance of the model. This can further be explained as countries with extreme values (i.e. Kuwait) act as outliers that drive up the overall error as the model struggles to learn the patterns in the data and make accurate predictions. This suggests that more structural and contextual features must be considered when evaluating water stress and its drivers, specially in countries experiencing critically-high levels. R² is nearly perfect given that some features are part of the way water stress is calculated. Nevertheless, the model points out which sectors depelete freshwater resources the most, indicated the secotor public policy should attempt to address.</p>
               
-             <h3>Case Study: Model's Performance in European Countries With Similar Water Infrastructure and Management</h3>
-             <img src="visual_charts_graphs/images/actual_vs_predicted_similar_nl.png" alt="Actual vs. Predicted Countries Similar NL"/>
-             <p> The visualizations above illustrate the models' predictions in countries siilar to The Netherlands, that is, in water governance policies, infrastructure, and levels of development. For future research, gathering data that is more recent could help predict water stress in the upcoming years, with potentially a reduced MSE if the countries with extrme values are excluded from the dataset.    
+             <h3>Case Study: Model's Performance in European Countries With Similar Water Infrastructure and Management to The Netherlands</h3>
+             <p>The different predictions made by the model for the following countries shown below are: <strong>The Netherlands, Belgium, Germany, Denmark and Finland.</strong> Evaluating individual countries helps reveal where the model may be overfits or struggles to understand the patterns. Spikes could indicate data issues or untracked policy changes, highlighting policy-relevant insights (as the errors are mainly attributed to the outliers). </p>
+             
+             <img src="visual_charts_graphs/images/actual_vs_predicted_Netherlands_Kingdom_of_the.png alt="Actual vs. Predicted Belgium"/>
+             <img src="visual_charts_graphs/images/actual_vs_predicted_Belgium.png" alt="Actual vs. Predicted Belgium"/>
+             <img src="visual_charts_graphs/images/actual_vs_predicted_Belgium.png" alt="Actual vs. Predicted Germany"/>
+             <img src="visual_charts_graphs/images/actual_vs_predicted_Belgium.png" alt="Actual vs. Predicted Denmark"/>
+             <img src="visual_charts_graphs/images/actual_vs_predicted_Denmark.png" alt="Actual vs. Predicted Finland"/>
+            
+            <p> The visualizations above illustrate the models' predictions in countries similar to The Netherlands; that is, countries that are similar in <strong>water governance policies, infrastructure, and levels of development.</strong> For <strong>future research</strong>, gathering data that is more recent could help predict water stress in the upcoming years, with potentially a reduced MSE if the countries with extrme values are excluded from the dataset. That means recent data on the features used for the model. </p>   
              
              <p style="margin-top:2rem;"> 
                   <strong>Data Sources:</strong>  
@@ -402,23 +404,23 @@
           'Water Use Efficiency (US$/m³) Map' : {
             title: 'Water Use Efficiency (US$/m³) in 2022',
             html: `<div class="modal-analysis"> 
-                <p>This interactive map visualizes countries' water use efficiency (US$/m³) in 2022. This indicator monitors the UN's <strong>Sustainable Development Goal (SDG) 6.4.1</strong> in the attempts of increasing water use efficiency across all sectors by 2030. <strong>Water use efficiency</strong> consists of the ratio between dollar value added and total volume of water used. This ratio reflects the efficiency of a country in using its water to support its economy. It can be understood as a way of evaluating how efficient a country uses its water resources given its economy.</p>
+                <p>This interactive map visualizes countries' <strong>water use efficiency (US$/m³)</strong> in 2022. This indicator monitors the UN's <strong>Sustainable Development Goal (SDG) 6.4.1</strong> in the attempts of increasing water use efficiency across all sectors by 2030. <strong>Water use efficiency</strong> consists of the ratio between dollar value added and total volume of water used. This ratio reflects the efficiency of a country in using its water to support its economy. It can be understood as a way of evaluating how efficient a country uses its water resources given its economy.</p>
     
                 <p><strong>SDG 6.4 Objective:</strong> to achieve a "substantial increase in water-use efficiency across all sectors and ensure sustainable withdrawals and supply of freshwater to address water scarcity."</p> 
-                <ul>
+                
     
                 <p><strong>Top 10 countries with the best and worst water use efficiency </strong></p>
                 <img src="visual_charts_graphs/water_efficiency_use_2022.png" alt="Water Use Efficiency"/>
                 <p>The graph compliments the map, illustrating the 10 countries with the most efficient and least efficienct water usage.</p>
                 
-             <ul>
-                <li><strong>Low-efficiency vs. High-efficiency</strong> 
-                    <br>- Countries (i.e. Afghanistan, Madagascar, and Syria) exhibit low water use efficiency, meaning they generate less economic output per cubic meter of water used.
-                    <br>- This can be attributed to weak water governance policies and economic reliance on heavy agriculutral practices.
-                    <br>- Countries (i.e. Luxembourg, Switzerland, Denmark, and Austria) exhibit high water use efficiency. 
-                    <br>- These countries may experience so resulting from advanced infrastructure, targetted policy, stronger water govenrance policies, and higher country development levels. 
-                </li>
-             </ul>
+             
+                <p><strong>Low-efficiency vs. High-efficiency</strong><p> 
+                <ul>
+                    <li>Countries (i.e. Afghanistan, Madagascar, and Syria) exhibit low water use efficiency, meaning they generate less economic output per cubic meter of water used.</li>
+                    <li>This can be attributed to weak water governance policies and economic reliance on heavy agriculutral practices.</li>
+                    <li>Countries (i.e. Luxembourg, Switzerland, Denmark, and Austria) exhibit high water use efficiency.</li>
+                    <li>These countries' higher efficiency may be attributed to their <strong>advanced infrastructure, targetted policy, stronger water govenrance policies</strong>, and higher country <strong>development levels.</strong></li>
+              </ul>
 
                 <h3>Evaluating the UN's Sustainable Development Goals</h3>
                 <div class="image container">
@@ -428,12 +430,13 @@
                 </div> 
 
                 <p>The scatter above plots a country's water stress vs its water use efficiency in the year 2022. The x-axis is on a log scale.</p>
+                
+                <p><strong>Keys insights and Interpetation:</strong> <p>
                 <ul>
-                <li><strong>Keys insights and Interpetation:</strong> 
-                    <br>- The scattter visualizes no strong relationship between two of the indicators (SDG) from the UN that track goal 6.4. This indicates that a country's efficient water usage is not correlated to their stress level (in terms of water). 
-                    <br>- Research supports the lack of correlation inllustrated as it has been demonstrated that water stress is influenced by a variety of interlinked factors.
-                    <br>- While a country may use its water efficiently, water stress can futher be linked to overexploitation of resources, weak policies in water governance and management, and regional uneven distribution of water resources. 
-                    <br>- Accounting for these factors facilitates the creation of effective policy preventing the depletion of freshwater reosurces.  
+                    <li>The scattter visualizes <strong>no strong relationship</strong> between two of the indicators <strong>(SDG)</strong> from the UN that track goal 6.4. This indicates that a country's efficient water usage is not correlated to their stress level (in terms of water). </li>
+                    <li>Research supports the lack of correlation inllustrated as it has been demonstrated that water stress is influenced by a variety of interlinked factors.</li>
+                    <li>While a country may use its water efficiently, <strong>water stress</strong> can futher be linked to overexploitation of resources, weak policies in water governance and management, and regional uneven distribution of water resources. </li>
+                    <li>Accounting for these factors facilitates drafting effective policies that prevent the depletion of freshwater resources.  
                 </li>
              </ul>
 
@@ -1061,11 +1064,11 @@
             <div class="modal-analysis">
 
               <p>
-                This interactive heatmap visualizes the presence of Vulnerable Marine Ecosystems (VME) in the Northeast Atlantic Ocean. The map illustrates VME density in different locations, highlighting areas where ecological conservation efforts are critical to maintain their presence in fragile habitats.
+                This interactive heatmap visualizes the presence of <strong>Vulnerable Marine Ecosystems (VME) in the Northeast Atlantic Ocean.</strong> The map illustrates VME density in different locations, highlighting areas where ecological conservation efforts are critical to maintain their presence in fragile habitats.
               </p>
 
               <p>
-                <strong>Vulnerable Marine Ecosystems</strong> are species and habitats at risk of severe harm from human activity, particularly that related to bottom fishing or seabed extraction. These habitats are home to marine species; thus, supporting the richness of biodiversity. 
+                <strong>Vulnerable Marine Ecosystems</strong> are species and habitats at <strong>risk of severe harm from human activity</strong>, particularly that related to <strong>bottom fishing</strong> or <strong>seabed extraction.</strong> These habitats are home to marine species; thus, supporting the richness of biodiversity. 
               </p>
 
               <h3>VME provide services such as:</h3>
@@ -1075,7 +1078,7 @@
                 <li>Carbon cycling</li>
               </ul>
 
-              <p>Efforts to protect VME’s from vulnerability are of essence as VME recovers extremely slowly, or not at all. Hence, efforts focus highly on preservation and conservation over restoration and recovery. Lower presence of VME may indicate areas in which human activity may be of high impact, leading to degradation of these ecosystems and further highlighting areas of risk that require urgent conservation efforts.</p>
+              <p>Efforts to protect VME’s from vulnerability are of essence as <strong>VME recovers extremely slowly, or not at all.</strong> Hence, efforts focus highly on preservation and conservation over restoration and recovery. Lower presence of VME may indicate areas in which human activity may be of high impact, leading to degradation of these ecosystems and further highlighting areas of risk that require urgent conservation efforts.</p>
               
               <h3>Examples of VME:</h3>
               <ul>
@@ -1084,7 +1087,7 @@
                 <li>Seapen fields</li>
               </ul>
               
-              <p>The Food and Agriculture Organization of the United Nations (FAO) and the United Nations General Assembly (UNGA) stressed the importance of VME presence, urging for their protection, specifically in areas beyond national jurisdiction (ABNJ). Deep-sea fishing activity and overfishing may have negative effects on the species found in these locations, which in turn may alter ecosystems and their regular functionality (i.e. damage from fishing gears). Data collection and analysis of VME is limited and uneven and underreported, highlighting the need for scientific monitoring and investigation. Several VME species remain unknown and poorly understood, indicating an area of future research that could potentially support conservation objectives. </p>
+              <p>The Food and Agriculture Organization of the United Nations <strong>(FAO)</strong> and the United Nations General Assembly <strong>(UNGA)</strong> stressed the importance of VME presence, urging for their protection, specifically in areas beyond national jurisdiction (ABNJ).<strong> Deep-sea fishing activity</strong> and <strong>overfishing</strong> may have negative effects on the species found in these locations, which in turn may <strong>alter ecosystems</strong> and their regular functionality (i.e. damage from fishing gears). Data collection and analysis of VME is limited and uneven and underreported, highlighting the need for scientific monitoring and investigation. Several VME species remain unknown and poorly understood, indicating an area of future research that could potentially support conservation objectives. </p>
 
 
               <p style="font-size: 14px; color: #555;">
@@ -1104,10 +1107,27 @@
             <div class="modal-analysis">
 
               <p>
-                This interactive bar plot visualizes properties found in GWB in The Netherlands, particularly Amonium and Nitrate. The most recent data found was collected between 2000 and 2012. This indicates that data availability reflecting the current properties in GWB in The Netherlands is limited, and may further reflect the country's issues with good water quality. 
+                This interactive bar plot visualizes properties found in GWB in The Netherlands, particularly <strong>Ammonium (NH₄⁺)</strong> and <strong>Nitrate (NO₃⁻).</strong> The most recent data found was collected between 2000 and 2012. This indicates that data availability reflecting the current properties in GWB in The Netherlands is limited, and may further reflect one of the reasons behind the country's issues with good water quality. 
               </p>
+            
+             <h3>Key Insights on Ammonium and Nitrate:</h3>
+              <ul>
+                <li>These two property indicators are used to <strong>assess agricultural and urban impacts on groundwater quality.</strong> Both compounds tend to be linked to fertilizer use and livestock manure.</li>
+                <li>Higher concentrations of these compounds indicate a warning sign of potential groundwater contamination.</li>
+                <li><strong>Ammonium</strong> in groundwater bodies often stems from <strong>manure management practices</strong> and <strong>insufficiently treated sewage.</strong></li>
+                <li><strong>Nitrate</strong> is recognized as a  critical indicator of groundwater contamination due to agriculture. According to EU standards, the acceptable limit for nitrate in groundwater is <strong>50 mg/L.</strong> Exceeding the limit poses a risk to <strong>ecosystem health and human health</strong> (infant and vulnerable populations are at higher risk).
+</li>
+                <li>Recent studies (from 2021) demonstrate The Netherlands has <strong>persisent nitrate pollution</strong> found in groundwater bodies that is driven by the agricultural sector. However, public datasets have not been updated with recent data, revealing transparecny issues or limited data collection.</li> 
+                <li>Explore the research papers and sources below to learn more!</li> 
+              </ul>
 
-             
+              <p style="font-size: 14px; color: #555;">
+                <strong>Source:</strong> 
+                <a href="https://www.eea.europa.eu/en/datahub/datahubitem-view/208518d1-ffe3-4981-9cae-13264cd9c32c?activeAccordion=1092904%2C1092907" target="_blank" style="color:#2a5885;"> EEA Waterbase - Water Quality ICM
+                <a href="https://www.sciencedirect.com/science/article/pii/S0269749119348936" target="_blank" style="color:#2a5885;"> Living in polluted waters: Meta Analysis 
+                 <a href="https://www.sciencedirect.com/science/article/pii/S1352231017300316" target="_blank" style="color:#2a5885;"> Modelling trends in ammonia in the Netherlands
+                </a>
+              </p>
 
           </div>
           `     
