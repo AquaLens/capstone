@@ -408,7 +408,7 @@ gsap.fromTo("#project_container_3",
 
 // pin the image when its bottom hits the viewport
 ScrollTrigger.create({
-    trigger: ".scene5",
+    trigger: "#enlarged_pin",
     start: "bottom bottom",
     end: "+=1600",
     pin: true,
@@ -423,24 +423,23 @@ gsap.to("#act5_text_1", {
     duration: 1,
     ease: "power2.out",
     scrollTrigger: {
-        trigger: ".scene5",
+        trigger: "#enlarged_pin",
         start: "bottom bottom",
         end: "+=400",
         scrub: true
     }
 });
 
-// fade in overlay text
+// fade in overlay text with delay
 const scene5Timeline = gsap.timeline({
   scrollTrigger: {
-    trigger: ".scene5",
+    trigger: "#enlarged_pin",
     start: "bottom bottom",
     end: "+=800",
     scrub: true
   }
 });
 
-// fade in the overlay text
 scene5Timeline.to("#act5_text_2", {
   opacity: 1,
   y: 0,
