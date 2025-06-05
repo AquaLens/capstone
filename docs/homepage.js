@@ -165,7 +165,7 @@ gsap.from("#hover_text", {
     ease: "power4",
     scrollTrigger: {
         trigger: ".scene2",
-        start: "top top",
+        start: "-3% top",
         end: "+=300",
         scrub: true,
         toggleActions: "play none none none",
