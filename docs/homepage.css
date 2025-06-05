@@ -2,17 +2,14 @@ html, body {
   height: auto;
 }
 
+/* make sure page doesn't overflow horizontally */
 body {
   overflow-x: hidden;
   overflow-y: auto;
   width: 100vw;
-  /* overflow-y: auto; */
 }
 
-#smooth-content {
-  will-change: transform;
-}
-
+/* code to help debug */
 /* * {
   outline: 1px solid rgba(255, 0, 0, 0.2);
 } */
@@ -25,6 +22,7 @@ body {
     display: block;
 }
 
+/* id for water audio */
 #bubbly-sound {
   display: none;
 }
@@ -49,15 +47,13 @@ body {
 .aqualens_title {
   font-family: 'Futura';
   font-weight: bold;
-  /* font-size: 76px; */
   font-size: 5vw;
   top: 30%;
   left: 10%;
-  /* -webkit-text-stroke-width: 0.8px;
-  -webkit-text-stroke-color: rgb(158, 181, 203); */
   text-shadow: 0 0 10px rgba(158, 181, 203, 1);
 }
 
+/* set container div for progress bar */
 #story {
   position: relative;
 }
@@ -71,6 +67,7 @@ body {
   z-index: 1000;
 }
 
+/* whole pin section for video/text at the bottom of scene 1 */
 .pin_section {
   position: relative;
   width: 100vw;
@@ -80,6 +77,7 @@ body {
   box-sizing: border-box; 
 }
 
+/* style scene */
 .scene1 {
   position: relative;
   width: 100vw;
@@ -89,6 +87,7 @@ body {
   box-sizing: border-box; 
 }
 
+/* scene 1 background image styling */
 .at_the_surface {
   width: 100vw;
   object-fit: cover;
@@ -98,26 +97,27 @@ body {
   padding: 0;
   margin: 0;
   margin-bottom: -1px;
-  -webkit-mask-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0));
+  -webkit-mask-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0)); /* fade at the top from the video */
   background-size: contain;
   border: none;
   box-sizing: border-box;
 }
 
+/* scroll text with css animation */
 .scroll_text {
   position: absolute; 
   top: 25%; 
   left: 9%; 
   color: white; 
   font-size: 2vw; 
- z-index: 10;
-
+  z-index: 10;
   display: flex;
   align-items: center;
   gap: 1vw;
   animation: bounce 1.3s infinite alternate ease-in-out;
 }
 
+/* various parts of the whole div */
 .scroll_text p {
   margin: 0;
   text-align: center;
@@ -134,15 +134,16 @@ body {
   height: auto;
 }
 
+/* animation for scroll text */
 @keyframes bounce {
   0% {
-    transform: translateY(0); /* Start at original position */
+    transform: translateY(0); /* start at original position */
   }
   50% {
-    transform: translateY(22%); /* Move up 20px */
+    transform: translateY(22%); /* move up 22% */
   }
   100% {
-    transform: translateY(0); /* Return to original position */
+    transform: translateY(0); /* return to original position */
   }
 }
 
@@ -159,8 +160,8 @@ body {
   padding: 0% 5%;
 }
 
-.blink_vid{
-  /* height: 100%; */
+/* blink vid make sure no whitespace around */
+.blink_vid {
   width: 100vw;
   margin: 0%;
   margin-top: -1px;
@@ -194,13 +195,6 @@ body {
   opacity: 0;
   transform: translateY(20px);
 }
-/* 
-.act1_text_2 {
-  color: white;
-  font-size: 2vw;
-  width: 80%;
-  opacity: 1;
-} */
 
 #dive_button {
   position: absolute;
@@ -217,6 +211,7 @@ body {
   z-index: 1001;
 }
 
+/* expand on hover */
 #dive_button:hover {
   transform: scale(1.05);
 }
@@ -236,25 +231,10 @@ body {
   z-index: 1001;
 }
 
+/* expand on hover */
 #explore_button:hover {
   transform: scale(1.05);
 }
-
-/* section.vid {
-  height: 3000px;
-  background-color: white;
-}
-
-section.vid div.holder {
-  position: sticky;
-  top: 0;
-}
-
-section.vid video {
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-} */
 
 .picture {
   width: 100vw;
@@ -278,7 +258,7 @@ section.vid video {
 .scene2 {
   position: relative;
   width: 100vw;
-  min-height: 100vh; /* or a value that makes sense */
+  min-height: 100vh;
   padding: 0;
   margin: 0;
   border: none; 
@@ -293,6 +273,8 @@ section.vid video {
   top: 0;
 }
 
+/* add animations to pollutants, slightly alter time */
+/* added drop shadow */
 #nitrate {
   position: absolute;
   max-width: 100%; 
@@ -317,6 +299,7 @@ section.vid video {
   filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.28));
 }
 
+/* containers to position the pollutants */
 .nitrate_container {
   position: absolute;
   top: 7%;
@@ -336,25 +319,25 @@ section.vid video {
 .plastic_bag_container {
   position: absolute;
   top: 31%;
-  /* transform: translateX(505%); */
   right: 30%;
   width: 12%;
   z-index: 1000;
-  /* overflow: hidden; */
 }
 
-  @keyframes bobbing {
-    0% {
-      transform: translateY(0); /* Start at original position */
-    }
-    50% {
-      transform: translateY(7%); /* Move up 20px */
-    }
-    100% {
-      transform: translateY(0); /* Return to original position */
-    }
+/* animation for pollutants */
+@keyframes bobbing {
+  0% {
+    transform: translateY(0);
   }
+  50% {
+    transform: translateY(7%); /* move up 7% */
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 
+/* tooltip that appears on hover, nitrate */
 .tooltip {
   position: relative;
   transform: translateX(34.5%);
@@ -362,8 +345,6 @@ section.vid video {
   background:white;
   border-radius: 1vw;
   width: 50vw;
-  /* max-width: 50vw; */
-  /* height:150px; */
   padding: 8% 12%;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   white-space: nowrap;
@@ -374,27 +355,27 @@ section.vid video {
   text-wrap: wrap;
 }
 
+/* tooltip tip for nitrate tooltip */
 .tooltip:before {
     content:"";
     position: absolute;
     height: 0%;
     width: 0%;
     top: 40%;
-    left: -3.8%; /* 1px buffer for zooming problems while rendering*/
+    left: -3.8%;
     border-width: 1vw;
     border-color: transparent white transparent transparent;
     border-style: solid;
 }
 
+/* tooltip that appears on hover, ammonium */
 .tooltip_left {
   position: relative;
-  /* bottom: -150px; */
-  transform: translateX(-105%); /* Adjust to move tooltip beside image */
+  transform: translateX(-105%);
   color: black;
   background:white;
   border-radius: 1vw;
   width: 50vw;
-  /* height:150px; */
   padding: 8% 12%;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   white-space: nowrap;
@@ -405,27 +386,27 @@ section.vid video {
   text-wrap: wrap;
 }
 
+/* tooltip tip for ammonium tooltip */
 .tooltip_left:after {
     content:"";
     position: absolute;
     height: 0%;
     width: 0%;
     top: 40%;
-    right: -3.8%; /* 1px buffer for zooming problems while rendering */
+    right: -3.8%;
     border-width: 1vw;
     border-color: transparent transparent transparent white;
     border-style: solid;
 }
 
+/* tooltip that appears on hover, plastic bag */
 .tooltip_lefter {
   position: relative;
-  /* bottom: -150px; */
-  transform: translateX(-105%); /* Adjust to move tooltip beside image */
+  transform: translateX(-105%); 
   color: black;
   background:white;
   border-radius: 1vw;
   width: 50vw;
-  /* height:150px; */
   padding: 8% 12%;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   white-space: nowrap;
@@ -436,23 +417,26 @@ section.vid video {
   text-wrap: wrap;
 }
 
+/* tooltip tip for plastic bag tooltip */
 .tooltip_lefter:after {
     content:"";
     position: absolute;
     height: 0%;
     width: 0%;
     top: 40%;
-    right: -3.8%; /* 1px buffer for zooming problems while rendering */
+    right: -3.8%;
     border-width: 1vw;
     border-color: transparent transparent transparent white;
     border-style: solid;
 }
 
+/* text styling */
 .tooltip_text {
   font-size: 2vw;
   color: rgb(37, 37, 37);
 }
 
+/* make tooltips visible on hover */
 .nitrate_container:hover .tooltip {
   opacity: 1;
 }
@@ -465,6 +449,7 @@ section.vid video {
   opacity: 1;
 }
 
+/* "Hover on me!" text styling */
 #hover_container {
   position: absolute;
   top: 12.8%;
@@ -478,9 +463,7 @@ section.vid video {
   top: 16.19%;
   left: 26%;
   z-index: 100;
-  /* opacity: 0.1; */
   overflow: hidden;
-  /* transform: translateY(-100); */
 }
 
 #hover_text {
@@ -488,9 +471,7 @@ section.vid video {
   font-size: 2vw;
   opacity: 1;
   transform: translateY(-100);
-  /* overflow: hidden; */
 }
-
 
 .act2_text_section_1 {
   position: absolute;
@@ -507,6 +488,7 @@ section.vid video {
   text-align: left;
 }
 
+/* graphs and graphs text positioning and styling */
 #graph1 {
   position: absolute;
   width: 44%;
@@ -525,9 +507,8 @@ section.vid video {
   width: 33%;
   padding-right: 3%;
   height: auto;
-  overflow: hidden; /* This hides the sliding text until it enters */
+  overflow: hidden; /* hides the sliding text until it enters */
   z-index: 10;
-  /* match #graph1_text position */
 }
 
 #graph1_text {
@@ -536,7 +517,6 @@ section.vid video {
   text-align: right;
   transform: translateX(102%);
   will-change: transform;
-  /* Remove transition here, GSAP will handle it */
 }
 
 #graph2 {
@@ -557,9 +537,8 @@ section.vid video {
   width: 45%;
   padding-left: 3%;
   height: auto;
-  overflow: hidden; /* This hides the sliding text until it enters */
+  overflow: hidden; /* hides the sliding text until it enters */
   z-index: 10;
-  /* match #graph1_text position */
 }
 
 #graph2_text {
@@ -568,9 +547,9 @@ section.vid video {
   text-align: left;
   transform: translateX(102%);
   will-change: transform;
-  /* Remove transition here, GSAP will handle it */
 }
 
+/* rounding the corners on the images */
 .data_image {
   border-radius: 13px;
   width: 100%
@@ -605,6 +584,7 @@ section.vid video {
   transition: transform 0.2s ease;
 }
 
+/* button expands on hover */
 #explore_the_data_button:hover {
   transform: scale(1.05);
 }
@@ -623,6 +603,7 @@ section.vid video {
   transition: transform 0.2s ease;
 }
 
+/* button expands on hover */
 #join_linkedin_button:hover {
   transform: scale(1.05);
 }
@@ -641,6 +622,7 @@ section.vid video {
   transition: transform 0.2s ease;
 }
 
+/* button expands on hover */
 #explore_the_projects_button:hover {
   transform: scale(1.05);
 }
@@ -648,7 +630,7 @@ section.vid video {
 .scene3 {
   position: relative;
   width: 100vw;
-  min-height: 100vh; /* or a value that makes sense */
+  min-height: 100vh;
   padding: 0;
   margin: 0;
   border: none; 
@@ -664,18 +646,19 @@ section.vid video {
   box-sizing: border-box; 
 }
 
+/* quote box image styling */
 .quote {
   position: absolute;
   width: 100%;
 }
 
+/* containers vary based on required styling */
 .quote_text_container {
   position: absolute;
   z-index: 100;
   left: 13.9%;
   padding-top: 3.4%;
   padding-right: 5%;
-  /* border: solid 1px black; */
   width: 83%;
   text-wrap: wrap;
   height: 100%;
@@ -686,13 +669,10 @@ section.vid video {
   z-index: 100;
   padding-top: 5.3%;
   left: 8.3%;
-  /* border: solid 1px black; */
   width: 83%;
   text-wrap: wrap;
   height: 100%;
   margin-inline: auto; 
-  /* width: fit-content; */
-  /* border: red solid 2px;  */
 }
 
 .quote_text_container_right {
@@ -701,21 +681,19 @@ section.vid video {
   padding-top: 3.4%;
   padding-right: 4.5%;
   left: 8.8%;
-  /* border: solid 1px black; */
   width: 83%;
   text-wrap: wrap;
   height: 100%;
   margin-inline: auto; 
-  /* width: fit-content; */
-  /* border: red solid 2px;  */
 }
 
+/* quote text styling */
 .quote_text {
   color: black;
   font-size: 1.7vw;
-  /* border: red solid 2px;  */
 }
 
+/* positioning on quotes */
 #quote_1 {
   position: absolute;
   top: 4.2%;
@@ -771,11 +749,13 @@ section.vid video {
   transition: all 0.05s ease-out;
 }
 
+/* styling of job titles */
 .quoter_text {
   color: white;
   font-size: 2.5vw;
 }
 
+/* positioning of job titles */
 #quoter_1 {
   position: absolute;
   top: 16%;
@@ -833,13 +813,14 @@ section.vid video {
 .scene4 {
   position: relative;
   width: 100vw;
-  min-height: 100vh; /* or a value that makes sense */
+  min-height: 100vh;
   padding: 0;
   margin: 0;
   border: none; 
   box-sizing: border-box; 
 }
 
+/* hand positioning */
 #hand_container {
   position: absolute;
   top: 7.4%;
@@ -848,6 +829,7 @@ section.vid video {
   z-index: 3;
 }
 
+/* hand image styling */
 #hand { 
   position: absolute;
   width: 100%;
@@ -868,6 +850,7 @@ section.vid video {
   opacity: 1;
 }
 
+/* box for project information */
 .project_container {
   position: absolute;
   z-index: 10;
@@ -884,6 +867,7 @@ section.vid video {
   padding-bottom: 2.5%;
 }
 
+/* various styling for project containers */
 .project_title {
   font-size: 2.25vw;
 }
@@ -940,7 +924,6 @@ section.vid video {
   font-size: 2vw;
   width: 100%;
   opacity: 0;
-  /* transform: translateY(20px); */
 }
 
 #act5_text_2 {
@@ -948,11 +931,10 @@ section.vid video {
   font-size: 4vw;
   width: 100%;
   opacity: 0;
-  /* transform: translateY(20px); */
 }
 
-.surface_vid{
-  /* height: 100%; */
+/* video of froggy resurfacing */
+.surface_vid {
   width: 100vw;
   margin: 0%;
   margin-top: -2px;
@@ -967,6 +949,7 @@ section.vid video {
   backface-visibility: hidden;
 }
 
+/* post-story section */
 .explore {
   position: relative;
   margin-top: 100px;
@@ -975,6 +958,7 @@ section.vid video {
   margin-bottom: 100px;
 }
 
+/* various about area styling */
 #about_initiative{
   margin: 0% 10% 5% 10%;
   display: flex;
@@ -1005,20 +989,21 @@ section.vid video {
 
 .what_next {
   text-align: center;
-  /* font-family: Arial, sans-serif; */
   font-weight: bold;
   font-size: 56px;
   padding-bottom: 26px;
 }
 
+/* three website boxes overall container */
 .website_sections {
   display: flex;
   justify-content: space-between   ;
-  gap: 30px; /* Minimum spacing */
+  gap: 30px; /* minimum spacing */
   padding: 20px;
   flex-wrap: nowrap;
 }
 
+/* singular box styling */
 .section_box {
   width: 300px;
   height: 300px;
@@ -1033,25 +1018,25 @@ section.vid video {
   border-radius: 16px;
   transition: all 0.2s ease-in-out;
   padding: 10%;
-  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
+/* change colour on hover */
 .section_box:hover {
   background-color: white;
   border: black solid 0.8px;
   color: black;
 }
 
-/* Stack vertically if boxes + gaps won't fit */
+/* stack vertically if boxes + gaps won't fit */
 @media (max-width: 1080px) {
-  /* 3 boxes * 100px + 2 gaps * 30px = 360px */
   .website_sections {
     flex-direction: column;
     gap: 20px; /* vertical spacing when stacked */
-    align-items: center; /* optional: center vertically stacked boxes */  
-}
+    align-items: center; /* center vertically stacked boxes */  
+  }
 }
 
+/* overall froggy container */
 #meet_froggy {
   position: relative;
   background-color: rgb(217, 217, 217);
@@ -1063,6 +1048,7 @@ section.vid video {
   gap: 10%;
 }
 
+/* various froggy container styling */
 #froggy_title_container {
   border: 0;
 }
@@ -1092,6 +1078,7 @@ section.vid video {
   transition: all 0.2s ease-in-out;
 }
 
+/* enlarge and change colour on hover */
 #froggy_button:hover {
   background-color: rgb(149, 173, 203);
   color: white;
@@ -1115,7 +1102,6 @@ section.vid video {
 
 #meet_froggy_container {
   align-self: center;
-  /* margin-left: 100px; */
 }
 
 .meet_froggy_coontainers {
@@ -1123,13 +1109,12 @@ section.vid video {
   padding: 0;
 }
 
-/* Stack vertically if boxes + gaps won't fit */
+/* stack vertically if child containers don't fit */
 @media (max-width: 1080px) {
-  /* 3 boxes * 100px + 2 gaps * 30px = 360px */
   .meet_froggy_containers {
     flex-direction: column;
     gap: 20px; /* vertical spacing when stacked */
-    align-items: center; /* optional: center vertically stacked boxes */  
+    align-items: center; /* center vertically stacked boxes */  
     text-align: center;
-}
+  }
 }
