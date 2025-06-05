@@ -3,7 +3,7 @@
     display: flex;
     gap: 2rem;
     margin-bottom: 2rem;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Allows content to wrap on smaller screens */
   }
 
   /* ------------ Responsive ------------ */
@@ -18,9 +18,11 @@
     }
   
     main {
-      flex-direction: column;
+      flex-direction: column; 
     }
   
+/* ------------ Interactive Elements ------------ */
+/* Text with hover effect */
     .nav-links {
       flex-direction: column;
       gap: 0.5rem;
@@ -35,13 +37,13 @@
       color: rgb(59, 96, 156);
     }
 
-    /* Gallery */
+/* ------------ Gallery Layout ------------ */
     .gallery-grid {
       display: flex;
       flex-wrap: wrap;
       gap: 1.5rem;
       margin: 2rem 0;
-      justify-content: center;
+      justify-content: center; /* Center-align the gallery items */
     }
     
     .gallery-item {
@@ -56,7 +58,7 @@
     }
     
     .gallery-item:hover {
-      transform: translateY(-4px);
+      transform: translateY(-4px); /* Lift the item slightly on hover */
     }
     
     .gallery-item img {
@@ -65,12 +67,14 @@
       border-radius: 8px;
     }
 
+/* ------------ Embedded Content Styling ------------ */
+/* Adjust iframe specifically for one chart */
     iframe[src*="random_forest_regression_smaller_fig.png"] {
     zoom: 0.35 !important; 
     height: 180vh !important;
   }
 
-    
+/* ------------ Modal Styling ------------ */    
     .modal {
       display: none;
       position: fixed;
@@ -89,7 +93,8 @@
       height: 80%;
       border-radius: 12px;
     }
-     
+
+/* Optional sidebar within modal */     
     .modal-sidebar {
       width: 30%; 
       padding: 1rem;
@@ -105,6 +110,8 @@
       border-radius: 8px;
       margin-bottom: 0.5rem;
     }
+
+/* Text intro above gallery */
     .gallery-intro {
       font-size: 1.05rem;
       line-height: 1.7;
@@ -112,6 +119,8 @@
       margin-bottom: 2rem;
       max-width: 100%;
     }
+
+/* Section styling for gallery */
     .gallery-section {
       background-color: #f9f9fb;
       padding: 3rem 2rem;
@@ -120,6 +129,7 @@
       box-shadow: 0 1px 4px rgba(0,0,0,0.04);
     }
     
+/* Section title inside gallery */
     .gallery-section-title {
       font-size: 1.8rem;
       color: #3B609C;
@@ -156,13 +166,15 @@
       border: none;
       border-radius: 6px;
     }
-    
+
+/* Description section in modal */
     #modal-description {
       order: 3;
       padding: 1rem 0;
       background: white;
     }
     
+/* Close button for modal */
     .modal-close {
       position: absolute;
       top: 1rem;
@@ -197,6 +209,7 @@
       margin-top: 1rem;
     }
 
+/* Modal body wrapper */
     .modal-body {
       display: flex;
       flex-direction: column;
@@ -204,6 +217,7 @@
       align-items: stretch;
     }
 
+/* Main content block inside modal */
     .modal-analysis {
       background: #fff;
       padding: 0rem;
@@ -233,6 +247,8 @@
       border: 1px solid #eee;
       border-radius: 3px;
     }
+
+/* Image container inside modal */
     .image-container {
       padding: 15px;
       background: white;
@@ -240,6 +256,7 @@
       margin: 25px 0;
     }
 
+/* Highlight box inside modal */
     .modal-highlight {
       background: #f2f9ff;
       padding: 1.2rem 1.5rem;
@@ -248,10 +265,12 @@
       border-radius: 8px;
     }
 
+/* Link color inside modal */
     .modal-analysis a {
       color: #2a5885;
     }
 
+/* Embedded content inside modal */
     .modal-analysis iframe {
       margin-bottom: 0;   
       margin-top: 0;
@@ -259,6 +278,7 @@
       border: none;
     }
 
+/* Headings and spacing inside modal content */
     .modal-analysis h3 {
       margin-top: 1.8rem;
       margin-bottom: 0.8rem;
