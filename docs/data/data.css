@@ -26,6 +26,14 @@
       gap: 0.5rem;
     }}
 
+    /* Clickable text class */
+    .jump {
+      transition: transform 0.2s ease;
+    }
+
+    .jump:hover {
+      color: rgb(59, 96, 156);
+    }
 
     /* Gallery */
     .gallery-grid {
