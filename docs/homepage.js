@@ -35,44 +35,40 @@ document.querySelector('#dive_button').addEventListener('click', function () {
     }
 });
 
-// Play or pause audio based on visibility of water_animation_container
+// play or pause audio based on visibility of water_animation_container
 document.addEventListener('DOMContentLoaded', () => {
   const audio = document.getElementById('bubbly-sound');
   const waterAnimationContainer = document.querySelector('.water_animation_container');
 
-  // Adjust initial volume
-  audio.volume = 0.3; // Set initial volume (0.0 to 1.0)
+  // adjust initial volume
+  audio.volume = 0.3; // set initial volume (0.0 to 1.0)
 
-  // Use IntersectionObserver to monitor visibility
+  // use IntersectionObserver to monitor visibility
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        audio.play(); // Play audio when the container is visible
+        audio.play(); // play audio when the container is visible
       } else {
-        audio.pause(); // Pause audio when the container is not visible
+        audio.pause(); // pause audio when the container is not visible
       }
     });
   });
 
   observer.observe(waterAnimationContainer);
 
-  // Fade out audio volume on scroll
+  // fade out audio volume on scroll
   window.addEventListener('scroll', () => {
     const containerRect = waterAnimationContainer.getBoundingClientRect();
-    const fadeStart = 0; // Start fading when the container is fully visible
-    const fadeEnd = window.innerHeight; // End fading when the container is out of view
+    const fadeStart = 0; // start fading when the container is fully visible
+    const fadeEnd = window.innerHeight; // end fading when the container is out of view
 
-    // Calculate the fade factor based on scroll position
+    // calculate the fade factor based on scroll position
     const fadeFactor = Math.max(0, Math.min(1, containerRect.bottom / fadeEnd));
 
-    // Adjust the audio volume based on the fade factor
-    audio.volume = fadeFactor * 0.3; // Multiply by max volume (e.g., 0.5)
+    // adjust the audio volume based on the fade factor
+    audio.volume = fadeFactor * 0.3; // multiply by max volume (e.g., 0.5)
   });
 });
-
-// document.querySelector('#dive_button').addEventListener('click', function () {
-//   window.location.href = '/projects'; 
-// });
 
 // button scroll to explore
 document.querySelector('#explore_button').addEventListener('click', function () {
@@ -81,15 +77,16 @@ document.querySelector('#explore_button').addEventListener('click', function () 
 
 // button scroll down by one viewport height when Dive In button is clicked
 document.querySelector('#dive_button').addEventListener('click', function () {
-  const targetScroll = window.scrollY + window.innerHeight; // Calculate the target scroll position
+  const targetScroll = window.scrollY + window.innerHeight; // calculate the target scroll position
 
   gsap.to(window, {
-      scrollTo: targetScroll, // Scroll to the target position
-      duration: 2, // Duration in seconds (increase for slower scrolling)
-      ease: "power2.out" // Smooth easing for a natural scroll effect
+      scrollTo: targetScroll, // scroll to the target position
+      duration: 2,
+      ease: "power2.out" // smooth easing
   });
 });
 
+// progress bar code to go with the story
 gsap.to(".progress_bar", {
   width: "100vw",
   ease: "none",
@@ -125,38 +122,38 @@ gsap.to(".act1_text", {
     }
 });
 
-
+// code to replace the blink video with the jumping on
 document.addEventListener('DOMContentLoaded', () => {
-  // Select the froggy blink video
+  // select the froggy blink video
   const blinkVideo = document.querySelector('.blink_vid');
 
-  // Preload the second video
+  // preload the second video
   const secondVideoSrc = '/images/homepage_media/Froggy jump 10.mp4';
   const secondVideo = document.createElement('video');
   secondVideo.src = secondVideoSrc;
-  secondVideo.muted = true; // Ensure autoplay works
-  secondVideo.preload = 'auto'; // Preload the second video
-  secondVideo.className = 'blink_vid'; // Match the class of the first video
-  secondVideo.style.width = blinkVideo.style.width; // Match the width of the first video
-  secondVideo.style.height = blinkVideo.style.height; // Match the height of the first video
-  secondVideo.loop = false; // Ensure the second video does not loop
-  secondVideo.autoplay = true; // Ensure the second video plays automatically
+  secondVideo.muted = true; // ensure autoplay works
+  secondVideo.preload = 'auto'; // preload the second video
+  secondVideo.className = 'blink_vid'; // match the class of the first video
+  secondVideo.style.width = blinkVideo.style.width; // match the width of the first video
+  secondVideo.style.height = blinkVideo.style.height; // match the height of the first video
+  secondVideo.loop = false; // ensure the second video does not loop
+  secondVideo.autoplay = true; // ensure the second video plays automatically
 
-  // Disable looping for the first video
+  // disable looping for the first video
   blinkVideo.loop = false;
 
-  // Listen for the 'ended' event on the first video
+  // listen for the 'ended' event on the first video
   blinkVideo.addEventListener('ended', () => {
     console.log('Froggy blink video ended. Switching to Froggy jump 10...');
 
-    // Replace the first video with the preloaded second video
+    // replace the first video with the preloaded second video
     const parent = blinkVideo.parentNode;
-    parent.replaceChild(secondVideo, blinkVideo); // Swap the video elements
-    secondVideo.play(); // Play the new video
+    parent.replaceChild(secondVideo, blinkVideo); // swap the video elements
+    secondVideo.play(); // play the new video
   });
 });
 
-// fade in the overlay text
+// slide in the hover text
 gsap.from("#hover_text", {
     opacity: 1,
     y: 50,
@@ -172,7 +169,7 @@ gsap.from("#hover_text", {
     }
 });
 
-// Fade in the overlay text
+// fade in the overlay text
 gsap.to(".act2_text_1", {
     opacity: 1,
     y: 0,
@@ -186,33 +183,35 @@ gsap.to(".act2_text_1", {
     }
 });
 
+// animate the first data graph
 gsap.to("#graph1", {
   scrollTrigger: {
     trigger: ".scene2",
     start: "54% center", // when trigger hits center of viewport
-    toggleActions: "play none none reverse",
+    toggleActions: "play none none reverse", // reverse animation as well
   },
   scale: 1,
   opacity: 1,
   duration: 0.5,
-  ease: "back.out(0.5)" // gives it a nice springy pop
+  ease: "back.out(0.5)" // gives it a pop
 });
 
+// animate the second data graph
 gsap.to("#graph2", {
   scrollTrigger: {
     trigger: ".scene2",
-    start: "71% center", // when trigger hits center of viewport
+    start: "71% center",
     toggleActions: "play none none reverse",
   },
   scale: 1,
   opacity: 1,
   duration: 0.5,
-  ease: "back.out(0.5)", // gives it a nice springy pop
-  // markers: true
+  ease: "back.out(0.5)"
 });
 
+// animate the first graph caption
 gsap.fromTo("#graph1_text",
-  { x: "102%" }, // Start fully hidden to the right
+  { x: "102%" }, // start fully hidden to the right
   {
     x: "0%",
     duration: 1,
@@ -221,13 +220,13 @@ gsap.fromTo("#graph1_text",
       trigger: ".scene2",
       start: "58% center",
       toggleActions: "play none none reverse",
-      // markers: true
     }
   }
 );
 
+// animate the second graph caption
 gsap.fromTo("#graph2_text",
-  { x: "-102%" }, // Start fully hidden to the right
+  { x: "-102%" }, // start fully hidden to the left
   {
     x: "0%",
     duration: 1,
@@ -236,12 +235,11 @@ gsap.fromTo("#graph2_text",
       trigger: ".scene2",
       start: "75% center",
       toggleActions: "play none none reverse",
-      // markers: true
     }
   }
 );
 
-// Fade in the overlay text
+// dade in the overlay text
 gsap.to(".act2_text_2", {
     opacity: 1,
     y: 0,
@@ -255,6 +253,8 @@ gsap.to(".act2_text_2", {
     }
 });
 
+// animatations for the quotes
+
 gsap.fromTo("#quote_1",
   { opacity: 0, y: 20 },
   {
@@ -264,9 +264,8 @@ gsap.fromTo("#quote_1",
     ease: "power2.out",
     scrollTrigger: {
       trigger: ".scene3",
-      start: "5.8% center", // when the top of ___ hits the center of viewport
-      toggleActions: "play none none reverse", // optional: makes it fade out on scroll up
-      markers: false  
+      start: "5.8% center",
+      toggleActions: "play none none reverse",
     }
   }
 );
@@ -280,9 +279,8 @@ gsap.fromTo("#quote_2",
     ease: "power2.out",
     scrollTrigger: {
       trigger: ".scene3",
-      start: "21.3% center", // when the top of ___ hits the center of viewport
-      toggleActions: "play none none reverse", // optional: makes it fade out on scroll up
-      markers: false  
+      start: "21.3% center",
+      toggleActions: "play none none reverse",
     }
   }
 );
@@ -296,9 +294,8 @@ gsap.fromTo("#quote_3",
     ease: "power2.out",
     scrollTrigger: {
       trigger: ".scene3",
-      start: "36.3% center", // when the top of ___ hits the center of viewport
-      toggleActions: "play none none reverse", // optional: makes it fade out on scroll up
-      markers: false  
+      start: "36.3% center",
+      toggleActions: "play none none reverse",
     }
   }
 );
@@ -312,9 +309,8 @@ gsap.fromTo("#quote_4",
     ease: "power2.out",
     scrollTrigger: {
       trigger: ".scene3",
-      start: "52.2% center", // when the top of ___ hits the center of viewport
-      toggleActions: "play none none reverse", // optional: makes it fade out on scroll up
-      markers: false  
+      start: "52.2% center",
+      toggleActions: "play none none reverse",
     }
   }
 );
@@ -328,13 +324,13 @@ gsap.fromTo("#quote_5",
     ease: "power2.out",
     scrollTrigger: {
       trigger: ".scene3",
-      start: "66.8% center", // when the top of ___ hits the center of viewport
-      toggleActions: "play none none reverse", // optional: makes it fade out on scroll up
-      markers: false  
+      start: "66.8% center",
+      toggleActions: "play none none reverse",
     }
   }
 );
 
+// fade in text
 gsap.to(".act3_text", {
     opacity: 1,
     y: 0,
@@ -348,13 +344,12 @@ gsap.to(".act3_text", {
     }
 });
 
+// hand sliding in from the left animation with scrub
 let tl3 = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene4",
-    start: "top 40%-top", // when the top of ___ hits the center of viewport
-    end: "+=450", // adjust 
+    start: "top 40%-top",
     scrub: true,
-    markers: false
   }
 });
 
@@ -362,6 +357,7 @@ tl3.to("#hand_container", {
   x: "100%"
 })
 
+// project container fade ins/outs
 
 gsap.fromTo("#project_container_1",
   { opacity: 0, y: 20 },
@@ -372,9 +368,8 @@ gsap.fromTo("#project_container_1",
     ease: "power2.out",
     scrollTrigger: {
       trigger: "#project_container_1",
-      start: "top center", // when the top of ___ hits the center of viewport
-      toggleActions: "play none none reverse", // optional: makes it fade out on scroll up
-      markers: false  
+      start: "top center",
+      toggleActions: "play none none reverse",
     }
   }
 );
@@ -388,8 +383,8 @@ gsap.fromTo("#project_container_2",
     ease: "power2.out",
     scrollTrigger: {
       trigger: "#project_container_2",
-      start: "top center", // when the top of ___ hits the center of viewport
-      toggleActions: "play none none reverse", // optional: makes it fade out on scroll up
+      start: "top center",
+      toggleActions: "play none none reverse",
       markers: false  
     }
   }
@@ -404,8 +399,8 @@ gsap.fromTo("#project_container_3",
     ease: "power2.out",
     scrollTrigger: {
       trigger: "#project_container_3",
-      start: "top center", // when the top of ___ hits the center of viewport
-      toggleActions: "play none none reverse", // optional: makes it fade out on scroll up
+      start: "top center",
+      toggleActions: "play none none reverse",
       markers: false  
     }
   }
@@ -435,6 +430,7 @@ gsap.to("#act5_text_1", {
     }
 });
 
+// fade in overlay text
 const scene5Timeline = gsap.timeline({
   scrollTrigger: {
     trigger: ".scene5",
@@ -444,41 +440,16 @@ const scene5Timeline = gsap.timeline({
   }
 });
 
+// fade in the overlay text
 scene5Timeline.to("#act5_text_2", {
   opacity: 1,
   y: 0,
   duration: 2,
   ease: "power2.out",
-  delay: 2.5 // x-second delay before this animation starts
+  delay: 2.5 // delay before this animation starts
 });
 
-window.addEventListener('load', () => {
-  ScrollTrigger.refresh()
-})
-
-// const section = document.querySelector('section.vid')
-// const vid = document.querySelector('video')
-
-// vid.pause()
-
-// const scroll = () => {
-//   const distance = window.scrollY - section.offsetTop
-//   const total = section.clientHeight - window.innerHeight
-
-//   let percentage = distance / total
-//   percentage = Math.max(0, percentage)
-//   percentage = Math.min(percentage, 1)
-
-//   if (vid.duration > 0) {
-//     vid.currentTime = vid.duration * percentage
-//   }
-// }
-
-// scroll()
-// window.addEventListener("scroll", scroll)
-
-// window.addEventListener("scroll", scroll)
-
+// play arrow animation only once, when it enters the viewport
 let player = document.getElementById("hover_lottie");
 
 player.addEventListener("ready", () => {
@@ -487,9 +458,14 @@ let inte = LottieInteractivity.create({
     mode:"scroll",
     actions: [
         {
-        visibility: [0.50, 1.0],
+        visibility: [0.50, 1.0], // animatin starts at 50% visibility
         type: "playOnce"
         }
     ]
 });
 });
+
+// refresh ScrollTrigger once page loads fully
+window.addEventListener('load', () => {
+  ScrollTrigger.refresh()
+})
