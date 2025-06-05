@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const blinkVideo = document.querySelector('.blink_vid');
 
   // Preload the second video
-  const secondVideoSrc = '/images/homepage_media/Froggy jump 4.mp4';
+  const secondVideoSrc = '/images/homepage_media/Froggy jump 5.mp4';
   const secondVideo = document.createElement('video');
   secondVideo.src = secondVideoSrc;
   secondVideo.muted = true; // Ensure autoplay works
@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Listen for the 'ended' event on the first video
   blinkVideo.addEventListener('ended', () => {
-    console.log('Froggy blink video ended. Switching to Froggy jump 4...');
+    console.log('Froggy blink video ended. Switching to Froggy jump 5...');
 
     // Replace the first video with the preloaded second video
     const parent = blinkVideo.parentNode;
