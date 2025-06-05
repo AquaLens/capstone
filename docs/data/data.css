@@ -66,8 +66,8 @@
     }
 
     iframe[src*="random_forest_regression_smaller_fig.png"] {
-    zoom: 0.4 !important; 
-    height: 170vh !important;
+    zoom: 0.35 !important; 
+    height: 180vh !important;
   }
 
     
