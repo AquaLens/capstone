@@ -509,7 +509,7 @@ section.vid video {
 
 #graph1 {
   position: absolute;
-  width: 48%;
+  width: 44%;
   top: 54%;
   right: 5%;
   transform: scale(0.01); 
@@ -521,7 +521,7 @@ section.vid video {
 #graph1_text_wrapper {
   position: absolute;
   top: 56%;
-  left: 13.8%;
+  left: 17.85%;
   width: 33%;
   padding-right: 3%;
   height: auto;
@@ -541,7 +541,7 @@ section.vid video {
 
 #graph2 {
   position: absolute;
-  width: 48%;
+  width: 44%;
   top: 71%;
   left: 5%;
   transform: scale(0.01); 
@@ -553,7 +553,7 @@ section.vid video {
 #graph2_text_wrapper {
   position: absolute;
   top: 72.9%;
-  right: 2.1%;
+  right: 5.9%;
   width: 45%;
   padding-left: 3%;
   height: auto;
@@ -593,7 +593,7 @@ section.vid video {
 
 #explore_the_data_button {
   position: absolute;
-  bottom: 12.85%;
+  bottom: 10.5%;
   right: 10%;
   padding: 1vw 2vw;
   font-size: 1.5vw;
@@ -612,7 +612,7 @@ section.vid video {
 #join_linkedin_button {
   position: absolute;
   bottom: 5%;
-  right: 12%;
+  right: 10%;
   padding: 1vw 2vw;
   font-size: 1.5vw;
   cursor: pointer;
@@ -630,7 +630,7 @@ section.vid video {
 #explore_the_projects_button {
   position: absolute;
   bottom: 5%;
-  right: 12%;
+  right: 10%;
   padding: 1vw 2vw;
   font-size: 1.5vw;
   cursor: pointer;
