@@ -66,13 +66,13 @@
     line-height: 1;
   }  
 
-  .dashboard-button-top {
+  .button-top {
     margin-top: 1rem;
     width: 100%;
     margin-bottom: 1rem;
-  }
-  
-  .btn-dashboard {
+}
+
+.btn-projects {
     display: inline-block;
     background-color: #933f8d;
     color: #ffffff;
@@ -80,15 +80,15 @@
     border-radius: 4px;
     font-weight: bold;
     font-size: 1rem;
-    width: 218px;
+    width: 250px;
     transition: background-color 0.2s ease;
     text-align: center;
-  }
-  
-  .btn-dashboard:hover {
-    background-color: #CCCCCC;
-    color: #000000;
-  }
+}
+
+.btn-projects:hover {
+  background-color: #CCCCCC;
+  color: #000000;
+}
 
   .froggy-help {
     background-color: #ffffff; /* white background */
